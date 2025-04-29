@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class accueil : Form
+    public partial class carte : Form
     {
-        public accueil()
+        public carte()
         {
             InitializeComponent();
         }

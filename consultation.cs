@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class accueil : Form
+    public partial class consultation : Form
     {
-        public accueil()
+        public consultation()
         {
             InitializeComponent();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

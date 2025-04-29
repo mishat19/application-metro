@@ -16,5 +16,10 @@ namespace application_metro
         {
             InitializeComponent();
         }
+
+        private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
