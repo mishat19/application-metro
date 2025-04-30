@@ -211,6 +211,7 @@
             // 
             // btnEnregistrement
             // 
+            btnEnregistrement.Enabled = false;
             btnEnregistrement.Location = new Point(516, 1004);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
