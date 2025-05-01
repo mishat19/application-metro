@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class ouverture
+    partial class Ouverture
     {
         /// <summary>
         ///  Required designer variable.
@@ -41,6 +41,7 @@
             btnConnexion.TabIndex = 0;
             btnConnexion.Text = "Se connecter";
             btnConnexion.UseVisualStyleBackColor = true;
+            btnConnexion.Click += btnConnexion_Click;
             // 
             // btnNoConnexion
             // 
@@ -50,6 +51,7 @@
             btnNoConnexion.TabIndex = 1;
             btnNoConnexion.Text = "Rester déconnecté";
             btnNoConnexion.UseVisualStyleBackColor = true;
+            btnNoConnexion.Click += btnNoConnexion_Click;
             // 
             // lblTitre
             // 
@@ -61,7 +63,7 @@
             lblTitre.TabIndex = 2;
             lblTitre.Text = "Bienvenue !";
             // 
-            // ouverture
+            // Ouverture
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -69,8 +71,8 @@
             Controls.Add(lblTitre);
             Controls.Add(btnNoConnexion);
             Controls.Add(btnConnexion);
-            Name = "ouverture";
-            Text = "Mon application métro rapide";
+            Name = "Ouverture";
+            Text = "Mon application métro";
             ResumeLayout(false);
             PerformLayout();
         }

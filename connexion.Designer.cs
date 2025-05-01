@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class connexion
+    partial class Connexion
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             btnRetour = new Button();
             lblTitre = new Label();
             txtEmail = new TextBox();
@@ -63,26 +64,31 @@
             // 
             txtEmail.Location = new Point(239, 220);
             txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(322, 27);
             txtEmail.TabIndex = 4;
-            txtEmail.Text = "Saisir votre adresse mail";
+            txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
             txtMdp.Location = new Point(239, 266);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
+            txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(322, 27);
             txtMdp.TabIndex = 5;
-            txtMdp.Text = "Saisir votre mot de passe";
+            txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // picOeil
             // 
-            picOeil.Location = new Point(529, 266);
+            picOeil.Image = (Image)resources.GetObject("picOeil.Image");
+            picOeil.Location = new Point(530, 266);
             picOeil.Name = "picOeil";
             picOeil.Size = new Size(31, 27);
+            picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
             picOeil.TabIndex = 6;
             picOeil.TabStop = false;
+            picOeil.Click += picOeil_Click;
             // 
             // btnConnexion
             // 
@@ -92,6 +98,7 @@
             btnConnexion.TabIndex = 7;
             btnConnexion.Text = "Se connecter";
             btnConnexion.UseVisualStyleBackColor = true;
+            btnConnexion.Click += btnConnexion_Click;
             // 
             // lnkInscription
             // 
@@ -102,6 +109,7 @@
             lnkInscription.TabIndex = 8;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
+            lnkInscription.LinkClicked += lnkInscription_LinkClicked;
             // 
             // lblInscription
             // 
@@ -112,7 +120,7 @@
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             // 
-            // connexion
+            // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -125,7 +133,7 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
-            Name = "connexion";
+            Name = "Connexion";
             Text = "Page de connexion";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
             ResumeLayout(false);

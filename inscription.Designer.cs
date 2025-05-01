@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class inscription
+    partial class Inscription
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inscription));
             lblConnexion = new Label();
             lnkConnexion = new LinkLabel();
             btnInscription = new Button();
@@ -71,31 +72,36 @@
             btnInscription.TabIndex = 15;
             btnInscription.Text = "S'inscrire";
             btnInscription.UseVisualStyleBackColor = true;
+            btnInscription.Click += btnInscription_Click;
             // 
             // picOeil
             // 
+            picOeil.Image = (Image)resources.GetObject("picOeil.Image");
             picOeil.Location = new Point(562, 311);
             picOeil.Name = "picOeil";
             picOeil.Size = new Size(31, 27);
+            picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
             picOeil.TabIndex = 14;
             picOeil.TabStop = false;
+            picOeil.Click += picOeil_Click;
             // 
             // txtMdp
             // 
             txtMdp.Location = new Point(272, 311);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
+            txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(322, 27);
             txtMdp.TabIndex = 13;
-            txtMdp.Text = "Saisir votre mot de passe";
+            txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // txtEmail
             // 
             txtEmail.Location = new Point(272, 265);
             txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(322, 27);
             txtEmail.TabIndex = 12;
-            txtEmail.Text = "Saisir votre adresse mail";
             // 
             // lblTitre
             // 
@@ -115,6 +121,7 @@
             btnRetour.TabIndex = 10;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // txtNom
             // 
@@ -148,7 +155,7 @@
             dtpNaissance.Size = new Size(187, 27);
             dtpNaissance.TabIndex = 21;
             // 
-            // inscription
+            // Inscription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -165,7 +172,7 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
-            Name = "inscription";
+            Name = "Inscription";
             Text = "Page d'inscription";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
             ResumeLayout(false);

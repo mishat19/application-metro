@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class accueil
+    partial class Accueil
     {
         /// <summary>
         /// Required designer variable.
@@ -71,6 +71,7 @@
             btnRetour.TabIndex = 6;
             btnRetour.Text = "Se déconnecter/\r\nSe connecter";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnAdmin
             // 
