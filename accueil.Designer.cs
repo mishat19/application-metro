@@ -103,7 +103,7 @@
         private Label lblTitre;
         private Button btnRecherche;
         private Button btnConsultation;
-        private Button btnRetour;
+        public Button btnRetour;
         private Button btnAdmin;
     }
 }

@@ -16,10 +16,15 @@ namespace application_metro
 
         private void btnNoConnexion_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+            Accueil accueilWindow = new Accueil(this);
             accueilWindow.Show();
-            this.Hide();
             accueilWindow.UpdateBtnRetourText("Se connecter");
+            this.Hide();
+        }
+
+        public void lblDeconnexion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

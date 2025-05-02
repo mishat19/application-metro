@@ -31,6 +31,7 @@
             btnConnexion = new Button();
             btnNoConnexion = new Button();
             lblTitre = new Label();
+            lblDeconnexion = new Label();
             SuspendLayout();
             // 
             // btnConnexion
@@ -63,11 +64,25 @@
             lblTitre.TabIndex = 2;
             lblTitre.Text = "Bienvenue !";
             // 
+            // lblDeconnexion
+            // 
+            lblDeconnexion.AutoSize = true;
+            lblDeconnexion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDeconnexion.ForeColor = Color.ForestGreen;
+            lblDeconnexion.Location = new Point(299, 409);
+            lblDeconnexion.Name = "lblDeconnexion";
+            lblDeconnexion.Size = new Size(213, 23);
+            lblDeconnexion.TabIndex = 3;
+            lblDeconnexion.Text = "Vous avez été déconnecté";
+            lblDeconnexion.Visible = false;
+            lblDeconnexion.Click += lblDeconnexion_Click;
+            // 
             // Ouverture
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblDeconnexion);
             Controls.Add(lblTitre);
             Controls.Add(btnNoConnexion);
             Controls.Add(btnConnexion);
@@ -82,5 +97,6 @@
         private Button btnConnexion;
         private Button btnNoConnexion;
         private Label lblTitre;
+        public Label lblDeconnexion;
     }
 }

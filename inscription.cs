@@ -20,7 +20,6 @@ namespace application_metro
 
         public Inscription(Ouverture ouverture) : this()
         {
-            InitializeComponent();
             _ouverture = ouverture;
         }
 
@@ -33,9 +32,10 @@ namespace application_metro
 
         private void btnInscription_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+            Accueil accueilWindow = new Accueil(_ouverture);
+            accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
-            accueilWindow.UpdateBtnRetourText("Se déconnecter");
+            this.Close();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
