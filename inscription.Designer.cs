@@ -150,9 +150,11 @@
             // 
             // dtpNaissance
             // 
-            dtpNaissance.Location = new Point(406, 230);
+            dtpNaissance.CustomFormat = "dd-MM-yyyy";
+            dtpNaissance.Format = DateTimePickerFormat.Custom;
+            dtpNaissance.Location = new Point(462, 230);
             dtpNaissance.Name = "dtpNaissance";
-            dtpNaissance.Size = new Size(187, 27);
+            dtpNaissance.Size = new Size(131, 27);
             dtpNaissance.TabIndex = 21;
             // 
             // Inscription

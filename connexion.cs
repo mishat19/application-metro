@@ -12,30 +12,41 @@ namespace application_metro
 {
     public partial class Connexion : Form
     {
+        private Ouverture _ouverture;
+
         public Connexion()
         {
             InitializeComponent();
-            //txtMdp.TextChanged += txtMdp_TextChanged!;
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        public Connexion(Ouverture ouvertureInstance) : this()
         {
-            Ouverture ouverture = new Ouverture();
-            ouverture.Show();
+            _ouverture = ouvertureInstance;
+        }
+
+        private void btnRetour_Click(object sender, EventArgs e)
+        {
+            if (_ouverture != null)
+            {
+                _ouverture.Show();
+            }
+            _ouverture.lblDeconnexion.Visible = false;
+            this.Close();
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+            Accueil accueilWindow = new Accueil(_ouverture);
             accueilWindow.Show();
-            accueilWindow.UpdateBtnRetourText("Se déconnecter");
+            accueilWindow.btnRetour.Text = "Se déconnecter";
+            this.Close();
         }
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Inscription inscription = new Inscription();
+            Inscription inscription = new Inscription(_ouverture);
             inscription.Show();
+            this.Close();
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)

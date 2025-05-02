@@ -12,22 +12,41 @@ namespace application_metro
 {
     public partial class Accueil : Form
     {
-        //private Ouverture _ouverture;
+        private Ouverture _ouverture;
 
         public Accueil()
         {
             InitializeComponent();
-            //_ouverture = ouverture;
+        }
+
+        public Accueil(Ouverture ouverture) : this()
+        {
+            _ouverture = ouverture;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
+            if (_ouverture != null)
+            {
+                if(btnRetour.Text.Contains("Se connecter"))
+                {
+                    Connexion connexion = new Connexion(_ouverture);
+                    connexion.Show();
+                } else
+                {
+                    _ouverture.Show();
+                    _ouverture.lblDeconnexion.Visible = true;
+                };
+            }
+            this.Close();
         }
 
-        // Méthode publique pour mettre à jour le texte du bouton
         public void UpdateBtnRetourText(string newText)
         {
-            btnRetour.Text = newText;
+            if (btnRetour != null)
+            {
+                btnRetour.Text = newText;
+            }
         }
     }
 }
