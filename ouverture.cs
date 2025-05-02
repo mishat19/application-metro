@@ -9,14 +9,16 @@ namespace application_metro
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            Connexion connexionWindow = new Connexion();
+            Connexion connexionWindow = new Connexion(this);
             connexionWindow.Show();
+            this.Hide();
         }
 
         private void btnNoConnexion_Click(object sender, EventArgs e)
         {
             Accueil accueilWindow = new Accueil();
             accueilWindow.Show();
+            this.Hide();
             accueilWindow.UpdateBtnRetourText("Se connecter");
         }
     }
