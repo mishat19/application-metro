@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class gestion
+    partial class Gestion
     {
         /// <summary>
         /// Required designer variable.
@@ -185,6 +185,7 @@
             Controls.Add(btnRetour);
             Name = "gestion";
             Text = "gestion";
+            Load += gestion_Load;
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();

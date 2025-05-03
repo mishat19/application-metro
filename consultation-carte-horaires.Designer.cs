@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class consultation_carte_horaires
+    partial class Consultation_carte_horaires
     {
         /// <summary>
         /// Required designer variable.
@@ -33,11 +33,11 @@
             cmbLignes = new ComboBox();
             btnRetour = new Button();
             grpDestinations = new GroupBox();
+            rjToggleButton2 = new CustomControls.RJControls.RJToggleButton();
+            rjToggleButton1 = new CustomControls.RJControls.RJToggleButton();
             lblDestinationB = new Label();
             lblDestinationA = new Label();
             calDate = new MonthCalendar();
-            rjToggleButton1 = new CustomControls.RJControls.RJToggleButton();
-            rjToggleButton2 = new CustomControls.RJControls.RJToggleButton();
             lstStations = new ListBox();
             ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
             grpDestinations.SuspendLayout();
@@ -90,6 +90,36 @@
             grpDestinations.TabIndex = 29;
             grpDestinations.TabStop = false;
             // 
+            // rjToggleButton2
+            // 
+            rjToggleButton2.AutoSize = true;
+            rjToggleButton2.Checked = true;
+            rjToggleButton2.CheckState = CheckState.Checked;
+            rjToggleButton2.Location = new Point(308, 26);
+            rjToggleButton2.MinimumSize = new Size(45, 22);
+            rjToggleButton2.Name = "rjToggleButton2";
+            rjToggleButton2.OffBackColor = Color.Gray;
+            rjToggleButton2.OffToggleColor = Color.Gainsboro;
+            rjToggleButton2.OnBackColor = Color.MediumSlateBlue;
+            rjToggleButton2.OnToggleColor = Color.WhiteSmoke;
+            rjToggleButton2.Size = new Size(45, 22);
+            rjToggleButton2.TabIndex = 33;
+            rjToggleButton2.UseVisualStyleBackColor = true;
+            // 
+            // rjToggleButton1
+            // 
+            rjToggleButton1.AutoSize = true;
+            rjToggleButton1.Location = new Point(72, 26);
+            rjToggleButton1.MinimumSize = new Size(45, 22);
+            rjToggleButton1.Name = "rjToggleButton1";
+            rjToggleButton1.OffBackColor = Color.Gray;
+            rjToggleButton1.OffToggleColor = Color.Gainsboro;
+            rjToggleButton1.OnBackColor = Color.MediumSlateBlue;
+            rjToggleButton1.OnToggleColor = Color.WhiteSmoke;
+            rjToggleButton1.Size = new Size(45, 22);
+            rjToggleButton1.TabIndex = 32;
+            rjToggleButton1.UseVisualStyleBackColor = true;
+            // 
             // lblDestinationB
             // 
             lblDestinationB.AutoSize = true;
@@ -114,36 +144,6 @@
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
             // 
-            // rjToggleButton1
-            // 
-            rjToggleButton1.AutoSize = true;
-            rjToggleButton1.Location = new Point(72, 26);
-            rjToggleButton1.MinimumSize = new Size(45, 22);
-            rjToggleButton1.Name = "rjToggleButton1";
-            rjToggleButton1.OffBackColor = Color.Gray;
-            rjToggleButton1.OffToggleColor = Color.Gainsboro;
-            rjToggleButton1.OnBackColor = Color.MediumSlateBlue;
-            rjToggleButton1.OnToggleColor = Color.WhiteSmoke;
-            rjToggleButton1.Size = new Size(45, 22);
-            rjToggleButton1.TabIndex = 32;
-            rjToggleButton1.UseVisualStyleBackColor = true;
-            // 
-            // rjToggleButton2
-            // 
-            rjToggleButton2.AutoSize = true;
-            rjToggleButton2.Checked = true;
-            rjToggleButton2.CheckState = CheckState.Checked;
-            rjToggleButton2.Location = new Point(308, 26);
-            rjToggleButton2.MinimumSize = new Size(45, 22);
-            rjToggleButton2.Name = "rjToggleButton2";
-            rjToggleButton2.OffBackColor = Color.Gray;
-            rjToggleButton2.OffToggleColor = Color.Gainsboro;
-            rjToggleButton2.OnBackColor = Color.MediumSlateBlue;
-            rjToggleButton2.OnToggleColor = Color.WhiteSmoke;
-            rjToggleButton2.Size = new Size(45, 22);
-            rjToggleButton2.TabIndex = 33;
-            rjToggleButton2.UseVisualStyleBackColor = true;
-            // 
             // lstStations
             // 
             lstStations.FormattingEnabled = true;
@@ -166,6 +166,7 @@
             Controls.Add(btnRetour);
             Name = "consultation_carte_horaires";
             Text = "consultation_carte_horaires";
+            Load += consultation_carte_horaires_Load;
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             grpDestinations.ResumeLayout(false);
             grpDestinations.PerformLayout();

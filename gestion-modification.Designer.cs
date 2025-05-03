@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class gestion_modification
+    partial class Gestion_modification
     {
         /// <summary>
         /// Required designer variable.
@@ -245,6 +245,7 @@
             Controls.Add(btnRetour);
             Name = "gestion_modification";
             Text = "gestion_modification";
+            Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             ResumeLayout(false);
             PerformLayout();

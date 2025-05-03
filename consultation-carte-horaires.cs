@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class consultation_carte_horaires : Form
+    public partial class Consultation_carte_horaires : Form
     {
-        public consultation_carte_horaires()
+        public Consultation_carte_horaires()
         {
             InitializeComponent();
+        }
+
+        private void consultation_carte_horaires_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class gestion_modification : Form
+    public partial class Gestion_modification : Form
     {
-        public gestion_modification()
+        public Gestion_modification()
         {
             InitializeComponent();
+        }
+
+        private void gestion_modification_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

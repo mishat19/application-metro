@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class suppressionWindow
+    partial class SuppressionWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -82,6 +82,7 @@
             Controls.Add(lblHoraires);
             Name = "suppressionWindow";
             Text = "Supprimer";
+            Load += suppressionWindow_Load;
             ResumeLayout(false);
             PerformLayout();
         }

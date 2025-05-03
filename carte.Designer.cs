@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class carte
+    partial class Carte
     {
         /// <summary>
         /// Required designer variable.
@@ -104,6 +104,7 @@
             Controls.Add(btnRetour);
             Name = "carte";
             Text = "Consultation - Carte";
+            Load += carte_Load;
             ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             ResumeLayout(false);

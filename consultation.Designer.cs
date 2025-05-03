@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class consultation
+    partial class Consultation
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,8 @@
             dtpArrivee = new DateTimePicker();
             label8 = new Label();
             grpTrajet = new GroupBox();
+            btnDetails = new Button();
+            lblDuree = new Label();
             lblLigne = new Label();
             lblSeparation2 = new Label();
             lblHeureArrivee = new Label();
@@ -48,8 +50,6 @@
             lblSeparation = new Label();
             lblStationArrivee = new Label();
             lblStationDepart = new Label();
-            lblDuree = new Label();
-            btnDetails = new Button();
             picPlus = new PictureBox();
             cmbDepart = new ComboBox();
             cmbArrivee = new ComboBox();
@@ -186,6 +186,25 @@
             grpTrajet.TabIndex = 16;
             grpTrajet.TabStop = false;
             // 
+            // btnDetails
+            // 
+            btnDetails.Location = new Point(262, 137);
+            btnDetails.Name = "btnDetails";
+            btnDetails.Size = new Size(126, 28);
+            btnDetails.TabIndex = 17;
+            btnDetails.Text = "Détails";
+            btnDetails.UseVisualStyleBackColor = true;
+            // 
+            // lblDuree
+            // 
+            lblDuree.AutoSize = true;
+            lblDuree.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDuree.Location = new Point(308, 100);
+            lblDuree.Name = "lblDuree";
+            lblDuree.Size = new Size(64, 25);
+            lblDuree.TabIndex = 24;
+            lblDuree.Text = "40min";
+            // 
             // lblLigne
             // 
             lblLigne.AutoSize = true;
@@ -251,25 +270,6 @@
             lblStationDepart.TabIndex = 17;
             lblStationDepart.Text = "Station Départ";
             // 
-            // lblDuree
-            // 
-            lblDuree.AutoSize = true;
-            lblDuree.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDuree.Location = new Point(308, 100);
-            lblDuree.Name = "lblDuree";
-            lblDuree.Size = new Size(64, 25);
-            lblDuree.TabIndex = 24;
-            lblDuree.Text = "40min";
-            // 
-            // btnDetails
-            // 
-            btnDetails.Location = new Point(262, 137);
-            btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(126, 28);
-            btnDetails.TabIndex = 17;
-            btnDetails.Text = "Détails";
-            btnDetails.UseVisualStyleBackColor = true;
-            // 
             // picPlus
             // 
             picPlus.Location = new Point(387, 908);
@@ -319,6 +319,7 @@
             Controls.Add(btnRetour);
             Name = "consultation";
             Text = "Consultation";
+            Load += consultation_Load;
             ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             grpTrajet.ResumeLayout(false);
             grpTrajet.PerformLayout();

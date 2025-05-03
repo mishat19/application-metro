@@ -28,11 +28,12 @@ namespace application_metro
         {
             if (_ouverture != null)
             {
-                if(btnRetour.Text.Contains("Se connecter"))
+                if (btnRetour.Text.Contains("Se connecter"))
                 {
                     Connexion connexion = new Connexion(_ouverture);
                     connexion.Show();
-                } else
+                }
+                else
                 {
                     _ouverture.Show();
                     _ouverture.lblDeconnexion.Visible = true;
@@ -47,6 +48,24 @@ namespace application_metro
             {
                 btnRetour.Text = newText;
             }
+        }
+
+        private void btnConsultation_Click(object sender, EventArgs e)
+        {
+            Consultation_carte_horaires consultation = new Consultation_carte_horaires();
+            consultation.Show();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            Consultation consultation = new Consultation();
+            consultation.Show();
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Gestion gestion = new Gestion();
+            gestion.Show();
         }
     }
 }

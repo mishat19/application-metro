@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class carte : Form
+    public partial class Carte : Form
     {
-        public carte()
+        public Carte()
         {
             InitializeComponent();
+        }
+
+        private void carte_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
