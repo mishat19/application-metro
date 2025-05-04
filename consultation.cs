@@ -17,14 +17,16 @@ namespace application_metro
             InitializeComponent();
         }
 
-        private void label15_Click(object sender, EventArgs e)
+        private void consultation_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void consultation_Load(object sender, EventArgs e)
+        private void btnRetour_Click(object sender, EventArgs e)
         {
-
+            Carte carte = new Carte();
+            carte.Show();
+            this.Close();
         }
     }
 }

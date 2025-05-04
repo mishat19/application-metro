@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="picSupprimer.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAGdJREFUSEvt
+        lDEOgDAMAz3z/6eygzIUFWRZTmkW6I2JfZE6FFj8lg3A/hwKIhsdmygc5pFM9oZTdDISJVC7FEzEZq/o
+        hdPljSYukQelB0qfiAnZbAglUjsLR+BkKJliJntR/tktPsQJILNF0RV4DxQAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

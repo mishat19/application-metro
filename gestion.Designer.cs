@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             btnRetour = new Button();
             lblTitre = new Label();
             lblCreation = new Label();
@@ -53,6 +54,7 @@
             btnRetour.TabIndex = 26;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // lblTitre
             // 
@@ -94,9 +96,11 @@
             // 
             // picPlus
             // 
+            picPlus.Image = (Image)resources.GetObject("picPlus.Image");
             picPlus.Location = new Point(471, 17);
             picPlus.Name = "picPlus";
             picPlus.Size = new Size(59, 62);
+            picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
             picPlus.TabIndex = 33;
             picPlus.TabStop = false;
             // 
@@ -157,6 +161,7 @@
             btnSupp.TabIndex = 39;
             btnSupp.Text = "Supprimer";
             btnSupp.UseVisualStyleBackColor = true;
+            btnSupp.Click += btnSupp_Click;
             // 
             // btnModif
             // 
@@ -166,8 +171,9 @@
             btnModif.TabIndex = 40;
             btnModif.Text = "Modifier";
             btnModif.UseVisualStyleBackColor = true;
+            btnModif.Click += btnModif_Click;
             // 
-            // gestion
+            // Gestion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -183,8 +189,8 @@
             Controls.Add(lblCreation);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
-            Name = "gestion";
-            Text = "gestion";
+            Name = "Gestion";
+            Text = "Panneau de configuration";
             Load += gestion_Load;
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();

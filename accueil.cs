@@ -13,7 +13,6 @@ namespace application_metro
     public partial class Accueil : Form
     {
         private Ouverture _ouverture;
-
         public Accueil()
         {
             InitializeComponent();
@@ -52,20 +51,23 @@ namespace application_metro
 
         private void btnConsultation_Click(object sender, EventArgs e)
         {
-            Consultation_carte_horaires consultation = new Consultation_carte_horaires();
-            consultation.Show();
+            Carte carte = new Carte();
+            carte.Show();
+            this.Close();
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            Consultation consultation = new Consultation();
+            Recherche consultation = new Recherche();
             consultation.Show();
+            this.Close();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             Gestion gestion = new Gestion();
             gestion.Show();
+            this.Close();
         }
     }
 }

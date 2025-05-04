@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carte));
             cmbLignes = new ComboBox();
             picMap = new PictureBox();
             btnRetour = new Button();
@@ -63,6 +64,7 @@
             btnRetour.TabIndex = 19;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnRecherche
             // 
@@ -85,13 +87,15 @@
             // 
             // picSupprimer
             // 
+            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
             picSupprimer.Location = new Point(242, 93);
             picSupprimer.Name = "picSupprimer";
-            picSupprimer.Size = new Size(26, 28);
+            picSupprimer.Size = new Size(24, 28);
+            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
             picSupprimer.TabIndex = 24;
             picSupprimer.TabStop = false;
             // 
-            // carte
+            // Carte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -102,8 +106,8 @@
             Controls.Add(cmbLignes);
             Controls.Add(picMap);
             Controls.Add(btnRetour);
-            Name = "carte";
-            Text = "Consultation - Carte";
+            Name = "Carte";
+            Text = "Consultation du réseau";
             Load += carte_Load;
             ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();

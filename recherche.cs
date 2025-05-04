@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class Carte : Form
+    public partial class Recherche : Form
     {
-        public Carte()
+        public Recherche()
         {
             InitializeComponent();
         }
 
-        private void carte_Load(object sender, EventArgs e)
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void consultation_Load(object sender, EventArgs e)
         {
 
         }
