@@ -65,13 +65,14 @@
             // lblSuppression
             // 
             lblSuppression.AutoSize = true;
-            lblSuppression.Location = new Point(169, 110);
+            lblSuppression.Location = new Point(84, 110);
             lblSuppression.Name = "lblSuppression";
-            lblSuppression.Size = new Size(172, 40);
+            lblSuppression.Size = new Size(333, 40);
             lblSuppression.TabIndex = 61;
-            lblSuppression.Text = "Êtes-vous sûr de vouloir\r\nsupprimer ces données ?";
+            lblSuppression.Text = "Êtes-vous sûr de vouloir supprimer ces données ?\r\nCette action est irréversible.\r\n";
+            lblSuppression.TextAlign = ContentAlignment.TopCenter;
             // 
-            // suppressionWindow
+            // SuppressionWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -80,7 +81,7 @@
             Controls.Add(btnOui);
             Controls.Add(btnNon);
             Controls.Add(lblHoraires);
-            Name = "suppressionWindow";
+            Name = "SuppressionWindow";
             Text = "Supprimer";
             Load += suppressionWindow_Load;
             ResumeLayout(false);
