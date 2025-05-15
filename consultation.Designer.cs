@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class consultation
+    partial class Consultation
     {
         /// <summary>
         /// Required designer variable.
@@ -28,333 +28,167 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnRetour = new Button();
-            picMap = new PictureBox();
-            label1 = new Label();
-            lblDepart = new Label();
-            lblArrivee = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consultation));
+            picSupprimer = new PictureBox();
             btnRecherche = new Button();
-            lblHoraires = new Label();
-            lblHoraireDepart = new Label();
-            lblHoraireArrivée = new Label();
-            dtpDepart = new DateTimePicker();
-            dtpArrivee = new DateTimePicker();
-            label8 = new Label();
-            grpTrajet = new GroupBox();
-            lblLigne = new Label();
-            lblSeparation2 = new Label();
-            lblHeureArrivee = new Label();
-            lblHeureDepart = new Label();
-            lblSeparation = new Label();
-            lblStationArrivee = new Label();
-            lblStationDepart = new Label();
-            lblDuree = new Label();
-            btnDetails = new Button();
-            picPlus = new PictureBox();
-            cmbDepart = new ComboBox();
-            cmbArrivee = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)picMap).BeginInit();
-            grpTrajet.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
+            cmbLignes = new ComboBox();
+            btnRetour = new Button();
+            grpDestinations = new GroupBox();
+            rjToggleButton2 = new CustomControls.RJControls.RJToggleButton();
+            rjToggleButton1 = new CustomControls.RJControls.RJToggleButton();
+            lblDestinationB = new Label();
+            lblDestinationA = new Label();
+            calDate = new MonthCalendar();
+            lstStations = new ListBox();
+            ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
+            grpDestinations.SuspendLayout();
             SuspendLayout();
+            // 
+            // picSupprimer
+            // 
+            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
+            picSupprimer.Location = new Point(231, 93);
+            picSupprimer.Name = "picSupprimer";
+            picSupprimer.Size = new Size(26, 28);
+            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
+            picSupprimer.TabIndex = 28;
+            picSupprimer.TabStop = false;
+            // 
+            // btnRecherche
+            // 
+            btnRecherche.Location = new Point(507, 93);
+            btnRecherche.Name = "btnRecherche";
+            btnRecherche.Size = new Size(173, 28);
+            btnRecherche.TabIndex = 27;
+            btnRecherche.Text = "Rechercher";
+            btnRecherche.UseVisualStyleBackColor = true;
+            // 
+            // cmbLignes
+            // 
+            cmbLignes.FormattingEnabled = true;
+            cmbLignes.Location = new Point(90, 93);
+            cmbLignes.Name = "cmbLignes";
+            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.TabIndex = 26;
+            cmbLignes.Text = "Ligne n°";
             // 
             // btnRetour
             // 
             btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 1;
+            btnRetour.TabIndex = 25;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
-            // picMap
+            // grpDestinations
             // 
-            picMap.Location = new Point(153, 59);
-            picMap.Name = "picMap";
-            picMap.Size = new Size(462, 200);
-            picMap.TabIndex = 2;
-            picMap.TabStop = false;
+            grpDestinations.Controls.Add(rjToggleButton2);
+            grpDestinations.Controls.Add(rjToggleButton1);
+            grpDestinations.Controls.Add(lblDestinationB);
+            grpDestinations.Controls.Add(lblDestinationA);
+            grpDestinations.Location = new Point(176, 149);
+            grpDestinations.Name = "grpDestinations";
+            grpDestinations.Size = new Size(443, 90);
+            grpDestinations.TabIndex = 29;
+            grpDestinations.TabStop = false;
             // 
-            // label1
+            // rjToggleButton2
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(65, 269);
-            label1.Name = "label1";
-            label1.Size = new Size(123, 31);
-            label1.TabIndex = 3;
-            label1.Text = "Recherche";
+            rjToggleButton2.AutoSize = true;
+            rjToggleButton2.Checked = true;
+            rjToggleButton2.CheckState = CheckState.Checked;
+            rjToggleButton2.Location = new Point(308, 26);
+            rjToggleButton2.MinimumSize = new Size(45, 22);
+            rjToggleButton2.Name = "rjToggleButton2";
+            rjToggleButton2.OffBackColor = Color.Gray;
+            rjToggleButton2.OffToggleColor = Color.Gainsboro;
+            rjToggleButton2.OnBackColor = Color.MediumSlateBlue;
+            rjToggleButton2.OnToggleColor = Color.WhiteSmoke;
+            rjToggleButton2.Size = new Size(45, 22);
+            rjToggleButton2.TabIndex = 33;
+            rjToggleButton2.UseVisualStyleBackColor = true;
             // 
-            // lblDepart
+            // rjToggleButton1
             // 
-            lblDepart.AutoSize = true;
-            lblDepart.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblDepart.Location = new Point(65, 334);
-            lblDepart.Name = "lblDepart";
-            lblDepart.Size = new Size(152, 23);
-            lblDepart.TabIndex = 4;
-            lblDepart.Text = "Station de départ";
+            rjToggleButton1.AutoSize = true;
+            rjToggleButton1.Location = new Point(72, 26);
+            rjToggleButton1.MinimumSize = new Size(45, 22);
+            rjToggleButton1.Name = "rjToggleButton1";
+            rjToggleButton1.OffBackColor = Color.Gray;
+            rjToggleButton1.OffToggleColor = Color.Gainsboro;
+            rjToggleButton1.OnBackColor = Color.MediumSlateBlue;
+            rjToggleButton1.OnToggleColor = Color.WhiteSmoke;
+            rjToggleButton1.Size = new Size(45, 22);
+            rjToggleButton1.TabIndex = 32;
+            rjToggleButton1.UseVisualStyleBackColor = true;
             // 
-            // lblArrivee
+            // lblDestinationB
             // 
-            lblArrivee.AutoSize = true;
-            lblArrivee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblArrivee.Location = new Point(65, 397);
-            lblArrivee.Name = "lblArrivee";
-            lblArrivee.Size = new Size(144, 23);
-            lblArrivee.TabIndex = 5;
-            lblArrivee.Text = "Station d'arrivée";
+            lblDestinationB.AutoSize = true;
+            lblDestinationB.Location = new Point(264, 57);
+            lblDestinationB.Name = "lblDestinationB";
+            lblDestinationB.Size = new Size(129, 20);
+            lblDestinationB.TabIndex = 31;
+            lblDestinationB.Text = "Vers Destination B";
             // 
-            // btnRecherche
+            // lblDestinationA
             // 
-            btnRecherche.Location = new Point(227, 598);
-            btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(360, 48);
-            btnRecherche.TabIndex = 8;
-            btnRecherche.Text = "Lancer la recherche";
-            btnRecherche.UseVisualStyleBackColor = true;
+            lblDestinationA.AutoSize = true;
+            lblDestinationA.Location = new Point(32, 57);
+            lblDestinationA.Name = "lblDestinationA";
+            lblDestinationA.Size = new Size(130, 20);
+            lblDestinationA.TabIndex = 30;
+            lblDestinationA.Text = "Vers Destination A";
             // 
-            // lblHoraires
+            // calDate
             // 
-            lblHoraires.AutoSize = true;
-            lblHoraires.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblHoraires.Location = new Point(65, 473);
-            lblHoraires.Name = "lblHoraires";
-            lblHoraires.Size = new Size(77, 23);
-            lblHoraires.TabIndex = 10;
-            lblHoraires.Text = "Horaires";
+            calDate.Location = new Point(267, 375);
+            calDate.Name = "calDate";
+            calDate.TabIndex = 30;
             // 
-            // lblHoraireDepart
+            // lstStations
             // 
-            lblHoraireDepart.AutoSize = true;
-            lblHoraireDepart.Location = new Point(65, 508);
-            lblHoraireDepart.Name = "lblHoraireDepart";
-            lblHoraireDepart.Size = new Size(128, 20);
-            lblHoraireDepart.TabIndex = 11;
-            lblHoraireDepart.Text = "Horaire de départ";
+            lstStations.FormattingEnabled = true;
+            lstStations.Location = new Point(267, 259);
+            lstStations.Name = "lstStations";
+            lstStations.Size = new Size(262, 104);
+            lstStations.TabIndex = 31;
             // 
-            // lblHoraireArrivée
-            // 
-            lblHoraireArrivée.AutoSize = true;
-            lblHoraireArrivée.Location = new Point(65, 537);
-            lblHoraireArrivée.Name = "lblHoraireArrivée";
-            lblHoraireArrivée.Size = new Size(120, 20);
-            lblHoraireArrivée.TabIndex = 12;
-            lblHoraireArrivée.Text = "Horaire d'arrivée";
-            // 
-            // dtpDepart
-            // 
-            dtpDepart.CustomFormat = "\"dd/MM HH:mm\"";
-            dtpDepart.Location = new Point(224, 503);
-            dtpDepart.Name = "dtpDepart";
-            dtpDepart.Size = new Size(250, 27);
-            dtpDepart.TabIndex = 13;
-            dtpDepart.Value = new DateTime(2025, 4, 29, 22, 31, 8, 0);
-            // 
-            // dtpArrivee
-            // 
-            dtpArrivee.CustomFormat = "\"dd/MM/yyyy HH:mm\"";
-            dtpArrivee.Location = new Point(224, 537);
-            dtpArrivee.Name = "dtpArrivee";
-            dtpArrivee.Size = new Size(250, 27);
-            dtpArrivee.TabIndex = 14;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(65, 670);
-            label8.Name = "label8";
-            label8.Size = new Size(211, 28);
-            label8.TabIndex = 15;
-            label8.Text = "Trajet le plus rapide :";
-            // 
-            // grpTrajet
-            // 
-            grpTrajet.Controls.Add(btnDetails);
-            grpTrajet.Controls.Add(lblDuree);
-            grpTrajet.Controls.Add(lblLigne);
-            grpTrajet.Controls.Add(lblSeparation2);
-            grpTrajet.Controls.Add(lblHeureArrivee);
-            grpTrajet.Controls.Add(lblHeureDepart);
-            grpTrajet.Controls.Add(lblSeparation);
-            grpTrajet.Controls.Add(lblStationArrivee);
-            grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(221, 712);
-            grpTrajet.Name = "grpTrajet";
-            grpTrajet.Size = new Size(394, 171);
-            grpTrajet.TabIndex = 16;
-            grpTrajet.TabStop = false;
-            // 
-            // lblLigne
-            // 
-            lblLigne.AutoSize = true;
-            lblLigne.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLigne.Location = new Point(6, 100);
-            lblLigne.Name = "lblLigne";
-            lblLigne.Size = new Size(74, 25);
-            lblLigne.TabIndex = 23;
-            lblLigne.Text = "N°Ligne";
-            lblLigne.Click += label15_Click;
-            // 
-            // lblSeparation2
-            // 
-            lblSeparation2.AutoSize = true;
-            lblSeparation2.Location = new Point(183, 62);
-            lblSeparation2.Name = "lblSeparation2";
-            lblSeparation2.Size = new Size(31, 20);
-            lblSeparation2.TabIndex = 22;
-            lblSeparation2.Text = "-->";
-            // 
-            // lblHeureArrivee
-            // 
-            lblHeureArrivee.AutoSize = true;
-            lblHeureArrivee.Location = new Point(220, 62);
-            lblHeureArrivee.Name = "lblHeureArrivee";
-            lblHeureArrivee.Size = new Size(98, 20);
-            lblHeureArrivee.TabIndex = 21;
-            lblHeureArrivee.Text = "Heure arrivée";
-            // 
-            // lblHeureDepart
-            // 
-            lblHeureDepart.AutoSize = true;
-            lblHeureDepart.Location = new Point(80, 62);
-            lblHeureDepart.Name = "lblHeureDepart";
-            lblHeureDepart.Size = new Size(97, 20);
-            lblHeureDepart.TabIndex = 20;
-            lblHeureDepart.Text = "Heure départ";
-            // 
-            // lblSeparation
-            // 
-            lblSeparation.AutoSize = true;
-            lblSeparation.Location = new Point(183, 33);
-            lblSeparation.Name = "lblSeparation";
-            lblSeparation.Size = new Size(31, 20);
-            lblSeparation.TabIndex = 19;
-            lblSeparation.Text = "-->";
-            // 
-            // lblStationArrivee
-            // 
-            lblStationArrivee.AutoSize = true;
-            lblStationArrivee.Location = new Point(220, 33);
-            lblStationArrivee.Name = "lblStationArrivee";
-            lblStationArrivee.Size = new Size(107, 20);
-            lblStationArrivee.TabIndex = 18;
-            lblStationArrivee.Text = "Station Arrivée";
-            // 
-            // lblStationDepart
-            // 
-            lblStationDepart.AutoSize = true;
-            lblStationDepart.Location = new Point(71, 33);
-            lblStationDepart.Name = "lblStationDepart";
-            lblStationDepart.Size = new Size(106, 20);
-            lblStationDepart.TabIndex = 17;
-            lblStationDepart.Text = "Station Départ";
-            // 
-            // lblDuree
-            // 
-            lblDuree.AutoSize = true;
-            lblDuree.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDuree.Location = new Point(308, 100);
-            lblDuree.Name = "lblDuree";
-            lblDuree.Size = new Size(64, 25);
-            lblDuree.TabIndex = 24;
-            lblDuree.Text = "40min";
-            // 
-            // btnDetails
-            // 
-            btnDetails.Location = new Point(262, 137);
-            btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(126, 28);
-            btnDetails.TabIndex = 17;
-            btnDetails.Text = "Détails";
-            btnDetails.UseVisualStyleBackColor = true;
-            // 
-            // picPlus
-            // 
-            picPlus.Location = new Point(387, 908);
-            picPlus.Name = "picPlus";
-            picPlus.Size = new Size(48, 42);
-            picPlus.TabIndex = 17;
-            picPlus.TabStop = false;
-            // 
-            // cmbDepart
-            // 
-            cmbDepart.FormattingEnabled = true;
-            cmbDepart.Location = new Point(66, 366);
-            cmbDepart.Name = "cmbDepart";
-            cmbDepart.Size = new Size(408, 28);
-            cmbDepart.TabIndex = 18;
-            cmbDepart.Text = "Choisir une station";
-            // 
-            // cmbArrivee
-            // 
-            cmbArrivee.FormattingEnabled = true;
-            cmbArrivee.Location = new Point(66, 432);
-            cmbArrivee.Name = "cmbArrivee";
-            cmbArrivee.Size = new Size(408, 28);
-            cmbArrivee.TabIndex = 19;
-            cmbArrivee.Text = "Choisir une station";
-            // 
-            // consultation
+            // Consultation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 973);
-            Controls.Add(cmbArrivee);
-            Controls.Add(cmbDepart);
-            Controls.Add(picPlus);
-            Controls.Add(grpTrajet);
-            Controls.Add(label8);
-            Controls.Add(dtpArrivee);
-            Controls.Add(dtpDepart);
-            Controls.Add(lblHoraireArrivée);
-            Controls.Add(lblHoraireDepart);
-            Controls.Add(lblHoraires);
+            ClientSize = new Size(800, 635);
+            Controls.Add(lstStations);
+            Controls.Add(calDate);
+            Controls.Add(grpDestinations);
+            Controls.Add(picSupprimer);
             Controls.Add(btnRecherche);
-            Controls.Add(lblArrivee);
-            Controls.Add(lblDepart);
-            Controls.Add(label1);
-            Controls.Add(picMap);
+            Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
-            Name = "consultation";
-            Text = "Consultation";
-            ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
-            grpTrajet.ResumeLayout(false);
-            grpTrajet.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
+            Name = "Consultation";
+            Text = "Horaires de la ligne";
+            Load += consultation_Load;
+            ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
+            grpDestinations.ResumeLayout(false);
+            grpDestinations.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button btnRetour;
-        private PictureBox picMap;
-        private Label label1;
-        private Label lblDepart;
-        private Label lblArrivee;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private PictureBox picSupprimer;
         private Button btnRecherche;
-        private Label lblHoraires;
-        private Label lblHoraireDepart;
-        private Label lblHoraireArrivée;
-        private DateTimePicker dtpDepart;
-        private DateTimePicker dtpArrivee;
-        private Label label8;
-        private GroupBox grpTrajet;
-        private Label lblLigne;
-        private Label lblSeparation2;
-        private Label lblHeureArrivee;
-        private Label lblHeureDepart;
-        private Label lblSeparation;
-        private Label lblStationArrivee;
-        private Label lblStationDepart;
-        private Button btnDetails;
-        private Label lblDuree;
-        private PictureBox picPlus;
-        private ComboBox cmbDepart;
-        private ComboBox cmbArrivee;
+        private ComboBox cmbLignes;
+        private Button btnRetour;
+        private GroupBox grpDestinations;
+        private Label lblDestinationB;
+        private Label lblDestinationA;
+        private MonthCalendar calDate;
+        private CustomControls.RJControls.RJToggleButton rjToggleButton2;
+        private CustomControls.RJControls.RJToggleButton rjToggleButton1;
+        private ListBox lstStations;
     }
 }

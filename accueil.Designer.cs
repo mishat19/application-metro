@@ -53,6 +53,7 @@
             btnRecherche.TabIndex = 4;
             btnRecherche.Text = "Rechercher un itinéraire";
             btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.Click += btnRecherche_Click;
             // 
             // btnConsultation
             // 
@@ -62,6 +63,7 @@
             btnConsultation.TabIndex = 3;
             btnConsultation.Text = "Consulter le réseau";
             btnConsultation.UseVisualStyleBackColor = true;
+            btnConsultation.Click += btnConsultation_Click;
             // 
             // btnRetour
             // 
@@ -81,8 +83,9 @@
             btnAdmin.TabIndex = 7;
             btnAdmin.Text = "Gérer les données";
             btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.Click += btnAdmin_Click;
             // 
-            // accueil
+            // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -92,7 +95,7 @@
             Controls.Add(lblTitre);
             Controls.Add(btnRecherche);
             Controls.Add(btnConsultation);
-            Name = "accueil";
+            Name = "Accueil";
             Text = "Menu";
             ResumeLayout(false);
             PerformLayout();
@@ -103,7 +106,7 @@
         private Label lblTitre;
         private Button btnRecherche;
         private Button btnConsultation;
-        private Button btnRetour;
+        public Button btnRetour;
         private Button btnAdmin;
     }
 }

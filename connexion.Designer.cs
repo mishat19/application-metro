@@ -48,7 +48,7 @@
             btnRetour.TabIndex = 0;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += button1_Click;
+            btnRetour.Click += btnRetour_Click;
             // 
             // lblTitre
             // 
@@ -81,6 +81,7 @@
             // 
             // picOeil
             // 
+            picOeil.BackColor = Color.Transparent;
             picOeil.Image = (Image)resources.GetObject("picOeil.Image");
             picOeil.Location = new Point(530, 266);
             picOeil.Name = "picOeil";

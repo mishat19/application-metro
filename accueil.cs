@@ -12,22 +12,59 @@ namespace application_metro
 {
     public partial class Accueil : Form
     {
-        //private Ouverture _ouverture;
-
         public Accueil()
         {
             InitializeComponent();
-            //_ouverture = ouverture;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+
+            if (ouverture != null)
+            {
+                if (btnRetour.Text.Contains("Se connecter"))
+                {
+                    Connexion connexion = new Connexion();
+                    connexion.Show();
+                }
+                else
+                {
+                    ouverture.lblDeconnexion.Visible = true;
+                    ouverture.Show();
+                }
+            }
+
+            this.Close();
         }
 
-        // Méthode publique pour mettre à jour le texte du bouton
         public void UpdateBtnRetourText(string newText)
         {
-            btnRetour.Text = newText;
+            if (btnRetour != null)
+            {
+                btnRetour.Text = newText;
+            }
+        }
+
+        private void btnConsultation_Click(object sender, EventArgs e)
+        {
+            Carte carte = new Carte();
+            carte.Show();
+            this.Close();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            Recherche consultation = new Recherche();
+            consultation.Show();
+            this.Close();
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            Gestion gestion = new Gestion();
+            gestion.Show();
+            this.Close();
         }
     }
 }

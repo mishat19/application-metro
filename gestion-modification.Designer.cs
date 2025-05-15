@@ -1,6 +1,6 @@
 ﻿namespace application_metro
 {
-    partial class gestion_modification
+    partial class Gestion_modification
     {
         /// <summary>
         /// Required designer variable.
@@ -87,6 +87,7 @@
             btnRetour.TabIndex = 38;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // lblIntitule
             // 
@@ -219,7 +220,7 @@
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
             // 
-            // gestion_modification
+            // Gestion_modification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -243,8 +244,9 @@
             Controls.Add(lblModif);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
-            Name = "gestion_modification";
-            Text = "gestion_modification";
+            Name = "Gestion_modification";
+            Text = "Panneau de modification";
+            Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             ResumeLayout(false);
             PerformLayout();

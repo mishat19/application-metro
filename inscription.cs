@@ -21,19 +21,24 @@ namespace application_metro
         {
             Connexion connexion = new Connexion();
             connexion.Show();
+            this.Close();
         }
 
         private void btnInscription_Click(object sender, EventArgs e)
         {
             Accueil accueilWindow = new Accueil();
+            accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
-            accueilWindow.UpdateBtnRetourText("Se déconnecter");
+            this.Close();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Ouverture ouverture = new Ouverture();
-            ouverture.Show();
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+            if (ouverture != null) {
+                ouverture.Show();
+                this.Close();
+            }
         }
 
         string cheminOff = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-off.png";

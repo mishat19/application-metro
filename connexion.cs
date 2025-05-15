@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace application_metro
 {
@@ -15,27 +16,33 @@ namespace application_metro
         public Connexion()
         {
             InitializeComponent();
-            //txtMdp.TextChanged += txtMdp_TextChanged!;
-
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnRetour_Click(object sender, EventArgs e)
         {
-            Ouverture ouverture = new Ouverture();
-            ouverture.Show();
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+
+            if (ouverture != null)
+            {
+                ouverture.lblDeconnexion.Visible = false;
+                ouverture.Show();
+                this.Close();
+            }
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
             Accueil accueilWindow = new Accueil();
             accueilWindow.Show();
-            accueilWindow.UpdateBtnRetourText("Se déconnecter");
+            accueilWindow.btnRetour.Text = "Se déconnecter";
+            this.Close();
         }
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Inscription inscription = new Inscription();
             inscription.Show();
+            this.Close();
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)

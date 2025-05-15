@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace application_metro
 {
-    public partial class suppressionWindow : Form
+    public partial class SuppressionWindow : Form
     {
-        public suppressionWindow()
+        public SuppressionWindow()
         {
             InitializeComponent();
+        }
+
+        private void suppressionWindow_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
