@@ -12,32 +12,29 @@ namespace application_metro
 {
     public partial class Accueil : Form
     {
-        private Ouverture _ouverture;
         public Accueil()
         {
             InitializeComponent();
         }
 
-        public Accueil(Ouverture ouverture) : this()
-        {
-            _ouverture = ouverture;
-        }
-
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            if (_ouverture != null)
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+
+            if (ouverture != null)
             {
                 if (btnRetour.Text.Contains("Se connecter"))
                 {
-                    Connexion connexion = new Connexion(_ouverture);
+                    Connexion connexion = new Connexion();
                     connexion.Show();
                 }
                 else
                 {
-                    _ouverture.Show();
-                    _ouverture.lblDeconnexion.Visible = true;
-                };
+                    ouverture.lblDeconnexion.Visible = true;
+                    ouverture.Show();
+                }
             }
+
             this.Close();
         }
 

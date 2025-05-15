@@ -7,36 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace application_metro
 {
     public partial class Connexion : Form
     {
-        private Ouverture _ouverture;
-
         public Connexion()
         {
             InitializeComponent();
         }
 
-        public Connexion(Ouverture ouvertureInstance) : this()
-        {
-            _ouverture = ouvertureInstance;
-        }
-
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            if (_ouverture != null)
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+
+            if (ouverture != null)
             {
-                _ouverture.Show();
+                ouverture.lblDeconnexion.Visible = false;
+                ouverture.Show();
+                this.Close();
             }
-            _ouverture.lblDeconnexion.Visible = false;
-            this.Close();
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil(_ouverture);
+            Accueil accueilWindow = new Accueil();
             accueilWindow.Show();
             accueilWindow.btnRetour.Text = "Se déconnecter";
             this.Close();
@@ -44,7 +40,7 @@ namespace application_metro
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Inscription inscription = new Inscription(_ouverture);
+            Inscription inscription = new Inscription();
             inscription.Show();
             this.Close();
         }

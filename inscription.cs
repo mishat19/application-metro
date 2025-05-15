@@ -12,15 +12,9 @@ namespace application_metro
 {
     public partial class Inscription : Form
     {
-        private Ouverture _ouverture;
         public Inscription()
         {
             InitializeComponent();
-        }
-
-        public Inscription(Ouverture ouverture) : this()
-        {
-            _ouverture = ouverture;
         }
 
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -32,7 +26,7 @@ namespace application_metro
 
         private void btnInscription_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil(_ouverture);
+            Accueil accueilWindow = new Accueil();
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
             this.Close();
@@ -40,8 +34,11 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            _ouverture.Show();
-            this.Close();
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+            if (ouverture != null) {
+                ouverture.Show();
+                this.Close();
+            }
         }
 
         string cheminOff = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-off.png";
