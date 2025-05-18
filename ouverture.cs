@@ -1,10 +1,18 @@
+using System.Runtime.InteropServices;
+using GestionReseau;
+
 namespace application_metro
 {
     public partial class Ouverture : Form
     {
+        [DllImport("kernel32.dll")]
+        private static extern bool AllocConsole();
+
         public Ouverture()
         {
             InitializeComponent();
+            AllocConsole(); //Ouverture de la console pour les Console.WriteLine()
+            Serveur.OuvertureConnexion();
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
