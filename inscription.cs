@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 
 namespace application_metro
 {
@@ -26,6 +27,14 @@ namespace application_metro
 
         private void btnInscription_Click(object sender, EventArgs e)
         {
+            string nom = txtNom.Text.Trim();
+            string prenom = txtPrenom.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string mdp = txtMdp.Text.Trim();
+            DateTime dateInscription = DateTime.Now;
+            DateTime dateNaissance = dtpNaissance.Value;
+
+            Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0);
             Accueil accueilWindow = new Accueil();
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();

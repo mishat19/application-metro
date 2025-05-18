@@ -127,17 +127,17 @@
             // 
             txtNom.Location = new Point(272, 152);
             txtNom.Name = "txtNom";
+            txtNom.PlaceholderText = "Nom";
             txtNom.Size = new Size(322, 27);
             txtNom.TabIndex = 18;
-            txtNom.Text = "Nom";
             // 
             // txtPrenom
             // 
             txtPrenom.Location = new Point(272, 185);
             txtPrenom.Name = "txtPrenom";
+            txtPrenom.PlaceholderText = "Prénom";
             txtPrenom.Size = new Size(322, 27);
             txtPrenom.TabIndex = 19;
-            txtPrenom.Text = "Prénom";
             // 
             // lblNaissance
             // 

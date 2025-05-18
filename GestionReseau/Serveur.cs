@@ -70,6 +70,7 @@ namespace GestionReseau
                 try
                 {
                     object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
+                    Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
 
                     return count > 0;
@@ -82,9 +83,32 @@ namespace GestionReseau
             }
         }
 
-        //public static bool UtilisateurInscription()
-        //{
+        public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
+        {
+            string requete = @"INSERT INTO utilisateur 
+                       (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin)
+                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin)";
 
-        //}
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            {
+                cmd.Parameters.AddWithValue("@Nom", nom);
+                cmd.Parameters.AddWithValue("@Prenom", prenom);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Mdp", mdp);
+                cmd.Parameters.AddWithValue("@DateInscription", dateInscription);
+                cmd.Parameters.AddWithValue("@DateNaissance", dateNaissance);
+                cmd.Parameters.AddWithValue("@Admin", admin);
+
+                Console.WriteLine(requete);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
     }
 }
