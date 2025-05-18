@@ -56,14 +56,35 @@ namespace GestionReseau
             }
         }
 
-        public static void UtilisateurConnexion()
+        public static bool UtilisateurConnexion(string email, string mdp)
         {
+            string requete = $"SELECT Count(*) FROM utilisateur WHERE Email = @Email AND Mdp = @Mdp";
+            
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            {
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Mdp", mdp);
 
+                Console.WriteLine(requete);
+
+                try
+                {
+                    object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
+                    int count = Convert.ToInt32(result);
+
+                    return count > 0;
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
         }
 
-        public static void UtilisateurInscription()
-        {
+        //public static bool UtilisateurInscription()
+        //{
 
-        }
+        //}
     }
 }

@@ -37,6 +37,7 @@
             btnConnexion = new Button();
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
+            lblErreur = new Label();
             ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
             SuspendLayout();
             // 
@@ -121,11 +122,24 @@
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             // 
+            // lblErreur
+            // 
+            lblErreur.AutoSize = true;
+            lblErreur.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblErreur.ForeColor = Color.Red;
+            lblErreur.Location = new Point(295, 339);
+            lblErreur.Name = "lblErreur";
+            lblErreur.Size = new Size(221, 28);
+            lblErreur.TabIndex = 10;
+            lblErreur.Text = "Identifiants incorrects";
+            lblErreur.Visible = false;
+            // 
             // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblErreur);
             Controls.Add(lblInscription);
             Controls.Add(lnkInscription);
             Controls.Add(btnConnexion);
@@ -151,5 +165,6 @@
         private Button btnConnexion;
         private LinkLabel lnkInscription;
         private Label lblInscription;
+        private Label lblErreur;
     }
 }

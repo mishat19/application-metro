@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
+using GestionReseau;
+
 namespace application_metro
 {
     public partial class Connexion : Form
@@ -32,10 +34,19 @@ namespace application_metro
 
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
-            accueilWindow.Show();
-            accueilWindow.btnRetour.Text = "Se déconnecter";
-            this.Close();
+            string email = txtEmail.Text.Trim();
+            string mdp = txtMdp.Text.Trim();
+            if (Serveur.UtilisateurConnexion(email, mdp))
+            {
+                Accueil accueilWindow = new Accueil();
+                accueilWindow.Show();
+                accueilWindow.btnRetour.Text = "Se déconnecter";
+                this.Close();
+            }
+            else
+            {
+                lblErreur.Visible = true;
+            }
         }
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
