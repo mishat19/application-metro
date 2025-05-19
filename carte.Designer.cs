@@ -30,12 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carte));
             cmbLignes = new ComboBox();
-            picMap = new PictureBox();
             btnRetour = new Button();
             btnRecherche = new Button();
             btnHoraires = new Button();
             picSupprimer = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picMap).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
             SuspendLayout();
             // 
@@ -49,15 +47,6 @@
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
-            // picMap
-            // 
-            picMap.Location = new Point(101, 210);
-            picMap.Name = "picMap";
-            picMap.Size = new Size(579, 355);
-            picMap.TabIndex = 20;
-            picMap.TabStop = false;
-            picMap.Visible = false;
-            // 
             // btnRetour
             // 
             btnRetour.Location = new Point(12, 12);
@@ -70,12 +59,14 @@
             // 
             // btnRecherche
             // 
+            btnRecherche.Enabled = false;
             btnRecherche.Location = new Point(507, 93);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(173, 28);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.Click += btnRecherche_Click;
             // 
             // btnHoraires
             // 
@@ -86,6 +77,7 @@
             btnHoraires.TabIndex = 23;
             btnHoraires.Text = "Voir les horaires";
             btnHoraires.UseVisualStyleBackColor = true;
+            btnHoraires.Click += btnHoraires_Click;
             // 
             // picSupprimer
             // 
@@ -106,12 +98,10 @@
             Controls.Add(btnHoraires);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
-            Controls.Add(picMap);
             Controls.Add(btnRetour);
             Name = "Carte";
             Text = "Consultation du réseau";
             Load += carte_Load;
-            ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             ResumeLayout(false);
         }
@@ -119,7 +109,6 @@
         #endregion
 
         private ComboBox cmbLignes;
-        private PictureBox picMap;
         private Button btnRetour;
         private Button btnRecherche;
         private Button btnHoraires;

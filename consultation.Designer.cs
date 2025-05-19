@@ -56,6 +56,7 @@
             // 
             // btnRecherche
             // 
+            btnRecherche.Enabled = false;
             btnRecherche.Location = new Point(507, 93);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(173, 28);
@@ -71,6 +72,7 @@
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
+            cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRetour
             // 

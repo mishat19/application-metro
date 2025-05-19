@@ -10,13 +10,16 @@
 
     <style>
         #map {
-            width: 100vw;
-            height: 100vh;
-            margin: 0;
+            width: 80vw;
+            height: 60vh;
+            margin: 0 0 20px 0;
             padding: 0;
         }
 
         html, body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
             height: 100%;
             margin: 0;
         }
@@ -27,17 +30,17 @@
 
     <script>
         // Coordonnées de Milan centre
-        var map = L.map('map').setView([45.47307025505748, 9.185803211299943], 13);
+        var map = L.map('map').setView([45.462719, 9.188578], 13);
 
-        // Fond de carte OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
+        // Fond de carte OpenStreetMap des transports en commun
+        L.tileLayer('https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap contributors, ÖPNVKarte'
         }).addTo(map);
 
         // Marqueur
-        var marker = L.marker([45.47307025505748, 9.185803211299943]).addTo(map);
-        marker.bindPopup("<b>Milan</b><br>Centre de la carte.").openPopup();
+        //var marker = L.marker([45.47307025505748, 9.185803211299943]).addTo(map);
+        //marker.bindPopup("<b>Milan</b><br>Réseau de métro.").openPopup();
     </script>
 </body>
 </html>

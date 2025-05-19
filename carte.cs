@@ -3,7 +3,9 @@ using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 using Microsoft.Web.WebView2.WinForms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace application_metro
 {
@@ -23,25 +25,27 @@ namespace application_metro
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
+
+            ListeLignes lignes = Serveur.Lignes();
+            foreach (Ligne ligne in lignes.lignes)
+            {
+                cmbLignes.Items.Add(ligne.nom);
+            }
         }
 
         private async void InitializeAsync()
         {
-            // Dossier où se trouve map-milan.html (ajuste selon ta structure)
+            //Dossier de map-milan.html
             string dossier = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\.."));
 
-            // Démarre un serveur HTTP local minimaliste pour servir les fichiers de ce dossier
+            //Serveur HTTP local
             serveur = new HttpListener();
             serveur.Prefixes.Add("http://localhost:8080/");
             serveur.Start();
-
-            // Lance la boucle d'écoute en tâche séparée (sans bloquer l'UI)
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
-            // Initialise WebView2
+            //Initialisation WebView2
             await webView.EnsureCoreWebView2Async(null);
-
-            // Charge la page via le serveur local
             webView.CoreWebView2.Navigate("http://localhost:8080/map-milan.html");
         }
 
@@ -89,7 +93,6 @@ namespace application_metro
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            // Arrête le serveur proprement
             if (serveur != null && serveur.IsListening)
             {
                 serveur.Stop();
@@ -109,10 +112,22 @@ namespace application_metro
             accueil.Show();
             this.Close();
         }
-
+        string ligne;
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Ton code ici
+            btnRecherche.Enabled = true;
+            ligne = cmbLignes.Text;
+        }
+
+        private void btnHoraires_Click(object sender, EventArgs e)
+        {
+            Consultation consultation = new Consultation(ligne);
+            consultation.Show();
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            btnHoraires.Enabled = true;
         }
     }
 }
