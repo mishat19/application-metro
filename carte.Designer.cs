@@ -56,6 +56,7 @@
             picMap.Size = new Size(579, 355);
             picMap.TabIndex = 20;
             picMap.TabStop = false;
+            picMap.Visible = false;
             // 
             // btnRetour
             // 

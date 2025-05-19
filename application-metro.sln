@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "application-metro", "applic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestionReseau", "GestionReseau\GestionReseau.csproj", "{BAE8395D-1E70-4B7A-A740-930D4D5FFC8E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{139DD53A-C7A4-49CE-A45E-96D26EFDE1F0}"
+	ProjectSection(SolutionItems) = preProject
+		map-milan.html = map-milan.html
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
