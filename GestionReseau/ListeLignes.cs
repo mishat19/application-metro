@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace GestionReseau
 {
-    internal class ListeLignes
+    public class ListeLignes
     {
+        private List<Ligne> _lignes = new List<Ligne>();
+
+        public ListeLignes() {
+            _lignes = new List<Ligne>();
+        }
+
+        public List<Ligne> lignes {  get { return _lignes; } }
+
+        public void AjoutLigne(Ligne ligne) { 
+            _lignes.Add(ligne);
+        }
     }
 }
