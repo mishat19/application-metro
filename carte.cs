@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 
 namespace application_metro
 {
@@ -15,6 +16,11 @@ namespace application_metro
         public Carte()
         {
             InitializeComponent();
+            ListeLignes lignes = Serveur.Lignes();
+            foreach (Ligne ligne in lignes.lignes)
+            {
+                cmbLignes.Items.Add(ligne.nom);
+            }
         }
 
         private void carte_Load(object sender, EventArgs e)
@@ -27,6 +33,11 @@ namespace application_metro
             Accueil accueil = new Accueil();
             accueil.Show();
             this.Close();
+        }
+
+        private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

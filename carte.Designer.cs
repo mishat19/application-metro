@@ -47,6 +47,7 @@
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 21;
             cmbLignes.Text = "Ligne n°";
+            cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // picMap
             // 

@@ -110,5 +110,51 @@ namespace GestionReseau
                 }
             }
         }
+
+        public static ListeLignes Lignes()
+        {
+            ListeLignes listeLignes = new ListeLignes();
+            string requete = $"SELECT * FROM InfoLigne INNER JOIN Ligne ON InfoLigne.NumLigne = Ligne.NumLigne";
+            Console.WriteLine(requete);
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
+
+            while (rdr.Read())
+            {
+                int numLigne = rdr.GetInt32("NumLigne");
+                string nom = rdr.GetString("Nom");
+                string couleur = rdr.GetString("Couleur");
+                int numSegment = rdr.GetInt32("NumSegment");
+                List<int> segments = new List<int>();
+
+                //Console.WriteLine($"{numLigne} + {nom} {couleur} {numSegment}");
+
+                if (!lignesTemp.ContainsKey(numLigne))
+                {
+                    lignesTemp[numLigne] = new Ligne(numLigne, nom, couleur, segments);
+                }
+
+                lignesTemp[numLigne].segments.Add(numSegment);
+            }
+
+            rdr.Close();
+
+            foreach (var ligne in lignesTemp.Values)
+            {
+                listeLignes.AjoutLigne(ligne);
+            }
+
+            return listeLignes;
+        }
+
+
+    public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
+        {
+            //A FAIRE QUAND ALGO DE GRAPHE
+            string requete = $"SELECT * FROM Station WHERE NomStation = '{stationDep}' JOIN Segment ON '{stationDep}'.NumStation = Segment.NumSegment" +
+                "";
+        }
     }
 }
