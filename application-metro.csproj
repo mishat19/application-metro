@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
+	
+	<PropertyGroup>
     <OutputType>WinExe</OutputType>
 	 <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	 <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>

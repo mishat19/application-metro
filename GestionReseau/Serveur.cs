@@ -14,10 +14,10 @@ namespace GestionReseau
 
         public static bool OuvertureConnexion()
         {
-            string serveur = "localhost";
-            string login = "root";
-            string mdp = "root";
-            string bd = "METRO_MILAN";
+            string serveur = "10.1.139.236";
+            string login = "b3";
+            string mdp = "mdp";
+            string bd = "baseb3";
 
             string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";
 
