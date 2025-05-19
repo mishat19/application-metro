@@ -2,9 +2,12 @@
 {
     public partial class Consultation : Form
     {
-        public Consultation()
+        string _ligne;
+        public Consultation(string ligne)
         {
             InitializeComponent();
+            _ligne = ligne;
+            cmbLignes.Text =_ligne;
         }
 
         private void consultation_Load(object sender, EventArgs e)

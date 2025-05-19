@@ -123,6 +123,7 @@ namespace application_metro
         {
             Consultation consultation = new Consultation(ligne);
             consultation.Show();
+            this.Close();
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)

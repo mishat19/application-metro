@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consultation));
-            picSupprimer = new PictureBox();
             btnRecherche = new Button();
             cmbLignes = new ComboBox();
             btnRetour = new Button();
@@ -40,19 +38,8 @@
             lblDestinationA = new Label();
             calDate = new MonthCalendar();
             lstStations = new ListBox();
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
             grpDestinations.SuspendLayout();
             SuspendLayout();
-            // 
-            // picSupprimer
-            // 
-            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(231, 93);
-            picSupprimer.Name = "picSupprimer";
-            picSupprimer.Size = new Size(26, 28);
-            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
-            picSupprimer.TabIndex = 28;
-            picSupprimer.TabStop = false;
             // 
             // btnRecherche
             // 
@@ -66,6 +53,7 @@
             // 
             // cmbLignes
             // 
+            cmbLignes.Enabled = false;
             cmbLignes.FormattingEnabled = true;
             cmbLignes.Location = new Point(90, 93);
             cmbLignes.Name = "cmbLignes";
@@ -166,22 +154,18 @@
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(grpDestinations);
-            Controls.Add(picSupprimer);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
             Name = "Consultation";
             Text = "Horaires de la ligne";
             Load += consultation_Load;
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             grpDestinations.ResumeLayout(false);
             grpDestinations.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private PictureBox picSupprimer;
         private Button btnRecherche;
         private ComboBox cmbLignes;
         private Button btnRetour;
