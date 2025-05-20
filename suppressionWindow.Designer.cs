@@ -36,9 +36,9 @@
             // 
             // btnNon
             // 
-            btnNon.Location = new Point(374, 235);
+            btnNon.Location = new Point(210, 202);
             btnNon.Name = "btnNon";
-            btnNon.Size = new Size(126, 39);
+            btnNon.Size = new Size(160, 39);
             btnNon.TabIndex = 59;
             btnNon.Text = "Non";
             btnNon.UseVisualStyleBackColor = true;
@@ -47,7 +47,7 @@
             // 
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHoraires.Location = new Point(194, 74);
+            lblHoraires.Location = new Point(134, 47);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(115, 25);
             lblHoraires.TabIndex = 58;
@@ -55,9 +55,9 @@
             // 
             // btnOui
             // 
-            btnOui.Location = new Point(242, 235);
+            btnOui.Location = new Point(12, 202);
             btnOui.Name = "btnOui";
-            btnOui.Size = new Size(126, 39);
+            btnOui.Size = new Size(160, 39);
             btnOui.TabIndex = 60;
             btnOui.Text = "Oui";
             btnOui.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@
             // lblSuppression
             // 
             lblSuppression.AutoSize = true;
-            lblSuppression.Location = new Point(84, 110);
+            lblSuppression.Location = new Point(25, 106);
             lblSuppression.Name = "lblSuppression";
             lblSuppression.Size = new Size(333, 40);
             lblSuppression.TabIndex = 61;
@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(512, 286);
+            ClientSize = new Size(382, 253);
             Controls.Add(lblSuppression);
             Controls.Add(btnOui);
             Controls.Add(btnNon);

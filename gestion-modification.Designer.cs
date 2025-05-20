@@ -47,23 +47,25 @@
             rbDirectionB = new RadioButton();
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
+            pnlGestionModification = new Panel();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
+            pnlGestionModification.SuspendLayout();
             SuspendLayout();
             // 
             // cmbLigne
             // 
             cmbLigne.Enabled = false;
             cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(77, 206);
+            cmbLigne.Location = new Point(2, 197);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(321, 28);
+            cmbLigne.Size = new Size(213, 28);
             cmbLigne.TabIndex = 41;
             cmbLigne.Text = "Nom de la ligne";
             // 
             // lblModif
             // 
             lblModif.AutoSize = true;
-            lblModif.Location = new Point(344, 124);
+            lblModif.Location = new Point(130, 103);
             lblModif.Name = "lblModif";
             lblModif.Size = new Size(94, 20);
             lblModif.TabIndex = 40;
@@ -73,7 +75,7 @@
             // 
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitre.Location = new Point(181, 74);
+            lblTitre.Location = new Point(-26, 53);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(444, 50);
             lblTitre.TabIndex = 39;
@@ -81,7 +83,7 @@
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(12, 12);
+            btnRetour.Location = new Point(9, 11);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(126, 39);
             btnRetour.TabIndex = 38;
@@ -92,7 +94,7 @@
             // lblIntitule
             // 
             lblIntitule.AutoSize = true;
-            lblIntitule.Location = new Point(77, 173);
+            lblIntitule.Location = new Point(2, 164);
             lblIntitule.Name = "lblIntitule";
             lblIntitule.Size = new Size(129, 20);
             lblIntitule.TabIndex = 42;
@@ -101,7 +103,7 @@
             // lblCouleur
             // 
             lblCouleur.AutoSize = true;
-            lblCouleur.Location = new Point(77, 249);
+            lblCouleur.Location = new Point(2, 240);
             lblCouleur.Name = "lblCouleur";
             lblCouleur.Size = new Size(134, 20);
             lblCouleur.TabIndex = 45;
@@ -109,7 +111,7 @@
             // 
             // txtCouleur
             // 
-            txtCouleur.Location = new Point(77, 282);
+            txtCouleur.Location = new Point(2, 273);
             txtCouleur.Name = "txtCouleur";
             txtCouleur.Size = new Size(321, 27);
             txtCouleur.TabIndex = 46;
@@ -118,7 +120,7 @@
             // lblNbStations
             // 
             lblNbStations.AutoSize = true;
-            lblNbStations.Location = new Point(77, 337);
+            lblNbStations.Location = new Point(2, 328);
             lblNbStations.Name = "lblNbStations";
             lblNbStations.Size = new Size(140, 20);
             lblNbStations.TabIndex = 47;
@@ -127,7 +129,7 @@
             // dudNumLigne
             // 
             dudNumLigne.Enabled = false;
-            dudNumLigne.Location = new Point(492, 206);
+            dudNumLigne.Location = new Point(250, 198);
             dudNumLigne.Name = "dudNumLigne";
             dudNumLigne.Size = new Size(150, 27);
             dudNumLigne.TabIndex = 48;
@@ -135,7 +137,7 @@
             // 
             // nudNbStations
             // 
-            nudNbStations.Location = new Point(232, 335);
+            nudNbStations.Location = new Point(157, 326);
             nudNbStations.Name = "nudNbStations";
             nudNbStations.Size = new Size(43, 27);
             nudNbStations.TabIndex = 49;
@@ -143,7 +145,7 @@
             // lblNoms
             // 
             lblNoms.AutoSize = true;
-            lblNoms.Location = new Point(77, 396);
+            lblNoms.Location = new Point(2, 387);
             lblNoms.Name = "lblNoms";
             lblNoms.Size = new Size(310, 20);
             lblNoms.TabIndex = 50;
@@ -152,7 +154,7 @@
             // lblCoordonnees
             // 
             lblCoordonnees.AutoSize = true;
-            lblCoordonnees.Location = new Point(77, 585);
+            lblCoordonnees.Location = new Point(-1, 587);
             lblCoordonnees.Name = "lblCoordonnees";
             lblCoordonnees.Size = new Size(216, 20);
             lblCoordonnees.TabIndex = 51;
@@ -160,22 +162,22 @@
             // 
             // flpStations
             // 
-            flpStations.Location = new Point(131, 436);
+            flpStations.Location = new Point(3, 438);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(511, 125);
+            flpStations.Size = new Size(354, 125);
             flpStations.TabIndex = 52;
             // 
             // flpCoordonnees
             // 
-            flpCoordonnees.Location = new Point(131, 623);
+            flpCoordonnees.Location = new Point(12, 627);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(511, 125);
+            flpCoordonnees.Size = new Size(345, 125);
             flpCoordonnees.TabIndex = 53;
             // 
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
-            lblHoraires.Location = new Point(77, 774);
+            lblHoraires.Location = new Point(-1, 776);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(154, 20);
             lblHoraires.TabIndex = 54;
@@ -184,7 +186,7 @@
             // rbDirectionA
             // 
             rbDirectionA.AutoSize = true;
-            rbDirectionA.Location = new Point(525, 774);
+            rbDirectionA.Location = new Point(325, 776);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(183, 24);
             rbDirectionA.TabIndex = 55;
@@ -195,7 +197,7 @@
             // rbDirectionB
             // 
             rbDirectionB.AutoSize = true;
-            rbDirectionB.Location = new Point(525, 804);
+            rbDirectionB.Location = new Point(325, 806);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(183, 24);
             rbDirectionB.TabIndex = 56;
@@ -205,51 +207,63 @@
             // 
             // flpHoraires
             // 
-            flpHoraires.Location = new Point(131, 844);
+            flpHoraires.Location = new Point(12, 846);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(511, 125);
+            flpHoraires.Size = new Size(345, 125);
             flpHoraires.TabIndex = 54;
             // 
             // btnEnregistrement
             // 
             btnEnregistrement.Enabled = false;
-            btnEnregistrement.Location = new Point(516, 1004);
+            btnEnregistrement.Location = new Point(231, 977);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
             // 
+            // pnlGestionModification
+            // 
+            pnlGestionModification.AutoScroll = true;
+            pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
+            pnlGestionModification.Controls.Add(lblTitre);
+            pnlGestionModification.Controls.Add(btnEnregistrement);
+            pnlGestionModification.Controls.Add(btnRetour);
+            pnlGestionModification.Controls.Add(flpHoraires);
+            pnlGestionModification.Controls.Add(lblModif);
+            pnlGestionModification.Controls.Add(rbDirectionB);
+            pnlGestionModification.Controls.Add(cmbLigne);
+            pnlGestionModification.Controls.Add(rbDirectionA);
+            pnlGestionModification.Controls.Add(lblIntitule);
+            pnlGestionModification.Controls.Add(lblHoraires);
+            pnlGestionModification.Controls.Add(lblCouleur);
+            pnlGestionModification.Controls.Add(flpCoordonnees);
+            pnlGestionModification.Controls.Add(txtCouleur);
+            pnlGestionModification.Controls.Add(flpStations);
+            pnlGestionModification.Controls.Add(lblNbStations);
+            pnlGestionModification.Controls.Add(lblCoordonnees);
+            pnlGestionModification.Controls.Add(dudNumLigne);
+            pnlGestionModification.Controls.Add(lblNoms);
+            pnlGestionModification.Controls.Add(nudNbStations);
+            pnlGestionModification.Dock = DockStyle.Fill;
+            pnlGestionModification.Location = new Point(0, 0);
+            pnlGestionModification.Name = "pnlGestionModification";
+            pnlGestionModification.Size = new Size(382, 753);
+            pnlGestionModification.TabIndex = 58;
+            // 
             // Gestion_modification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 1055);
-            Controls.Add(btnEnregistrement);
-            Controls.Add(flpHoraires);
-            Controls.Add(rbDirectionB);
-            Controls.Add(rbDirectionA);
-            Controls.Add(lblHoraires);
-            Controls.Add(flpCoordonnees);
-            Controls.Add(flpStations);
-            Controls.Add(lblCoordonnees);
-            Controls.Add(lblNoms);
-            Controls.Add(nudNbStations);
-            Controls.Add(dudNumLigne);
-            Controls.Add(lblNbStations);
-            Controls.Add(txtCouleur);
-            Controls.Add(lblCouleur);
-            Controls.Add(lblIntitule);
-            Controls.Add(cmbLigne);
-            Controls.Add(lblModif);
-            Controls.Add(lblTitre);
-            Controls.Add(btnRetour);
+            ClientSize = new Size(382, 753);
+            Controls.Add(pnlGestionModification);
             Name = "Gestion_modification";
             Text = "Panneau de modification";
             Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
+            pnlGestionModification.ResumeLayout(false);
+            pnlGestionModification.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -273,5 +287,6 @@
         private RadioButton rbDirectionB;
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
+        private Panel pnlGestionModification;
     }
 }

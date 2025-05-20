@@ -26,5 +26,10 @@ namespace application_metro
         {
 
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

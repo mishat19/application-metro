@@ -39,7 +39,7 @@
             // 
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(317, 55);
+            lblTitre.Location = new Point(63, 98);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(185, 67);
             lblTitre.TabIndex = 5;
@@ -47,7 +47,7 @@
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(264, 251);
+            btnRecherche.Location = new Point(45, 301);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(290, 74);
             btnRecherche.TabIndex = 4;
@@ -57,7 +57,7 @@
             // 
             // btnConsultation
             // 
-            btnConsultation.Location = new Point(264, 160);
+            btnConsultation.Location = new Point(45, 182);
             btnConsultation.Name = "btnConsultation";
             btnConsultation.Size = new Size(290, 74);
             btnConsultation.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.Location = new Point(264, 364);
+            btnAdmin.Location = new Point(45, 420);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(290, 74);
             btnAdmin.TabIndex = 7;
@@ -89,7 +89,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(382, 753);
             Controls.Add(btnAdmin);
             Controls.Add(btnRetour);
             Controls.Add(lblTitre);

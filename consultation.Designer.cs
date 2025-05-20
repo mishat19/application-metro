@@ -47,7 +47,7 @@
             // picSupprimer
             // 
             picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(231, 93);
+            picSupprimer.Location = new Point(180, 93);
             picSupprimer.Name = "picSupprimer";
             picSupprimer.Size = new Size(26, 28);
             picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -56,7 +56,7 @@
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(507, 93);
+            btnRecherche.Location = new Point(301, 93);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(173, 28);
             btnRecherche.TabIndex = 27;
@@ -66,7 +66,7 @@
             // cmbLignes
             // 
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(90, 93);
+            cmbLignes.Location = new Point(29, 93);
             cmbLignes.Name = "cmbLignes";
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 26;
@@ -88,7 +88,7 @@
             grpDestinations.Controls.Add(rjToggleButton1);
             grpDestinations.Controls.Add(lblDestinationB);
             grpDestinations.Controls.Add(lblDestinationA);
-            grpDestinations.Location = new Point(176, 149);
+            grpDestinations.Location = new Point(12, 152);
             grpDestinations.Name = "grpDestinations";
             grpDestinations.Size = new Size(443, 90);
             grpDestinations.TabIndex = 29;
@@ -144,14 +144,14 @@
             // 
             // calDate
             // 
-            calDate.Location = new Point(267, 375);
+            calDate.Location = new Point(90, 375);
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
             // 
             // lstStations
             // 
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(267, 259);
+            lstStations.Location = new Point(90, 259);
             lstStations.Name = "lstStations";
             lstStations.Size = new Size(262, 104);
             lstStations.TabIndex = 31;
@@ -160,7 +160,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 635);
+            ClientSize = new Size(382, 753);
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(grpDestinations);
