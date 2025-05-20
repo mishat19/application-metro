@@ -28,5 +28,10 @@ namespace application_metro
             gestion.Show();
             this.Close();
         }
+
+        private void cmbLigne_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

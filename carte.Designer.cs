@@ -40,12 +40,18 @@
             // cmbLignes
             // 
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(101, 93);
+            cmbLignes.Location = new Point(12, 99);
             cmbLignes.Name = "cmbLignes";
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 21;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
+            // 
+            picMap.Location = new Point(12, 209);
+            picMap.Name = "picMap";
+            picMap.Size = new Size(358, 532);
+            picMap.TabIndex = 20;
+            picMap.TabStop = false;
             // 
             // btnRetour
             // 
@@ -59,10 +65,11 @@
             // 
             // btnRecherche
             // 
+            btnRecherche.Location = new Point(204, 98);
             btnRecherche.Enabled = false;
             btnRecherche.Location = new Point(507, 93);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(173, 28);
+            btnRecherche.Size = new Size(166, 28);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -71,9 +78,9 @@
             // btnHoraires
             // 
             btnHoraires.Enabled = false;
-            btnHoraires.Location = new Point(222, 152);
+            btnHoraires.Location = new Point(12, 162);
             btnHoraires.Name = "btnHoraires";
-            btnHoraires.Size = new Size(332, 41);
+            btnHoraires.Size = new Size(358, 41);
             btnHoraires.TabIndex = 23;
             btnHoraires.Text = "Voir les horaires";
             btnHoraires.UseVisualStyleBackColor = true;
@@ -82,7 +89,7 @@
             // picSupprimer
             // 
             picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(242, 93);
+            picSupprimer.Location = new Point(151, 99);
             picSupprimer.Name = "picSupprimer";
             picSupprimer.Size = new Size(24, 28);
             picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -93,14 +100,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 597);
+            ClientSize = new Size(382, 753);
             Controls.Add(picSupprimer);
             Controls.Add(btnHoraires);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
             Name = "Carte";
-            Text = "Consultation du réseau";
             Load += carte_Load;
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             ResumeLayout(false);

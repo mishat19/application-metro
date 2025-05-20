@@ -41,12 +41,22 @@
             grpDestinations.SuspendLayout();
             SuspendLayout();
             // 
+            // picSupprimer
+            // 
+            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
+            picSupprimer.Location = new Point(148, 102);
+            picSupprimer.Name = "picSupprimer";
+            picSupprimer.Size = new Size(26, 28);
+            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
+            picSupprimer.TabIndex = 28;
+            picSupprimer.TabStop = false;
+            // 
             // btnRecherche
             // 
             btnRecherche.Enabled = false;
             btnRecherche.Location = new Point(507, 93);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(173, 28);
+            btnRecherche.Size = new Size(166, 28);
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -55,7 +65,7 @@
             // 
             cmbLignes.Enabled = false;
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(90, 93);
+            cmbLignes.Location = new Point(12, 102);
             cmbLignes.Name = "cmbLignes";
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 26;
@@ -78,9 +88,9 @@
             grpDestinations.Controls.Add(rjToggleButton1);
             grpDestinations.Controls.Add(lblDestinationB);
             grpDestinations.Controls.Add(lblDestinationA);
-            grpDestinations.Location = new Point(176, 149);
+            grpDestinations.Location = new Point(12, 136);
             grpDestinations.Name = "grpDestinations";
-            grpDestinations.Size = new Size(443, 90);
+            grpDestinations.Size = new Size(358, 90);
             grpDestinations.TabIndex = 29;
             grpDestinations.TabStop = false;
             // 
@@ -89,7 +99,7 @@
             rjToggleButton2.AutoSize = true;
             rjToggleButton2.Checked = true;
             rjToggleButton2.CheckState = CheckState.Checked;
-            rjToggleButton2.Location = new Point(308, 26);
+            rjToggleButton2.Location = new Point(264, 26);
             rjToggleButton2.MinimumSize = new Size(45, 22);
             rjToggleButton2.Name = "rjToggleButton2";
             rjToggleButton2.OffBackColor = Color.Gray;
@@ -117,7 +127,7 @@
             // lblDestinationB
             // 
             lblDestinationB.AutoSize = true;
-            lblDestinationB.Location = new Point(264, 57);
+            lblDestinationB.Location = new Point(207, 57);
             lblDestinationB.Name = "lblDestinationB";
             lblDestinationB.Size = new Size(129, 20);
             lblDestinationB.TabIndex = 31;
@@ -134,23 +144,23 @@
             // 
             // calDate
             // 
-            calDate.Location = new Point(267, 375);
+            calDate.Location = new Point(59, 501);
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
             // 
             // lstStations
             // 
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(267, 259);
+            lstStations.Location = new Point(12, 232);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(262, 104);
+            lstStations.Size = new Size(358, 224);
             lstStations.TabIndex = 31;
             // 
             // Consultation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 635);
+            ClientSize = new Size(382, 753);
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(grpDestinations);

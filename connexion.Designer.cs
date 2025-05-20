@@ -55,7 +55,7 @@
             // 
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(269, 82);
+            lblTitre.Location = new Point(60, 81);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(263, 67);
             lblTitre.TabIndex = 3;
@@ -63,20 +63,20 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(239, 220);
+            txtEmail.Location = new Point(12, 229);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(322, 27);
+            txtEmail.Size = new Size(358, 27);
             txtEmail.TabIndex = 4;
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
-            txtMdp.Location = new Point(239, 266);
+            txtMdp.Location = new Point(12, 262);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(322, 27);
+            txtMdp.Size = new Size(358, 27);
             txtMdp.TabIndex = 5;
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
@@ -84,7 +84,7 @@
             // 
             picOeil.BackColor = Color.Transparent;
             picOeil.Image = (Image)resources.GetObject("picOeil.Image");
-            picOeil.Location = new Point(530, 266);
+            picOeil.Location = new Point(339, 262);
             picOeil.Name = "picOeil";
             picOeil.Size = new Size(31, 27);
             picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -94,7 +94,7 @@
             // 
             // btnConnexion
             // 
-            btnConnexion.Location = new Point(587, 363);
+            btnConnexion.Location = new Point(236, 397);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(134, 40);
             btnConnexion.TabIndex = 7;
@@ -105,7 +105,7 @@
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Location = new Point(485, 310);
+            lnkInscription.Location = new Point(283, 333);
             lnkInscription.Name = "lnkInscription";
             lnkInscription.Size = new Size(67, 20);
             lnkInscription.TabIndex = 8;
@@ -116,7 +116,7 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Location = new Point(238, 310);
+            lblInscription.Location = new Point(12, 333);
             lblInscription.Name = "lblInscription";
             lblInscription.Size = new Size(248, 20);
             lblInscription.TabIndex = 9;

@@ -36,7 +36,7 @@
             // 
             // btnConnexion
             // 
-            btnConnexion.Location = new Point(256, 217);
+            btnConnexion.Location = new Point(46, 281);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(290, 74);
             btnConnexion.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // btnNoConnexion
             // 
-            btnNoConnexion.Location = new Point(256, 320);
+            btnNoConnexion.Location = new Point(46, 398);
             btnNoConnexion.Name = "btnNoConnexion";
             btnNoConnexion.Size = new Size(290, 74);
             btnNoConnexion.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(262, 86);
+            lblTitre.Location = new Point(49, 76);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(284, 67);
             lblTitre.TabIndex = 2;
@@ -69,7 +69,7 @@
             lblDeconnexion.AutoSize = true;
             lblDeconnexion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDeconnexion.ForeColor = Color.ForestGreen;
-            lblDeconnexion.Location = new Point(299, 409);
+            lblDeconnexion.Location = new Point(85, 512);
             lblDeconnexion.Name = "lblDeconnexion";
             lblDeconnexion.Size = new Size(213, 23);
             lblDeconnexion.TabIndex = 3;
@@ -81,7 +81,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(382, 753);
             Controls.Add(lblDeconnexion);
             Controls.Add(lblTitre);
             Controls.Add(btnNoConnexion);
