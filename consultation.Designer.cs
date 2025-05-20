@@ -31,22 +31,18 @@
             btnRecherche = new Button();
             cmbLignes = new ComboBox();
             btnRetour = new Button();
-            grpDestinations = new GroupBox();
-            rjToggleButton2 = new CustomControls.RJControls.RJToggleButton();
-            rjToggleButton1 = new CustomControls.RJControls.RJToggleButton();
-            lblDestinationB = new Label();
-            lblDestinationA = new Label();
             calDate = new MonthCalendar();
             lstStations = new ListBox();
-            grpDestinations.SuspendLayout();
+            cmbStation = new ComboBox();
             SuspendLayout();
             // 
             // btnRecherche
             // 
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(507, 93);
+            btnRecherche.Location = new Point(277, 113);
+            btnRecherche.Margin = new Padding(3, 2, 3, 2);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(173, 28);
+            btnRecherche.Size = new Size(151, 21);
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -55,113 +51,68 @@
             // 
             cmbLignes.Enabled = false;
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(90, 93);
+            cmbLignes.Location = new Point(175, 69);
+            cmbLignes.Margin = new Padding(3, 2, 3, 2);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.Size = new Size(163, 23);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(12, 12);
+            btnRetour.Location = new Point(10, 9);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
+            btnRetour.Size = new Size(110, 29);
             btnRetour.TabIndex = 25;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
             btnRetour.Click += btnRetour_Click;
             // 
-            // grpDestinations
-            // 
-            grpDestinations.Controls.Add(rjToggleButton2);
-            grpDestinations.Controls.Add(rjToggleButton1);
-            grpDestinations.Controls.Add(lblDestinationB);
-            grpDestinations.Controls.Add(lblDestinationA);
-            grpDestinations.Location = new Point(176, 149);
-            grpDestinations.Name = "grpDestinations";
-            grpDestinations.Size = new Size(443, 90);
-            grpDestinations.TabIndex = 29;
-            grpDestinations.TabStop = false;
-            // 
-            // rjToggleButton2
-            // 
-            rjToggleButton2.AutoSize = true;
-            rjToggleButton2.Checked = true;
-            rjToggleButton2.CheckState = CheckState.Checked;
-            rjToggleButton2.Location = new Point(308, 26);
-            rjToggleButton2.MinimumSize = new Size(45, 22);
-            rjToggleButton2.Name = "rjToggleButton2";
-            rjToggleButton2.OffBackColor = Color.Gray;
-            rjToggleButton2.OffToggleColor = Color.Gainsboro;
-            rjToggleButton2.OnBackColor = Color.MediumSlateBlue;
-            rjToggleButton2.OnToggleColor = Color.WhiteSmoke;
-            rjToggleButton2.Size = new Size(45, 22);
-            rjToggleButton2.TabIndex = 33;
-            rjToggleButton2.UseVisualStyleBackColor = true;
-            // 
-            // rjToggleButton1
-            // 
-            rjToggleButton1.AutoSize = true;
-            rjToggleButton1.Location = new Point(72, 26);
-            rjToggleButton1.MinimumSize = new Size(45, 22);
-            rjToggleButton1.Name = "rjToggleButton1";
-            rjToggleButton1.OffBackColor = Color.Gray;
-            rjToggleButton1.OffToggleColor = Color.Gainsboro;
-            rjToggleButton1.OnBackColor = Color.MediumSlateBlue;
-            rjToggleButton1.OnToggleColor = Color.WhiteSmoke;
-            rjToggleButton1.Size = new Size(45, 22);
-            rjToggleButton1.TabIndex = 32;
-            rjToggleButton1.UseVisualStyleBackColor = true;
-            // 
-            // lblDestinationB
-            // 
-            lblDestinationB.AutoSize = true;
-            lblDestinationB.Location = new Point(264, 57);
-            lblDestinationB.Name = "lblDestinationB";
-            lblDestinationB.Size = new Size(129, 20);
-            lblDestinationB.TabIndex = 31;
-            lblDestinationB.Text = "Vers Destination B";
-            // 
-            // lblDestinationA
-            // 
-            lblDestinationA.AutoSize = true;
-            lblDestinationA.Location = new Point(32, 57);
-            lblDestinationA.Name = "lblDestinationA";
-            lblDestinationA.Size = new Size(130, 20);
-            lblDestinationA.TabIndex = 30;
-            lblDestinationA.Text = "Vers Destination A";
-            // 
             // calDate
             // 
-            calDate.Location = new Point(267, 375);
+            calDate.Location = new Point(238, 251);
+            calDate.Margin = new Padding(8, 7, 8, 7);
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
             // 
             // lstStations
             // 
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(267, 259);
+            lstStations.ItemHeight = 15;
+            lstStations.Location = new Point(238, 163);
+            lstStations.Margin = new Padding(3, 2, 3, 2);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(262, 104);
+            lstStations.Size = new Size(230, 79);
             lstStations.TabIndex = 31;
+            // 
+            // cmbStation
+            // 
+            cmbStation.Enabled = false;
+            cmbStation.FormattingEnabled = true;
+            cmbStation.Location = new Point(361, 69);
+            cmbStation.Margin = new Padding(3, 2, 3, 2);
+            cmbStation.Name = "cmbStation";
+            cmbStation.Size = new Size(163, 23);
+            cmbStation.TabIndex = 32;
+            cmbStation.Text = "Nom de la station";
             // 
             // Consultation
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 635);
+            ClientSize = new Size(700, 448);
+            Controls.Add(cmbStation);
             Controls.Add(lstStations);
             Controls.Add(calDate);
-            Controls.Add(grpDestinations);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Consultation";
-            Text = "Horaires de la ligne";
+            Text = "Horaires de la station";
             Load += consultation_Load;
-            grpDestinations.ResumeLayout(false);
-            grpDestinations.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -169,12 +120,8 @@
         private Button btnRecherche;
         private ComboBox cmbLignes;
         private Button btnRetour;
-        private GroupBox grpDestinations;
-        private Label lblDestinationB;
-        private Label lblDestinationA;
         private MonthCalendar calDate;
-        private CustomControls.RJControls.RJToggleButton rjToggleButton2;
-        private CustomControls.RJControls.RJToggleButton rjToggleButton1;
         private ListBox lstStations;
+        private ComboBox cmbStation;
     }
 }
