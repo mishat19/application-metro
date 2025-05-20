@@ -60,6 +60,7 @@ namespace application_metro
         {
             string nomLigne = cmbLigne.SelectedItem.ToString().Trim();
             cmbStation.Enabled = true;
+            cmbStation.Items.Clear();
             NomsStation(nomLigne);
         }
 
@@ -70,7 +71,6 @@ namespace application_metro
                 Console.WriteLine(ligne.nom);
                 if (ligne.nom == nomLigne)
                 {
-                    Console.WriteLine("Dans le IF");
                     foreach (string nomStation in ligne.stations)
                     {
                         Console.WriteLine(nomStation);

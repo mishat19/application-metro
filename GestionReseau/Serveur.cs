@@ -121,7 +121,7 @@ namespace GestionReseau
 
             Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
             int nbLignes = 0;
-
+https://www.arte.tv/fr/
             while (rdr.Read())
             {
                 int numLigne = rdr.GetInt32("NumLigne");
@@ -143,12 +143,12 @@ namespace GestionReseau
 
             rdr.Close();
 
-            for (int i = 0; i<nbLignes; i++)
+            for (int i = 1; i<=nbLignes; i++)
             {
-                foreach(int segment in lignesTemp[3].segments)
+                foreach(int segment in lignesTemp[i].segments)
                 {
                     string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
-                    Console.WriteLine(requete2);
+                    //Console.WriteLine(requete2);
                     MySqlCommand cmd2 = new MySqlCommand(requete2, connexion);
                     MySqlDataReader rdr2 = cmd2.ExecuteReader();
 
@@ -157,7 +157,10 @@ namespace GestionReseau
                         try
                         {
                             string nomStation = rdr2.GetString("NomStation");
-                            lignesTemp[4].stations.Add(nomStation);
+                            if(!lignesTemp[i].stations.Contains(nomStation))
+                            {
+                                lignesTemp[i].stations.Add(nomStation);
+                            }
                         }
                         catch (MySqlException ex) {
                             Console.WriteLine(ex.Message);
