@@ -46,6 +46,7 @@
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.Click += btnRecherche_Click;
             // 
             // cmbLignes
             // 
@@ -97,6 +98,7 @@
             cmbStation.Size = new Size(163, 23);
             cmbStation.TabIndex = 32;
             cmbStation.Text = "Nom de la station";
+            cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
             // 
             // Consultation
             // 
