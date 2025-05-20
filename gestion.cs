@@ -37,9 +37,11 @@ namespace application_metro
             this.Close();
         }
 
+        string mode;
         private void btnModif_Click(object sender, EventArgs e)
         {
-            Gestion_modification modif = new Gestion_modification();
+            mode = "Modification";
+            Gestion_modification modif = new Gestion_modification(mode);
             modif.Show();
             this.Close();
         }
@@ -53,7 +55,10 @@ namespace application_metro
 
         private void picPlus_Click(object sender, EventArgs e)
         {
-
+            mode = "Ajout";
+            Gestion_modification gestion_Modification = new Gestion_modification(mode);
+            gestion_Modification.Show();
+            this.Close();
         }
 
         private void cmbLigne_SelectedIndexChanged(object sender, EventArgs e)

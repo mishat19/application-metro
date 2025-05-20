@@ -47,12 +47,13 @@
             rbDirectionB = new RadioButton();
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
+            txtNomLigne = new TextBox();
+            txtNum = new TextBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
             // 
-            cmbLigne.Enabled = false;
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(77, 206);
             cmbLigne.Name = "cmbLigne";
@@ -101,19 +102,21 @@
             // lblCouleur
             // 
             lblCouleur.AutoSize = true;
-            lblCouleur.Location = new Point(77, 249);
+            lblCouleur.Location = new Point(77, 279);
             lblCouleur.Name = "lblCouleur";
             lblCouleur.Size = new Size(134, 20);
             lblCouleur.TabIndex = 45;
             lblCouleur.Text = "Couleur de la ligne";
+            lblCouleur.Click += lblCouleur_Click;
             // 
             // txtCouleur
             // 
-            txtCouleur.Location = new Point(77, 282);
+            txtCouleur.Location = new Point(77, 302);
             txtCouleur.Name = "txtCouleur";
+            txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(321, 27);
             txtCouleur.TabIndex = 46;
-            txtCouleur.Text = "Couleur";
+            txtCouleur.TextChanged += this.txtCouleur_TextChanged;
             // 
             // lblNbStations
             // 
@@ -126,7 +129,6 @@
             // 
             // dudNumLigne
             // 
-            dudNumLigne.Enabled = false;
             dudNumLigne.Location = new Point(492, 206);
             dudNumLigne.Name = "dudNumLigne";
             dudNumLigne.Size = new Size(150, 27);
@@ -219,12 +221,31 @@
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
+            btnEnregistrement.Click += btnEnregistrement_Click;
+            // 
+            // txtNomLigne
+            // 
+            txtNomLigne.Location = new Point(77, 240);
+            txtNomLigne.Name = "txtNomLigne";
+            txtNomLigne.PlaceholderText = "Nom de la ligne";
+            txtNomLigne.Size = new Size(321, 27);
+            txtNomLigne.TabIndex = 58;
+            // 
+            // txtNum
+            // 
+            txtNum.Location = new Point(492, 240);
+            txtNum.Name = "txtNum";
+            txtNum.PlaceholderText = "Ligne N°";
+            txtNum.Size = new Size(150, 27);
+            txtNum.TabIndex = 59;
             // 
             // Gestion_modification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 1055);
+            Controls.Add(txtNum);
+            Controls.Add(txtNomLigne);
             Controls.Add(btnEnregistrement);
             Controls.Add(flpHoraires);
             Controls.Add(rbDirectionB);
@@ -273,5 +294,7 @@
         private RadioButton rbDirectionB;
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
+        private TextBox txtNomLigne;
+        private TextBox txtNum;
     }
 }
