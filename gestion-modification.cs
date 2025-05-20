@@ -12,9 +12,13 @@ namespace application_metro
 {
     public partial class Gestion_modification : Form
     {
-        public Gestion_modification()
+        public Gestion_modification(string mode)
         {
             InitializeComponent();
+            if (mode == "Ajout")
+            {
+                lblModif.Text = "Ajout d'une ligne";
+            }
         }
 
         private void gestion_modification_Load(object sender, EventArgs e)
@@ -27,6 +31,16 @@ namespace application_metro
             Gestion gestion = new Gestion();
             gestion.Show();
             this.Close();
+        }
+
+        private void btnEnregistrement_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCouleur_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
