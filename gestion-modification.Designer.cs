@@ -116,7 +116,6 @@
             txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(321, 27);
             txtCouleur.TabIndex = 46;
-            txtCouleur.TextChanged += this.txtCouleur_TextChanged;
             // 
             // lblNbStations
             // 

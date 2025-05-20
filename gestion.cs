@@ -46,11 +46,28 @@ namespace application_metro
             this.Close();
         }
 
+        string nomLigne = "";
+        string nomStation = "";
+        string horaire = "";
         private void btnSupp_Click(object sender, EventArgs e)
         {
-            SuppressionWindow suppression = new SuppressionWindow();
-            suppression.Show();
-            this.Close();
+            DialogResult result = MessageBox.Show(
+                "Voulez-vous vraiment supprimer ces données ?\nCette action est irréversible.",
+                "Confirmation de suppression",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning
+            );
+
+            if (!string.IsNullOrWhiteSpace(nomLigne))
+            {
+                Serveur.SupprimerDonnees(nomLigne,
+                    string.IsNullOrWhiteSpace(nomStation) ? null : nomStation,
+                    string.IsNullOrWhiteSpace(horaire) ? null : horaire);
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit au moins être sélectionnée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void picPlus_Click(object sender, EventArgs e)

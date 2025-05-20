@@ -267,6 +267,26 @@ namespace GestionReseau
             return horaires;
         }
 
+        public static void SupprimerDonnees(string nomLigne, string nomStation = null, string horaire = null)
+        {
+            if (!string.IsNullOrWhiteSpace(nomStation) && !string.IsNullOrWhiteSpace(horaire))
+            {
+                Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}' à l'horaire '{horaire}'.");
+                // TODO : supprimer à ce niveau de précision (ligne + station + horaire)
+                string requete = $"DELETE FROM Horaire";
+            }
+            else if (!string.IsNullOrWhiteSpace(nomStation))
+            {
+                Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}'.");
+                // TODO : supprimer la station pour la ligne donnée
+            }
+            else
+            {
+                Console.WriteLine($"Suppression de toutes les données pour la ligne '{nomLigne}'.");
+                // TODO : supprimer toute la ligne
+            }
+        }
+
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {
