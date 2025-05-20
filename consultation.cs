@@ -1,4 +1,6 @@
-﻿namespace application_metro
+﻿using GestionReseau;
+
+namespace application_metro
 {
     public partial class Consultation : Form
     {
@@ -13,15 +15,16 @@
 
         private void consultation_Load(object sender, EventArgs e)
         {
-            // Désactive le comboBox des stations et le bouton de recherche
             cmbStation.Enabled = false;
             btnRecherche.Enabled = false;
 
-            // Vérifie que _ligne n'est pas vide pour activer le comboBox des stations
+            List<string> lignes = Serveur.ListeDesLignes();
+            cmbLignes.Items.Clear();
+            cmbLignes.Items.AddRange(lignes.ToArray());
+
             if (!string.IsNullOrEmpty(_ligne))
             {
-                cmbLignes.SelectedItem = _ligne;
-                cmbStation.Enabled = true;
+                cmbLignes.SelectedItem = _ligne; 
             }
         }
 
@@ -36,14 +39,20 @@
         {
             if (cmbLignes.SelectedIndex != -1)
             {
-                // On active le bouton quand une station est sélectionnée
                 cmbStation.Enabled = true;
+                string nomLigne = cmbLignes.SelectedItem.ToString();
+                List<string> stations = Serveur.StationsParLigne(nomLigne); ;
+                foreach (string station in stations)
+                {
+                    cmbStation.Items.Add(station);
+                }
+                cmbStation.SelectedIndex = -1;
+                btnRecherche.Enabled = false;
             }
         }
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // On active le bouton quand une station est sélectionnée
             btnRecherche.Enabled = cmbStation.SelectedIndex != -1;
         }
 

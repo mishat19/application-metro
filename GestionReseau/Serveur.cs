@@ -267,6 +267,46 @@ namespace GestionReseau
             return horaires;
         }
 
+        public static List<string> ListeDesLignes()
+        {
+            List<string> lignes = new List<string>();
+            string requete = "SELECT Nom FROM InfoLigne";
+
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    lignes.Add(rdr.GetString("Nom"));
+                }
+            }
+
+            return lignes;
+        }
+
+        public static List<string> StationsParLigne(string nomLigne)
+        {
+            List<string> stations = new List<string>();
+            string requete = @"
+            SELECT DISTINCT st.NomStation
+            FROM InfoLigne il, Ligne l, Segment seg, Station st 
+            WHERE il.Nom = @NomLigne
+            AND il.NumLigne = l.NumLigne
+            AND l.NumSegment = seg.NumSegment
+            AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    stations.Add(rdr.GetString("NomStation"));
+                }
+            }
+            return stations;
+        }
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {
