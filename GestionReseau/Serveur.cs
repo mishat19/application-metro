@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 
 namespace GestionReseau
 {
@@ -121,7 +122,7 @@ namespace GestionReseau
 
             Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
             int nbLignes = 0;
-https://www.arte.tv/fr/
+
             while (rdr.Read())
             {
                 int numLigne = rdr.GetInt32("NumLigne");
@@ -178,8 +179,53 @@ https://www.arte.tv/fr/
             return listeLignes;
         }
 
+        public static double HoraireSegment(string numStationA, string numStationB)
+        {
+            string stationA = numStationA;
+            string stationB = numStationB;
+            double resultat = 0;
 
-    public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
+            string requete = $"SELECT DureeSegment FROM Segment WHERE NumStationA = {numStationA} AND NumStationB = {numStationB}";
+            Console.WriteLine(requete);
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.Read()) {
+                resultat = (double)rdr.GetInt32("DureeSegment");
+            }
+            rdr.Close();
+            return resultat;
+        }
+
+        public static string TotalHoraire(int numLigne, double tempsTrajet)
+        {
+            string requete = $"SELECT HoraireDepart FROM Horaire WHERE NumLigne = {numLigne}";
+            Console.WriteLine(requete);
+
+            TimeSpan mysqlTime = TimeSpan.Zero;
+            TimeOnly horaireDepart;
+            TimeOnly horaireFinal;
+            string resultat = "";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            if (rdr.Read())
+            {
+                mysqlTime = rdr.GetTimeSpan("HoraireDepart");
+            }
+
+            rdr.Close();
+
+            horaireDepart = TimeOnly.FromTimeSpan(mysqlTime);
+            horaireFinal = horaireDepart.AddMinutes(tempsTrajet);
+
+            resultat = horaireFinal.ToString("HH:mm");
+
+            return resultat;
+        }
+
+
+        public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {
             //A FAIRE QUAND ALGO DE GRAPHE
             string requete = $"SELECT * FROM Station WHERE NomStation = '{stationDep}' JOIN Segment ON '{stationDep}'.NumStation = Segment.NumSegment" +
