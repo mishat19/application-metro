@@ -47,7 +47,7 @@
             // lblConnexion
             // 
             lblConnexion.AutoSize = true;
-            lblConnexion.Location = new Point(30, 446);
+            lblConnexion.Location = new Point(45, 492);
             lblConnexion.Name = "lblConnexion";
             lblConnexion.Size = new Size(193, 20);
             lblConnexion.TabIndex = 17;
@@ -56,7 +56,7 @@
             // lnkConnexion
             // 
             lnkConnexion.AutoSize = true;
-            lnkConnexion.Location = new Point(225, 446);
+            lnkConnexion.Location = new Point(244, 492);
             lnkConnexion.Name = "lnkConnexion";
             lnkConnexion.Size = new Size(94, 20);
             lnkConnexion.TabIndex = 16;
@@ -66,7 +66,7 @@
             // 
             // btnInscription
             // 
-            btnInscription.Location = new Point(225, 530);
+            btnInscription.Location = new Point(236, 590);
             btnInscription.Name = "btnInscription";
             btnInscription.Size = new Size(134, 40);
             btnInscription.TabIndex = 15;
@@ -77,7 +77,7 @@
             // picOeil
             // 
             picOeil.Image = (Image)resources.GetObject("picOeil.Image");
-            picOeil.Location = new Point(305, 402);
+            picOeil.Location = new Point(339, 402);
             picOeil.Name = "picOeil";
             picOeil.Size = new Size(31, 27);
             picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -87,27 +87,27 @@
             // 
             // txtMdp
             // 
-            txtMdp.Location = new Point(15, 402);
+            txtMdp.Location = new Point(12, 402);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(322, 27);
+            txtMdp.Size = new Size(358, 27);
             txtMdp.TabIndex = 13;
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(15, 356);
+            txtEmail.Location = new Point(12, 369);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(322, 27);
+            txtEmail.Size = new Size(358, 27);
             txtEmail.TabIndex = 12;
             // 
             // lblTitre
             // 
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(46, 137);
+            lblTitre.Location = new Point(62, 94);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(258, 67);
             lblTitre.TabIndex = 11;
@@ -115,7 +115,7 @@
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(46, 30);
+            btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(126, 39);
             btnRetour.TabIndex = 10;
@@ -125,24 +125,24 @@
             // 
             // txtNom
             // 
-            txtNom.Location = new Point(15, 243);
+            txtNom.Location = new Point(12, 228);
             txtNom.Name = "txtNom";
-            txtNom.Size = new Size(322, 27);
+            txtNom.Size = new Size(358, 27);
             txtNom.TabIndex = 18;
             txtNom.Text = "Nom";
             // 
             // txtPrenom
             // 
-            txtPrenom.Location = new Point(15, 276);
+            txtPrenom.Location = new Point(12, 261);
             txtPrenom.Name = "txtPrenom";
-            txtPrenom.Size = new Size(322, 27);
+            txtPrenom.Size = new Size(358, 27);
             txtPrenom.TabIndex = 19;
             txtPrenom.Text = "Prénom";
             // 
             // lblNaissance
             // 
             lblNaissance.AutoSize = true;
-            lblNaissance.Location = new Point(14, 326);
+            lblNaissance.Location = new Point(12, 312);
             lblNaissance.Name = "lblNaissance";
             lblNaissance.Size = new Size(129, 20);
             lblNaissance.TabIndex = 20;
@@ -152,9 +152,9 @@
             // 
             dtpNaissance.CustomFormat = "dd-MM-yyyy";
             dtpNaissance.Format = DateTimePickerFormat.Custom;
-            dtpNaissance.Location = new Point(205, 321);
+            dtpNaissance.Location = new Point(147, 312);
             dtpNaissance.Name = "dtpNaissance";
-            dtpNaissance.Size = new Size(131, 27);
+            dtpNaissance.Size = new Size(122, 27);
             dtpNaissance.TabIndex = 21;
             // 
             // Inscription

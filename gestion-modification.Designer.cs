@@ -56,16 +56,17 @@
             // 
             cmbLigne.Enabled = false;
             cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(2, 197);
+            cmbLigne.Location = new Point(12, 197);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(213, 28);
+            cmbLigne.Size = new Size(197, 28);
             cmbLigne.TabIndex = 41;
             cmbLigne.Text = "Nom de la ligne";
+            cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
             // 
             // lblModif
             // 
             lblModif.AutoSize = true;
-            lblModif.Location = new Point(130, 103);
+            lblModif.Location = new Point(133, 116);
             lblModif.Name = "lblModif";
             lblModif.Size = new Size(94, 20);
             lblModif.TabIndex = 40;
@@ -74,16 +75,16 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitre.Location = new Point(-26, 53);
+            lblTitre.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Location = new Point(13, 65);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(444, 50);
+            lblTitre.Size = new Size(335, 38);
             lblTitre.TabIndex = 39;
             lblTitre.Text = "Panneau de configuration";
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(9, 11);
+            btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(126, 39);
             btnRetour.TabIndex = 38;
@@ -94,7 +95,7 @@
             // lblIntitule
             // 
             lblIntitule.AutoSize = true;
-            lblIntitule.Location = new Point(2, 164);
+            lblIntitule.Location = new Point(12, 164);
             lblIntitule.Name = "lblIntitule";
             lblIntitule.Size = new Size(129, 20);
             lblIntitule.TabIndex = 42;
@@ -103,7 +104,7 @@
             // lblCouleur
             // 
             lblCouleur.AutoSize = true;
-            lblCouleur.Location = new Point(2, 240);
+            lblCouleur.Location = new Point(12, 240);
             lblCouleur.Name = "lblCouleur";
             lblCouleur.Size = new Size(134, 20);
             lblCouleur.TabIndex = 45;
@@ -111,33 +112,33 @@
             // 
             // txtCouleur
             // 
-            txtCouleur.Location = new Point(2, 273);
+            txtCouleur.Location = new Point(12, 272);
             txtCouleur.Name = "txtCouleur";
-            txtCouleur.Size = new Size(321, 27);
+            txtCouleur.Size = new Size(358, 27);
             txtCouleur.TabIndex = 46;
             txtCouleur.Text = "Couleur";
             // 
             // lblNbStations
             // 
             lblNbStations.AutoSize = true;
-            lblNbStations.Location = new Point(2, 328);
+            lblNbStations.Location = new Point(13, 333);
             lblNbStations.Name = "lblNbStations";
-            lblNbStations.Size = new Size(140, 20);
+            lblNbStations.Size = new Size(147, 20);
             lblNbStations.TabIndex = 47;
-            lblNbStations.Text = "Nombre de stations";
+            lblNbStations.Text = "Nombre de stations :";
             // 
             // dudNumLigne
             // 
             dudNumLigne.Enabled = false;
-            dudNumLigne.Location = new Point(250, 198);
+            dudNumLigne.Location = new Point(215, 198);
             dudNumLigne.Name = "dudNumLigne";
-            dudNumLigne.Size = new Size(150, 27);
+            dudNumLigne.Size = new Size(155, 27);
             dudNumLigne.TabIndex = 48;
             dudNumLigne.Text = "Ligne N°";
             // 
             // nudNbStations
             // 
-            nudNbStations.Location = new Point(157, 326);
+            nudNbStations.Location = new Point(166, 331);
             nudNbStations.Name = "nudNbStations";
             nudNbStations.Size = new Size(43, 27);
             nudNbStations.TabIndex = 49;
@@ -145,7 +146,7 @@
             // lblNoms
             // 
             lblNoms.AutoSize = true;
-            lblNoms.Location = new Point(2, 387);
+            lblNoms.Location = new Point(12, 387);
             lblNoms.Name = "lblNoms";
             lblNoms.Size = new Size(310, 20);
             lblNoms.TabIndex = 50;
@@ -154,7 +155,7 @@
             // lblCoordonnees
             // 
             lblCoordonnees.AutoSize = true;
-            lblCoordonnees.Location = new Point(-1, 587);
+            lblCoordonnees.Location = new Point(12, 591);
             lblCoordonnees.Name = "lblCoordonnees";
             lblCoordonnees.Size = new Size(216, 20);
             lblCoordonnees.TabIndex = 51;
@@ -162,22 +163,22 @@
             // 
             // flpStations
             // 
-            flpStations.Location = new Point(3, 438);
+            flpStations.Location = new Point(12, 427);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(354, 125);
+            flpStations.Size = new Size(358, 125);
             flpStations.TabIndex = 52;
             // 
             // flpCoordonnees
             // 
-            flpCoordonnees.Location = new Point(12, 627);
+            flpCoordonnees.Location = new Point(13, 627);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(345, 125);
+            flpCoordonnees.Size = new Size(357, 125);
             flpCoordonnees.TabIndex = 53;
             // 
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
-            lblHoraires.Location = new Point(-1, 776);
+            lblHoraires.Location = new Point(12, 832);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(154, 20);
             lblHoraires.TabIndex = 54;
@@ -186,7 +187,7 @@
             // rbDirectionA
             // 
             rbDirectionA.AutoSize = true;
-            rbDirectionA.Location = new Point(325, 776);
+            rbDirectionA.Location = new Point(187, 862);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(183, 24);
             rbDirectionA.TabIndex = 55;
@@ -197,7 +198,7 @@
             // rbDirectionB
             // 
             rbDirectionB.AutoSize = true;
-            rbDirectionB.Location = new Point(325, 806);
+            rbDirectionB.Location = new Point(187, 892);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(183, 24);
             rbDirectionB.TabIndex = 56;
@@ -207,15 +208,15 @@
             // 
             // flpHoraires
             // 
-            flpHoraires.Location = new Point(12, 846);
+            flpHoraires.Location = new Point(12, 932);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(345, 125);
+            flpHoraires.Size = new Size(358, 125);
             flpHoraires.TabIndex = 54;
             // 
             // btnEnregistrement
             // 
             btnEnregistrement.Enabled = false;
-            btnEnregistrement.Location = new Point(231, 977);
+            btnEnregistrement.Location = new Point(244, 1167);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;

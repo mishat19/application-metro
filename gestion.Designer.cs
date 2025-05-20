@@ -59,17 +59,17 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 22.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitre.Location = new Point(39, 72);
+            lblTitre.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Location = new Point(24, 81);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(444, 50);
+            lblTitre.Size = new Size(335, 38);
             lblTitre.TabIndex = 27;
             lblTitre.Text = "Panneau de configuration";
             // 
             // lblCreation
             // 
             lblCreation.AutoSize = true;
-            lblCreation.Location = new Point(90, 150);
+            lblCreation.Location = new Point(127, 135);
             lblCreation.Name = "lblCreation";
             lblCreation.Size = new Size(129, 20);
             lblCreation.TabIndex = 31;
@@ -88,16 +88,16 @@
             // 
             grpAjout.Controls.Add(picPlus);
             grpAjout.Controls.Add(lblAjout);
-            grpAjout.Location = new Point(1, 190);
+            grpAjout.Location = new Point(12, 190);
             grpAjout.Name = "grpAjout";
-            grpAjout.Size = new Size(556, 85);
+            grpAjout.Size = new Size(358, 85);
             grpAjout.TabIndex = 33;
             grpAjout.TabStop = false;
             // 
             // picPlus
             // 
             picPlus.Image = (Image)resources.GetObject("picPlus.Image");
-            picPlus.Location = new Point(266, 17);
+            picPlus.Location = new Point(299, 17);
             picPlus.Name = "picPlus";
             picPlus.Size = new Size(59, 62);
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -118,9 +118,9 @@
             // 
             cmbHoraire.Enabled = false;
             cmbHoraire.FormattingEnabled = true;
-            cmbHoraire.Location = new Point(54, 447);
+            cmbHoraire.Location = new Point(12, 457);
             cmbHoraire.Name = "cmbHoraire";
-            cmbHoraire.Size = new Size(408, 28);
+            cmbHoraire.Size = new Size(358, 28);
             cmbHoraire.TabIndex = 35;
             cmbHoraire.Text = "Choisir un horaire";
             // 
@@ -128,18 +128,18 @@
             // 
             cmbStation.Enabled = false;
             cmbStation.FormattingEnabled = true;
-            cmbStation.Location = new Point(54, 403);
+            cmbStation.Location = new Point(12, 414);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(408, 28);
+            cmbStation.Size = new Size(358, 28);
             cmbStation.TabIndex = 36;
             cmbStation.Text = "Choisir une station";
             // 
             // cmbLigne
             // 
             cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(54, 355);
+            cmbLigne.Location = new Point(12, 370);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(408, 28);
+            cmbLigne.Size = new Size(358, 28);
             cmbLigne.TabIndex = 37;
             cmbLigne.Text = "Choisir une ligne";
             // 
@@ -147,7 +147,7 @@
             // 
             lblGestion.AutoSize = true;
             lblGestion.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGestion.Location = new Point(8, 499);
+            lblGestion.Location = new Point(12, 511);
             lblGestion.Name = "lblGestion";
             lblGestion.Size = new Size(87, 25);
             lblGestion.TabIndex = 38;
@@ -155,9 +155,9 @@
             // 
             // btnSupp
             // 
-            btnSupp.Location = new Point(319, 545);
+            btnSupp.Location = new Point(209, 561);
             btnSupp.Name = "btnSupp";
-            btnSupp.Size = new Size(126, 121);
+            btnSupp.Size = new Size(150, 150);
             btnSupp.TabIndex = 39;
             btnSupp.Text = "Supprimer";
             btnSupp.UseVisualStyleBackColor = true;
@@ -165,9 +165,9 @@
             // 
             // btnModif
             // 
-            btnModif.Location = new Point(123, 545);
+            btnModif.Location = new Point(25, 561);
             btnModif.Name = "btnModif";
-            btnModif.Size = new Size(126, 121);
+            btnModif.Size = new Size(150, 150);
             btnModif.TabIndex = 40;
             btnModif.Text = "Modifier";
             btnModif.UseVisualStyleBackColor = true;

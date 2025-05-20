@@ -42,7 +42,7 @@
             // cmbLignes
             // 
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(24, 94);
+            cmbLignes.Location = new Point(12, 99);
             cmbLignes.Name = "cmbLignes";
             cmbLignes.Size = new Size(186, 28);
             cmbLignes.TabIndex = 21;
@@ -50,9 +50,9 @@
             // 
             // picMap
             // 
-            picMap.Location = new Point(24, 238);
+            picMap.Location = new Point(12, 209);
             picMap.Name = "picMap";
-            picMap.Size = new Size(346, 355);
+            picMap.Size = new Size(358, 532);
             picMap.TabIndex = 20;
             picMap.TabStop = false;
             // 
@@ -68,9 +68,9 @@
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(230, 93);
+            btnRecherche.Location = new Point(204, 98);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(173, 28);
+            btnRecherche.Size = new Size(166, 28);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -78,9 +78,9 @@
             // btnHoraires
             // 
             btnHoraires.Enabled = false;
-            btnHoraires.Location = new Point(24, 158);
+            btnHoraires.Location = new Point(12, 162);
             btnHoraires.Name = "btnHoraires";
-            btnHoraires.Size = new Size(332, 41);
+            btnHoraires.Size = new Size(358, 41);
             btnHoraires.TabIndex = 23;
             btnHoraires.Text = "Voir les horaires";
             btnHoraires.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // picSupprimer
             // 
             picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(157, 94);
+            picSupprimer.Location = new Point(151, 99);
             picSupprimer.Name = "picSupprimer";
             picSupprimer.Size = new Size(24, 28);
             picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;

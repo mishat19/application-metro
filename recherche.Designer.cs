@@ -73,15 +73,15 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(18, 713);
+            grpTrajet.Location = new Point(12, 713);
             grpTrajet.Name = "grpTrajet";
-            grpTrajet.Size = new Size(394, 218);
+            grpTrajet.Size = new Size(358, 282);
             grpTrajet.TabIndex = 16;
             grpTrajet.TabStop = false;
             // 
             // btnDetails
             // 
-            btnDetails.Location = new Point(220, 105);
+            btnDetails.Location = new Point(105, 179);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(126, 28);
             btnDetails.TabIndex = 17;
@@ -92,7 +92,7 @@
             // 
             lblDuree.AutoSize = true;
             lblDuree.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDuree.Location = new Point(308, 100);
+            lblDuree.Location = new Point(288, 127);
             lblDuree.Name = "lblDuree";
             lblDuree.Size = new Size(64, 25);
             lblDuree.TabIndex = 24;
@@ -102,7 +102,7 @@
             // 
             lblLigne.AutoSize = true;
             lblLigne.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLigne.Location = new Point(6, 100);
+            lblLigne.Location = new Point(0, 127);
             lblLigne.Name = "lblLigne";
             lblLigne.Size = new Size(74, 25);
             lblLigne.TabIndex = 23;
@@ -112,7 +112,7 @@
             // lblSeparation2
             // 
             lblSeparation2.AutoSize = true;
-            lblSeparation2.Location = new Point(183, 62);
+            lblSeparation2.Location = new Point(160, 62);
             lblSeparation2.Name = "lblSeparation2";
             lblSeparation2.Size = new Size(31, 20);
             lblSeparation2.TabIndex = 22;
@@ -121,7 +121,7 @@
             // lblHeureArrivee
             // 
             lblHeureArrivee.AutoSize = true;
-            lblHeureArrivee.Location = new Point(220, 62);
+            lblHeureArrivee.Location = new Point(197, 62);
             lblHeureArrivee.Name = "lblHeureArrivee";
             lblHeureArrivee.Size = new Size(98, 20);
             lblHeureArrivee.TabIndex = 21;
@@ -130,7 +130,7 @@
             // picPlus
             // 
             picPlus.Image = (Image)resources.GetObject("picPlus.Image");
-            picPlus.Location = new Point(129, 139);
+            picPlus.Location = new Point(143, 223);
             picPlus.Name = "picPlus";
             picPlus.Size = new Size(48, 53);
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -140,7 +140,7 @@
             // lblHeureDepart
             // 
             lblHeureDepart.AutoSize = true;
-            lblHeureDepart.Location = new Point(80, 62);
+            lblHeureDepart.Location = new Point(57, 62);
             lblHeureDepart.Name = "lblHeureDepart";
             lblHeureDepart.Size = new Size(97, 20);
             lblHeureDepart.TabIndex = 20;
@@ -149,7 +149,7 @@
             // lblSeparation
             // 
             lblSeparation.AutoSize = true;
-            lblSeparation.Location = new Point(183, 33);
+            lblSeparation.Location = new Point(160, 33);
             lblSeparation.Name = "lblSeparation";
             lblSeparation.Size = new Size(31, 20);
             lblSeparation.TabIndex = 19;
@@ -158,7 +158,7 @@
             // lblStationArrivee
             // 
             lblStationArrivee.AutoSize = true;
-            lblStationArrivee.Location = new Point(220, 33);
+            lblStationArrivee.Location = new Point(197, 33);
             lblStationArrivee.Name = "lblStationArrivee";
             lblStationArrivee.Size = new Size(107, 20);
             lblStationArrivee.TabIndex = 18;
@@ -167,7 +167,7 @@
             // lblStationDepart
             // 
             lblStationDepart.AutoSize = true;
-            lblStationDepart.Location = new Point(71, 33);
+            lblStationDepart.Location = new Point(48, 33);
             lblStationDepart.Name = "lblStationDepart";
             lblStationDepart.Size = new Size(106, 20);
             lblStationDepart.TabIndex = 17;
@@ -177,7 +177,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(-16, 672);
+            label8.Location = new Point(12, 682);
             label8.Name = "label8";
             label8.Size = new Size(211, 28);
             label8.TabIndex = 15;
@@ -185,9 +185,9 @@
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(30, 596);
+            btnRecherche.Location = new Point(12, 601);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(360, 48);
+            btnRecherche.Size = new Size(358, 64);
             btnRecherche.TabIndex = 8;
             btnRecherche.Text = "Lancer la recherche";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -195,24 +195,24 @@
             // dtpArrivee
             // 
             dtpArrivee.CustomFormat = "\"dd/MM/yyyy HH:mm\"";
-            dtpArrivee.Location = new Point(143, 539);
+            dtpArrivee.Location = new Point(143, 552);
             dtpArrivee.Name = "dtpArrivee";
-            dtpArrivee.Size = new Size(250, 27);
+            dtpArrivee.Size = new Size(227, 27);
             dtpArrivee.TabIndex = 14;
             // 
             // dtpDepart
             // 
             dtpDepart.CustomFormat = "\"dd/MM HH:mm\"";
-            dtpDepart.Location = new Point(143, 505);
+            dtpDepart.Location = new Point(143, 518);
             dtpDepart.Name = "dtpDepart";
-            dtpDepart.Size = new Size(250, 27);
+            dtpDepart.Size = new Size(227, 27);
             dtpDepart.TabIndex = 13;
             dtpDepart.Value = new DateTime(2025, 4, 29, 22, 31, 8, 0);
             // 
             // lblHoraireArrivée
             // 
             lblHoraireArrivée.AutoSize = true;
-            lblHoraireArrivée.Location = new Point(-16, 539);
+            lblHoraireArrivée.Location = new Point(12, 557);
             lblHoraireArrivée.Name = "lblHoraireArrivée";
             lblHoraireArrivée.Size = new Size(120, 20);
             lblHoraireArrivée.TabIndex = 12;
@@ -221,7 +221,7 @@
             // lblHoraireDepart
             // 
             lblHoraireDepart.AutoSize = true;
-            lblHoraireDepart.Location = new Point(-16, 510);
+            lblHoraireDepart.Location = new Point(12, 525);
             lblHoraireDepart.Name = "lblHoraireDepart";
             lblHoraireDepart.Size = new Size(128, 20);
             lblHoraireDepart.TabIndex = 11;
@@ -231,7 +231,7 @@
             // 
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblHoraires.Location = new Point(-16, 475);
+            lblHoraires.Location = new Point(12, 491);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(77, 23);
             lblHoraires.TabIndex = 10;
@@ -240,9 +240,9 @@
             // cmbArrivee
             // 
             cmbArrivee.FormattingEnabled = true;
-            cmbArrivee.Location = new Point(-15, 434);
+            cmbArrivee.Location = new Point(12, 434);
             cmbArrivee.Name = "cmbArrivee";
-            cmbArrivee.Size = new Size(408, 28);
+            cmbArrivee.Size = new Size(358, 28);
             cmbArrivee.TabIndex = 19;
             cmbArrivee.Text = "Choisir une station";
             // 
@@ -250,7 +250,7 @@
             // 
             lblArrivee.AutoSize = true;
             lblArrivee.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblArrivee.Location = new Point(-16, 399);
+            lblArrivee.Location = new Point(12, 408);
             lblArrivee.Name = "lblArrivee";
             lblArrivee.Size = new Size(144, 23);
             lblArrivee.TabIndex = 5;
@@ -259,9 +259,9 @@
             // cmbDepart
             // 
             cmbDepart.FormattingEnabled = true;
-            cmbDepart.Location = new Point(18, 368);
+            cmbDepart.Location = new Point(12, 368);
             cmbDepart.Name = "cmbDepart";
-            cmbDepart.Size = new Size(408, 28);
+            cmbDepart.Size = new Size(358, 28);
             cmbDepart.TabIndex = 18;
             cmbDepart.Text = "Choisir une station";
             // 
@@ -269,7 +269,7 @@
             // 
             lblDepart.AutoSize = true;
             lblDepart.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblDepart.Location = new Point(18, 330);
+            lblDepart.Location = new Point(12, 342);
             lblDepart.Name = "lblDepart";
             lblDepart.Size = new Size(152, 23);
             lblDepart.TabIndex = 4;
@@ -279,7 +279,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(5, 276);
+            label1.Location = new Point(12, 295);
             label1.Name = "label1";
             label1.Size = new Size(123, 31);
             label1.TabIndex = 3;
@@ -287,15 +287,15 @@
             // 
             // picMap
             // 
-            picMap.Location = new Point(18, 63);
+            picMap.Location = new Point(12, 73);
             picMap.Name = "picMap";
-            picMap.Size = new Size(327, 200);
+            picMap.Size = new Size(358, 200);
             picMap.TabIndex = 2;
             picMap.TabStop = false;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(18, 18);
+            btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
             btnRetour.Size = new Size(126, 39);
             btnRetour.TabIndex = 1;
