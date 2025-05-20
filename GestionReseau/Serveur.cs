@@ -224,6 +224,49 @@ namespace GestionReseau
             return resultat;
         }
 
+        public static List<string> HorairesParStationEtLigne(string nomLigne, string nomStation)
+        {
+            List<string> horaires = new List<string>();
+
+            // Récupérer le NumLigne
+            string requeteNumLigne = $"SELECT NumLigne FROM InfoLigne WHERE Nom = @NomLigne";
+            MySqlCommand cmd1 = new MySqlCommand(requeteNumLigne, connexion);
+            cmd1.Parameters.AddWithValue("@NomLigne", nomLigne);
+            int numLigne = -1;
+
+            using (var rdr = cmd1.ExecuteReader())
+            {
+                if (rdr.Read())
+                    numLigne = rdr.GetInt32("NumLigne");
+            }
+
+            if (numLigne == -1) return horaires;
+
+            // Vérifier si la station est utilisée dans un segment de cette ligne
+            string requete = @"
+            SELECT DISTINCT Horaire.HoraireDepart
+            FROM Horaire
+            JOIN Ligne ON Horaire.NumLigne = Ligne.NumLigne
+            JOIN Segment ON Ligne.NumSegment = Segment.NumSegment
+            JOIN Station ON Station.NumStation = Segment.NumStationA OR Station.NumStation = Segment.NumStationB
+            WHERE Horaire.NumLigne = @NumLigne AND Station.NomStation = @NomStation";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NumLigne", numLigne);
+            cmd.Parameters.AddWithValue("@NomStation", nomStation);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    TimeSpan horaire = rdr.GetTimeSpan("HoraireDepart");
+                    horaires.Add(horaire.ToString(@"hh\:mm"));
+                }
+            }
+
+            return horaires;
+        }
+
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {

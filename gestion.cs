@@ -83,6 +83,18 @@ namespace application_metro
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbHoraire.Enabled = true;
+            cmbHoraire.Items.Clear();
+
+            string nomLigne = cmbLigne.SelectedItem.ToString().Trim();
+            string nomStation = cmbStation.SelectedItem.ToString().Trim();
+
+            List<string> horaires = Serveur.HorairesParStationEtLigne(nomLigne, nomStation);
+
+            foreach (string horaire in horaires)
+            {
+                cmbHoraire.Items.Add(horaire);
+            }
+
         }
     }
 }
