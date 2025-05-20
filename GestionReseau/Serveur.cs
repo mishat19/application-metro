@@ -120,6 +120,7 @@ namespace GestionReseau
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
+            int nbLignes = 0;
 
             while (rdr.Read())
             {
@@ -128,18 +129,43 @@ namespace GestionReseau
                 string couleur = rdr.GetString("Couleur");
                 int numSegment = rdr.GetInt32("NumSegment");
                 List<int> segments = new List<int>();
-
+                List<string> stations = new List<string>();
                 //Console.WriteLine($"{numLigne} + {nom} {couleur} {numSegment}");
 
                 if (!lignesTemp.ContainsKey(numLigne))
                 {
-                    lignesTemp[numLigne] = new Ligne(numLigne, nom, couleur, segments);
+                    lignesTemp[numLigne] = new Ligne(numLigne, nom, couleur, segments, stations);
+                    nbLignes++;
                 }
 
                 lignesTemp[numLigne].segments.Add(numSegment);
             }
 
             rdr.Close();
+
+            for (int i = 0; i<nbLignes; i++)
+            {
+                foreach(int segment in lignesTemp[3].segments)
+                {
+                    string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
+                    Console.WriteLine(requete2);
+                    MySqlCommand cmd2 = new MySqlCommand(requete2, connexion);
+                    MySqlDataReader rdr2 = cmd2.ExecuteReader();
+
+                    if (rdr2.Read())
+                    {
+                        try
+                        {
+                            string nomStation = rdr2.GetString("NomStation");
+                            lignesTemp[4].stations.Add(nomStation);
+                        }
+                        catch (MySqlException ex) {
+                            Console.WriteLine(ex.Message);
+                        }
+                    }
+                    rdr2.Close();
+                }
+            }
 
             foreach (var ligne in lignesTemp.Values)
             {

@@ -96,6 +96,7 @@
             // 
             // picPlus
             // 
+            picPlus.Cursor = Cursors.Hand;
             picPlus.Image = (Image)resources.GetObject("picPlus.Image");
             picPlus.Location = new Point(471, 17);
             picPlus.Name = "picPlus";
@@ -103,6 +104,7 @@
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
             picPlus.TabIndex = 33;
             picPlus.TabStop = false;
+            picPlus.Click += picPlus_Click;
             // 
             // lblSelection
             // 
@@ -133,6 +135,7 @@
             cmbStation.Size = new Size(408, 28);
             cmbStation.TabIndex = 36;
             cmbStation.Text = "Choisir une station";
+            cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
             // 
             // cmbLigne
             // 
@@ -142,6 +145,7 @@
             cmbLigne.Size = new Size(408, 28);
             cmbLigne.TabIndex = 37;
             cmbLigne.Text = "Choisir une ligne";
+            cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
             // 
             // lblGestion
             // 
