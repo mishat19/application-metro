@@ -49,5 +49,19 @@ namespace application_metro
         {
 
         }
+
+        private void btnConnexion_Click_1(object sender, EventArgs e)
+        {
+            Connexion connexion = new Connexion();
+            connexion.Show(this);
+            this.Hide();
+        }
+
+        private void btnNoConnexion_Click_1(object sender, EventArgs e)
+        {
+            Accueil acueilWindow = new Accueil();
+            acueilWindow.Show(this);
+            this.Hide();
+        }
     }
 }

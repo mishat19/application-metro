@@ -87,6 +87,7 @@
             btnNoConnexion.TabIndex = 5;
             btnNoConnexion.Text = "Rester déconnecté";
             btnNoConnexion.UseVisualStyleBackColor = false;
+            btnNoConnexion.Click += btnNoConnexion_Click_1;
             // 
             // btnConnexion
             // 
@@ -100,10 +101,10 @@
             btnConnexion.TabIndex = 4;
             btnConnexion.Text = "Se connecter";
             btnConnexion.UseVisualStyleBackColor = false;
+            btnConnexion.Click += btnConnexion_Click_1;
             // 
             // picFond1
             // 
-            picFond1.Image = Properties.Resources.imgFondMilan2;
             picFond1.Location = new Point(-93, 216);
             picFond1.Name = "picFond1";
             picFond1.Size = new Size(1296, 544);
