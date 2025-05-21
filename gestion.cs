@@ -61,8 +61,7 @@ namespace application_metro
             if (!string.IsNullOrWhiteSpace(nomLigne))
             {
                 Serveur.SupprimerDonnees(nomLigne,
-                    string.IsNullOrWhiteSpace(nomStation) ? null : nomStation,
-                    string.IsNullOrWhiteSpace(horaire) ? null : horaire);
+                    string.IsNullOrWhiteSpace(nomStation) ? null : nomStation);
             }
             else
             {

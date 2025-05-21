@@ -267,23 +267,17 @@ namespace GestionReseau
             return horaires;
         }
 
-        public static void SupprimerDonnees(string nomLigne, string nomStation = null, string horaire = null)
+        public static void SupprimerDonnees(string nomLigne, string nomStation = null)
         {
-            if (!string.IsNullOrWhiteSpace(nomStation) && !string.IsNullOrWhiteSpace(horaire))
-            {
-                Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}' à l'horaire '{horaire}'.");
-                // TODO : supprimer à ce niveau de précision (ligne + station + horaire)
-                string requete = $"DELETE FROM Horaire";
-            }
-            else if (!string.IsNullOrWhiteSpace(nomStation))
+            if (!string.IsNullOrWhiteSpace(nomStation))
             {
                 Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}'.");
-                // TODO : supprimer la station pour la ligne donnée
+                // Récupérer le numLigne dans InfoLigne, modifier les stations A et B dans Segment puis supprimer station dans Station
             }
             else
             {
                 Console.WriteLine($"Suppression de toutes les données pour la ligne '{nomLigne}'.");
-                // TODO : supprimer toute la ligne
+                // Tout supprimer à la main chaque dépendance avant la Ligne ou bien UPDATE pour mettre un ON DELETE CASCADE ou changer le NumLigne de chaque Segment en "0" pour signifier "pas rattaché"
             }
         }
 
