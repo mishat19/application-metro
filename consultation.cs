@@ -24,7 +24,7 @@ namespace application_metro
 
             if (!string.IsNullOrEmpty(_ligne))
             {
-                cmbLignes.SelectedItem = _ligne; 
+                cmbLignes.SelectedItem = _ligne;
             }
         }
 
@@ -41,7 +41,7 @@ namespace application_metro
             {
                 cmbStation.Enabled = true;
                 string nomLigne = cmbLignes.SelectedItem.ToString();
-                List<string> stations = Serveur.StationsParLigne(nomLigne); ;
+                List<string> stations = Serveur.StationsParLigne(nomLigne);
                 foreach (string station in stations)
                 {
                     cmbStation.Items.Add(station);
@@ -51,14 +51,14 @@ namespace application_metro
             }
         }
 
-        private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnRecherche.Enabled = cmbStation.SelectedIndex != -1;
-        }
-
         private void btnRecherche_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnRecherche.Enabled = cmbStation.SelectedIndex != -1;
         }
     }
 }
