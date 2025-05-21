@@ -59,11 +59,10 @@
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(204, 98);
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(507, 93);
+            btnRecherche.Location = new Point(214, 99);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(166, 28);
+            btnRecherche.Size = new Size(156, 28);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -89,6 +88,7 @@
             picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
             picSupprimer.TabIndex = 24;
             picSupprimer.TabStop = false;
+            picSupprimer.Click += picSupprimer_Click;
             // 
             // Carte
             // 
@@ -101,6 +101,7 @@
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
             Name = "Carte";
+            Text = "Carte du réseau";
             Load += carte_Load;
             ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
             ResumeLayout(false);

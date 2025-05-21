@@ -69,11 +69,11 @@
             // lblCreation
             // 
             lblCreation.AutoSize = true;
-            lblCreation.Location = new Point(127, 135);
+            lblCreation.Location = new Point(71, 131);
             lblCreation.Name = "lblCreation";
-            lblCreation.Size = new Size(129, 20);
+            lblCreation.Size = new Size(235, 20);
             lblCreation.TabIndex = 31;
-            lblCreation.Text = "Création de lignes";
+            lblCreation.Text = "Création et modification de lignes";
             // 
             // lblAjout
             // 

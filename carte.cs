@@ -130,5 +130,10 @@ namespace application_metro
         {
             btnHoraires.Enabled = true;
         }
+
+        private void picSupprimer_Click(object sender, EventArgs e)
+        {
+            cmbLignes.SelectedIndex = -1; //Permet de sélectionner aucune ligne
+        }
     }
 }
