@@ -267,6 +267,60 @@ namespace GestionReseau
             return horaires;
         }
 
+        public static void SupprimerDonnees(string nomLigne, string nomStation = null)
+        {
+            if (!string.IsNullOrWhiteSpace(nomStation))
+            {
+                Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}'.");
+                // Récupérer le numLigne dans InfoLigne, modifier les stations A et B dans Segment puis supprimer station dans Station
+            }
+            else
+            {
+                Console.WriteLine($"Suppression de toutes les données pour la ligne '{nomLigne}'.");
+                // Tout supprimer à la main chaque dépendance avant la Ligne ou bien UPDATE pour mettre un ON DELETE CASCADE ou changer le NumLigne de chaque Segment en "0" pour signifier "pas rattaché"
+            }
+        }
+
+        public static List<string> ListeDesLignes()
+        {
+            List<string> lignes = new List<string>();
+            string requete = "SELECT Nom FROM InfoLigne";
+
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    lignes.Add(rdr.GetString("Nom"));
+                }
+            }
+
+            return lignes;
+        }
+
+        public static List<string> StationsParLigne(string nomLigne)
+        {
+            List<string> stations = new List<string>();
+            string requete = @"
+            SELECT DISTINCT st.NomStation
+            FROM InfoLigne il, Ligne l, Segment seg, Station st 
+            WHERE il.Nom = @NomLigne
+            AND il.NumLigne = l.NumLigne
+            AND l.NumSegment = seg.NumSegment
+            AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    stations.Add(rdr.GetString("NomStation"));
+                }
+            }
+            return stations;
+        }
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {

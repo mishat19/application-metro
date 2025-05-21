@@ -37,23 +37,44 @@ namespace application_metro
             this.Close();
         }
 
+        string mode;
         private void btnModif_Click(object sender, EventArgs e)
         {
-            Gestion_modification modif = new Gestion_modification();
+            mode = "Modification";
+            Gestion_modification modif = new Gestion_modification(mode);
             modif.Show();
             this.Close();
         }
 
+        string nomLigne = "";
+        string nomStation = "";
+        string horaire = "";
         private void btnSupp_Click(object sender, EventArgs e)
         {
-            SuppressionWindow suppression = new SuppressionWindow();
-            suppression.Show();
-            this.Close();
+            DialogResult result = MessageBox.Show(
+                "Voulez-vous vraiment supprimer ces données ?\nCette action est irréversible.",
+                "Confirmation de suppression",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning
+            );
+
+            if (!string.IsNullOrWhiteSpace(nomLigne))
+            {
+                Serveur.SupprimerDonnees(nomLigne,
+                    string.IsNullOrWhiteSpace(nomStation) ? null : nomStation);
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit au moins être sélectionnée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void picPlus_Click(object sender, EventArgs e)
         {
-
+            mode = "Ajout";
+            Gestion_modification gestion_Modification = new Gestion_modification(mode);
+            gestion_Modification.Show();
+            this.Close();
         }
 
         private void cmbLigne_SelectedIndexChanged(object sender, EventArgs e)

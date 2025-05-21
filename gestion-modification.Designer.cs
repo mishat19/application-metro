@@ -54,7 +54,6 @@
             // 
             // cmbLigne
             // 
-            cmbLigne.Enabled = false;
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(12, 197);
             cmbLigne.Name = "cmbLigne";
@@ -109,6 +108,7 @@
             lblCouleur.Size = new Size(134, 20);
             lblCouleur.TabIndex = 45;
             lblCouleur.Text = "Couleur de la ligne";
+            lblCouleur.Click += lblCouleur_Click;
             // 
             // txtCouleur
             // 
@@ -116,7 +116,6 @@
             txtCouleur.Name = "txtCouleur";
             txtCouleur.Size = new Size(358, 27);
             txtCouleur.TabIndex = 46;
-            txtCouleur.Text = "Couleur";
             // 
             // lblNbStations
             // 
@@ -222,6 +221,23 @@
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
+            btnEnregistrement.Click += btnEnregistrement_Click;
+            // 
+            // txtNomLigne
+            // 
+            txtNomLigne.Location = new Point(77, 240);
+            txtNomLigne.Name = "txtNomLigne";
+            txtNomLigne.PlaceholderText = "Nom de la ligne";
+            txtNomLigne.Size = new Size(321, 27);
+            txtNomLigne.TabIndex = 58;
+            // 
+            // txtNum
+            // 
+            txtNum.Location = new Point(492, 240);
+            txtNum.Name = "txtNum";
+            txtNum.PlaceholderText = "Ligne N°";
+            txtNum.Size = new Size(150, 27);
+            txtNum.TabIndex = 59;
             // 
             // pnlGestionModification
             // 

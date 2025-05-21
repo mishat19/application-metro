@@ -31,14 +31,9 @@
             btnRecherche = new Button();
             cmbLignes = new ComboBox();
             btnRetour = new Button();
-            grpDestinations = new GroupBox();
-            rjToggleButton2 = new CustomControls.RJControls.RJToggleButton();
-            rjToggleButton1 = new CustomControls.RJControls.RJToggleButton();
-            lblDestinationB = new Label();
-            lblDestinationA = new Label();
             calDate = new MonthCalendar();
             lstStations = new ListBox();
-            grpDestinations.SuspendLayout();
+            cmbStation = new ComboBox();
             SuspendLayout();
             // 
             // picSupprimer
@@ -54,12 +49,14 @@
             // btnRecherche
             // 
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(507, 93);
+            btnRecherche.Location = new Point(277, 113);
+            btnRecherche.Margin = new Padding(3, 2, 3, 2);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(166, 28);
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.Click += btnRecherche_Click;
             // 
             // cmbLignes
             // 
@@ -67,16 +64,17 @@
             cmbLignes.FormattingEnabled = true;
             cmbLignes.Location = new Point(12, 102);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.Size = new Size(163, 23);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(12, 12);
+            btnRetour.Location = new Point(10, 9);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
+            btnRetour.Size = new Size(110, 29);
             btnRetour.TabIndex = 25;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -156,22 +154,32 @@
             lstStations.Size = new Size(358, 224);
             lstStations.TabIndex = 31;
             // 
+            // cmbStation
+            // 
+            cmbStation.Enabled = false;
+            cmbStation.FormattingEnabled = true;
+            cmbStation.Location = new Point(361, 69);
+            cmbStation.Margin = new Padding(3, 2, 3, 2);
+            cmbStation.Name = "cmbStation";
+            cmbStation.Size = new Size(163, 23);
+            cmbStation.TabIndex = 32;
+            cmbStation.Text = "Nom de la station";
+            cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
+            // 
             // Consultation
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 753);
             Controls.Add(lstStations);
             Controls.Add(calDate);
-            Controls.Add(grpDestinations);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Consultation";
-            Text = "Horaires de la ligne";
+            Text = "Horaires de la station";
             Load += consultation_Load;
-            grpDestinations.ResumeLayout(false);
-            grpDestinations.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -179,12 +187,8 @@
         private Button btnRecherche;
         private ComboBox cmbLignes;
         private Button btnRetour;
-        private GroupBox grpDestinations;
-        private Label lblDestinationB;
-        private Label lblDestinationA;
         private MonthCalendar calDate;
-        private CustomControls.RJControls.RJToggleButton rjToggleButton2;
-        private CustomControls.RJControls.RJToggleButton rjToggleButton1;
         private ListBox lstStations;
+        private ComboBox cmbStation;
     }
 }
