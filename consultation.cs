@@ -53,12 +53,22 @@ namespace application_metro
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
+            lstStations.Items.Clear();
 
+            string nomStation = cmbStation.SelectedItem?.ToString();
+
+            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation);
+            lstStations.Items.AddRange(horaires.ToArray());
         }
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnRecherche.Enabled = cmbStation.SelectedIndex != -1;
+        }
+
+        private void lstStations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

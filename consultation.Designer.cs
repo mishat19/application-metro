@@ -84,6 +84,7 @@
             lstStations.Name = "lstStations";
             lstStations.Size = new Size(358, 214);
             lstStations.TabIndex = 31;
+            lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
             // cmbStation
             // 
