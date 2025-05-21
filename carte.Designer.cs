@@ -47,12 +47,6 @@
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
-            picMap.Location = new Point(12, 209);
-            picMap.Name = "picMap";
-            picMap.Size = new Size(358, 532);
-            picMap.TabIndex = 20;
-            picMap.TabStop = false;
-            // 
             // btnRetour
             // 
             btnRetour.Location = new Point(12, 12);

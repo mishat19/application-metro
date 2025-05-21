@@ -60,7 +60,6 @@
             cmbLigne.Size = new Size(197, 28);
             cmbLigne.TabIndex = 41;
             cmbLigne.Text = "Nom de la ligne";
-            cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
             // 
             // lblModif
             // 
@@ -222,23 +221,7 @@
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
             btnEnregistrement.Click += btnEnregistrement_Click;
-            // 
-            // txtNomLigne
-            // 
-            txtNomLigne.Location = new Point(77, 240);
-            txtNomLigne.Name = "txtNomLigne";
-            txtNomLigne.PlaceholderText = "Nom de la ligne";
-            txtNomLigne.Size = new Size(321, 27);
-            txtNomLigne.TabIndex = 58;
-            // 
-            // txtNum
-            // 
-            txtNum.Location = new Point(492, 240);
-            txtNum.Name = "txtNum";
-            txtNum.PlaceholderText = "Ligne N°";
-            txtNum.Size = new Size(150, 27);
-            txtNum.TabIndex = 59;
-            // 
+            //
             // pnlGestionModification
             // 
             pnlGestionModification.AutoScroll = true;
