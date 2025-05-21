@@ -174,6 +174,9 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Inscription";
             Text = "Page d'inscription";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();

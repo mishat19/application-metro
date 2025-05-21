@@ -100,6 +100,9 @@
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Carte";
             Text = "Carte du réseau";
             Load += carte_Load;

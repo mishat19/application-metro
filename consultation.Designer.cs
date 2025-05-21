@@ -39,9 +39,9 @@
             // btnRecherche
             // 
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(122, 196);
+            btnRecherche.Location = new Point(206, 136);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(190, 37);
+            btnRecherche.Size = new Size(164, 28);
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -71,7 +71,7 @@
             // 
             // calDate
             // 
-            calDate.Location = new Point(67, 668);
+            calDate.Location = new Point(61, 525);
             calDate.Margin = new Padding(10, 12, 10, 12);
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
@@ -79,10 +79,10 @@
             // lstStations
             // 
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(14, 309);
+            lstStations.Location = new Point(14, 200);
             lstStations.Margin = new Padding(3, 4, 3, 4);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(409, 284);
+            lstStations.Size = new Size(356, 284);
             lstStations.TabIndex = 31;
             // 
             // cmbStation
@@ -101,12 +101,15 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(437, 1004);
+            ClientSize = new Size(382, 753);
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             Controls.Add(btnRetour);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Consultation";
             Text = "Horaires de la station";
             Load += consultation_Load;

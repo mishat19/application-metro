@@ -94,7 +94,7 @@
             // 
             // btnConnexion
             // 
-            btnConnexion.Location = new Point(236, 397);
+            btnConnexion.Location = new Point(236, 490);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(134, 40);
             btnConnexion.TabIndex = 7;
@@ -105,7 +105,7 @@
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Location = new Point(283, 333);
+            lnkInscription.Location = new Point(276, 357);
             lnkInscription.Name = "lnkInscription";
             lnkInscription.Size = new Size(67, 20);
             lnkInscription.TabIndex = 8;
@@ -116,7 +116,7 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Location = new Point(12, 333);
+            lblInscription.Location = new Point(12, 357);
             lblInscription.Name = "lblInscription";
             lblInscription.Size = new Size(248, 20);
             lblInscription.TabIndex = 9;
@@ -127,7 +127,7 @@
             lblErreur.AutoSize = true;
             lblErreur.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.Red;
-            lblErreur.Location = new Point(295, 339);
+            lblErreur.Location = new Point(12, 292);
             lblErreur.Name = "lblErreur";
             lblErreur.Size = new Size(221, 28);
             lblErreur.TabIndex = 10;
@@ -138,7 +138,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(382, 753);
             Controls.Add(lblErreur);
             Controls.Add(lblInscription);
             Controls.Add(lnkInscription);
@@ -148,6 +148,9 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Connexion";
             Text = "Page de connexion";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();

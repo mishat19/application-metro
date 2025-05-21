@@ -113,7 +113,7 @@
             // 
             txtCouleur.Location = new Point(12, 272);
             txtCouleur.Name = "txtCouleur";
-            txtCouleur.Size = new Size(358, 27);
+            txtCouleur.Size = new Size(336, 27);
             txtCouleur.TabIndex = 46;
             // 
             // lblNbStations
@@ -130,7 +130,7 @@
             dudNumLigne.Enabled = false;
             dudNumLigne.Location = new Point(215, 198);
             dudNumLigne.Name = "dudNumLigne";
-            dudNumLigne.Size = new Size(155, 27);
+            dudNumLigne.Size = new Size(133, 27);
             dudNumLigne.TabIndex = 48;
             dudNumLigne.Text = "Ligne N°";
             // 
@@ -163,14 +163,14 @@
             // 
             flpStations.Location = new Point(12, 427);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(358, 125);
+            flpStations.Size = new Size(336, 125);
             flpStations.TabIndex = 52;
             // 
             // flpCoordonnees
             // 
             flpCoordonnees.Location = new Point(13, 627);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(357, 125);
+            flpCoordonnees.Size = new Size(335, 125);
             flpCoordonnees.TabIndex = 53;
             // 
             // lblHoraires
@@ -185,7 +185,7 @@
             // rbDirectionA
             // 
             rbDirectionA.AutoSize = true;
-            rbDirectionA.Location = new Point(187, 862);
+            rbDirectionA.Location = new Point(165, 862);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(183, 24);
             rbDirectionA.TabIndex = 55;
@@ -196,7 +196,7 @@
             // rbDirectionB
             // 
             rbDirectionB.AutoSize = true;
-            rbDirectionB.Location = new Point(187, 892);
+            rbDirectionB.Location = new Point(165, 892);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(183, 24);
             rbDirectionB.TabIndex = 56;
@@ -208,20 +208,20 @@
             // 
             flpHoraires.Location = new Point(12, 932);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(358, 125);
+            flpHoraires.Size = new Size(336, 125);
             flpHoraires.TabIndex = 54;
             // 
             // btnEnregistrement
             // 
             btnEnregistrement.Enabled = false;
-            btnEnregistrement.Location = new Point(244, 1167);
+            btnEnregistrement.Location = new Point(222, 1167);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = true;
             btnEnregistrement.Click += btnEnregistrement_Click;
-            //
+            // 
             // pnlGestionModification
             // 
             pnlGestionModification.AutoScroll = true;
@@ -257,6 +257,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 753);
             Controls.Add(pnlGestionModification);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Gestion_modification";
             Text = "Panneau de modification";
             Load += gestion_modification_Load;

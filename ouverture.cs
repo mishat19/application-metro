@@ -39,5 +39,15 @@ namespace application_metro
         {
 
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDeconnexion_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

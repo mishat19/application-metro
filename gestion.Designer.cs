@@ -193,6 +193,9 @@
             Controls.Add(lblCreation);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Gestion";
             Text = "Panneau de configuration";
             Load += gestion_Load;

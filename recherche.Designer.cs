@@ -75,7 +75,7 @@
             grpTrajet.Controls.Add(lblStationDepart);
             grpTrajet.Location = new Point(12, 713);
             grpTrajet.Name = "grpTrajet";
-            grpTrajet.Size = new Size(358, 282);
+            grpTrajet.Size = new Size(339, 282);
             grpTrajet.TabIndex = 16;
             grpTrajet.TabStop = false;
             // 
@@ -92,7 +92,7 @@
             // 
             lblDuree.AutoSize = true;
             lblDuree.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDuree.Location = new Point(288, 127);
+            lblDuree.Location = new Point(275, 127);
             lblDuree.Name = "lblDuree";
             lblDuree.Size = new Size(64, 25);
             lblDuree.TabIndex = 24;
@@ -187,7 +187,7 @@
             // 
             btnRecherche.Location = new Point(12, 601);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(358, 64);
+            btnRecherche.Size = new Size(339, 64);
             btnRecherche.TabIndex = 8;
             btnRecherche.Text = "Lancer la recherche";
             btnRecherche.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             dtpArrivee.CustomFormat = "\"dd/MM/yyyy HH:mm\"";
             dtpArrivee.Location = new Point(143, 552);
             dtpArrivee.Name = "dtpArrivee";
-            dtpArrivee.Size = new Size(227, 27);
+            dtpArrivee.Size = new Size(208, 27);
             dtpArrivee.TabIndex = 14;
             // 
             // dtpDepart
@@ -205,7 +205,7 @@
             dtpDepart.CustomFormat = "\"dd/MM HH:mm\"";
             dtpDepart.Location = new Point(143, 518);
             dtpDepart.Name = "dtpDepart";
-            dtpDepart.Size = new Size(227, 27);
+            dtpDepart.Size = new Size(208, 27);
             dtpDepart.TabIndex = 13;
             dtpDepart.Value = new DateTime(2025, 4, 29, 22, 31, 8, 0);
             // 
@@ -242,7 +242,7 @@
             cmbArrivee.FormattingEnabled = true;
             cmbArrivee.Location = new Point(12, 434);
             cmbArrivee.Name = "cmbArrivee";
-            cmbArrivee.Size = new Size(358, 28);
+            cmbArrivee.Size = new Size(339, 28);
             cmbArrivee.TabIndex = 19;
             cmbArrivee.Text = "Choisir une station";
             // 
@@ -261,7 +261,7 @@
             cmbDepart.FormattingEnabled = true;
             cmbDepart.Location = new Point(12, 368);
             cmbDepart.Name = "cmbDepart";
-            cmbDepart.Size = new Size(358, 28);
+            cmbDepart.Size = new Size(339, 28);
             cmbDepart.TabIndex = 18;
             cmbDepart.Text = "Choisir une station";
             // 
@@ -289,7 +289,7 @@
             // 
             picMap.Location = new Point(12, 73);
             picMap.Name = "picMap";
-            picMap.Size = new Size(358, 200);
+            picMap.Size = new Size(339, 200);
             picMap.TabIndex = 2;
             picMap.TabStop = false;
             // 
@@ -334,6 +334,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 753);
             Controls.Add(pnlRecherche);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Recherche";
             Text = "Rechercher un itinéraire";
             Load += consultation_Load;
