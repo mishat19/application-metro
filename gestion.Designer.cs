@@ -29,69 +29,56 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
-            btnRetour = new Button();
-            lblTitre = new Label();
-            lblCreation = new Label();
-            lblAjout = new Label();
+            pnlGestion = new Panel();
             grpAjout = new GroupBox();
             picPlus = new PictureBox();
-            lblSelection = new Label();
-            cmbHoraire = new ComboBox();
-            cmbStation = new ComboBox();
-            cmbLigne = new ComboBox();
-            lblGestion = new Label();
-            btnSupp = new Button();
+            lblAjout = new Label();
+            lblCreation = new Label();
+            lblTitre = new Label();
+            btnRetour = new Button();
             btnModif = new Button();
+            btnSupp = new Button();
+            lblGestion = new Label();
+            cmbLigne = new ComboBox();
+            cmbStation = new ComboBox();
+            cmbHoraire = new ComboBox();
+            lblSelection = new Label();
+            picFond2 = new PictureBox();
+            pnlGestion.SuspendLayout();
             grpAjout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
             // 
-            // btnRetour
+            // pnlGestion
             // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 26;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
-            // 
-            // lblTitre
-            // 
-            lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitre.Location = new Point(24, 81);
-            lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(335, 38);
-            lblTitre.TabIndex = 27;
-            lblTitre.Text = "Panneau de configuration";
-            // 
-            // lblCreation
-            // 
-            lblCreation.AutoSize = true;
-            lblCreation.Location = new Point(71, 131);
-            lblCreation.Name = "lblCreation";
-            lblCreation.Size = new Size(235, 20);
-            lblCreation.TabIndex = 31;
-            lblCreation.Text = "Création et modification de lignes";
-            // 
-            // lblAjout
-            // 
-            lblAjout.AutoSize = true;
-            lblAjout.Location = new Point(77, 38);
-            lblAjout.Name = "lblAjout";
-            lblAjout.Size = new Size(183, 20);
-            lblAjout.TabIndex = 32;
-            lblAjout.Text = "Ajouter une nouvelle ligne";
+            pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestion.Controls.Add(grpAjout);
+            pnlGestion.Controls.Add(lblCreation);
+            pnlGestion.Controls.Add(lblTitre);
+            pnlGestion.Controls.Add(btnRetour);
+            pnlGestion.Controls.Add(btnModif);
+            pnlGestion.Controls.Add(btnSupp);
+            pnlGestion.Controls.Add(lblGestion);
+            pnlGestion.Controls.Add(cmbLigne);
+            pnlGestion.Controls.Add(cmbStation);
+            pnlGestion.Controls.Add(cmbHoraire);
+            pnlGestion.Controls.Add(lblSelection);
+            pnlGestion.Controls.Add(picFond2);
+            pnlGestion.Dock = DockStyle.Fill;
+            pnlGestion.Location = new Point(0, 0);
+            pnlGestion.Name = "pnlGestion";
+            pnlGestion.Size = new Size(382, 753);
+            pnlGestion.TabIndex = 41;
             // 
             // grpAjout
             // 
             grpAjout.Controls.Add(picPlus);
             grpAjout.Controls.Add(lblAjout);
-            grpAjout.Location = new Point(12, 190);
+            grpAjout.Location = new Point(14, 205);
             grpAjout.Name = "grpAjout";
             grpAjout.Size = new Size(358, 85);
-            grpAjout.TabIndex = 33;
+            grpAjout.TabIndex = 44;
             grpAjout.TabStop = false;
             // 
             // picPlus
@@ -104,122 +91,180 @@
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
             picPlus.TabIndex = 33;
             picPlus.TabStop = false;
-            picPlus.Click += picPlus_Click;
             // 
-            // lblSelection
+            // lblAjout
             // 
-            lblSelection.AutoSize = true;
-            lblSelection.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSelection.Location = new Point(8, 322);
-            lblSelection.Name = "lblSelection";
-            lblSelection.Size = new Size(239, 25);
-            lblSelection.TabIndex = 34;
-            lblSelection.Text = "Sélectionner vos données :";
+            lblAjout.AutoSize = true;
+            lblAjout.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAjout.ForeColor = Color.FromArgb(205, 33, 42);
+            lblAjout.Location = new Point(20, 33);
+            lblAjout.Name = "lblAjout";
+            lblAjout.Size = new Size(273, 35);
+            lblAjout.TabIndex = 32;
+            lblAjout.Text = "Ajouter une nouvelle ligne";
             // 
-            // cmbHoraire
+            // lblCreation
             // 
-            cmbHoraire.Enabled = false;
-            cmbHoraire.FormattingEnabled = true;
-            cmbHoraire.Location = new Point(12, 457);
-            cmbHoraire.Name = "cmbHoraire";
-            cmbHoraire.Size = new Size(358, 28);
-            cmbHoraire.TabIndex = 35;
-            cmbHoraire.Text = "Choisir un horaire";
+            lblCreation.AutoSize = true;
+            lblCreation.Font = new Font("Segoe Print", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblCreation.ForeColor = Color.FromArgb(15, 93, 70);
+            lblCreation.Location = new Point(58, 142);
+            lblCreation.Name = "lblCreation";
+            lblCreation.Size = new Size(267, 26);
+            lblCreation.TabIndex = 43;
+            lblCreation.Text = "Création et modification de lignes";
             // 
-            // cmbStation
+            // lblTitre
             // 
-            cmbStation.Enabled = false;
-            cmbStation.FormattingEnabled = true;
-            cmbStation.Location = new Point(12, 414);
-            cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(358, 28);
-            cmbStation.TabIndex = 36;
-            cmbStation.Text = "Choisir une station";
-            cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
+            lblTitre.AutoSize = true;
+            lblTitre.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
+            lblTitre.Location = new Point(24, 93);
+            lblTitre.Name = "lblTitre";
+            lblTitre.Size = new Size(335, 37);
+            lblTitre.TabIndex = 42;
+            lblTitre.Text = "Panneau de configuration";
             // 
-            // cmbLigne
+            // btnRetour
             // 
-            cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(12, 370);
-            cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(358, 28);
-            cmbLigne.TabIndex = 37;
-            cmbLigne.Text = "Choisir une ligne";
-            cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
+            btnRetour.Location = new Point(14, 27);
+            btnRetour.Name = "btnRetour";
+            btnRetour.Size = new Size(126, 39);
+            btnRetour.TabIndex = 41;
+            btnRetour.Text = "Retour";
+            btnRetour.UseVisualStyleBackColor = true;
+            // 
+            // btnModif
+            // 
+            btnModif.BackColor = Color.FromArgb(205, 33, 42);
+            btnModif.FlatStyle = FlatStyle.Flat;
+            btnModif.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnModif.ForeColor = Color.White;
+            btnModif.Location = new Point(26, 567);
+            btnModif.Name = "btnModif";
+            btnModif.Size = new Size(162, 161);
+            btnModif.TabIndex = 51;
+            btnModif.Text = "Modifier";
+            btnModif.UseVisualStyleBackColor = false;
+            // 
+            // btnSupp
+            // 
+            btnSupp.BackColor = Color.FromArgb(205, 33, 42);
+            btnSupp.FlatStyle = FlatStyle.Flat;
+            btnSupp.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnSupp.ForeColor = Color.White;
+            btnSupp.Location = new Point(199, 567);
+            btnSupp.Name = "btnSupp";
+            btnSupp.Size = new Size(162, 161);
+            btnSupp.TabIndex = 50;
+            btnSupp.Text = "Supprimer";
+            btnSupp.UseVisualStyleBackColor = false;
             // 
             // lblGestion
             // 
             lblGestion.AutoSize = true;
-            lblGestion.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblGestion.Location = new Point(12, 511);
+            lblGestion.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblGestion.ForeColor = Color.FromArgb(15, 93, 70);
+            lblGestion.Location = new Point(14, 526);
             lblGestion.Name = "lblGestion";
-            lblGestion.Size = new Size(87, 25);
-            lblGestion.TabIndex = 38;
+            lblGestion.Size = new Size(72, 22);
+            lblGestion.TabIndex = 49;
             lblGestion.Text = "Gestion :";
             // 
-            // btnSupp
+            // cmbLigne
             // 
-            btnSupp.Location = new Point(209, 561);
-            btnSupp.Name = "btnSupp";
-            btnSupp.Size = new Size(150, 150);
-            btnSupp.TabIndex = 39;
-            btnSupp.Text = "Supprimer";
-            btnSupp.UseVisualStyleBackColor = true;
-            btnSupp.Click += btnSupp_Click;
+            cmbLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            cmbLigne.FormattingEnabled = true;
+            cmbLigne.Location = new Point(14, 385);
+            cmbLigne.Name = "cmbLigne";
+            cmbLigne.Size = new Size(358, 34);
+            cmbLigne.TabIndex = 48;
+            cmbLigne.Text = "Choisir une ligne";
             // 
-            // btnModif
+            // cmbStation
             // 
-            btnModif.Location = new Point(25, 561);
-            btnModif.Name = "btnModif";
-            btnModif.Size = new Size(150, 150);
-            btnModif.TabIndex = 40;
-            btnModif.Text = "Modifier";
-            btnModif.UseVisualStyleBackColor = true;
-            btnModif.Click += btnModif_Click;
+            cmbStation.Enabled = false;
+            cmbStation.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
+            cmbStation.FormattingEnabled = true;
+            cmbStation.Location = new Point(14, 429);
+            cmbStation.Name = "cmbStation";
+            cmbStation.Size = new Size(358, 34);
+            cmbStation.TabIndex = 47;
+            cmbStation.Text = "Choisir une station";
+            // 
+            // cmbHoraire
+            // 
+            cmbHoraire.Enabled = false;
+            cmbHoraire.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbHoraire.ForeColor = Color.FromArgb(205, 33, 42);
+            cmbHoraire.FormattingEnabled = true;
+            cmbHoraire.Location = new Point(14, 472);
+            cmbHoraire.Name = "cmbHoraire";
+            cmbHoraire.Size = new Size(358, 34);
+            cmbHoraire.TabIndex = 46;
+            cmbHoraire.Text = "Choisir un horaire";
+            cmbHoraire.SelectedIndexChanged += cmbHoraire_SelectedIndexChanged;
+            // 
+            // lblSelection
+            // 
+            lblSelection.AutoSize = true;
+            lblSelection.Font = new Font("Impact", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblSelection.ForeColor = Color.FromArgb(15, 93, 70);
+            lblSelection.Location = new Point(10, 337);
+            lblSelection.Name = "lblSelection";
+            lblSelection.Size = new Size(202, 22);
+            lblSelection.TabIndex = 45;
+            lblSelection.Text = "Sélectionner vos données :";
+            // 
+            // picFond2
+            // 
+            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Location = new Point(-477, 266);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(872, 552);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 52;
+            picFond2.TabStop = false;
             // 
             // Gestion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 753);
-            Controls.Add(btnModif);
-            Controls.Add(btnSupp);
-            Controls.Add(lblGestion);
-            Controls.Add(cmbLigne);
-            Controls.Add(cmbStation);
-            Controls.Add(cmbHoraire);
-            Controls.Add(lblSelection);
-            Controls.Add(grpAjout);
-            Controls.Add(lblCreation);
-            Controls.Add(lblTitre);
-            Controls.Add(btnRetour);
+            Controls.Add(pnlGestion);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion";
             Text = "Panneau de configuration";
             Load += gestion_Load;
+            pnlGestion.ResumeLayout(false);
+            pnlGestion.PerformLayout();
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private Button btnRetour;
-        private Label lblTitre;
-        private Label lblCreation;
-        private Label lblAjout;
+        private Panel pnlGestion;
         private GroupBox grpAjout;
         private PictureBox picPlus;
-        private Label lblSelection;
-        private ComboBox cmbHoraire;
-        private ComboBox cmbStation;
-        private ComboBox cmbLigne;
-        private Label lblGestion;
-        private Button btnSupp;
+        private Label lblAjout;
+        private Label lblCreation;
+        private Label lblTitre;
+        private Button btnRetour;
         private Button btnModif;
+        private Button btnSupp;
+        private Label lblGestion;
+        private ComboBox cmbLigne;
+        private ComboBox cmbStation;
+        private ComboBox cmbHoraire;
+        private Label lblSelection;
+        private PictureBox picFond2;
     }
 }

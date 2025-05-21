@@ -42,5 +42,10 @@ namespace application_metro
         {
 
         }
+
+        private void dudNumLigne_SelectedItemChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
