@@ -39,7 +39,8 @@
             // btnRecherche
             // 
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(206, 136);
+            btnRecherche.Location = new Point(107, 147);
+            btnRecherche.Margin = new Padding(3, 2, 3, 2);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(164, 28);
             btnRecherche.TabIndex = 27;
@@ -51,19 +52,19 @@
             // 
             cmbLignes.Enabled = false;
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(14, 136);
-            cmbLignes.Margin = new Padding(3, 4, 3, 4);
+            cmbLignes.Location = new Point(12, 102);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.Size = new Size(163, 23);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(11, 12);
+            btnRetour.Location = new Point(10, 9);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
+            btnRetour.Size = new Size(110, 29);
             btnRetour.TabIndex = 25;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -82,26 +83,27 @@
             lstStations.Location = new Point(14, 200);
             lstStations.Margin = new Padding(3, 4, 3, 4);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(356, 284);
+            lstStations.Size = new Size(409, 284);
             lstStations.TabIndex = 31;
+            lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
             // cmbStation
             // 
             cmbStation.Enabled = false;
             cmbStation.FormattingEnabled = true;
-            cmbStation.Location = new Point(361, 69);
-            cmbStation.Margin = new Padding(3, 2, 3, 2);
+            cmbStation.Location = new Point(207, 102);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(163, 28);
+            cmbStation.Size = new Size(163, 23);
             cmbStation.TabIndex = 32;
             cmbStation.Text = "Nom de la station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
             // 
             // Consultation
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(382, 753);
+            Controls.Add(cmbStation);
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(btnRecherche);
@@ -110,6 +112,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Consultation";
             Text = "Horaires de la station";
             Load += consultation_Load;
@@ -122,6 +125,7 @@
         private Button btnRetour;
         private MonthCalendar calDate;
         private ListBox lstStations;
+        private ComboBox comboBox1;
         private ComboBox cmbStation;
     }
 }

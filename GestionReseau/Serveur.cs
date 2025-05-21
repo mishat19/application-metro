@@ -321,7 +321,45 @@ namespace GestionReseau
             }
             return stations;
         }
+        /// <summary>
+        /// Calcul les horaires de passage d'une station
+        /// </summary>
+        /// <param name="nomStation"></param>
+        public static List<string> CalculeHorairePassageStation(string nomStation)
+        {
+            List<string> horaireStation = new List<string>();
 
+            string requete = @"
+            SELECT DISTINCT h.HoraireDepart, seg.DureeSegment
+            FROM Station st, Segment seg, Ligne l, Horaire h
+            WHERE st.NomStation = @NomStation
+            AND st.NumStation = seg.NumStationB
+            AND seg.NumSegment = l.NumSegment
+            AND l.NumLigne = h.NumLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NomStation", nomStation);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
+                    int dureeSegment = rdr.GetInt32("DureeSegment");
+
+                    TimeSpan horaireLimite = new TimeSpan(22, 0, 0);
+                    TimeSpan horaireActuel = horaireDepart;
+
+                    while (horaireActuel < horaireLimite)
+                    {
+                        horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
+                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment));
+                    }
+                }
+            }
+
+            return horaireStation;
+        }
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {
             //A FAIRE QUAND ALGO DE GRAPHE
