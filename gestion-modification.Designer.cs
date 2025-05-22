@@ -48,6 +48,8 @@
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
+            txtNomLigne = new TextBox();
+            txtNumero = new TextBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
             SuspendLayout();
@@ -111,7 +113,7 @@
             lblCouleur.AutoSize = true;
             lblCouleur.Font = new Font("Impact", 10.8F, FontStyle.Underline);
             lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCouleur.Location = new Point(12, 240);
+            lblCouleur.Location = new Point(12, 271);
             lblCouleur.Name = "lblCouleur";
             lblCouleur.Size = new Size(145, 22);
             lblCouleur.TabIndex = 45;
@@ -122,8 +124,9 @@
             // 
             txtCouleur.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
-            txtCouleur.Location = new Point(12, 272);
+            txtCouleur.Location = new Point(12, 303);
             txtCouleur.Name = "txtCouleur";
+            txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(336, 34);
             txtCouleur.TabIndex = 46;
             // 
@@ -132,7 +135,7 @@
             lblNbStations.AutoSize = true;
             lblNbStations.Font = new Font("Impact", 10.8F, FontStyle.Underline);
             lblNbStations.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNbStations.Location = new Point(13, 333);
+            lblNbStations.Location = new Point(13, 364);
             lblNbStations.Name = "lblNbStations";
             lblNbStations.Size = new Size(155, 22);
             lblNbStations.TabIndex = 47;
@@ -154,7 +157,7 @@
             // 
             nudNbStations.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNbStations.Location = new Point(174, 330);
+            nudNbStations.Location = new Point(174, 361);
             nudNbStations.Name = "nudNbStations";
             nudNbStations.Size = new Size(43, 34);
             nudNbStations.TabIndex = 49;
@@ -164,7 +167,7 @@
             lblNoms.AutoSize = true;
             lblNoms.Font = new Font("Impact", 10.8F, FontStyle.Underline);
             lblNoms.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNoms.Location = new Point(12, 387);
+            lblNoms.Location = new Point(12, 418);
             lblNoms.Name = "lblNoms";
             lblNoms.Size = new Size(334, 22);
             lblNoms.TabIndex = 50;
@@ -183,7 +186,7 @@
             // 
             // flpStations
             // 
-            flpStations.Location = new Point(12, 427);
+            flpStations.Location = new Point(12, 458);
             flpStations.Name = "flpStations";
             flpStations.Size = new Size(336, 125);
             flpStations.TabIndex = 52;
@@ -259,6 +262,8 @@
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestionModification.Controls.Add(txtNumero);
+            pnlGestionModification.Controls.Add(txtNomLigne);
             pnlGestionModification.Controls.Add(lblTitre);
             pnlGestionModification.Controls.Add(btnEnregistrement);
             pnlGestionModification.Controls.Add(btnRetour);
@@ -282,6 +287,29 @@
             pnlGestionModification.Name = "pnlGestionModification";
             pnlGestionModification.Size = new Size(382, 753);
             pnlGestionModification.TabIndex = 58;
+            pnlGestionModification.Paint += pnlGestionModification_Paint;
+            // 
+            // txtNomLigne
+            // 
+            txtNomLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            txtNomLigne.Location = new Point(13, 238);
+            txtNomLigne.Name = "txtNomLigne";
+            txtNomLigne.PlaceholderText = "Nom de votre ligne";
+            txtNomLigne.Size = new Size(196, 34);
+            txtNomLigne.TabIndex = 58;
+            txtNomLigne.Visible = false;
+            // 
+            // txtNumero
+            // 
+            txtNumero.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
+            txtNumero.Location = new Point(215, 238);
+            txtNumero.Name = "txtNumero";
+            txtNumero.PlaceholderText = "Numéro de ligne";
+            txtNumero.Size = new Size(133, 34);
+            txtNumero.TabIndex = 59;
+            txtNumero.Visible = false;
             // 
             // Gestion_modification
             // 
@@ -323,5 +351,7 @@
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
+        private TextBox txtNumero;
+        private TextBox txtNomLigne;
     }
 }

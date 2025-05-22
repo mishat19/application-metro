@@ -11,9 +11,14 @@ using GestionReseau;
 
 namespace application_metro
 {
+
     public partial class Gestion : Form
     {
         ListeLignes lignes = new ListeLignes();
+        string nomLigne = "";
+        string nomStation = "";
+        string horaire = "";
+
         public Gestion()
         {
             InitializeComponent();
@@ -41,14 +46,10 @@ namespace application_metro
         private void btnModif_Click(object sender, EventArgs e)
         {
             mode = "Modification";
-            Gestion_modification modif = new Gestion_modification(mode);
+            Gestion_modification modif = new Gestion_modification(mode, nomLigne, nomStation, horaire);
             modif.Show();
             this.Close();
         }
-
-        string nomLigne = "";
-        string nomStation = "";
-        string horaire = "";
 
         private void btnSupp_Click(object sender, EventArgs e)
         {
@@ -80,7 +81,7 @@ namespace application_metro
 
         private void cmbLigne_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string nomLigne = cmbLigne.SelectedItem.ToString().Trim();
+            nomLigne = cmbLigne.SelectedItem.ToString().Trim();
             cmbStation.Enabled = true;
             cmbStation.Items.Clear();
             NomsStation(nomLigne);
@@ -107,8 +108,7 @@ namespace application_metro
             cmbHoraire.Enabled = true;
             cmbHoraire.Items.Clear();
 
-            string nomLigne = cmbLigne.SelectedItem.ToString().Trim();
-            string nomStation = cmbStation.SelectedItem.ToString().Trim();
+            nomStation = cmbStation.SelectedItem.ToString().Trim();
 
             List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation);
             cmbHoraire.Items.AddRange(horaires.ToArray());
@@ -116,7 +116,7 @@ namespace application_metro
 
         private void cmbHoraire_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            horaire = cmbHoraire.SelectedItem.ToString().Trim();
         }
     }
 }
