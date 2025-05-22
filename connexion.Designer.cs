@@ -38,7 +38,9 @@
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
             lblErreur = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnRetour
@@ -54,15 +56,17 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(60, 81);
+            lblTitre.Font = new Font("Impact", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
+            lblTitre.Location = new Point(76, 105);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(263, 67);
+            lblTitre.Size = new Size(230, 59);
             lblTitre.TabIndex = 3;
             lblTitre.Text = "Connexion";
             // 
             // txtEmail
             // 
+            txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(12, 229);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
@@ -72,6 +76,7 @@
             // 
             // txtMdp
             // 
+            txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(12, 262);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
@@ -94,20 +99,26 @@
             // 
             // btnConnexion
             // 
+            btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
+            btnConnexion.FlatStyle = FlatStyle.Flat;
+            btnConnexion.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(236, 490);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(134, 40);
             btnConnexion.TabIndex = 7;
             btnConnexion.Text = "Se connecter";
-            btnConnexion.UseVisualStyleBackColor = true;
+            btnConnexion.UseVisualStyleBackColor = false;
             btnConnexion.Click += btnConnexion_Click;
             // 
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Location = new Point(276, 357);
+            lnkInscription.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkInscription.LinkColor = Color.FromArgb(15, 93, 70);
+            lnkInscription.Location = new Point(303, 360);
             lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(67, 20);
+            lnkInscription.Size = new Size(68, 19);
             lnkInscription.TabIndex = 8;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
@@ -116,28 +127,41 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
+            lblInscription.Font = new Font("Segoe Print", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblInscription.ForeColor = Color.FromArgb(205, 33, 42);
             lblInscription.Location = new Point(12, 357);
             lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(248, 20);
+            lblInscription.Size = new Size(285, 26);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             // 
             // lblErreur
             // 
             lblErreur.AutoSize = true;
-            lblErreur.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblErreur.ForeColor = Color.Red;
+            lblErreur.Font = new Font("Impact", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
             lblErreur.Location = new Point(12, 292);
             lblErreur.Name = "lblErreur";
-            lblErreur.Size = new Size(221, 28);
+            lblErreur.Size = new Size(193, 25);
             lblErreur.TabIndex = 10;
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.imgFondMilan2;
+            pictureBox1.Location = new Point(-359, 340);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(938, 446);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 11;
+            pictureBox1.TabStop = false;
             // 
             // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
             Controls.Add(lblErreur);
             Controls.Add(lblInscription);
@@ -148,12 +172,14 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
+            Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Connexion";
             Text = "Page de connexion";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -169,5 +195,6 @@
         private LinkLabel lnkInscription;
         private Label lblInscription;
         private Label lblErreur;
+        private PictureBox pictureBox1;
     }
 }

@@ -38,31 +38,40 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 30F);
+            lblTitre.Font = new Font("Impact", 30F);
+            lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
             lblTitre.Location = new Point(99, 98);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(185, 67);
+            lblTitre.Size = new Size(180, 63);
             lblTitre.TabIndex = 5;
             lblTitre.Text = "Accueil";
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(46, 339);
+            btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
+            btnRecherche.FlatStyle = FlatStyle.Flat;
+            btnRecherche.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnRecherche.ForeColor = Color.White;
+            btnRecherche.Location = new Point(29, 337);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(290, 74);
+            btnRecherche.Size = new Size(324, 74);
             btnRecherche.TabIndex = 4;
             btnRecherche.Text = "Rechercher un itinéraire";
-            btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
             // btnConsultation
             // 
-            btnConsultation.Location = new Point(46, 220);
+            btnConsultation.BackColor = Color.FromArgb(205, 33, 42);
+            btnConsultation.FlatStyle = FlatStyle.Flat;
+            btnConsultation.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnConsultation.ForeColor = Color.White;
+            btnConsultation.Location = new Point(29, 220);
             btnConsultation.Name = "btnConsultation";
-            btnConsultation.Size = new Size(290, 74);
+            btnConsultation.Size = new Size(324, 74);
             btnConsultation.TabIndex = 3;
             btnConsultation.Text = "Consulter le réseau";
-            btnConsultation.UseVisualStyleBackColor = true;
+            btnConsultation.UseVisualStyleBackColor = false;
             btnConsultation.Click += btnConsultation_Click;
             // 
             // btnRetour
@@ -77,18 +86,23 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.Location = new Point(46, 458);
+            btnAdmin.BackColor = Color.FromArgb(205, 33, 42);
+            btnAdmin.FlatStyle = FlatStyle.Flat;
+            btnAdmin.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnAdmin.ForeColor = Color.White;
+            btnAdmin.Location = new Point(29, 457);
             btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(290, 74);
+            btnAdmin.Size = new Size(324, 74);
             btnAdmin.TabIndex = 7;
             btnAdmin.Text = "Gérer les données";
-            btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.UseVisualStyleBackColor = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
             // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
             Controls.Add(btnAdmin);
             Controls.Add(btnRetour);
