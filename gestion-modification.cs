@@ -45,6 +45,16 @@ namespace application_metro
             }
         }
 
+        private int nbStations(List<string> stations)
+        {
+            int nbStations = 0;
+            foreach (string station in stations)
+            {
+                nbStations++;
+            }
+            return nbStations;
+        }
+
         private void gestion_modification_Load(object sender, EventArgs e)
         {
 
