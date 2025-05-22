@@ -47,9 +47,9 @@
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
+            nudNumLigne = new NumericUpDown();
             txtNumero = new TextBox();
             txtNomLigne = new TextBox();
-            nudNumLigne = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
@@ -151,6 +151,7 @@
             nudNbStations.Name = "nudNbStations";
             nudNbStations.Size = new Size(43, 34);
             nudNbStations.TabIndex = 49;
+            nudNbStations.ValueChanged += nudNbStations_ValueChanged;
             // 
             // lblNoms
             // 
@@ -176,16 +177,18 @@
             // 
             // flpStations
             // 
-            flpStations.Location = new Point(12, 458);
+            flpStations.AutoScroll = true;
+            flpStations.Location = new Point(3, 458);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(336, 125);
+            flpStations.Size = new Size(355, 125);
             flpStations.TabIndex = 52;
             // 
             // flpCoordonnees
             // 
-            flpCoordonnees.Location = new Point(13, 627);
+            flpCoordonnees.AutoScroll = true;
+            flpCoordonnees.Location = new Point(3, 627);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(335, 125);
+            flpCoordonnees.Size = new Size(355, 125);
             flpCoordonnees.TabIndex = 53;
             // 
             // lblHoraires
@@ -227,9 +230,10 @@
             // 
             // flpHoraires
             // 
-            flpHoraires.Location = new Point(12, 932);
+            flpHoraires.AutoScroll = true;
+            flpHoraires.Location = new Point(3, 932);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(336, 125);
+            flpHoraires.Size = new Size(355, 125);
             flpHoraires.TabIndex = 54;
             // 
             // btnEnregistrement
@@ -279,6 +283,13 @@
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
+            // nudNumLigne
+            // 
+            nudNumLigne.Location = new Point(215, 197);
+            nudNumLigne.Name = "nudNumLigne";
+            nudNumLigne.Size = new Size(131, 27);
+            nudNumLigne.TabIndex = 60;
+            // 
             // txtNumero
             // 
             txtNumero.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
@@ -300,13 +311,6 @@
             txtNomLigne.Size = new Size(196, 34);
             txtNomLigne.TabIndex = 58;
             txtNomLigne.Visible = false;
-            // 
-            // nudNumLigne
-            // 
-            nudNumLigne.Location = new Point(215, 197);
-            nudNumLigne.Name = "nudNumLigne";
-            nudNumLigne.Size = new Size(131, 27);
-            nudNumLigne.TabIndex = 60;
             // 
             // Gestion_modification
             // 
