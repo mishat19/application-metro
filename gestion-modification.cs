@@ -44,11 +44,12 @@ namespace application_metro
                         txtCouleur.Text = ligne1.couleur;
 
                         int nb = 0;
+                        string sta;
                         foreach (string nStation in ligne1.stations)
                         {
                             nb++;
                         }
-                        CreationTextBox(nb);
+                        CreationTextBox(nb, ligne1.stations);
                         nudNbStations.Value = nb;
                     }
                 }
@@ -65,7 +66,7 @@ namespace application_metro
             return nbStations;
         }
 
-        public void CreationTextBox(int nbStations)
+        public void CreationTextBox(int nbStations, List<string> noms = null)
         {
             while (flpStations.Controls.Count > nbStations)
             {
@@ -75,6 +76,8 @@ namespace application_metro
 
             for (int i = flpStations.Controls.Count + 1; i <= nbStations; i++)
             {
+                string nom = (noms != null && noms.Count >= i) ? noms[i - 1] : null;
+
                 //Panel stations
                 Panel stationPanel = new Panel
                 {
@@ -114,10 +117,18 @@ namespace application_metro
                 TextBox txt = new TextBox
                 {
                     Name = $"txtStation{i}",
-                    PlaceholderText = $"Nom de la station {i}",
                     Width = 260,
                     Location = new Point(30, 5)
                 };
+
+                if (!string.IsNullOrEmpty(nom))
+                {
+                    txt.Text = nom;
+                }
+                else
+                {
+                    txt.PlaceholderText = $"Nom de la station {i}";
+                }
 
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
