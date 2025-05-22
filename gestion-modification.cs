@@ -21,8 +21,8 @@ namespace application_metro
                 lblModif.Text = "Ajout d'une ligne";
                 txtNomLigne.Visible = true;
                 cmbLigne.Visible = false;
-                txtNumero.Visible = true;
-                nudNumLigne.Visible = false;
+                txtNumero.Visible = false;
+                nudNumLigne.Visible = true;
             }
             else
             {
@@ -30,6 +30,7 @@ namespace application_metro
                 cmbLigne.Visible = true;
                 txtNumero.Visible = false;
                 nudNumLigne.Visible = true;
+                nudNbStations.Enabled = false;
 
                 cmbLigne.Items.Add(ligne);
                 cmbLigne.SelectedItem = ligne;
@@ -41,6 +42,14 @@ namespace application_metro
                     {
                         nudNumLigne.Value = Convert.ToDecimal(ligne1.num);
                         txtCouleur.Text = ligne1.couleur;
+
+                        int nb = 0;
+                        foreach (string nStation in ligne1.stations)
+                        {
+                            nb++;
+                        }
+                        CreationTextBox(nb);
+                        nudNbStations.Value = nb;
                     }
                 }
             }
@@ -64,7 +73,7 @@ namespace application_metro
                 flpCoordonnees.Controls.RemoveAt(flpCoordonnees.Controls.Count - 1);
             }
 
-            while (flpStations.Controls.Count < nbStations)
+            for (int i = flpStations.Controls.Count + 1; i <= nbStations; i++)
             {
                 //Panel stations
                 Panel stationPanel = new Panel
@@ -87,7 +96,7 @@ namespace application_metro
                 // Label du numéro
                 Label lblNum = new Label
                 {
-                    Text = nbStations.ToString(),
+                    Text = i.ToString(),
                     Width = 25,
                     TextAlign = ContentAlignment.MiddleCenter,
                     Location = new Point(0, 8)
@@ -95,7 +104,7 @@ namespace application_metro
 
                 Label lblNum2 = new Label
                 {
-                    Text = nbStations.ToString(),
+                    Text = i.ToString(),
                     Width = 25,
                     TextAlign = ContentAlignment.MiddleCenter,
                     Location = new Point(0, 8)
@@ -104,8 +113,8 @@ namespace application_metro
                 //TextBox stations
                 TextBox txt = new TextBox
                 {
-                    Name = $"txtStation{nbStations}",
-                    PlaceholderText = $"Nom de la station {nbStations}",
+                    Name = $"txtStation{i}",
+                    PlaceholderText = $"Nom de la station {i}",
                     Width = 260,
                     Location = new Point(30, 5)
                 };
@@ -113,16 +122,16 @@ namespace application_metro
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
                 {
-                    Name = $"txtCoordonneeLa{nbStations}",
-                    PlaceholderText = $"Latitude {nbStations}",
+                    Name = $"txtCoordonneeLa{i}",
+                    PlaceholderText = $"Latitude{i}",
                     Width = 120,
                     Location = new Point(30, 5)
                 };
 
                 TextBox txt3 = new TextBox
                 {
-                    Name = $"txtCoordonneeLo{nbStations}",
-                    PlaceholderText = $"Longitude {nbStations}",
+                    Name = $"txtCoordonneeLo{i}",
+                    PlaceholderText = $"Longitude{i}",
                     Width = 120,
                     Location = new Point(160, 5)
                 };
@@ -130,7 +139,7 @@ namespace application_metro
                 //CheckBox
                 CheckBox chk = new CheckBox
                 {
-                    Name = $"chkStation{nbStations}",
+                    Name = $"chkStation{i}",
                     Location = new Point(300, 8),
                     Width = 20
                 };
