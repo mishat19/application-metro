@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MySql.Data.MySqlClient;
+using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace GestionReseau
 {
@@ -178,95 +180,6 @@ namespace GestionReseau
 
             return listeLignes;
         }
-
-        public static double HoraireSegment(string numStationA, string numStationB)
-        {
-            string stationA = numStationA;
-            string stationB = numStationB;
-            double resultat = 0;
-
-            string requete = $"SELECT DureeSegment FROM Segment WHERE NumStationA = {numStationA} AND NumStationB = {numStationB}";
-            Console.WriteLine(requete);
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            if (rdr.Read()) {
-                resultat = (double)rdr.GetInt32("DureeSegment");
-            }
-            rdr.Close();
-            return resultat;
-        }
-
-        public static string TotalHoraire(int numLigne, double tempsTrajet)
-        {
-            string requete = $"SELECT HoraireDepart FROM Horaire WHERE NumLigne = {numLigne}";
-            Console.WriteLine(requete);
-
-            TimeSpan mysqlTime = TimeSpan.Zero;
-            TimeOnly horaireDepart;
-            TimeOnly horaireFinal;
-            string resultat = "";
-
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            if (rdr.Read())
-            {
-                mysqlTime = rdr.GetTimeSpan("HoraireDepart");
-            }
-
-            rdr.Close();
-
-            horaireDepart = TimeOnly.FromTimeSpan(mysqlTime);
-            horaireFinal = horaireDepart.AddMinutes(tempsTrajet);
-
-            resultat = horaireFinal.ToString("HH:mm");
-
-            return resultat;
-        }
-
-        public static List<string> HorairesParStationEtLigne(string nomLigne, string nomStation)
-        {
-            List<string> horaires = new List<string>();
-
-            // Récupérer le NumLigne
-            string requeteNumLigne = $"SELECT NumLigne FROM InfoLigne WHERE Nom = @NomLigne";
-            MySqlCommand cmd1 = new MySqlCommand(requeteNumLigne, connexion);
-            cmd1.Parameters.AddWithValue("@NomLigne", nomLigne);
-            int numLigne = -1;
-
-            using (var rdr = cmd1.ExecuteReader())
-            {
-                if (rdr.Read())
-                    numLigne = rdr.GetInt32("NumLigne");
-            }
-
-            if (numLigne == -1) return horaires;
-
-            // Vérifier si la station est utilisée dans un segment de cette ligne
-            string requete = @"
-            SELECT DISTINCT Horaire.HoraireDepart
-            FROM Horaire
-            JOIN Ligne ON Horaire.NumLigne = Ligne.NumLigne
-            JOIN Segment ON Ligne.NumSegment = Segment.NumSegment
-            JOIN Station ON Station.NumStation = Segment.NumStationA OR Station.NumStation = Segment.NumStationB
-            WHERE Horaire.NumLigne = @NumLigne AND Station.NomStation = @NomStation";
-
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@NumLigne", numLigne);
-            cmd.Parameters.AddWithValue("@NomStation", nomStation);
-
-            using (var rdr = cmd.ExecuteReader())
-            {
-                while (rdr.Read())
-                {
-                    TimeSpan horaire = rdr.GetTimeSpan("HoraireDepart");
-                    horaires.Add(horaire.ToString(@"hh\:mm"));
-                }
-            }
-
-            return horaires;
-        }
-
         public static List<List<decimal>> CoordonneesStationsLigne(List<string> stations)
         {
             List<List<decimal>> toutes = new List<List<decimal>>();
@@ -396,6 +309,43 @@ namespace GestionReseau
 
             return horaireStation;
         }
+
+        /// <summary>
+        /// Permet de supprimer une station a partir du numero de la ligne et du nom de la station
+        /// </summary>
+        /// <param name="nomLigne"></param>
+        /// <param name="nomStation"></param>
+        public static void SupprimerUneStation(string nomLigne, string nomStation)
+        {
+            string requeteIdStation =
+            @"SELECT s.NumStation
+            FROM Station st
+            JOIN Segment seg ON st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB
+            JOIN Ligne l ON seg.NumSegment = l.NumSegment
+            JOIN InfoLigne il ON seg.NumSegment = l.NumSegment
+            WHERE s.NomStation = @nomStation AND i.Nom = @nomLigne
+            LIMIT 1"
+            ;
+
+            MySqlCommand cmd1 = new MySqlCommand(requeteIdStation, connexion);
+            cmd1.Parameters.AddWithValue("@nomLigne", nomLigne);
+            cmd1.Parameters.AddWithValue("@NomStation", nomStation);
+
+            object resultat = cmd1.ExecuteScalar();
+            int idStation = Convert.ToInt32(resultat);
+
+            string requeteSupprimerSegment = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
+
+            MySqlCommand cmd2 = new MySqlCommand(requeteSupprimerSegment, connexion);
+            cmd2.Parameters.AddWithValue("@idStation", idStation);
+
+            string requeteSupprimerStation = @"DELETE FROM Station WHERE NumStation = @idStation";
+
+            MySqlCommand cmd3 = new MySqlCommand(requeteSupprimerStation, connexion);
+            cmd3.Parameters.AddWithValue("@idStation", idStation);
+            cmd3.ExecuteNonQuery();
+        }
+
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
         {
             //A FAIRE QUAND ALGO DE GRAPHE
