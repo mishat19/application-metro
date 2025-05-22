@@ -235,6 +235,7 @@
             ClientSize = new Size(382, 753);
             Controls.Add(pnlGestion);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion";

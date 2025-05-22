@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ouverture));
             pnlOuverture = new Panel();
             lblDeconnexion = new Label();
             lblTitre = new Label();
             btnNoConnexion = new Button();
             btnConnexion = new Button();
-            picFond1 = new PictureBox();
+            picFond2 = new PictureBox();
             pnlOuverture.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picFond1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
             // 
             // pnlOuverture
@@ -45,7 +46,7 @@
             pnlOuverture.Controls.Add(lblTitre);
             pnlOuverture.Controls.Add(btnNoConnexion);
             pnlOuverture.Controls.Add(btnConnexion);
-            pnlOuverture.Controls.Add(picFond1);
+            pnlOuverture.Controls.Add(picFond2);
             pnlOuverture.Dock = DockStyle.Fill;
             pnlOuverture.Location = new Point(0, 0);
             pnlOuverture.Name = "pnlOuverture";
@@ -55,11 +56,12 @@
             // lblDeconnexion
             // 
             lblDeconnexion.AutoSize = true;
+            lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
             lblDeconnexion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
             lblDeconnexion.Location = new Point(85, 567);
             lblDeconnexion.Name = "lblDeconnexion";
-            lblDeconnexion.Size = new Size(213, 23);
+            lblDeconnexion.Size = new Size(215, 25);
             lblDeconnexion.TabIndex = 7;
             lblDeconnexion.Text = "Vous avez été déconnecté";
             lblDeconnexion.Visible = false;
@@ -103,15 +105,15 @@
             btnConnexion.UseVisualStyleBackColor = false;
             btnConnexion.Click += btnConnexion_Click_1;
             // 
-            // picFond1
+            // picFond2
             // 
-            picFond1.Location = new Point(-93, 216);
-            picFond1.Name = "picFond1";
-            picFond1.Size = new Size(1296, 544);
-            picFond1.SizeMode = PictureBoxSizeMode.Zoom;
-            picFond1.TabIndex = 8;
-            picFond1.TabStop = false;
-            picFond1.Click += pictureBox1_Click;
+            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Location = new Point(-82, 270);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(872, 552);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 53;
+            picFond2.TabStop = false;
             // 
             // Ouverture
             // 
@@ -120,13 +122,14 @@
             ClientSize = new Size(382, 753);
             Controls.Add(pnlOuverture);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Ouverture";
             Text = "Mon application métro";
             pnlOuverture.ResumeLayout(false);
             pnlOuverture.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picFond1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
         }
 
@@ -137,6 +140,6 @@
         private Label lblTitre;
         private Button btnNoConnexion;
         private Button btnConnexion;
-        private PictureBox picFond1;
+        private PictureBox picFond2;
     }
 }

@@ -120,9 +120,11 @@
             // 
             // txtCouleur
             // 
+            txtCouleur.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
             txtCouleur.Location = new Point(12, 272);
             txtCouleur.Name = "txtCouleur";
-            txtCouleur.Size = new Size(336, 27);
+            txtCouleur.Size = new Size(336, 34);
             txtCouleur.TabIndex = 46;
             // 
             // lblNbStations
@@ -253,6 +255,7 @@
             // 
             // pnlGestionModification
             // 
+            pnlGestionModification.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
@@ -275,7 +278,6 @@
             pnlGestionModification.Controls.Add(dudNumLigne);
             pnlGestionModification.Controls.Add(lblNoms);
             pnlGestionModification.Controls.Add(nudNbStations);
-            pnlGestionModification.Dock = DockStyle.Fill;
             pnlGestionModification.Location = new Point(0, 0);
             pnlGestionModification.Name = "pnlGestionModification";
             pnlGestionModification.Size = new Size(382, 753);
