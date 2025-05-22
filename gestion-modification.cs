@@ -49,7 +49,8 @@ namespace application_metro
                         {
                             nb++;
                         }
-                        CreationTextBox(nb, ligne1.stations);
+                        List<List<decimal>> coordonnees = Serveur.CoordonneesStationsLigne(ligne1.stations);
+                        CreationTextBox(nb, ligne1.stations, coordonnees);
                         nudNbStations.Value = nb;
                     }
                 }
@@ -66,7 +67,7 @@ namespace application_metro
             return nbStations;
         }
 
-        public void CreationTextBox(int nbStations, List<string> noms = null)
+        public void CreationTextBox(int nbStations, List<string> noms = null, List<List<decimal>> coordonnees = null)
         {
             while (flpStations.Controls.Count > nbStations)
             {
@@ -77,6 +78,7 @@ namespace application_metro
             for (int i = flpStations.Controls.Count + 1; i <= nbStations; i++)
             {
                 string nom = (noms != null && noms.Count >= i) ? noms[i - 1] : null;
+                List<decimal> coordonnee = (coordonnees != null && coordonnees.Count >= i) ? coordonnees[i - 1] : null;
 
                 //Panel stations
                 Panel stationPanel = new Panel
@@ -134,18 +136,34 @@ namespace application_metro
                 TextBox txt2 = new TextBox
                 {
                     Name = $"txtCoordonneeLa{i}",
-                    PlaceholderText = $"Latitude{i}",
                     Width = 120,
                     Location = new Point(30, 5)
                 };
 
+                if (coordonnee != null)
+                {
+                    txt2.Text = coordonnee[0].ToString();
+                }
+                else
+                {
+                    txt2.PlaceholderText = $"Latitude{i}";
+                }
+
                 TextBox txt3 = new TextBox
                 {
                     Name = $"txtCoordonneeLo{i}",
-                    PlaceholderText = $"Longitude{i}",
                     Width = 120,
                     Location = new Point(160, 5)
                 };
+
+                if (coordonnee != null)
+                {
+                    txt3.Text = coordonnee[1].ToString();
+                }
+                else
+                {
+                    txt3.PlaceholderText = $"Longitude{i}";
+                }
 
                 //CheckBox
                 CheckBox chk = new CheckBox

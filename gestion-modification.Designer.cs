@@ -149,7 +149,7 @@
             nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
             nudNbStations.Location = new Point(174, 361);
             nudNbStations.Name = "nudNbStations";
-            nudNbStations.Size = new Size(43, 34);
+            nudNbStations.Size = new Size(63, 34);
             nudNbStations.TabIndex = 49;
             nudNbStations.ValueChanged += nudNbStations_ValueChanged;
             // 

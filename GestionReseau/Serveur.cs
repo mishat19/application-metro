@@ -267,6 +267,30 @@ namespace GestionReseau
             return horaires;
         }
 
+        public static List<List<decimal>> CoordonneesStationsLigne(List<string> stations)
+        {
+            List<List<decimal>> toutes = new List<List<decimal>>();
+
+            foreach (string nomStation in stations) {
+                string nomEchappe = nomStation.Replace("'", "''");
+                string requete = $"SELECT Latitude, Longitude FROM Station WHERE NomStation = '{nomEchappe}'";
+                Console.WriteLine(requete);
+                MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+
+                List<decimal> gps = new List<decimal>();
+
+                if (rdr.Read())
+                {
+                    gps.Add(rdr.GetDecimal("Latitude"));
+                    gps.Add(rdr.GetDecimal("Longitude"));
+                }
+                rdr.Close();
+                toutes.Add(gps);
+            }
+            return toutes;
+        }
+
         public static void SupprimerDonnees(string nomLigne, string nomStation = null)
         {
             if (!string.IsNullOrWhiteSpace(nomStation))
