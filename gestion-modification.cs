@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 
 namespace application_metro
 {
@@ -21,14 +22,26 @@ namespace application_metro
                 txtNomLigne.Visible = true;
                 cmbLigne.Visible = false;
                 txtNumero.Visible = true;
-                dudNumLigne.Visible = false;
+                nudNumLigne.Visible = false;
             }
             else
             {
                 txtNomLigne.Visible = false;
                 cmbLigne.Visible = true;
                 txtNumero.Visible = false;
-                dudNumLigne.Visible = true;
+                nudNumLigne.Visible = true;
+
+                cmbLigne.Items.Add(ligne);
+                cmbLigne.SelectedItem = ligne;
+
+                ListeLignes lignes = Serveur.Lignes();
+                foreach (Ligne ligne1 in lignes.lignes) { 
+                    if(ligne1.nom == ligne)
+                    {
+                        nudNumLigne.Value = Convert.ToDecimal(ligne1.num);
+                        txtCouleur.Text = ligne1.couleur;
+                    }
+                }
             }
         }
 

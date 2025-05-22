@@ -36,7 +36,6 @@
             lblCouleur = new Label();
             txtCouleur = new TextBox();
             lblNbStations = new Label();
-            dudNumLigne = new DomainUpDown();
             nudNbStations = new NumericUpDown();
             lblNoms = new Label();
             lblCoordonnees = new Label();
@@ -48,14 +47,17 @@
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
-            txtNomLigne = new TextBox();
             txtNumero = new TextBox();
+            txtNomLigne = new TextBox();
+            nudNumLigne = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
             // 
+            cmbLigne.Enabled = false;
             cmbLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
@@ -140,18 +142,6 @@
             lblNbStations.Size = new Size(155, 22);
             lblNbStations.TabIndex = 47;
             lblNbStations.Text = "Nombre de stations :";
-            // 
-            // dudNumLigne
-            // 
-            dudNumLigne.Enabled = false;
-            dudNumLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
-            dudNumLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            dudNumLigne.Location = new Point(215, 198);
-            dudNumLigne.Name = "dudNumLigne";
-            dudNumLigne.Size = new Size(133, 34);
-            dudNumLigne.TabIndex = 48;
-            dudNumLigne.Text = "Ligne N°";
-            dudNumLigne.SelectedItemChanged += dudNumLigne_SelectedItemChanged;
             // 
             // nudNbStations
             // 
@@ -262,6 +252,7 @@
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestionModification.Controls.Add(nudNumLigne);
             pnlGestionModification.Controls.Add(txtNumero);
             pnlGestionModification.Controls.Add(txtNomLigne);
             pnlGestionModification.Controls.Add(lblTitre);
@@ -280,7 +271,6 @@
             pnlGestionModification.Controls.Add(flpStations);
             pnlGestionModification.Controls.Add(lblNbStations);
             pnlGestionModification.Controls.Add(lblCoordonnees);
-            pnlGestionModification.Controls.Add(dudNumLigne);
             pnlGestionModification.Controls.Add(lblNoms);
             pnlGestionModification.Controls.Add(nudNbStations);
             pnlGestionModification.Location = new Point(0, 0);
@@ -288,6 +278,17 @@
             pnlGestionModification.Size = new Size(382, 753);
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
+            // 
+            // txtNumero
+            // 
+            txtNumero.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
+            txtNumero.Location = new Point(215, 238);
+            txtNumero.Name = "txtNumero";
+            txtNumero.PlaceholderText = "Numéro de ligne";
+            txtNumero.Size = new Size(133, 34);
+            txtNumero.TabIndex = 59;
+            txtNumero.Visible = false;
             // 
             // txtNomLigne
             // 
@@ -300,16 +301,12 @@
             txtNomLigne.TabIndex = 58;
             txtNomLigne.Visible = false;
             // 
-            // txtNumero
+            // nudNumLigne
             // 
-            txtNumero.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
-            txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNumero.Location = new Point(215, 238);
-            txtNumero.Name = "txtNumero";
-            txtNumero.PlaceholderText = "Numéro de ligne";
-            txtNumero.Size = new Size(133, 34);
-            txtNumero.TabIndex = 59;
-            txtNumero.Visible = false;
+            nudNumLigne.Location = new Point(215, 197);
+            nudNumLigne.Name = "nudNumLigne";
+            nudNumLigne.Size = new Size(131, 27);
+            nudNumLigne.TabIndex = 60;
             // 
             // Gestion_modification
             // 
@@ -326,6 +323,7 @@
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
             ResumeLayout(false);
         }
 
@@ -339,7 +337,6 @@
         private Label lblCouleur;
         private TextBox txtCouleur;
         private Label lblNbStations;
-        private DomainUpDown dudNumLigne;
         private NumericUpDown nudNbStations;
         private Label lblNoms;
         private Label lblCoordonnees;
@@ -353,5 +350,6 @@
         private Panel pnlGestionModification;
         private TextBox txtNumero;
         private TextBox txtNomLigne;
+        private NumericUpDown nudNumLigne;
     }
 }
