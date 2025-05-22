@@ -91,6 +91,7 @@
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
             picPlus.TabIndex = 33;
             picPlus.TabStop = false;
+            picPlus.Click += picPlus_Click;
             // 
             // lblAjout
             // 
@@ -133,6 +134,7 @@
             btnRetour.TabIndex = 41;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.Click += btnRetour_Click;
             // 
             // btnModif
             // 
@@ -146,6 +148,7 @@
             btnModif.TabIndex = 51;
             btnModif.Text = "Modifier";
             btnModif.UseVisualStyleBackColor = false;
+            btnModif.Click += btnModif_Click;
             // 
             // btnSupp
             // 
@@ -159,6 +162,7 @@
             btnSupp.TabIndex = 50;
             btnSupp.Text = "Supprimer";
             btnSupp.UseVisualStyleBackColor = false;
+            btnSupp.Click += btnSupp_Click;
             // 
             // lblGestion
             // 
@@ -181,6 +185,7 @@
             cmbLigne.Size = new Size(358, 34);
             cmbLigne.TabIndex = 48;
             cmbLigne.Text = "Choisir une ligne";
+            cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
             // 
             // cmbStation
             // 
@@ -193,6 +198,7 @@
             cmbStation.Size = new Size(358, 34);
             cmbStation.TabIndex = 47;
             cmbStation.Text = "Choisir une station";
+            cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
             // 
             // cmbHoraire
             // 

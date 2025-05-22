@@ -49,6 +49,7 @@ namespace application_metro
         string nomLigne = "";
         string nomStation = "";
         string horaire = "";
+
         private void btnSupp_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -109,13 +110,8 @@ namespace application_metro
             string nomLigne = cmbLigne.SelectedItem.ToString().Trim();
             string nomStation = cmbStation.SelectedItem.ToString().Trim();
 
-            List<string> horaires = Serveur.HorairesParStationEtLigne(nomLigne, nomStation);
-
-            foreach (string horaire in horaires)
-            {
-                cmbHoraire.Items.Add(horaire);
-            }
-
+            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation);
+            cmbHoraire.Items.AddRange(horaires.ToArray());
         }
 
         private void cmbHoraire_SelectedIndexChanged(object sender, EventArgs e)
