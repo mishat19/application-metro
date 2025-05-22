@@ -325,7 +325,7 @@ namespace GestionReseau
         /// Calcul les horaires de passage d'une station
         /// </summary>
         /// <param name="nomStation"></param>
-        public static List<string> CalculeHorairePassageStation(string nomStation)
+        public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
 
@@ -342,6 +342,7 @@ namespace GestionReseau
 
             using (var rdr = cmd.ExecuteReader())
             {
+                
                 while (rdr.Read())
                 {
                     TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
@@ -350,10 +351,21 @@ namespace GestionReseau
                     TimeSpan horaireLimite = new TimeSpan(22, 0, 0);
                     TimeSpan horaireActuel = horaireDepart;
 
+                    double multiplicateur;
+
+                    if (date.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        multiplicateur = 1.75;
+                    }
+                    else
+                    {
+                        multiplicateur = 1;
+                    }
+
                     while (horaireActuel < horaireLimite)
                     {
                         horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
-                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment));
+                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
                     }
                 }
             }

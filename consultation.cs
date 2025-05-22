@@ -32,7 +32,7 @@ namespace application_metro
         {
             Carte carte = new Carte();
             carte.Show();
-            this.Close();
+            this.Close();   
         }
 
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,8 +56,9 @@ namespace application_metro
             lstStations.Items.Clear();
 
             string nomStation = cmbStation.SelectedItem?.ToString();
+            DateTime date = calDate.SelectionStart;
 
-            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation);
+            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, date);
             lstStations.Items.AddRange(horaires.ToArray());
         }
 
@@ -69,6 +70,10 @@ namespace application_metro
         private void lstStations_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void calDate_DateSelected(object sender, DateRangeEventArgs e)
+        {
         }
     }
 }

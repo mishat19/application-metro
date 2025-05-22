@@ -110,7 +110,9 @@ namespace application_metro
 
             nomStation = cmbStation.SelectedItem.ToString().Trim();
 
-            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation);
+            DateTime date = DateTime.Now;
+
+            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, date);
             cmbHoraire.Items.AddRange(horaires.ToArray());
         }
 

@@ -45,9 +45,10 @@
             btnRecherche.FlatStyle = FlatStyle.Flat;
             btnRecherche.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(93, 194);
+            btnRecherche.Location = new Point(81, 146);
+            btnRecherche.Margin = new Padding(3, 2, 3, 2);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(196, 54);
+            btnRecherche.Size = new Size(172, 40);
             btnRecherche.TabIndex = 27;
             btnRecherche.Text = "Rechercher";
             btnRecherche.UseVisualStyleBackColor = false;
@@ -59,19 +60,19 @@
             cmbLignes.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(14, 136);
-            cmbLignes.Margin = new Padding(3, 4, 3, 4);
+            cmbLignes.Location = new Point(12, 102);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 34);
+            cmbLignes.Size = new Size(163, 29);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(11, 12);
+            btnRetour.Location = new Point(10, 9);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
+            btnRetour.Size = new Size(110, 29);
             btnRetour.TabIndex = 25;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -80,22 +81,24 @@
             // calDate
             // 
             calDate.BackColor = Color.FromArgb(255, 230, 188);
-            calDate.Location = new Point(59, 506);
-            calDate.Margin = new Padding(11, 16, 11, 16);
+            calDate.Location = new Point(52, 380);
+            calDate.Margin = new Padding(10, 12, 10, 12);
             calDate.Name = "calDate";
             calDate.TabIndex = 30;
             calDate.TitleBackColor = Color.Aqua;
             calDate.TitleForeColor = Color.Aqua;
             calDate.TrailingForeColor = Color.Green;
+            calDate.DateSelected += calDate_DateSelected;
             // 
             // lstStations
             // 
             lstStations.BackColor = Color.FromArgb(255, 230, 188);
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(16, 267);
-            lstStations.Margin = new Padding(3, 5, 3, 5);
+            lstStations.ItemHeight = 15;
+            lstStations.Location = new Point(14, 200);
+            lstStations.Margin = new Padding(3, 4, 3, 4);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(354, 204);
+            lstStations.Size = new Size(310, 154);
             lstStations.TabIndex = 31;
             lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
@@ -105,10 +108,9 @@
             cmbStation.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
             cmbStation.FormattingEnabled = true;
-            cmbStation.Location = new Point(206, 136);
-            cmbStation.Margin = new Padding(3, 4, 3, 4);
+            cmbStation.Location = new Point(180, 102);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(164, 34);
+            cmbStation.Size = new Size(144, 29);
             cmbStation.TabIndex = 32;
             cmbStation.Text = "Nom de la station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
@@ -116,19 +118,20 @@
             // picFond2
             // 
             picFond2.Image = Properties.Resources.imgFondMilan1;
-            picFond2.Location = new Point(-22, 267);
+            picFond2.Location = new Point(-19, 200);
+            picFond2.Margin = new Padding(3, 2, 3, 2);
             picFond2.Name = "picFond2";
-            picFond2.Size = new Size(872, 552);
+            picFond2.Size = new Size(763, 414);
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 53;
             picFond2.TabStop = false;
             // 
             // Consultation
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
-            ClientSize = new Size(382, 753);
+            ClientSize = new Size(334, 565);
             Controls.Add(cmbStation);
             Controls.Add(lstStations);
             Controls.Add(calDate);
@@ -137,6 +140,7 @@
             Controls.Add(btnRetour);
             Controls.Add(picFond2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Consultation";
