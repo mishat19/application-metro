@@ -358,14 +358,53 @@ namespace GestionReseau
                                                       WHERE Nom = @nomLigne)";
 
             MySqlCommand cmdLigne = new MySqlCommand(requeteLigne, connexion);
-            cmdLigne.Parameters.AddWithValue("nomLigne", nomLigne);
+            cmdLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
             cmdLigne.ExecuteNonQuery();
 
             string requeteInfoLigne = @"DELETE FROM InfoLigne WHERE Nom = @nomLigne";
             
             MySqlCommand cmdInfoLigne = new MySqlCommand(requeteInfoLigne, connexion);
-            cmdInfoLigne.Parameters.AddWithValue("nomLigne", nomLigne);
+            cmdInfoLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
             cmdInfoLigne.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Ajoute une ligne dans la base de données
+        /// </summary>
+        /// <param name="nomLigne"></param>
+        /// <param name="couleur"></param>
+        public static void AjoutLigne(string nomLigne, string couleur)
+        {
+            string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
+                                        VALUES (@nomLigne, @couleur)";
+
+            MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion);
+            cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
+            cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
+            cmdAjoutLigne.ExecuteNonQuery();
+        }
+
+        public static void AjoutStation(string nomStation, double latitude, double longitude) 
+        {
+            string requeteAjoutStation = @"INSERT INTO Station (NomStation, Latitude, Longitude)
+                                           VALUES (@nomStation, @latitude, @longitude)";
+            
+            MySqlCommand cmdAjoutStation = new MySqlCommand(requeteAjoutStation, connexion);
+            cmdAjoutStation.Parameters.AddWithValue("@nomStation", nomStation);
+            cmdAjoutStation.Parameters.AddWithValue("@latitude", latitude);
+            cmdAjoutStation.Parameters.AddWithValue("@longitude", longitude);
+            cmdAjoutStation.ExecuteNonQuery();
+        }
+
+        public static void AjoutHoraireLigne(string nomStation, DateTime horaire)
+        {
+            string requeteAjoutHoraire = @"INSERT INTO Horaire (HoraireDepart, NumLigne)
+                                           VALUES (@horaireDepart, @numLigne)";
+
+            MySqlCommand cmdAjoutHoraire = new MySqlCommand(requeteAjoutHoraire, connexion);
+            cmdAjoutHoraire.Parameters.AddWithValue("@numLigne", nomStation);
+            cmdAjoutHoraire.Parameters.AddWithValue("@horaireDepart", horaire);
+            cmdAjoutHoraire.ExecuteNonQuery();
         }
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
