@@ -58,12 +58,12 @@
             // cmbLigne
             // 
             cmbLigne.Enabled = false;
-            cmbLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbLigne.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(12, 197);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(197, 34);
+            cmbLigne.Size = new Size(197, 27);
             cmbLigne.TabIndex = 41;
             cmbLigne.Text = "Nom de la ligne";
             // 
@@ -72,7 +72,7 @@
             lblModif.AutoSize = true;
             lblModif.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             lblModif.ForeColor = Color.FromArgb(15, 93, 70);
-            lblModif.Location = new Point(133, 116);
+            lblModif.Location = new Point(133, 107);
             lblModif.Name = "lblModif";
             lblModif.Size = new Size(104, 26);
             lblModif.TabIndex = 40;
@@ -81,11 +81,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 18F);
+            lblTitre.Font = new Font("Gliker", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(13, 65);
+            lblTitre.Location = new Point(21, 71);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(335, 37);
+            lblTitre.Size = new Size(318, 27);
             lblTitre.TabIndex = 39;
             lblTitre.Text = "Panneau de configuration";
             // 
@@ -102,83 +102,83 @@
             // lblIntitule
             // 
             lblIntitule.AutoSize = true;
-            lblIntitule.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblIntitule.Font = new Font("Gliker", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblIntitule.ForeColor = Color.FromArgb(15, 93, 70);
             lblIntitule.Location = new Point(12, 164);
             lblIntitule.Name = "lblIntitule";
-            lblIntitule.Size = new Size(140, 22);
+            lblIntitule.Size = new Size(161, 21);
             lblIntitule.TabIndex = 42;
             lblIntitule.Text = "Intitulé de la ligne";
             // 
             // lblCouleur
             // 
             lblCouleur.AutoSize = true;
-            lblCouleur.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblCouleur.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCouleur.Location = new Point(12, 271);
+            lblCouleur.Location = new Point(3, 284);
             lblCouleur.Name = "lblCouleur";
-            lblCouleur.Size = new Size(145, 22);
+            lblCouleur.Size = new Size(168, 21);
             lblCouleur.TabIndex = 45;
             lblCouleur.Text = "Couleur de la ligne";
             lblCouleur.Click += lblCouleur_Click;
             // 
             // txtCouleur
             // 
-            txtCouleur.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtCouleur.Font = new Font("DynaPuff", 9F);
             txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
-            txtCouleur.Location = new Point(12, 303);
+            txtCouleur.Location = new Point(13, 320);
             txtCouleur.Name = "txtCouleur";
             txtCouleur.PlaceholderText = "Couleur";
-            txtCouleur.Size = new Size(336, 34);
+            txtCouleur.Size = new Size(336, 25);
             txtCouleur.TabIndex = 46;
             // 
             // lblNbStations
             // 
             lblNbStations.AutoSize = true;
-            lblNbStations.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblNbStations.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblNbStations.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNbStations.Location = new Point(13, 364);
+            lblNbStations.Location = new Point(12, 373);
             lblNbStations.Name = "lblNbStations";
-            lblNbStations.Size = new Size(155, 22);
+            lblNbStations.Size = new Size(192, 21);
             lblNbStations.TabIndex = 47;
             lblNbStations.Text = "Nombre de stations :";
             // 
             // nudNbStations
             // 
-            nudNbStations.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            nudNbStations.Font = new Font("DynaPuff", 9F);
             nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNbStations.Location = new Point(174, 361);
+            nudNbStations.Location = new Point(215, 369);
             nudNbStations.Name = "nudNbStations";
-            nudNbStations.Size = new Size(63, 34);
+            nudNbStations.Size = new Size(63, 25);
             nudNbStations.TabIndex = 49;
             nudNbStations.ValueChanged += nudNbStations_ValueChanged;
             // 
             // lblNoms
             // 
             lblNoms.AutoSize = true;
-            lblNoms.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblNoms.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblNoms.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNoms.Location = new Point(12, 418);
+            lblNoms.Location = new Point(9, 420);
             lblNoms.Name = "lblNoms";
-            lblNoms.Size = new Size(334, 22);
+            lblNoms.Size = new Size(244, 42);
             lblNoms.TabIndex = 50;
-            lblNoms.Text = "Nom des stations (cochez les deux terminus) :";
+            lblNoms.Text = "Nom des stations :\r\n(cochez les deux terminus)\r\n";
             // 
             // lblCoordonnees
             // 
             lblCoordonnees.AutoSize = true;
-            lblCoordonnees.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblCoordonnees.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblCoordonnees.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCoordonnees.Location = new Point(12, 591);
+            lblCoordonnees.Location = new Point(9, 634);
             lblCoordonnees.Name = "lblCoordonnees";
-            lblCoordonnees.Size = new Size(234, 22);
+            lblCoordonnees.Size = new Size(291, 21);
             lblCoordonnees.TabIndex = 51;
             lblCoordonnees.Text = "Coordonnées GPS des stations :";
             // 
             // flpStations
             // 
             flpStations.AutoScroll = true;
-            flpStations.Location = new Point(3, 458);
+            flpStations.Location = new Point(0, 483);
             flpStations.Name = "flpStations";
             flpStations.Size = new Size(355, 125);
             flpStations.TabIndex = 52;
@@ -186,7 +186,7 @@
             // flpCoordonnees
             // 
             flpCoordonnees.AutoScroll = true;
-            flpCoordonnees.Location = new Point(3, 627);
+            flpCoordonnees.Location = new Point(3, 672);
             flpCoordonnees.Name = "flpCoordonnees";
             flpCoordonnees.Size = new Size(355, 125);
             flpCoordonnees.TabIndex = 53;
@@ -194,22 +194,22 @@
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
-            lblHoraires.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblHoraires.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
             lblHoraires.Location = new Point(12, 832);
             lblHoraires.Name = "lblHoraires";
-            lblHoraires.Size = new Size(169, 22);
+            lblHoraires.Size = new Size(207, 21);
             lblHoraires.TabIndex = 54;
             lblHoraires.Text = "Horaires des stations :";
             // 
             // rbDirectionA
             // 
             rbDirectionA.AutoSize = true;
-            rbDirectionA.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            rbDirectionA.Font = new Font("DynaPuff", 9F);
             rbDirectionA.ForeColor = Color.FromArgb(205, 33, 42);
             rbDirectionA.Location = new Point(139, 857);
             rbDirectionA.Name = "rbDirectionA";
-            rbDirectionA.Size = new Size(209, 30);
+            rbDirectionA.Size = new Size(198, 23);
             rbDirectionA.TabIndex = 55;
             rbDirectionA.TabStop = true;
             rbDirectionA.Text = "Direction NomStation1";
@@ -218,11 +218,11 @@
             // rbDirectionB
             // 
             rbDirectionB.AutoSize = true;
-            rbDirectionB.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            rbDirectionB.Font = new Font("DynaPuff", 9F);
             rbDirectionB.ForeColor = Color.FromArgb(205, 33, 42);
             rbDirectionB.Location = new Point(139, 893);
             rbDirectionB.Name = "rbDirectionB";
-            rbDirectionB.Size = new Size(209, 30);
+            rbDirectionB.Size = new Size(200, 23);
             rbDirectionB.TabIndex = 56;
             rbDirectionB.TabStop = true;
             rbDirectionB.Text = "Direction NomStation2";
@@ -241,6 +241,7 @@
             btnEnregistrement.BackColor = Color.FromArgb(205, 33, 42);
             btnEnregistrement.Enabled = false;
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
+            btnEnregistrement.Font = new Font("DynaPuff", 9F);
             btnEnregistrement.ForeColor = Color.White;
             btnEnregistrement.Location = new Point(222, 1167);
             btnEnregistrement.Name = "btnEnregistrement";
@@ -285,30 +286,32 @@
             // 
             // nudNumLigne
             // 
+            nudNumLigne.Font = new Font("DynaPuff", 9F);
+            nudNumLigne.ForeColor = Color.FromArgb(205, 33, 42);
             nudNumLigne.Location = new Point(215, 197);
             nudNumLigne.Name = "nudNumLigne";
-            nudNumLigne.Size = new Size(131, 27);
+            nudNumLigne.Size = new Size(131, 25);
             nudNumLigne.TabIndex = 60;
             // 
             // txtNumero
             // 
-            txtNumero.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtNumero.Font = new Font("DynaPuff", 9F);
             txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
             txtNumero.Location = new Point(215, 238);
             txtNumero.Name = "txtNumero";
             txtNumero.PlaceholderText = "Numéro de ligne";
-            txtNumero.Size = new Size(133, 34);
+            txtNumero.Size = new Size(133, 25);
             txtNumero.TabIndex = 59;
             txtNumero.Visible = false;
             // 
             // txtNomLigne
             // 
-            txtNomLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            txtNomLigne.Font = new Font("DynaPuff", 9F);
             txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
             txtNomLigne.Location = new Point(13, 238);
             txtNomLigne.Name = "txtNomLigne";
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
-            txtNomLigne.Size = new Size(196, 34);
+            txtNomLigne.Size = new Size(196, 25);
             txtNomLigne.TabIndex = 58;
             txtNomLigne.Visible = false;
             // 

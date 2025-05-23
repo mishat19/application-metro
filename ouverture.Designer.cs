@@ -57,11 +57,11 @@
             // 
             lblDeconnexion.AutoSize = true;
             lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
-            lblDeconnexion.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDeconnexion.Font = new Font("DynaPuff", 9F);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
             lblDeconnexion.Location = new Point(85, 567);
             lblDeconnexion.Name = "lblDeconnexion";
-            lblDeconnexion.Size = new Size(215, 25);
+            lblDeconnexion.Size = new Size(207, 21);
             lblDeconnexion.TabIndex = 7;
             lblDeconnexion.Text = "Vous avez été déconnecté";
             lblDeconnexion.Visible = false;
@@ -69,11 +69,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Gliker", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(63, 150);
+            lblTitre.Location = new Point(27, 150);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(261, 63);
+            lblTitre.Size = new Size(329, 60);
             lblTitre.TabIndex = 6;
             lblTitre.Text = "BIENVENUE !";
             // 
@@ -81,7 +81,7 @@
             // 
             btnNoConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnNoConnexion.FlatStyle = FlatStyle.Flat;
-            btnNoConnexion.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnNoConnexion.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNoConnexion.ForeColor = Color.White;
             btnNoConnexion.Location = new Point(40, 453);
             btnNoConnexion.Name = "btnNoConnexion";
@@ -95,7 +95,7 @@
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnConnexion.FlatStyle = FlatStyle.Flat;
-            btnConnexion.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConnexion.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(40, 305);
             btnConnexion.Name = "btnConnexion";
