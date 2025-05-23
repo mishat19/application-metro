@@ -66,8 +66,8 @@ namespace application_metro
             string pswd = txtMdp.Text;
         }
 
-        string cheminOff = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-off.png";
-        string cheminOn = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-on.png";
+        string cheminOff = @".\visibility-off.png";
+        string cheminOn = @".\visibility-on.png";
 
         private void picOeil_Click(object sender, EventArgs e)
         {
