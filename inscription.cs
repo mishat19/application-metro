@@ -50,8 +50,8 @@ namespace application_metro
             }
         }
 
-        string cheminOff = @".\visibility-off.png";
-        string cheminOn = @".\visibility-on.png";
+        string cheminOff = @"..\..\..\visibility-off.png";
+        string cheminOn = @"..\..\..\visibility-on.png";
         private void picOeil_Click(object sender, EventArgs e)
         {
             if (txtMdp.PasswordChar == '*')

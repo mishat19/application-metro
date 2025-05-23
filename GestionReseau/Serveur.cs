@@ -61,7 +61,7 @@ namespace GestionReseau
 
         public static bool UtilisateurConnexion(string email, string mdp)
         {
-            string requete = $"SELECT Count(*) FROM utilisateur WHERE Email = @Email AND Mdp = @Mdp";
+            string requete = $"SELECT Count(*) FROM Utilisateur WHERE Email = @Email AND Mdp = @Mdp";
             
             using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             {
@@ -88,7 +88,7 @@ namespace GestionReseau
 
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {
-            string requete = @"INSERT INTO utilisateur 
+            string requete = @"INSERT INTO Utilisateur 
                        (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin)
                        VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin)";
 
