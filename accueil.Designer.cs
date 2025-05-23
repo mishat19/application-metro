@@ -53,7 +53,7 @@
             // 
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnRecherche.Font = new Font("DynaPuff", 13.7999992F);
             btnRecherche.ForeColor = Color.White;
             btnRecherche.Location = new Point(29, 337);
             btnRecherche.Name = "btnRecherche";
@@ -67,7 +67,7 @@
             // 
             btnConsultation.BackColor = Color.FromArgb(205, 33, 42);
             btnConsultation.FlatStyle = FlatStyle.Flat;
-            btnConsultation.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnConsultation.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConsultation.ForeColor = Color.White;
             btnConsultation.Location = new Point(29, 220);
             btnConsultation.Name = "btnConsultation";
@@ -79,19 +79,23 @@
             // 
             // btnRetour
             // 
+            btnRetour.BackColor = Color.FromArgb(255, 230, 188);
+            btnRetour.FlatStyle = FlatStyle.Flat;
+            btnRetour.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = Color.FromArgb(205, 33, 42);
             btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 55);
+            btnRetour.Size = new Size(151, 55);
             btnRetour.TabIndex = 6;
             btnRetour.Text = "Se déconnecter/\r\nSe connecter";
-            btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.UseVisualStyleBackColor = false;
             btnRetour.Click += btnRetour_Click;
             // 
             // btnAdmin
             // 
             btnAdmin.BackColor = Color.FromArgb(205, 33, 42);
             btnAdmin.FlatStyle = FlatStyle.Flat;
-            btnAdmin.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnAdmin.Font = new Font("DynaPuff", 13.7999992F);
             btnAdmin.ForeColor = Color.White;
             btnAdmin.Location = new Point(29, 457);
             btnAdmin.Name = "btnAdmin";
