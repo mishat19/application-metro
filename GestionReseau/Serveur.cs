@@ -329,7 +329,7 @@ namespace GestionReseau
 
             MySqlCommand cmd1 = new MySqlCommand(requeteIdStation, connexion);
             cmd1.Parameters.AddWithValue("@nomLigne", nomLigne);
-            cmd1.Parameters.AddWithValue("@NomStation", nomStation);
+            cmd1.Parameters.AddWithValue("@nomStation", nomStation);
 
             object resultat = cmd1.ExecuteScalar();
             int idStation = Convert.ToInt32(resultat);
@@ -344,6 +344,28 @@ namespace GestionReseau
             MySqlCommand cmd3 = new MySqlCommand(requeteSupprimerStation, connexion);
             cmd3.Parameters.AddWithValue("@idStation", idStation);
             cmd3.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Supprime les données d'une ligne présente dans les tables InfoLigne et Ligne
+        /// </summary>
+        /// <param name="nomLigne"></param>
+        public static void SupprimeUneLigne(string nomLigne)
+        {
+            string requeteLigne = @"DELETE FROM Ligne
+                                    WHERE numLigne = (SELECT numLigne
+                                                      FROM InfoLigne
+                                                      WHERE Nom = @nomLigne)";
+
+            MySqlCommand cmdLigne = new MySqlCommand(requeteLigne, connexion);
+            cmdLigne.Parameters.AddWithValue("nomLigne", nomLigne);
+            cmdLigne.ExecuteNonQuery();
+
+            string requeteInfoLigne = @"DELETE FROM InfoLigne WHERE Nom = @nomLigne";
+            
+            MySqlCommand cmdInfoLigne = new MySqlCommand(requeteInfoLigne, connexion);
+            cmdInfoLigne.Parameters.AddWithValue("nomLigne", nomLigne);
+            cmdInfoLigne.ExecuteNonQuery();
         }
 
         public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)

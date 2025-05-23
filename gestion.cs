@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GestionReseau;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace application_metro
 {
@@ -53,6 +54,11 @@ namespace application_metro
 
         private void btnSupp_Click(object sender, EventArgs e)
         {
+            if (cmbLigne.SelectedItem == null && cmbStation.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une ligne.");
+            }
+
             DialogResult result = MessageBox.Show(
                 "Voulez-vous vraiment supprimer ces données ?\nCette action est irréversible.",
                 "Confirmation de suppression",
@@ -60,14 +66,37 @@ namespace application_metro
                 MessageBoxIcon.Warning
             );
 
-            if (!string.IsNullOrWhiteSpace(nomLigne))
+            if (cmbStation.SelectedItem != null && cmbLigne.SelectedItem != null)
             {
-                Serveur.SupprimerDonnees(nomLigne,
-                    string.IsNullOrWhiteSpace(nomStation) ? null : nomStation);
+                string station = cmbStation.ToString();
+                string ligne = cmbLigne.ToString();
+
+                Serveur.SupprimerUneStation(ligne, station);
+
+                MessageBox.Show("La station a été supprimée avec succès.");
             }
-            else
+
+            if (cmbStation.SelectedItem == null && cmbLigne.SelectedItem != null)
             {
-                MessageBox.Show("Une ligne doit au moins être sélectionnée.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string ligne = cmbLigne.ToString();
+
+                List<string> listeStation = Serveur.StationsParLigne(ligne);
+
+                try
+                {
+                    foreach (string station in listeStation)
+                    {
+                        Serveur.SupprimerUneStation(ligne, station);
+                    }
+
+                    Serveur.SupprimeUneLigne(ligne);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la suppression de la ligne : " + ex.Message);
+                }
+
+                MessageBox.Show("Les lignes de la station ont été supprimé avec succès.");
             }
         }
 
