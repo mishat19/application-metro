@@ -38,9 +38,9 @@
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
             lblErreur = new Label();
-            pictureBox1 = new PictureBox();
+            picConnexion = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
             SuspendLayout();
             // 
             // btnRetour
@@ -147,15 +147,15 @@
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.Visible = false;
             // 
-            // pictureBox1
+            // picConnexion
             // 
-            pictureBox1.Image = Properties.Resources.imgFondMilan2;
-            pictureBox1.Location = new Point(-359, 340);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(938, 446);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 11;
-            pictureBox1.TabStop = false;
+            picConnexion.Image = Properties.Resources.imgFondMilan2;
+            picConnexion.Location = new Point(-359, 340);
+            picConnexion.Name = "picConnexion";
+            picConnexion.Size = new Size(938, 446);
+            picConnexion.SizeMode = PictureBoxSizeMode.Zoom;
+            picConnexion.TabIndex = 11;
+            picConnexion.TabStop = false;
             // 
             // Connexion
             // 
@@ -172,14 +172,14 @@
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(btnRetour);
-            Controls.Add(pictureBox1);
+            Controls.Add(picConnexion);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Connexion";
             Text = "Page de connexion";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picConnexion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -195,6 +195,6 @@
         private LinkLabel lnkInscription;
         private Label lblInscription;
         private Label lblErreur;
-        private PictureBox pictureBox1;
+        private PictureBox picConnexion;
     }
 }

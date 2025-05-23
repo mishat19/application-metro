@@ -66,12 +66,15 @@
             // 
             // btnInscription
             // 
+            btnInscription.BackColor = Color.FromArgb(205, 33, 42);
+            btnInscription.Font = new Font("Segoe Print", 12F, FontStyle.Bold);
+            btnInscription.ForeColor = Color.White;
             btnInscription.Location = new Point(236, 590);
             btnInscription.Name = "btnInscription";
             btnInscription.Size = new Size(134, 40);
             btnInscription.TabIndex = 15;
             btnInscription.Text = "S'inscrire";
-            btnInscription.UseVisualStyleBackColor = true;
+            btnInscription.UseVisualStyleBackColor = false;
             btnInscription.Click += btnInscription_Click;
             // 
             // picOeil
@@ -106,10 +109,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(62, 94);
+            lblTitre.Font = new Font("Impact", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
+            lblTitre.Location = new Point(72, 94);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(258, 67);
+            lblTitre.Size = new Size(238, 59);
             lblTitre.TabIndex = 11;
             lblTitre.Text = "Inscription";
             // 
@@ -161,6 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
             Controls.Add(dtpNaissance);
             Controls.Add(lblNaissance);

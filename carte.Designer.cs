@@ -59,24 +59,32 @@
             // 
             // btnRecherche
             // 
+            btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
-            btnRecherche.Location = new Point(214, 99);
+            btnRecherche.FlatStyle = FlatStyle.Flat;
+            btnRecherche.Font = new Font("Segoe Print", 12F, FontStyle.Bold);
+            btnRecherche.ForeColor = Color.White;
+            btnRecherche.Location = new Point(214, 88);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(156, 28);
+            btnRecherche.Size = new Size(156, 44);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Rechercher";
-            btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
             // btnHoraires
             // 
+            btnHoraires.BackColor = Color.FromArgb(205, 33, 42);
             btnHoraires.Enabled = false;
-            btnHoraires.Location = new Point(12, 162);
+            btnHoraires.FlatStyle = FlatStyle.Flat;
+            btnHoraires.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHoraires.ForeColor = Color.White;
+            btnHoraires.Location = new Point(12, 151);
             btnHoraires.Name = "btnHoraires";
-            btnHoraires.Size = new Size(358, 41);
+            btnHoraires.Size = new Size(358, 52);
             btnHoraires.TabIndex = 23;
             btnHoraires.Text = "Voir les horaires";
-            btnHoraires.UseVisualStyleBackColor = true;
+            btnHoraires.UseVisualStyleBackColor = false;
             btnHoraires.Click += btnHoraires_Click;
             // 
             // picSupprimer
@@ -94,6 +102,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
             Controls.Add(picSupprimer);
             Controls.Add(btnHoraires);

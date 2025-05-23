@@ -33,6 +33,8 @@
             btnConsultation = new Button();
             btnRetour = new Button();
             btnAdmin = new Button();
+            picFond2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
             // 
             // lblTitre
@@ -98,6 +100,16 @@
             btnAdmin.UseVisualStyleBackColor = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
+            // picFond2
+            // 
+            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Location = new Point(-292, 265);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(872, 552);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 54;
+            picFond2.TabStop = false;
+            // 
             // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -109,8 +121,10 @@
             Controls.Add(lblTitre);
             Controls.Add(btnRecherche);
             Controls.Add(btnConsultation);
+            Controls.Add(picFond2);
             Name = "Accueil";
             Text = "Menu";
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -122,5 +136,6 @@
         private Button btnConsultation;
         public Button btnRetour;
         private Button btnAdmin;
+        private PictureBox picFond2;
     }
 }
