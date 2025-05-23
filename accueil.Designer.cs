@@ -40,13 +40,14 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 30F);
+            lblTitre.Font = new Font("Gliker", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(99, 98);
+            lblTitre.Location = new Point(81, 99);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(180, 63);
+            lblTitre.Size = new Size(231, 60);
             lblTitre.TabIndex = 5;
-            lblTitre.Text = "Accueil";
+            lblTitre.Text = "ACCUEIL";
+            lblTitre.Click += lblTitre_Click;
             // 
             // btnRecherche
             // 
