@@ -384,6 +384,12 @@ namespace GestionReseau
             cmdAjoutLigne.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Ajoute une station dans la base de données
+        /// </summary>
+        /// <param name="nomStation"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
         public static void AjoutStation(string nomStation, double latitude, double longitude) 
         {
             string requeteAjoutStation = @"INSERT INTO Station (NomStation, Latitude, Longitude)
@@ -396,6 +402,11 @@ namespace GestionReseau
             cmdAjoutStation.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Ajoute un un horaire depart pour une ligne dans la base de donnée
+        /// </summary>
+        /// <param name="nomStation"></param>
+        /// <param name="horaire"></param>
         public static void AjoutHoraireLigne(string nomStation, DateTime horaire)
         {
             string requeteAjoutHoraire = @"INSERT INTO Horaire (HoraireDepart, NumLigne)
