@@ -61,7 +61,8 @@
             cmbLigne.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(12, 197);
+            cmbLigne.Location = new Point(10, 148);
+            cmbLigne.Margin = new Padding(3, 2, 3, 2);
             cmbLigne.Name = "cmbLigne";
             cmbLigne.Size = new Size(197, 27);
             cmbLigne.TabIndex = 41;
@@ -74,7 +75,7 @@
             lblModif.ForeColor = Color.FromArgb(15, 93, 70);
             lblModif.Location = new Point(133, 107);
             lblModif.Name = "lblModif";
-            lblModif.Size = new Size(104, 26);
+            lblModif.Size = new Size(83, 21);
             lblModif.TabIndex = 40;
             lblModif.Text = "Modification";
             // 
@@ -91,9 +92,10 @@
             // 
             // btnRetour
             // 
-            btnRetour.Location = new Point(12, 12);
+            btnRetour.Location = new Point(10, 9);
+            btnRetour.Margin = new Padding(3, 2, 3, 2);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
+            btnRetour.Size = new Size(110, 29);
             btnRetour.TabIndex = 38;
             btnRetour.Text = "Retour";
             btnRetour.UseVisualStyleBackColor = true;
@@ -104,7 +106,7 @@
             lblIntitule.AutoSize = true;
             lblIntitule.Font = new Font("Gliker", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblIntitule.ForeColor = Color.FromArgb(15, 93, 70);
-            lblIntitule.Location = new Point(12, 164);
+            lblIntitule.Location = new Point(10, 123);
             lblIntitule.Name = "lblIntitule";
             lblIntitule.Size = new Size(161, 21);
             lblIntitule.TabIndex = 42;
@@ -180,7 +182,7 @@
             flpStations.AutoScroll = true;
             flpStations.Location = new Point(0, 483);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(355, 125);
+            flpStations.Size = new Size(311, 94);
             flpStations.TabIndex = 52;
             // 
             // flpCoordonnees
@@ -188,7 +190,7 @@
             flpCoordonnees.AutoScroll = true;
             flpCoordonnees.Location = new Point(3, 672);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(355, 125);
+            flpCoordonnees.Size = new Size(311, 94);
             flpCoordonnees.TabIndex = 53;
             // 
             // lblHoraires
@@ -196,7 +198,7 @@
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraires.Location = new Point(12, 832);
+            lblHoraires.Location = new Point(10, 624);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(207, 21);
             lblHoraires.TabIndex = 54;
@@ -207,7 +209,8 @@
             rbDirectionA.AutoSize = true;
             rbDirectionA.Font = new Font("DynaPuff", 9F);
             rbDirectionA.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionA.Location = new Point(139, 857);
+            rbDirectionA.Location = new Point(122, 643);
+            rbDirectionA.Margin = new Padding(3, 2, 3, 2);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(198, 23);
             rbDirectionA.TabIndex = 55;
@@ -220,7 +223,8 @@
             rbDirectionB.AutoSize = true;
             rbDirectionB.Font = new Font("DynaPuff", 9F);
             rbDirectionB.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionB.Location = new Point(139, 893);
+            rbDirectionB.Location = new Point(122, 670);
+            rbDirectionB.Margin = new Padding(3, 2, 3, 2);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(200, 23);
             rbDirectionB.TabIndex = 56;
@@ -231,9 +235,10 @@
             // flpHoraires
             // 
             flpHoraires.AutoScroll = true;
-            flpHoraires.Location = new Point(3, 932);
+            flpHoraires.Location = new Point(3, 699);
+            flpHoraires.Margin = new Padding(3, 2, 3, 2);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(355, 125);
+            flpHoraires.Size = new Size(311, 94);
             flpHoraires.TabIndex = 54;
             // 
             // btnEnregistrement
@@ -243,9 +248,10 @@
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("DynaPuff", 9F);
             btnEnregistrement.ForeColor = Color.White;
-            btnEnregistrement.Location = new Point(222, 1167);
+            btnEnregistrement.Location = new Point(194, 875);
+            btnEnregistrement.Margin = new Padding(3, 2, 3, 2);
             btnEnregistrement.Name = "btnEnregistrement";
-            btnEnregistrement.Size = new Size(126, 39);
+            btnEnregistrement.Size = new Size(110, 29);
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = false;
@@ -279,8 +285,9 @@
             pnlGestionModification.Controls.Add(lblNoms);
             pnlGestionModification.Controls.Add(nudNbStations);
             pnlGestionModification.Location = new Point(0, 0);
+            pnlGestionModification.Margin = new Padding(3, 2, 3, 2);
             pnlGestionModification.Name = "pnlGestionModification";
-            pnlGestionModification.Size = new Size(382, 753);
+            pnlGestionModification.Size = new Size(334, 565);
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
@@ -297,7 +304,8 @@
             // 
             txtNumero.Font = new Font("DynaPuff", 9F);
             txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNumero.Location = new Point(215, 238);
+            txtNumero.Location = new Point(188, 178);
+            txtNumero.Margin = new Padding(3, 2, 3, 2);
             txtNumero.Name = "txtNumero";
             txtNumero.PlaceholderText = "Numéro de ligne";
             txtNumero.Size = new Size(133, 25);
@@ -308,7 +316,8 @@
             // 
             txtNomLigne.Font = new Font("DynaPuff", 9F);
             txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNomLigne.Location = new Point(13, 238);
+            txtNomLigne.Location = new Point(11, 178);
+            txtNomLigne.Margin = new Padding(3, 2, 3, 2);
             txtNomLigne.Name = "txtNomLigne";
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
             txtNomLigne.Size = new Size(196, 25);
@@ -317,11 +326,12 @@
             // 
             // Gestion_modification
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(382, 753);
+            ClientSize = new Size(334, 565);
             Controls.Add(pnlGestionModification);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion_modification";
