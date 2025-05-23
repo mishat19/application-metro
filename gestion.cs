@@ -57,6 +57,7 @@ namespace application_metro
             if (cmbLigne.SelectedItem == null && cmbStation.SelectedItem == null)
             {
                 MessageBox.Show("Veuillez sélectionner une ligne.");
+                return;
             }
 
             DialogResult result = MessageBox.Show(
@@ -68,12 +69,14 @@ namespace application_metro
 
             if (cmbStation.SelectedItem != null && cmbLigne.SelectedItem != null)
             {
-                string station = cmbStation.ToString();
-                string ligne = cmbLigne.ToString();
+                string station = cmbStation.SelectedItem.ToString();
+                string ligne = cmbLigne.SelectedItem.ToString();
 
                 Serveur.SupprimerUneStation(ligne, station);
 
                 MessageBox.Show("La station a été supprimée avec succès.");
+
+                return;
             }
 
             if (cmbStation.SelectedItem == null && cmbLigne.SelectedItem != null)
@@ -96,7 +99,8 @@ namespace application_metro
                     MessageBox.Show("Erreur lors de la suppression de la ligne : " + ex.Message);
                 }
 
-                MessageBox.Show("Les lignes de la station ont été supprimé avec succès.");
+                MessageBox.Show("La ligne et ses stations ont été supprimées avec succès.");
+                return;
             }
         }
 
