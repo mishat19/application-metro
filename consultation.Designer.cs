@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consultation));
             btnRecherche = new Button();
             cmbLignes = new ComboBox();
             calDate = new MonthCalendar();
@@ -85,11 +86,14 @@
             // lstStations
             // 
             lstStations.BackColor = Color.FromArgb(255, 230, 188);
+            lstStations.Font = new Font("DynaPuff", 9F);
+            lstStations.ForeColor = Color.FromArgb(205, 33, 42);
             lstStations.FormattingEnabled = true;
+            lstStations.ItemHeight = 19;
             lstStations.Location = new Point(16, 267);
             lstStations.Margin = new Padding(3, 5, 3, 5);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(354, 204);
+            lstStations.Size = new Size(354, 194);
             lstStations.TabIndex = 31;
             lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
@@ -154,6 +158,7 @@
             Controls.Add(cmbLignes);
             Controls.Add(picFond2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Consultation";

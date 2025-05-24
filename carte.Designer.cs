@@ -28,15 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carte));
             cmbLignes = new ComboBox();
             btnRecherche = new Button();
             btnHoraires = new Button();
             picRetour = new PictureBox();
             picHome = new PictureBox();
             picCroix = new PictureBox();
+            picLogo5 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCroix).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo5).BeginInit();
             SuspendLayout();
             // 
             // cmbLignes
@@ -56,13 +59,13 @@
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("DynaPuff", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRecherche.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(214, 99);
+            btnRecherche.Location = new Point(242, 99);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(156, 28);
+            btnRecherche.Size = new Size(92, 28);
             btnRecherche.TabIndex = 22;
-            btnRecherche.Text = "Afficher sur la carte";
+            btnRecherche.Text = "Afficher";
             btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
@@ -114,12 +117,23 @@
             picCroix.TabStop = false;
             picCroix.Click += picCroix_Click;
             // 
+            // picLogo5
+            // 
+            picLogo5.Image = Properties.Resources.logo5;
+            picLogo5.Location = new Point(241, 21);
+            picLogo5.Name = "picLogo5";
+            picLogo5.Size = new Size(93, 81);
+            picLogo5.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo5.TabIndex = 58;
+            picLogo5.TabStop = false;
+            // 
             // Carte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picLogo5);
             Controls.Add(picCroix);
             Controls.Add(picHome);
             Controls.Add(picRetour);
@@ -127,6 +141,7 @@
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Carte";
@@ -136,6 +151,7 @@
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCroix).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo5).EndInit();
             ResumeLayout(false);
         }
 
@@ -147,5 +163,6 @@
         private PictureBox picRetour;
         private PictureBox picHome;
         private PictureBox picCroix;
+        private PictureBox picLogo5;
     }
 }

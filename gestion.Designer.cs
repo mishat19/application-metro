@@ -33,7 +33,7 @@
             picRetour = new PictureBox();
             picHome = new PictureBox();
             grpAjout = new GroupBox();
-            picPlus = new PictureBox();
+            pictureBox1 = new PictureBox();
             lblAjout = new Label();
             lblCreation = new Label();
             lblTitre = new Label();
@@ -45,12 +45,14 @@
             cmbHoraire = new ComboBox();
             lblSelection = new Label();
             picFond2 = new PictureBox();
+            pictureBox2 = new PictureBox();
             pnlGestion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             grpAjout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // pnlGestion
@@ -69,11 +71,13 @@
             pnlGestion.Controls.Add(cmbHoraire);
             pnlGestion.Controls.Add(lblSelection);
             pnlGestion.Controls.Add(picFond2);
+            pnlGestion.Controls.Add(pictureBox2);
             pnlGestion.Dock = DockStyle.Fill;
             pnlGestion.Location = new Point(0, 0);
             pnlGestion.Name = "pnlGestion";
             pnlGestion.Size = new Size(382, 753);
             pnlGestion.TabIndex = 41;
+            pnlGestion.Paint += pnlGestion_Paint;
             // 
             // picRetour
             // 
@@ -99,25 +103,25 @@
             // 
             // grpAjout
             // 
-            grpAjout.Controls.Add(picPlus);
+            grpAjout.Controls.Add(pictureBox1);
             grpAjout.Controls.Add(lblAjout);
+            grpAjout.FlatStyle = FlatStyle.Flat;
             grpAjout.Location = new Point(14, 205);
             grpAjout.Name = "grpAjout";
             grpAjout.Size = new Size(358, 85);
             grpAjout.TabIndex = 44;
             grpAjout.TabStop = false;
             // 
-            // picPlus
+            // pictureBox1
             // 
-            picPlus.Cursor = Cursors.Hand;
-            picPlus.Image = (Image)resources.GetObject("picPlus.Image");
-            picPlus.Location = new Point(299, 17);
-            picPlus.Name = "picPlus";
-            picPlus.Size = new Size(59, 62);
-            picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
-            picPlus.TabIndex = 33;
-            picPlus.TabStop = false;
-            picPlus.Click += picPlus_Click;
+            pictureBox1.Image = Properties.Resources.plus2;
+            pictureBox1.Location = new Point(270, 17);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(88, 62);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 63;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // lblAjout
             // 
@@ -135,7 +139,7 @@
             lblCreation.AutoSize = true;
             lblCreation.Font = new Font("Segoe Print", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblCreation.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCreation.Location = new Point(61, 130);
+            lblCreation.Location = new Point(61, 156);
             lblCreation.Name = "lblCreation";
             lblCreation.Size = new Size(267, 26);
             lblCreation.TabIndex = 43;
@@ -146,7 +150,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Gliker", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(1, 94);
+            lblTitre.Location = new Point(3, 120);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(380, 36);
             lblTitre.TabIndex = 42;
@@ -183,11 +187,11 @@
             // lblGestion
             // 
             lblGestion.AutoSize = true;
-            lblGestion.Font = new Font("Impact", 10.8F, FontStyle.Underline);
+            lblGestion.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
             lblGestion.ForeColor = Color.FromArgb(15, 93, 70);
-            lblGestion.Location = new Point(14, 526);
+            lblGestion.Location = new Point(20, 528);
             lblGestion.Name = "lblGestion";
-            lblGestion.Size = new Size(72, 22);
+            lblGestion.Size = new Size(87, 21);
             lblGestion.TabIndex = 49;
             lblGestion.Text = "Gestion :";
             // 
@@ -232,11 +236,11 @@
             // lblSelection
             // 
             lblSelection.AutoSize = true;
-            lblSelection.Font = new Font("Impact", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblSelection.Font = new Font("Gliker", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblSelection.ForeColor = Color.FromArgb(15, 93, 70);
-            lblSelection.Location = new Point(10, 337);
+            lblSelection.Location = new Point(20, 338);
             lblSelection.Name = "lblSelection";
-            lblSelection.Size = new Size(202, 22);
+            lblSelection.Size = new Size(244, 21);
             lblSelection.TabIndex = 45;
             lblSelection.Text = "Sélectionner vos données :";
             // 
@@ -249,6 +253,16 @@
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 52;
             picFond2.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = Properties.Resources.logo4;
+            pictureBox2.Location = new Point(71, 21);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(242, 96);
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.TabIndex = 64;
+            pictureBox2.TabStop = false;
             // 
             // Gestion
             // 
@@ -270,8 +284,9 @@
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -279,7 +294,6 @@
 
         private Panel pnlGestion;
         private GroupBox grpAjout;
-        private PictureBox picPlus;
         private Label lblAjout;
         private Label lblCreation;
         private Label lblTitre;
@@ -293,5 +307,7 @@
         private PictureBox picFond2;
         private PictureBox picHome;
         private PictureBox picRetour;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }

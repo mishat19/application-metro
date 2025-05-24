@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             lblTitre = new Label();
             btnRecherche = new Button();
             btnConsultation = new Button();
@@ -128,6 +129,7 @@
             Controls.Add(btnConsultation);
             Controls.Add(picFond2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Accueil";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Menu";

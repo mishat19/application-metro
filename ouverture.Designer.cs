@@ -35,13 +35,16 @@
             btnNoConnexion = new Button();
             btnConnexion = new Button();
             picFond2 = new PictureBox();
+            picLogo1 = new PictureBox();
             pnlOuverture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo1).BeginInit();
             SuspendLayout();
             // 
             // pnlOuverture
             // 
             pnlOuverture.BackColor = Color.FromArgb(255, 230, 188);
+            pnlOuverture.Controls.Add(picLogo1);
             pnlOuverture.Controls.Add(lblDeconnexion);
             pnlOuverture.Controls.Add(lblTitre);
             pnlOuverture.Controls.Add(btnNoConnexion);
@@ -115,6 +118,16 @@
             picFond2.TabIndex = 53;
             picFond2.TabStop = false;
             // 
+            // picLogo1
+            // 
+            picLogo1.Image = Properties.Resources.logo1;
+            picLogo1.Location = new Point(111, 30);
+            picLogo1.Name = "picLogo1";
+            picLogo1.Size = new Size(161, 117);
+            picLogo1.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo1.TabIndex = 54;
+            picLogo1.TabStop = false;
+            // 
             // Ouverture
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -131,6 +144,7 @@
             pnlOuverture.ResumeLayout(false);
             pnlOuverture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo1).EndInit();
             ResumeLayout(false);
         }
 
@@ -142,5 +156,6 @@
         private Button btnNoConnexion;
         private Button btnConnexion;
         private PictureBox picFond2;
+        private PictureBox picLogo1;
     }
 }
