@@ -222,5 +222,10 @@ namespace application_metro
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
         }
+
+        private void lblHoraires_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -204,20 +204,6 @@ namespace GestionReseau
             return toutes;
         }
 
-        public static void SupprimerDonnees(string nomLigne, string nomStation = null)
-        {
-            if (!string.IsNullOrWhiteSpace(nomStation))
-            {
-                Console.WriteLine($"Suppression des données pour la ligne '{nomLigne}', station '{nomStation}'.");
-                // Récupérer le numLigne dans InfoLigne, modifier les stations A et B dans Segment puis supprimer station dans Station
-            }
-            else
-            {
-                Console.WriteLine($"Suppression de toutes les données pour la ligne '{nomLigne}'.");
-                // Tout supprimer à la main chaque dépendance avant la Ligne ou bien UPDATE pour mettre un ON DELETE CASCADE ou changer le NumLigne de chaque Segment en "0" pour signifier "pas rattaché"
-            }
-        }
-
         public static List<string> ListeDesLignes()
         {
             List<string> lignes = new List<string>();
@@ -416,13 +402,6 @@ namespace GestionReseau
             cmdAjoutHoraire.Parameters.AddWithValue("@numLigne", nomStation);
             cmdAjoutHoraire.Parameters.AddWithValue("@horaireDepart", horaire);
             cmdAjoutHoraire.ExecuteNonQuery();
-        }
-
-        public static void Itineraire(string stationDep, string stationArr, TimeOnly horaireDep, TimeOnly horaireArr)
-        {
-            //A FAIRE QUAND ALGO DE GRAPHE
-            string requete = $"SELECT * FROM Station WHERE NomStation = '{stationDep}' JOIN Segment ON '{stationDep}'.NumStation = Segment.NumSegment" +
-                "";
         }
     }
 }
