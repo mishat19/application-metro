@@ -11,6 +11,10 @@ namespace application_metro
         public Ouverture()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             AllocConsole(); //Ouverture de la console pour les Console.WriteLine()
             Serveur.OuvertureConnexion();
         }

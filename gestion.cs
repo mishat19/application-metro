@@ -23,6 +23,10 @@ namespace application_metro
         public Gestion()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             lignes = Serveur.Lignes();
 
             foreach (Ligne ligne in lignes.lignes)
@@ -152,6 +156,20 @@ namespace application_metro
         private void cmbHoraire_SelectedIndexChanged(object sender, EventArgs e)
         {
             horaire = cmbHoraire.SelectedItem.ToString().Trim();
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
         }
     }
 }

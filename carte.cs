@@ -19,6 +19,9 @@ namespace application_metro
         {
             InitializeComponent();
 
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
             this.Controls.Add(webView);
@@ -108,9 +111,7 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
-            accueil.Show();
-            this.Close();
+
         }
         string ligne;
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,6 +133,25 @@ namespace application_metro
         }
 
         private void picSupprimer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picCroix_Click(object sender, EventArgs e)
         {
             cmbLignes.SelectedIndex = -1; //Permet de sélectionner aucune ligne
         }

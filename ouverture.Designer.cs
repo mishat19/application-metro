@@ -126,6 +126,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Ouverture";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Mon application métro";
             pnlOuverture.ResumeLayout(false);
             pnlOuverture.PerformLayout();

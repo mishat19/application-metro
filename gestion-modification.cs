@@ -17,6 +17,10 @@ namespace application_metro
         public Gestion_modification(string mode, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             if (mode == "Ajout")
             {
                 lblModif.Text = "Ajout d'une ligne";
@@ -231,9 +235,7 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Gestion gestion = new Gestion();
-            gestion.Show();
-            this.Close();
+
         }
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
@@ -337,6 +339,20 @@ namespace application_metro
                     }
                 }
             }
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Gestion gestion = new Gestion();
+            gestion.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
         }
     }
 }

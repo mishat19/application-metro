@@ -127,7 +127,9 @@
             Controls.Add(btnRecherche);
             Controls.Add(btnConsultation);
             Controls.Add(picFond2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Accueil";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Menu";
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);

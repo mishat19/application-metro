@@ -28,47 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carte));
             cmbLignes = new ComboBox();
-            btnRetour = new Button();
             btnRecherche = new Button();
             btnHoraires = new Button();
-            picSupprimer = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
+            picRetour = new PictureBox();
+            picHome = new PictureBox();
+            picCroix = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCroix).BeginInit();
             SuspendLayout();
             // 
             // cmbLignes
             // 
+            cmbLignes.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
             cmbLignes.Location = new Point(12, 99);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.Size = new Size(186, 27);
             cmbLignes.TabIndex = 21;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
-            // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 19;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
             // 
             // btnRecherche
             // 
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("Segoe Print", 12F, FontStyle.Bold);
+            btnRecherche.Font = new Font("DynaPuff", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(214, 88);
+            btnRecherche.Location = new Point(214, 99);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(156, 44);
+            btnRecherche.Size = new Size(156, 28);
             btnRecherche.TabIndex = 22;
-            btnRecherche.Text = "Rechercher";
+            btnRecherche.Text = "Afficher sur la carte";
             btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
@@ -77,7 +71,7 @@
             btnHoraires.BackColor = Color.FromArgb(205, 33, 42);
             btnHoraires.Enabled = false;
             btnHoraires.FlatStyle = FlatStyle.Flat;
-            btnHoraires.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHoraires.Font = new Font("DynaPuff", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHoraires.ForeColor = Color.White;
             btnHoraires.Location = new Point(12, 151);
             btnHoraires.Name = "btnHoraires";
@@ -87,16 +81,38 @@
             btnHoraires.UseVisualStyleBackColor = false;
             btnHoraires.Click += btnHoraires_Click;
             // 
-            // picSupprimer
+            // picRetour
             // 
-            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(151, 99);
-            picSupprimer.Name = "picSupprimer";
-            picSupprimer.Size = new Size(24, 28);
-            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
-            picSupprimer.TabIndex = 24;
-            picSupprimer.TabStop = false;
-            picSupprimer.Click += picSupprimer_Click;
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(12, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 25;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(60, 12);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 56;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
+            // 
+            // picCroix
+            // 
+            picCroix.Image = Properties.Resources.croix;
+            picCroix.Location = new Point(159, 99);
+            picCroix.Name = "picCroix";
+            picCroix.Size = new Size(16, 27);
+            picCroix.SizeMode = PictureBoxSizeMode.Zoom;
+            picCroix.TabIndex = 57;
+            picCroix.TabStop = false;
+            picCroix.Click += picCroix_Click;
             // 
             // Carte
             // 
@@ -104,27 +120,32 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
-            Controls.Add(picSupprimer);
+            Controls.Add(picCroix);
+            Controls.Add(picHome);
+            Controls.Add(picRetour);
             Controls.Add(btnHoraires);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
-            Controls.Add(btnRetour);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Carte";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Carte du réseau";
             Load += carte_Load;
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCroix).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private ComboBox cmbLignes;
-        private Button btnRetour;
         private Button btnRecherche;
         private Button btnHoraires;
-        private PictureBox picSupprimer;
+        private PictureBox picRetour;
+        private PictureBox picHome;
+        private PictureBox picCroix;
     }
 }

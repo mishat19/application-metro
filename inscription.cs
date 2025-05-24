@@ -16,6 +16,10 @@ namespace application_metro
         public Inscription()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
         }
 
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -39,15 +43,6 @@ namespace application_metro
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
             this.Close();
-        }
-
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
-            if (ouverture != null) {
-                ouverture.Show();
-                this.Close();
-            }
         }
 
         string cheminOff = @"..\..\..\visibility-off.png";
@@ -85,6 +80,16 @@ namespace application_metro
         private void txtMdp_TextChanged(object sender, EventArgs e)
         {
             string pswd = txtMdp.Text;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+            if (ouverture != null)
+            {
+                ouverture.Show();
+                this.Close();
+            }
         }
     }
 }

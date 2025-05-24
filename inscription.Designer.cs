@@ -36,12 +36,13 @@
             txtMdp = new TextBox();
             txtEmail = new TextBox();
             lblTitre = new Label();
-            btnRetour = new Button();
             txtNom = new TextBox();
             txtPrenom = new TextBox();
             lblNaissance = new Label();
             dtpNaissance = new DateTimePicker();
+            picRetour = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             SuspendLayout();
             // 
             // lblConnexion
@@ -123,16 +124,6 @@
             lblTitre.TabIndex = 11;
             lblTitre.Text = "INSCRIPTION";
             // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 10;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
-            // 
             // txtNom
             // 
             txtNom.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -175,12 +166,24 @@
             dtpNaissance.Size = new Size(122, 25);
             dtpNaissance.TabIndex = 21;
             // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(1, 0);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 22;
+            picRetour.TabStop = false;
+            picRetour.Click += pictureBox1_Click;
+            // 
             // Inscription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picRetour);
             Controls.Add(dtpNaissance);
             Controls.Add(lblNaissance);
             Controls.Add(txtPrenom);
@@ -192,13 +195,14 @@
             Controls.Add(txtMdp);
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
-            Controls.Add(btnRetour);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Inscription";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Page d'inscription";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -212,10 +216,10 @@
         private TextBox txtMdp;
         private TextBox txtEmail;
         private Label lblTitre;
-        private Button btnRetour;
         private TextBox txtNom;
         private TextBox txtPrenom;
         private Label lblNaissance;
         private DateTimePicker dtpNaissance;
+        private PictureBox picRetour;
     }
 }

@@ -18,18 +18,14 @@ namespace application_metro
         public Connexion()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
 
-            if (ouverture != null)
-            {
-                ouverture.lblDeconnexion.Visible = false;
-                ouverture.Show();
-                this.Close();
-            }
         }
 
         private void btnConnexion_Click(object sender, EventArgs e)
@@ -66,38 +62,44 @@ namespace application_metro
             string pswd = txtMdp.Text;
         }
 
-        string cheminOff = @"..\..\..\visibility-off.png";
-        string cheminOn = @"..\..\..\visibility-on.png";
 
-        private void picOeil_Click(object sender, EventArgs e)
+        private void picRetour_Click(object sender, EventArgs e)
         {
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
 
-            if(txtMdp.PasswordChar == '*')
+            if (ouverture != null)
             {
-                try
-                {
-                    Image image = Image.FromFile(cheminOn);
-                    picOeil.Image = image;
-                    txtMdp.PasswordChar = '\0';
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                try
-                {
-                    Image image = Image.FromFile(cheminOff);
-                    picOeil.Image = image;
-                    txtMdp.PasswordChar = '*';
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur :", ex.Message);
-                }
+                ouverture.lblDeconnexion.Visible = false;
+                ouverture.Show();
+                this.Close();
             }
         }
+
+        string cheminOff = @"..\..\..\oeiloff.png";
+        string cheminOn = @"..\..\..\oeilon.png";
+
+        private void picOeilOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtMdp.PasswordChar == '*')
+                {
+                    // Affiche le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOn);
+                    txtMdp.PasswordChar = '\0';
+                }
+                else
+                {
+                    // Masque le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOff);
+                    txtMdp.PasswordChar = '*';
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur : " + ex.Message);
+            }
+        }
+
     }
 }

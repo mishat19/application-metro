@@ -15,6 +15,10 @@ namespace application_metro
         public Recherche()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -28,6 +32,18 @@ namespace application_metro
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil();
             accueil.Show();

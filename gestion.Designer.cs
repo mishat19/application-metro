@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             pnlGestion = new Panel();
+            picRetour = new PictureBox();
+            picHome = new PictureBox();
             grpAjout = new GroupBox();
             picPlus = new PictureBox();
             lblAjout = new Label();
             lblCreation = new Label();
             lblTitre = new Label();
-            btnRetour = new Button();
             btnModif = new Button();
             btnSupp = new Button();
             lblGestion = new Label();
@@ -45,6 +46,8 @@
             lblSelection = new Label();
             picFond2 = new PictureBox();
             pnlGestion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             grpAjout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
@@ -53,10 +56,11 @@
             // pnlGestion
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestion.Controls.Add(picRetour);
+            pnlGestion.Controls.Add(picHome);
             pnlGestion.Controls.Add(grpAjout);
             pnlGestion.Controls.Add(lblCreation);
             pnlGestion.Controls.Add(lblTitre);
-            pnlGestion.Controls.Add(btnRetour);
             pnlGestion.Controls.Add(btnModif);
             pnlGestion.Controls.Add(btnSupp);
             pnlGestion.Controls.Add(lblGestion);
@@ -70,6 +74,28 @@
             pnlGestion.Name = "pnlGestion";
             pnlGestion.Size = new Size(382, 753);
             pnlGestion.TabIndex = 41;
+            // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(0, 3);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 62;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(47, 3);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 56;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
             // grpAjout
             // 
@@ -96,11 +122,11 @@
             // lblAjout
             // 
             lblAjout.AutoSize = true;
-            lblAjout.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAjout.Font = new Font("DynaPuff", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAjout.ForeColor = Color.FromArgb(205, 33, 42);
-            lblAjout.Location = new Point(20, 33);
+            lblAjout.Location = new Point(6, 35);
             lblAjout.Name = "lblAjout";
-            lblAjout.Size = new Size(273, 35);
+            lblAjout.Size = new Size(247, 23);
             lblAjout.TabIndex = 32;
             lblAjout.Text = "Ajouter une nouvelle ligne";
             // 
@@ -109,7 +135,7 @@
             lblCreation.AutoSize = true;
             lblCreation.Font = new Font("Segoe Print", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblCreation.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCreation.Location = new Point(58, 142);
+            lblCreation.Location = new Point(61, 130);
             lblCreation.Name = "lblCreation";
             lblCreation.Size = new Size(267, 26);
             lblCreation.TabIndex = 43;
@@ -118,35 +144,25 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Gliker", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(24, 93);
+            lblTitre.Location = new Point(1, 94);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(335, 37);
+            lblTitre.Size = new Size(380, 36);
             lblTitre.TabIndex = 42;
             lblTitre.Text = "Panneau de configuration";
-            // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(14, 27);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 41;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
             // 
             // btnModif
             // 
             btnModif.BackColor = Color.FromArgb(205, 33, 42);
             btnModif.FlatStyle = FlatStyle.Flat;
-            btnModif.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnModif.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnModif.ForeColor = Color.White;
             btnModif.Location = new Point(26, 567);
             btnModif.Name = "btnModif";
             btnModif.Size = new Size(162, 161);
             btnModif.TabIndex = 51;
-            btnModif.Text = "Modifier";
+            btnModif.Text = "MODIFIER";
             btnModif.UseVisualStyleBackColor = false;
             btnModif.Click += btnModif_Click;
             // 
@@ -154,13 +170,13 @@
             // 
             btnSupp.BackColor = Color.FromArgb(205, 33, 42);
             btnSupp.FlatStyle = FlatStyle.Flat;
-            btnSupp.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnSupp.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSupp.ForeColor = Color.White;
             btnSupp.Location = new Point(199, 567);
             btnSupp.Name = "btnSupp";
             btnSupp.Size = new Size(162, 161);
             btnSupp.TabIndex = 50;
-            btnSupp.Text = "Supprimer";
+            btnSupp.Text = "SUPPRIMER";
             btnSupp.UseVisualStyleBackColor = false;
             btnSupp.Click += btnSupp_Click;
             // 
@@ -177,12 +193,12 @@
             // 
             // cmbLigne
             // 
-            cmbLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbLigne.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(14, 385);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(358, 34);
+            cmbLigne.Size = new Size(358, 27);
             cmbLigne.TabIndex = 48;
             cmbLigne.Text = "Choisir une ligne";
             cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
@@ -190,12 +206,12 @@
             // cmbStation
             // 
             cmbStation.Enabled = false;
-            cmbStation.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbStation.Font = new Font("DynaPuff", 9F);
             cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
             cmbStation.FormattingEnabled = true;
             cmbStation.Location = new Point(14, 429);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(358, 34);
+            cmbStation.Size = new Size(358, 27);
             cmbStation.TabIndex = 47;
             cmbStation.Text = "Choisir une station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
@@ -203,12 +219,12 @@
             // cmbHoraire
             // 
             cmbHoraire.Enabled = false;
-            cmbHoraire.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbHoraire.Font = new Font("DynaPuff", 9F);
             cmbHoraire.ForeColor = Color.FromArgb(205, 33, 42);
             cmbHoraire.FormattingEnabled = true;
             cmbHoraire.Location = new Point(14, 472);
             cmbHoraire.Name = "cmbHoraire";
-            cmbHoraire.Size = new Size(358, 34);
+            cmbHoraire.Size = new Size(358, 27);
             cmbHoraire.TabIndex = 46;
             cmbHoraire.Text = "Choisir un horaire";
             cmbHoraire.SelectedIndexChanged += cmbHoraire_SelectedIndexChanged;
@@ -245,10 +261,13 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Panneau de configuration";
             Load += gestion_Load;
             pnlGestion.ResumeLayout(false);
             pnlGestion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
@@ -264,7 +283,6 @@
         private Label lblAjout;
         private Label lblCreation;
         private Label lblTitre;
-        private Button btnRetour;
         private Button btnModif;
         private Button btnSupp;
         private Label lblGestion;
@@ -273,5 +291,7 @@
         private ComboBox cmbHoraire;
         private Label lblSelection;
         private PictureBox picFond2;
+        private PictureBox picHome;
+        private PictureBox picRetour;
     }
 }
