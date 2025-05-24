@@ -13,6 +13,7 @@ namespace application_metro
 {
     public partial class Gestion_modification : Form
     {
+        int numeroLigne = 0;
         public Gestion_modification(string mode, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace application_metro
                     if (ligne1.nom == ligne)
                     {
                         nudNumLigne.Value = Convert.ToDecimal(ligne1.num);
+                        numeroLigne = Convert.ToInt32(ligne1.num);
                         txtCouleur.Text = ligne1.couleur;
 
                         int nb = 0;
@@ -242,6 +244,7 @@ namespace application_metro
         bool couleurChange = false;
         bool nudStations = false;
         Dictionary<string, string> stationsChange = new Dictionary<string, string>();
+        Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
 
         private void nudNumLigne_ValueChanged(object sender, EventArgs e)
         {
@@ -271,7 +274,18 @@ namespace application_metro
             {
                 string nom = txt.Name;
                 string contenu = txt.Text;
-                stationsChange[nom] = contenu;
+
+                if (decimal.TryParse(contenu, out decimal latitude))
+                {
+                    if (coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
+                    }
+                    else
+                    {
+                        coordonneesChange[nom] = (latitude, 0);
+                    }
+                }
             }
         }
 
@@ -282,8 +296,20 @@ namespace application_metro
             {
                 string nom = txt.Name;
                 string contenu = txt.Text;
-                stationsChange[nom] = contenu;
+
+                if (decimal.TryParse(contenu, out decimal longitude))
+                {
+                    if (coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
+                    }
+                    else
+                    {
+                        coordonneesChange[nom] = (0, longitude);
+                    }
+                }
             }
         }
+
     }
 }
