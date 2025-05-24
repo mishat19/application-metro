@@ -92,16 +92,6 @@
             lblTitre.TabIndex = 39;
             lblTitre.Text = "Panneau de configuration";
             // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(11, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 38;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
-            // 
             // lblIntitule
             // 
             lblIntitule.AutoSize = true;
