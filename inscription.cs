@@ -45,37 +45,6 @@ namespace application_metro
             this.Close();
         }
 
-        string cheminOff = @"..\..\..\visibility-off.png";
-        string cheminOn = @"..\..\..\visibility-on.png";
-        private void picOeil_Click(object sender, EventArgs e)
-        {
-            if (txtMdp.PasswordChar == '*')
-            {
-                try
-                {
-                    Image image = Image.FromFile(cheminOn);
-                    picOeil.Image = image;
-                    txtMdp.PasswordChar = '\0';
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                try
-                {
-                    Image image = Image.FromFile(cheminOff);
-                    picOeil.Image = image;
-                    txtMdp.PasswordChar = '*';
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur :", ex.Message);
-                }
-            }
-        }
 
         private void txtMdp_TextChanged(object sender, EventArgs e)
         {
@@ -91,5 +60,32 @@ namespace application_metro
                 this.Close();
             }
         }
+
+        string cheminOff = @"..\..\..\oeiloff.png";
+        string cheminOn = @"..\..\..\oeilon.png";
+
+        private void picOeilOff_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (txtMdp.PasswordChar == '*')
+                {
+                    // Affiche le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOn);
+                    txtMdp.PasswordChar = '\0';
+                }
+                else
+                {
+                    // Masque le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOff);
+                    txtMdp.PasswordChar = '*';
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur : " + ex.Message);
+            }
+        }
+
     }
 }

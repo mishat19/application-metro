@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             lblTitre = new Label();
-            txtEmail = new TextBox();
-            txtMdp = new TextBox();
+            txtEmail = new PlaceholderTextBox();
+            txtMdp = new PlaceholderTextBox();
             btnConnexion = new Button();
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
@@ -38,9 +39,11 @@
             picConnexion = new PictureBox();
             picRetour = new PictureBox();
             picOeilOff = new PictureBox();
+            grpConnexion = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
+            grpConnexion.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitre
@@ -58,23 +61,27 @@
             // 
             txtEmail.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
-            txtEmail.Location = new Point(12, 229);
+            txtEmail.Location = new Point(20, 26);
             txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(358, 25);
+            txtEmail.Size = new Size(318, 25);
             txtEmail.TabIndex = 4;
+            txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
             txtMdp.Font = new Font("DynaPuff", 9F);
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
-            txtMdp.Location = new Point(12, 262);
+            txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
+            txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(358, 25);
+            txtMdp.Size = new Size(318, 25);
             txtMdp.TabIndex = 5;
+            txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // btnConnexion
@@ -96,7 +103,7 @@
             lnkInscription.AutoSize = true;
             lnkInscription.Font = new Font("Gliker", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
-            lnkInscription.Location = new Point(303, 360);
+            lnkInscription.Location = new Point(296, 378);
             lnkInscription.Name = "lnkInscription";
             lnkInscription.Size = new Size(74, 18);
             lnkInscription.TabIndex = 8;
@@ -109,18 +116,19 @@
             lblInscription.AutoSize = true;
             lblInscription.Font = new Font("DynaPuff", 9F);
             lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
-            lblInscription.Location = new Point(12, 357);
+            lblInscription.Location = new Point(12, 378);
             lblInscription.Name = "lblInscription";
             lblInscription.Size = new Size(272, 19);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
+            lblInscription.Click += lblInscription_Click;
             // 
             // lblErreur
             // 
             lblErreur.AutoSize = true;
             lblErreur.Font = new Font("DynaPuff", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblErreur.Location = new Point(12, 292);
+            lblErreur.Location = new Point(20, 95);
             lblErreur.Name = "lblErreur";
             lblErreur.Size = new Size(204, 19);
             lblErreur.TabIndex = 10;
@@ -151,7 +159,7 @@
             // picOeilOff
             // 
             picOeilOff.Image = Properties.Resources.oeiloff;
-            picOeilOff.Location = new Point(333, 262);
+            picOeilOff.Location = new Point(301, 57);
             picOeilOff.Name = "picOeilOff";
             picOeilOff.Size = new Size(37, 25);
             picOeilOff.SizeMode = PictureBoxSizeMode.Zoom;
@@ -159,39 +167,54 @@
             picOeilOff.TabStop = false;
             picOeilOff.Click += picOeilOff_Click;
             // 
+            // grpConnexion
+            // 
+            grpConnexion.Controls.Add(txtEmail);
+            grpConnexion.Controls.Add(picOeilOff);
+            grpConnexion.Controls.Add(lblErreur);
+            grpConnexion.Controls.Add(txtMdp);
+            grpConnexion.Location = new Point(12, 191);
+            grpConnexion.Name = "grpConnexion";
+            grpConnexion.Size = new Size(358, 128);
+            grpConnexion.TabIndex = 28;
+            grpConnexion.TabStop = false;
+            grpConnexion.Paint += groupBox1_Paint;
+            // 
             // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
-            Controls.Add(picOeilOff);
+            Controls.Add(grpConnexion);
             Controls.Add(picRetour);
-            Controls.Add(lblErreur);
             Controls.Add(lblInscription);
             Controls.Add(lnkInscription);
             Controls.Add(btnConnexion);
-            Controls.Add(txtMdp);
-            Controls.Add(txtEmail);
             Controls.Add(lblTitre);
             Controls.Add(picConnexion);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Connexion";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Page de connexion";
+            Load += Connexion_Load;
+            Paint += Connexion_Paint;
             ((System.ComponentModel.ISupportInitialize)picConnexion).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();
+            grpConnexion.ResumeLayout(false);
+            grpConnexion.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Label lblTitre;
-        private TextBox txtEmail;
-        private TextBox txtMdp;
+        private PlaceholderTextBox txtEmail;
+        private PlaceholderTextBox txtMdp;
         private Button btnConnexion;
         private LinkLabel lnkInscription;
         private Label lblInscription;
@@ -199,5 +222,6 @@
         private PictureBox picConnexion;
         private PictureBox picRetour;
         private PictureBox picOeilOff;
+        private GroupBox grpConnexion;
     }
 }

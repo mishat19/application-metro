@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_modification));
             cmbLigne = new ComboBox();
             lblModif = new Label();
             lblTitre = new Label();
@@ -51,11 +52,13 @@
             nudNumLigne = new NumericUpDown();
             txtNumero = new TextBox();
             txtNomLigne = new TextBox();
+            picFond2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
@@ -276,6 +279,7 @@
             pnlGestionModification.Controls.Add(lblCoordonnees);
             pnlGestionModification.Controls.Add(lblNoms);
             pnlGestionModification.Controls.Add(nudNbStations);
+            pnlGestionModification.Controls.Add(picFond2);
             pnlGestionModification.Location = new Point(0, 0);
             pnlGestionModification.Name = "pnlGestionModification";
             pnlGestionModification.Size = new Size(382, 753);
@@ -337,6 +341,16 @@
             txtNomLigne.TabIndex = 58;
             txtNomLigne.Visible = false;
             // 
+            // picFond2
+            // 
+            picFond2.Image = Properties.Resources.logo4;
+            picFond2.Location = new Point(67, 3);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(242, 96);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 63;
+            picFond2.TabStop = false;
+            // 
             // Gestion_modification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -344,6 +358,7 @@
             ClientSize = new Size(382, 753);
             Controls.Add(pnlGestionModification);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion_modification";
@@ -356,6 +371,7 @@
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
         }
 
@@ -384,5 +400,6 @@
         private NumericUpDown nudNumLigne;
         private PictureBox picRetour;
         private PictureBox picHome;
+        private PictureBox picFond2;
     }
 }

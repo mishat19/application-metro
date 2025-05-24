@@ -77,7 +77,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(12, 2083);
+            grpTrajet.Location = new Point(12, 2357);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(339, 282);
             grpTrajet.TabIndex = 16;
@@ -216,6 +216,7 @@
             // 
             // dtpArrivee
             // 
+            dtpArrivee.CalendarFont = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpArrivee.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpArrivee.CustomFormat = "\"dd/MM/yyyy HH:mm\"";
             dtpArrivee.Location = new Point(155, 552);
@@ -225,6 +226,7 @@
             // 
             // dtpDepart
             // 
+            dtpDepart.CalendarFont = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpDepart.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpDepart.CustomFormat = "\"dd/MM HH:mm\"";
             dtpDepart.Location = new Point(155, 518);
@@ -385,6 +387,7 @@
             ClientSize = new Size(382, 753);
             Controls.Add(pnlRecherche);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Recherche";

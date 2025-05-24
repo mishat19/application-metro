@@ -32,7 +32,6 @@
             lblConnexion = new Label();
             lnkConnexion = new LinkLabel();
             btnInscription = new Button();
-            picOeil = new PictureBox();
             txtMdp = new TextBox();
             txtEmail = new TextBox();
             lblTitre = new Label();
@@ -41,8 +40,11 @@
             lblNaissance = new Label();
             dtpNaissance = new DateTimePicker();
             picRetour = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
+            picOeilOff = new PictureBox();
+            picFond2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
             // 
             // lblConnexion
@@ -81,17 +83,6 @@
             btnInscription.Text = "S'inscrire";
             btnInscription.UseVisualStyleBackColor = false;
             btnInscription.Click += btnInscription_Click;
-            // 
-            // picOeil
-            // 
-            picOeil.Image = (Image)resources.GetObject("picOeil.Image");
-            picOeil.Location = new Point(339, 402);
-            picOeil.Name = "picOeil";
-            picOeil.Size = new Size(31, 27);
-            picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
-            picOeil.TabIndex = 14;
-            picOeil.TabStop = false;
-            picOeil.Click += picOeil_Click;
             // 
             // txtMdp
             // 
@@ -177,12 +168,34 @@
             picRetour.TabStop = false;
             picRetour.Click += pictureBox1_Click;
             // 
+            // picOeilOff
+            // 
+            picOeilOff.Image = Properties.Resources.oeiloff;
+            picOeilOff.Location = new Point(333, 400);
+            picOeilOff.Name = "picOeilOff";
+            picOeilOff.Size = new Size(37, 25);
+            picOeilOff.SizeMode = PictureBoxSizeMode.Zoom;
+            picOeilOff.TabIndex = 28;
+            picOeilOff.TabStop = false;
+            picOeilOff.Click += picOeilOff_Click;
+            // 
+            // picFond2
+            // 
+            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Location = new Point(-43, 281);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(872, 552);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 54;
+            picFond2.TabStop = false;
+            // 
             // Inscription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picOeilOff);
             Controls.Add(picRetour);
             Controls.Add(dtpNaissance);
             Controls.Add(lblNaissance);
@@ -191,18 +204,20 @@
             Controls.Add(lblConnexion);
             Controls.Add(lnkConnexion);
             Controls.Add(btnInscription);
-            Controls.Add(picOeil);
             Controls.Add(txtMdp);
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
+            Controls.Add(picFond2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Inscription";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Page d'inscription";
-            ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -212,7 +227,6 @@
         private Label lblConnexion;
         private LinkLabel lnkConnexion;
         private Button btnInscription;
-        private PictureBox picOeil;
         private TextBox txtMdp;
         private TextBox txtEmail;
         private Label lblTitre;
@@ -221,5 +235,7 @@
         private Label lblNaissance;
         private DateTimePicker dtpNaissance;
         private PictureBox picRetour;
+        private PictureBox picOeilOff;
+        private PictureBox picFond2;
     }
 }

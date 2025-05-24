@@ -110,10 +110,7 @@ namespace application_metro
 
         private void picPlus_Click(object sender, EventArgs e)
         {
-            mode = "Ajout";
-            Gestion_modification gestion_Modification = new Gestion_modification(mode);
-            gestion_Modification.Show();
-            this.Close();
+
         }
 
         private void cmbLigne_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,6 +167,19 @@ namespace application_metro
             Accueil accueil = new Accueil();
             accueil.Show();
             this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            mode = "Ajout";
+            Gestion_modification gestion_Modification = new Gestion_modification(mode);
+            gestion_Modification.Show();
+            this.Close();
+        }
+
+        private void pnlGestion_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
