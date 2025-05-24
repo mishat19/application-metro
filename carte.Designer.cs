@@ -130,6 +130,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Carte";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Carte du réseau";
             Load += carte_Load;
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();

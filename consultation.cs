@@ -9,6 +9,10 @@ namespace application_metro
         public Consultation(string ligne)
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             _ligne = ligne;
             cmbLignes.Text = _ligne;
         }

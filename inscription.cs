@@ -16,6 +16,10 @@ namespace application_metro
         public Inscription()
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
         }
 
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

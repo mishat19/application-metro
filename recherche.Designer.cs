@@ -54,14 +54,14 @@
             label1 = new Label();
             picMap = new PictureBox();
             pnlRecherche = new Panel();
-            picRetour = new PictureBox();
             picHome = new PictureBox();
+            picRetour = new PictureBox();
             grpTrajet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picMap).BeginInit();
             pnlRecherche.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             SuspendLayout();
             // 
             // grpTrajet
@@ -77,7 +77,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(12, 1535);
+            grpTrajet.Location = new Point(12, 2083);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(339, 282);
             grpTrajet.TabIndex = 16;
@@ -356,17 +356,6 @@
             pnlRecherche.Size = new Size(382, 753);
             pnlRecherche.TabIndex = 20;
             // 
-            // picRetour
-            // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(12, 12);
-            picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
-            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
-            picRetour.TabIndex = 23;
-            picRetour.TabStop = false;
-            picRetour.Click += picRetour_Click;
-            // 
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
@@ -378,6 +367,17 @@
             picHome.TabStop = false;
             picHome.Click += picHome_Click;
             // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(12, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 23;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
             // Recherche
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -388,6 +388,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Recherche";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Rechercher un itinéraire";
             Load += consultation_Load;
             grpTrajet.ResumeLayout(false);
@@ -396,8 +397,8 @@
             ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             pnlRecherche.ResumeLayout(false);
             pnlRecherche.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ResumeLayout(false);
         }
 

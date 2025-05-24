@@ -16,6 +16,10 @@ namespace application_metro
         public Gestion_modification(string mode, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(100, 100); // Position en pixels à l’écran
+
             if (mode == "Ajout")
             {
                 lblModif.Text = "Ajout d'une ligne";

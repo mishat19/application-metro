@@ -199,6 +199,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Inscription";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Page d'inscription";
             ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();

@@ -179,6 +179,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Connexion";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Page de connexion";
             ((System.ComponentModel.ISupportInitialize)picConnexion).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();

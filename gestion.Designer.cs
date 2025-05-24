@@ -261,6 +261,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Gestion";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Panneau de configuration";
             Load += gestion_Load;
             pnlGestion.ResumeLayout(false);

@@ -157,6 +157,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Consultation";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Horaires de la station";
             Load += consultation_Load;
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
