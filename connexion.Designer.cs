@@ -49,37 +49,36 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Gliker", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
             lblTitre.Location = new Point(61, 105);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(260, 56);
+            lblTitre.Size = new Size(247, 54);
             lblTitre.TabIndex = 3;
             lblTitre.Text = "Connexion";
             // 
             // txtEmail
             // 
-            txtEmail.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(20, 26);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(318, 25);
+            txtEmail.Size = new Size(318, 24);
             txtEmail.TabIndex = 4;
             txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
-            txtMdp.Font = new Font("DynaPuff", 9F);
+            txtMdp.Font = new Font("Microsoft Sans Serif", 9F);
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
-            txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(318, 25);
+            txtMdp.Size = new Size(318, 24);
             txtMdp.TabIndex = 5;
             txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
@@ -88,7 +87,7 @@
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnConnexion.FlatStyle = FlatStyle.Flat;
-            btnConnexion.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConnexion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(236, 490);
             btnConnexion.Name = "btnConnexion";
@@ -101,11 +100,11 @@
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Font = new Font("Gliker", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkInscription.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
             lnkInscription.Location = new Point(296, 378);
             lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(74, 18);
+            lnkInscription.Size = new Size(69, 18);
             lnkInscription.TabIndex = 8;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
@@ -114,11 +113,11 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Font = new Font("DynaPuff", 9F);
+            lblInscription.Font = new Font("Microsoft Sans Serif", 9F);
             lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
             lblInscription.Location = new Point(12, 378);
             lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(272, 19);
+            lblInscription.Size = new Size(252, 18);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             lblInscription.Click += lblInscription_Click;
@@ -126,11 +125,11 @@
             // lblErreur
             // 
             lblErreur.AutoSize = true;
-            lblErreur.Font = new Font("DynaPuff", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblErreur.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
             lblErreur.Location = new Point(20, 95);
             lblErreur.Name = "lblErreur";
-            lblErreur.Size = new Size(204, 19);
+            lblErreur.Size = new Size(170, 18);
             lblErreur.TabIndex = 10;
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.Visible = false;
