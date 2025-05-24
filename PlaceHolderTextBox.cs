@@ -1,16 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-
-public class PlaceholderTextBox : TextBox
+﻿public class PlaceholderTextBox : TextBox
 {
     private string placeholderText = "Entrer du texte...";
-    private Color placeholderColor = Color.Gray;
+    private Color placeholderColor = Color.FromArgb(205, 33, 42);
     private Color defaultForeColor;
     private bool isPlaceholderActive = false;
+    private char defaultPasswordChar;
 
-    [Category("Placeholder")]
     public string PlaceholderText
     {
         get => placeholderText;
@@ -21,7 +16,6 @@ public class PlaceholderTextBox : TextBox
         }
     }
 
-    [Category("Placeholder")]
     public Color PlaceholderColor
     {
         get => placeholderColor;
@@ -33,9 +27,20 @@ public class PlaceholderTextBox : TextBox
         }
     }
 
+    public override Color ForeColor
+    {
+        get => base.ForeColor;
+        set
+        {
+            base.ForeColor = value;
+            defaultForeColor = value;
+        }
+    }
+
     public PlaceholderTextBox()
     {
         defaultForeColor = this.ForeColor;
+        defaultPasswordChar = this.PasswordChar;
         GotFocus += RemovePlaceholder;
         LostFocus += SetPlaceholder;
         TextChanged += HandleTextChanged;
@@ -48,6 +53,7 @@ public class PlaceholderTextBox : TextBox
             isPlaceholderActive = true;
             Text = placeholderText;
             ForeColor = placeholderColor;
+            PasswordChar = '\0'; // désactive le masquage pour afficher le placeholder
         }
     }
 
@@ -58,6 +64,7 @@ public class PlaceholderTextBox : TextBox
             isPlaceholderActive = false;
             Text = "";
             ForeColor = defaultForeColor;
+            PasswordChar = defaultPasswordChar; // réactive le masquage
         }
     }
 

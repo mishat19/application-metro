@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             lblTitre = new Label();
-            txtEmail = new TextBox();
-            txtMdp = new TextBox();
+            txtEmail = new PlaceholderTextBox();
+            txtMdp = new PlaceholderTextBox();
             btnConnexion = new Button();
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
@@ -63,9 +63,11 @@
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(20, 26);
             txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(318, 25);
             txtEmail.TabIndex = 4;
+            txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
@@ -75,9 +77,11 @@
             txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
+            txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(318, 25);
             txtMdp.TabIndex = 5;
+            txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // btnConnexion
@@ -117,6 +121,7 @@
             lblInscription.Size = new Size(272, 19);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
+            lblInscription.Click += lblInscription_Click;
             // 
             // lblErreur
             // 
@@ -208,8 +213,8 @@
 
         #endregion
         private Label lblTitre;
-        private TextBox txtEmail;
-        private TextBox txtMdp;
+        private PlaceholderTextBox txtEmail;
+        private PlaceholderTextBox txtMdp;
         private Button btnConnexion;
         private LinkLabel lnkInscription;
         private Label lblInscription;

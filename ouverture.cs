@@ -67,5 +67,12 @@ namespace application_metro
             acueilWindow.Show(this);
             this.Hide();
         }
+
+        private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Inscription inscription = new Inscription();
+            inscription.Show();
+            this.Close();
+        }
     }
 }

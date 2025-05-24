@@ -59,7 +59,11 @@ namespace application_metro
 
         private void txtMdp_TextChanged(object sender, EventArgs e)
         {
-            string pswd = txtMdp.Text;
+            // Remet le caractère de mot de passe si le placeholder n'est plus actif
+            if (!txtMdp.IsPlaceholderActive)
+            {
+                txtMdp.PasswordChar = '*';
+            }
         }
 
 
@@ -150,11 +154,9 @@ namespace application_metro
             return path;
         }
 
-        protected override void OnLoad(EventArgs e)
+        private void lblInscription_Click(object sender, EventArgs e)
         {
-            base.OnLoad(e);
-            PlaceholderConfig.ApplyPlaceholderColor(this, Color.FromArgb(205, 33, 42));
-        }
 
+        }
     }
 }
