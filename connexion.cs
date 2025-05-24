@@ -150,5 +150,11 @@ namespace application_metro
             return path;
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            PlaceholderConfig.ApplyPlaceholderColor(this, Color.FromArgb(205, 33, 42));
+        }
+
     }
 }
