@@ -118,52 +118,61 @@ namespace application_metro
                 //TextBox stations
                 TextBox txt = new TextBox
                 {
-                    Name = $"txtStation{i}",
                     Width = 260,
                     Location = new Point(30, 5)
                 };
 
                 if (!string.IsNullOrEmpty(nom))
                 {
+                    Name = nom;
                     txt.Text = nom;
                 }
                 else
                 {
+                    Name = $"txtStation{i}";
                     txt.PlaceholderText = $"Nom de la station {i}";
                 }
+
+                txt.TextChanged += Txt_TextChanged;
 
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
                 {
-                    Name = $"txtCoordonneeLa{i}",
                     Width = 120,
                     Location = new Point(30, 5)
                 };
 
                 if (coordonnee != null)
                 {
+                    Name = nom;
                     txt2.Text = coordonnee[0].ToString();
                 }
                 else
                 {
+                    Name = $"txtCoordonneeLa{i}";
                     txt2.PlaceholderText = $"Latitude{i}";
                 }
 
+                txt2.TextChanged += Txt2_TextChanged;
+
                 TextBox txt3 = new TextBox
                 {
-                    Name = $"txtCoordonneeLo{i}",
                     Width = 120,
                     Location = new Point(160, 5)
                 };
 
                 if (coordonnee != null)
                 {
+                    Name = nom;
                     txt3.Text = coordonnee[1].ToString();
                 }
                 else
                 {
+                    Name = $"txtCoordonneeLa{i}";
                     txt3.PlaceholderText = $"Longitude{i}";
                 }
+
+                txt3.TextChanged += Txt3_TextChanged;
 
                 //CheckBox
                 CheckBox chk = new CheckBox
@@ -221,11 +230,60 @@ namespace application_metro
         {
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
+            nudStations = true;
         }
 
         private void lblHoraires_Click(object sender, EventArgs e)
         {
 
+        }
+
+        bool nudChange = false;
+        bool couleurChange = false;
+        bool nudStations = false;
+        Dictionary<string, string> stationsChange = new Dictionary<string, string>();
+
+        private void nudNumLigne_ValueChanged(object sender, EventArgs e)
+        {
+            nudChange = true;
+        }
+
+        private void txtCouleur_TextChanged(object sender, EventArgs e)
+        {
+            couleurChange = true;
+        }
+
+        private void Txt_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+                stationsChange[nom] = contenu;
+            }
+        }
+
+        private void Txt2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+                stationsChange[nom] = contenu;
+            }
+        }
+
+        private void Txt3_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+                stationsChange[nom] = contenu;
+            }
         }
     }
 }

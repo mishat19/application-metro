@@ -130,8 +130,9 @@
             txtCouleur.Margin = new Padding(3, 4, 3, 4);
             txtCouleur.Name = "txtCouleur";
             txtCouleur.PlaceholderText = "Couleur";
-            txtCouleur.Size = new Size(383, 24);
+            txtCouleur.Size = new Size(331, 24);
             txtCouleur.TabIndex = 46;
+            txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
             // lblNbStations
             // 
@@ -293,17 +294,18 @@
             // 
             nudNumLigne.Font = new Font("Microsoft Sans Serif", 9F);
             nudNumLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNumLigne.Location = new Point(196, 237);
+            nudNumLigne.Location = new Point(196, 198);
             nudNumLigne.Margin = new Padding(3, 4, 3, 4);
             nudNumLigne.Name = "nudNumLigne";
             nudNumLigne.Size = new Size(150, 24);
             nudNumLigne.TabIndex = 60;
+            nudNumLigne.ValueChanged += nudNumLigne_ValueChanged;
             // 
             // txtNumero
             // 
             txtNumero.Font = new Font("Microsoft Sans Serif", 9F);
             txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNumero.Location = new Point(195, 199);
+            txtNumero.Location = new Point(196, 237);
             txtNumero.Name = "txtNumero";
             txtNumero.PlaceholderText = "Numéro de ligne";
             txtNumero.Size = new Size(151, 24);
