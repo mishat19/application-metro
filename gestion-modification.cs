@@ -59,6 +59,29 @@ namespace application_metro
             }
         }
 
+        public string nomLigneDeconcatenation(string nom)
+        {
+            string nomLigne = "";
+            for (int i = 0; i < nom.Length; i++) {
+                if (!char.IsDigit(nom[i])) {  nomLigne += nom[i]; }
+            }
+            return nomLigne;
+        }
+
+        public int numLigneDeconcatenation(string nom)
+        {
+            for (int i = 0; i < nom.Length; i++)
+            {
+                if (char.IsDigit(nom[i]))
+                    return (int)char.GetNumericValue(nom[i]);
+            }
+            return -1;
+        }
+
+        //Expression lambda
+        public string ligneConcatenation(string nom, int numero) => nom + numero;
+
+
         public int nbStations(List<string> stations)
         {
             int nbStations = 0;
@@ -310,6 +333,5 @@ namespace application_metro
                 }
             }
         }
-
     }
 }
