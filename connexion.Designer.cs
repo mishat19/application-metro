@@ -56,32 +56,34 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Gliker", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(76, 105);
+            lblTitre.Location = new Point(61, 105);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(230, 59);
+            lblTitre.Size = new Size(260, 56);
             lblTitre.TabIndex = 3;
             lblTitre.Text = "Connexion";
             // 
             // txtEmail
             // 
+            txtEmail.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(12, 229);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(358, 27);
+            txtEmail.Size = new Size(358, 25);
             txtEmail.TabIndex = 4;
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
+            txtMdp.Font = new Font("DynaPuff", 9F);
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(12, 262);
             txtMdp.Name = "txtMdp";
             txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(358, 27);
+            txtMdp.Size = new Size(358, 25);
             txtMdp.TabIndex = 5;
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
@@ -101,7 +103,7 @@
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnConnexion.FlatStyle = FlatStyle.Flat;
-            btnConnexion.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            btnConnexion.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(236, 490);
             btnConnexion.Name = "btnConnexion";
@@ -114,11 +116,11 @@
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lnkInscription.LinkColor = Color.FromArgb(15, 93, 70);
+            lnkInscription.Font = new Font("Gliker", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
             lnkInscription.Location = new Point(303, 360);
             lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(68, 19);
+            lnkInscription.Size = new Size(74, 18);
             lnkInscription.TabIndex = 8;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
@@ -127,22 +129,22 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Font = new Font("Segoe Print", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblInscription.ForeColor = Color.FromArgb(205, 33, 42);
+            lblInscription.Font = new Font("DynaPuff", 9F);
+            lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
             lblInscription.Location = new Point(12, 357);
             lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(285, 26);
+            lblInscription.Size = new Size(272, 19);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             // 
             // lblErreur
             // 
             lblErreur.AutoSize = true;
-            lblErreur.Font = new Font("Impact", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblErreur.Font = new Font("DynaPuff", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
             lblErreur.Location = new Point(12, 292);
             lblErreur.Name = "lblErreur";
-            lblErreur.Size = new Size(193, 25);
+            lblErreur.Size = new Size(204, 19);
             lblErreur.TabIndex = 10;
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.Visible = false;

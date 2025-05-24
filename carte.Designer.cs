@@ -39,10 +39,12 @@
             // 
             // cmbLignes
             // 
+            cmbLignes.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
             cmbLignes.Location = new Point(12, 99);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
+            cmbLignes.Size = new Size(186, 27);
             cmbLignes.TabIndex = 21;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
@@ -62,13 +64,13 @@
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("Segoe Print", 12F, FontStyle.Bold);
+            btnRecherche.Font = new Font("DynaPuff", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(214, 88);
+            btnRecherche.Location = new Point(214, 99);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(156, 44);
+            btnRecherche.Size = new Size(156, 28);
             btnRecherche.TabIndex = 22;
-            btnRecherche.Text = "Rechercher";
+            btnRecherche.Text = "Afficher sur la carte";
             btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
@@ -77,7 +79,7 @@
             btnHoraires.BackColor = Color.FromArgb(205, 33, 42);
             btnHoraires.Enabled = false;
             btnHoraires.FlatStyle = FlatStyle.Flat;
-            btnHoraires.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHoraires.Font = new Font("DynaPuff", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHoraires.ForeColor = Color.White;
             btnHoraires.Location = new Point(12, 151);
             btnHoraires.Name = "btnHoraires";

@@ -41,15 +41,6 @@ namespace application_metro
             this.Close();
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
-            if (ouverture != null) {
-                ouverture.Show();
-                this.Close();
-            }
-        }
-
         string cheminOff = @"..\..\..\visibility-off.png";
         string cheminOn = @"..\..\..\visibility-on.png";
         private void picOeil_Click(object sender, EventArgs e)
@@ -85,6 +76,16 @@ namespace application_metro
         private void txtMdp_TextChanged(object sender, EventArgs e)
         {
             string pswd = txtMdp.Text;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Ouverture ouverture = Application.OpenForms[0] as Ouverture;
+            if (ouverture != null)
+            {
+                ouverture.Show();
+                this.Close();
+            }
         }
     }
 }

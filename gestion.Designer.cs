@@ -96,11 +96,11 @@
             // lblAjout
             // 
             lblAjout.AutoSize = true;
-            lblAjout.Font = new Font("Segoe Print", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAjout.Font = new Font("DynaPuff", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAjout.ForeColor = Color.FromArgb(205, 33, 42);
-            lblAjout.Location = new Point(20, 33);
+            lblAjout.Location = new Point(6, 35);
             lblAjout.Name = "lblAjout";
-            lblAjout.Size = new Size(273, 35);
+            lblAjout.Size = new Size(247, 23);
             lblAjout.TabIndex = 32;
             lblAjout.Text = "Ajouter une nouvelle ligne";
             // 
@@ -109,7 +109,7 @@
             lblCreation.AutoSize = true;
             lblCreation.Font = new Font("Segoe Print", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblCreation.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCreation.Location = new Point(58, 142);
+            lblCreation.Location = new Point(61, 130);
             lblCreation.Name = "lblCreation";
             lblCreation.Size = new Size(267, 26);
             lblCreation.TabIndex = 43;
@@ -118,11 +118,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Impact", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Gliker", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(24, 93);
+            lblTitre.Location = new Point(1, 94);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(335, 37);
+            lblTitre.Size = new Size(380, 36);
             lblTitre.TabIndex = 42;
             lblTitre.Text = "Panneau de configuration";
             // 
@@ -140,13 +140,13 @@
             // 
             btnModif.BackColor = Color.FromArgb(205, 33, 42);
             btnModif.FlatStyle = FlatStyle.Flat;
-            btnModif.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnModif.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnModif.ForeColor = Color.White;
             btnModif.Location = new Point(26, 567);
             btnModif.Name = "btnModif";
             btnModif.Size = new Size(162, 161);
             btnModif.TabIndex = 51;
-            btnModif.Text = "Modifier";
+            btnModif.Text = "MODIFIER";
             btnModif.UseVisualStyleBackColor = false;
             btnModif.Click += btnModif_Click;
             // 
@@ -154,13 +154,13 @@
             // 
             btnSupp.BackColor = Color.FromArgb(205, 33, 42);
             btnSupp.FlatStyle = FlatStyle.Flat;
-            btnSupp.Font = new Font("Segoe Print", 13.8F, FontStyle.Bold);
+            btnSupp.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSupp.ForeColor = Color.White;
             btnSupp.Location = new Point(199, 567);
             btnSupp.Name = "btnSupp";
             btnSupp.Size = new Size(162, 161);
             btnSupp.TabIndex = 50;
-            btnSupp.Text = "Supprimer";
+            btnSupp.Text = "SUPPRIMER";
             btnSupp.UseVisualStyleBackColor = false;
             btnSupp.Click += btnSupp_Click;
             // 
@@ -177,12 +177,12 @@
             // 
             // cmbLigne
             // 
-            cmbLigne.Font = new Font("Segoe Print", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cmbLigne.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(14, 385);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(358, 34);
+            cmbLigne.Size = new Size(358, 27);
             cmbLigne.TabIndex = 48;
             cmbLigne.Text = "Choisir une ligne";
             cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
@@ -190,12 +190,12 @@
             // cmbStation
             // 
             cmbStation.Enabled = false;
-            cmbStation.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbStation.Font = new Font("DynaPuff", 9F);
             cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
             cmbStation.FormattingEnabled = true;
             cmbStation.Location = new Point(14, 429);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(358, 34);
+            cmbStation.Size = new Size(358, 27);
             cmbStation.TabIndex = 47;
             cmbStation.Text = "Choisir une station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
@@ -203,12 +203,12 @@
             // cmbHoraire
             // 
             cmbHoraire.Enabled = false;
-            cmbHoraire.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
+            cmbHoraire.Font = new Font("DynaPuff", 9F);
             cmbHoraire.ForeColor = Color.FromArgb(205, 33, 42);
             cmbHoraire.FormattingEnabled = true;
             cmbHoraire.Location = new Point(14, 472);
             cmbHoraire.Name = "cmbHoraire";
-            cmbHoraire.Size = new Size(358, 34);
+            cmbHoraire.Size = new Size(358, 27);
             cmbHoraire.TabIndex = 46;
             cmbHoraire.Text = "Choisir un horaire";
             cmbHoraire.SelectedIndexChanged += cmbHoraire_SelectedIndexChanged;
