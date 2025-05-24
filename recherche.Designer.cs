@@ -53,12 +53,15 @@
             lblDepart = new Label();
             label1 = new Label();
             picMap = new PictureBox();
-            btnRetour = new Button();
             pnlRecherche = new Panel();
+            picRetour = new PictureBox();
+            picHome = new PictureBox();
             grpTrajet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picMap).BeginInit();
             pnlRecherche.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             SuspendLayout();
             // 
             // grpTrajet
@@ -74,7 +77,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(12, 713);
+            grpTrajet.Location = new Point(12, 1535);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(339, 282);
             grpTrajet.TabIndex = 16;
@@ -326,24 +329,15 @@
             picMap.TabIndex = 2;
             picMap.TabStop = false;
             // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 1;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
-            // 
             // pnlRecherche
             // 
             pnlRecherche.AutoScroll = true;
             pnlRecherche.AutoScrollMinSize = new Size(0, 1300);
             pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
+            pnlRecherche.Controls.Add(picHome);
+            pnlRecherche.Controls.Add(picRetour);
             pnlRecherche.Controls.Add(picMap);
             pnlRecherche.Controls.Add(cmbArrivee);
-            pnlRecherche.Controls.Add(btnRetour);
             pnlRecherche.Controls.Add(cmbDepart);
             pnlRecherche.Controls.Add(label1);
             pnlRecherche.Controls.Add(lblDepart);
@@ -361,6 +355,28 @@
             pnlRecherche.Name = "pnlRecherche";
             pnlRecherche.Size = new Size(382, 753);
             pnlRecherche.TabIndex = 20;
+            // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(12, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 23;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(62, 12);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 56;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
             // Recherche
             // 
@@ -380,6 +396,8 @@
             ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
             pnlRecherche.ResumeLayout(false);
             pnlRecherche.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ResumeLayout(false);
         }
 
@@ -410,7 +428,8 @@
         private Label lblDepart;
         private Label label1;
         private PictureBox picMap;
-        private Button btnRetour;
         private Panel pnlRecherche;
+        private PictureBox picRetour;
+        private PictureBox picHome;
     }
 }

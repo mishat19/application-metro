@@ -192,9 +192,7 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Gestion gestion = new Gestion();
-            gestion.Show();
-            this.Close();
+
         }
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
@@ -221,6 +219,20 @@ namespace application_metro
         {
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Gestion gestion = new Gestion();
+            gestion.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
         }
     }
 }

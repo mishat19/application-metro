@@ -29,6 +29,18 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
             Accueil accueil = new Accueil();
             accueil.Show();
             this.Close();

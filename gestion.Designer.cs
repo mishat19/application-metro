@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             pnlGestion = new Panel();
+            picRetour = new PictureBox();
+            picHome = new PictureBox();
             grpAjout = new GroupBox();
             picPlus = new PictureBox();
             lblAjout = new Label();
             lblCreation = new Label();
             lblTitre = new Label();
-            btnRetour = new Button();
             btnModif = new Button();
             btnSupp = new Button();
             lblGestion = new Label();
@@ -45,6 +46,8 @@
             lblSelection = new Label();
             picFond2 = new PictureBox();
             pnlGestion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             grpAjout.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
@@ -53,10 +56,11 @@
             // pnlGestion
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestion.Controls.Add(picRetour);
+            pnlGestion.Controls.Add(picHome);
             pnlGestion.Controls.Add(grpAjout);
             pnlGestion.Controls.Add(lblCreation);
             pnlGestion.Controls.Add(lblTitre);
-            pnlGestion.Controls.Add(btnRetour);
             pnlGestion.Controls.Add(btnModif);
             pnlGestion.Controls.Add(btnSupp);
             pnlGestion.Controls.Add(lblGestion);
@@ -70,6 +74,28 @@
             pnlGestion.Name = "pnlGestion";
             pnlGestion.Size = new Size(382, 753);
             pnlGestion.TabIndex = 41;
+            // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(0, 3);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 62;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(47, 3);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 56;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
             // grpAjout
             // 
@@ -125,16 +151,6 @@
             lblTitre.Size = new Size(380, 36);
             lblTitre.TabIndex = 42;
             lblTitre.Text = "Panneau de configuration";
-            // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(14, 27);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 41;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
             // 
             // btnModif
             // 
@@ -249,6 +265,8 @@
             Load += gestion_Load;
             pnlGestion.ResumeLayout(false);
             pnlGestion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             grpAjout.ResumeLayout(false);
             grpAjout.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
@@ -264,7 +282,6 @@
         private Label lblAjout;
         private Label lblCreation;
         private Label lblTitre;
-        private Button btnRetour;
         private Button btnModif;
         private Button btnSupp;
         private Label lblGestion;
@@ -273,5 +290,7 @@
         private ComboBox cmbHoraire;
         private Label lblSelection;
         private PictureBox picFond2;
+        private PictureBox picHome;
+        private PictureBox picRetour;
     }
 }

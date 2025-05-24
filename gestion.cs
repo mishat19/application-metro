@@ -153,5 +153,19 @@ namespace application_metro
         {
             horaire = cmbHoraire.SelectedItem.ToString().Trim();
         }
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil();
+            accueil.Show();
+            this.Close();
+        }
     }
 }

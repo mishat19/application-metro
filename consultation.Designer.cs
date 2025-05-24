@@ -30,12 +30,15 @@
         {
             btnRecherche = new Button();
             cmbLignes = new ComboBox();
-            btnRetour = new Button();
             calDate = new MonthCalendar();
             lstStations = new ListBox();
             cmbStation = new ComboBox();
             picFond2 = new PictureBox();
+            picRetour = new PictureBox();
+            picHome = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             SuspendLayout();
             // 
             // btnRecherche
@@ -66,16 +69,6 @@
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
-            // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(11, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 25;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
             // 
             // calDate
             // 
@@ -124,18 +117,41 @@
             picFond2.TabIndex = 53;
             picFond2.TabStop = false;
             // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(12, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 54;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(59, 12);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 55;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
+            // 
             // Consultation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picHome);
+            Controls.Add(picRetour);
             Controls.Add(cmbStation);
             Controls.Add(lstStations);
             Controls.Add(calDate);
             Controls.Add(btnRecherche);
             Controls.Add(cmbLignes);
-            Controls.Add(btnRetour);
             Controls.Add(picFond2);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -144,17 +160,20 @@
             Text = "Horaires de la station";
             Load += consultation_Load;
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
         private Button btnRecherche;
         private ComboBox cmbLignes;
-        private Button btnRetour;
         private MonthCalendar calDate;
         private ListBox lstStations;
         private ComboBox comboBox1;
         private ComboBox cmbStation;
         private PictureBox picFond2;
+        private PictureBox picRetour;
+        private PictureBox picHome;
     }
 }

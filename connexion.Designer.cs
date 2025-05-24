@@ -28,30 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
-            btnRetour = new Button();
             lblTitre = new Label();
             txtEmail = new TextBox();
             txtMdp = new TextBox();
-            picOeil = new PictureBox();
             btnConnexion = new Button();
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
             lblErreur = new Label();
             picConnexion = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picOeil).BeginInit();
+            picRetour = new PictureBox();
+            picOeilOff = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             SuspendLayout();
-            // 
-            // btnRetour
-            // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 0;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
             // 
             // lblTitre
             // 
@@ -86,18 +76,6 @@
             txtMdp.Size = new Size(358, 25);
             txtMdp.TabIndex = 5;
             txtMdp.TextChanged += txtMdp_TextChanged;
-            // 
-            // picOeil
-            // 
-            picOeil.BackColor = Color.Transparent;
-            picOeil.Image = (Image)resources.GetObject("picOeil.Image");
-            picOeil.Location = new Point(339, 262);
-            picOeil.Name = "picOeil";
-            picOeil.Size = new Size(31, 27);
-            picOeil.SizeMode = PictureBoxSizeMode.CenterImage;
-            picOeil.TabIndex = 6;
-            picOeil.TabStop = false;
-            picOeil.Click += picOeil_Click;
             // 
             // btnConnexion
             // 
@@ -159,44 +137,66 @@
             picConnexion.TabIndex = 11;
             picConnexion.TabStop = false;
             // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(12, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 26;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
+            // picOeilOff
+            // 
+            picOeilOff.Image = Properties.Resources.oeiloff;
+            picOeilOff.Location = new Point(333, 262);
+            picOeilOff.Name = "picOeilOff";
+            picOeilOff.Size = new Size(37, 25);
+            picOeilOff.SizeMode = PictureBoxSizeMode.Zoom;
+            picOeilOff.TabIndex = 27;
+            picOeilOff.TabStop = false;
+            picOeilOff.Click += picOeilOff_Click;
+            // 
             // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picOeilOff);
+            Controls.Add(picRetour);
             Controls.Add(lblErreur);
             Controls.Add(lblInscription);
             Controls.Add(lnkInscription);
             Controls.Add(btnConnexion);
-            Controls.Add(picOeil);
             Controls.Add(txtMdp);
             Controls.Add(txtEmail);
             Controls.Add(lblTitre);
-            Controls.Add(btnRetour);
             Controls.Add(picConnexion);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Connexion";
             Text = "Page de connexion";
-            ((System.ComponentModel.ISupportInitialize)picOeil).EndInit();
             ((System.ComponentModel.ISupportInitialize)picConnexion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button btnRetour;
         private Label lblTitre;
         private TextBox txtEmail;
         private TextBox txtMdp;
-        private PictureBox picOeil;
         private Button btnConnexion;
         private LinkLabel lnkInscription;
         private Label lblInscription;
         private Label lblErreur;
         private PictureBox picConnexion;
+        private PictureBox picRetour;
+        private PictureBox picOeilOff;
     }
 }

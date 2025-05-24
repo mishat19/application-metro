@@ -63,6 +63,16 @@ namespace application_metro.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap croix {
+            get {
+                object obj = ResourceManager.GetObject("croix", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fleche_gauche {
             get {
                 object obj = ResourceManager.GetObject("fleche-gauche", resourceCulture);
@@ -76,6 +86,16 @@ namespace application_metro.Properties {
         internal static System.Drawing.Bitmap fleche_gauche1 {
             get {
                 object obj = ResourceManager.GetObject("fleche-gauche1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap home {
+            get {
+                object obj = ResourceManager.GetObject("home", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +136,26 @@ namespace application_metro.Properties {
         internal static System.Drawing.Bitmap imgTrainRose {
             get {
                 object obj = ResourceManager.GetObject("imgTrainRose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oeiloff {
+            get {
+                object obj = ResourceManager.GetObject("oeiloff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap oeilon {
+            get {
+                object obj = ResourceManager.GetObject("oeilon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
