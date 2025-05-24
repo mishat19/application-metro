@@ -410,7 +410,7 @@ namespace GestionReseau
         /// <param name="numLigne"></param>
         /// <param name="nom"></param>
         /// <param name="couleur"></param>
-        public static void ModifInfosLigne(string numLigne, string nom, string couleur)
+        public static void ModifInfosLigne(int numLigne, string nom, string couleur)
         {
             string requete = @"UPDATE InfoLigne SET Nom = @nom, Couleur = @couleur WHERE NumLigne = @numLigne";
             MySqlCommand cmd = new MySqlCommand(requete, connexion);

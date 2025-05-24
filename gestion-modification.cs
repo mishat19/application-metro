@@ -14,6 +14,7 @@ namespace application_metro
     public partial class Gestion_modification : Form
     {
         int numeroLigne = 0;
+        string mode = "";
         public Gestion_modification(string mode, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
@@ -23,6 +24,7 @@ namespace application_metro
 
             if (mode == "Ajout")
             {
+                mode = "Ajout"; //Pour enregistrer données dans btnEnregistrement
                 lblModif.Text = "Ajout d'une ligne";
                 txtNomLigne.Visible = true;
                 cmbLigne.Visible = false;
@@ -31,6 +33,7 @@ namespace application_metro
             }
             else
             {
+                mode = "Modif"; //Pour modifier données dans btnEnregistrement
                 txtNomLigne.Visible = false;
                 cmbLigne.Visible = true;
                 txtNumero.Visible = false;
@@ -209,16 +212,16 @@ namespace application_metro
                 txt3.TextChanged += Txt3_TextChanged;
 
                 //CheckBox
-                CheckBox chk = new CheckBox
-                {
-                    Name = $"chkStation{i}",
-                    Location = new Point(300, 8),
-                    Width = 20
-                };
+                //CheckBox chk = new CheckBox
+                //{
+                //    Name = $"chkStation{i}",
+                //    Location = new Point(300, 8),
+                //    Width = 20
+                //};
 
                 stationPanel.Controls.Add(lblNum);
                 stationPanel.Controls.Add(txt);
-                stationPanel.Controls.Add(chk);
+                //stationPanel.Controls.Add(chk);
 
                 coordonneePanel.Controls.Add(lblNum2);
                 coordonneePanel.Controls.Add(txt2);
@@ -240,7 +243,33 @@ namespace application_metro
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
         {
+            if(mode == "Ajout")
+            {
+                //Fonctions de Serveur à mettre ici
+            }
+            else
+            {
+                if (nudChange || couleurChange)
+                {
+                    string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
+                    Serveur.ModifInfosLigne(numeroLigne, nom, txtCouleur.Text);
+                };
 
+                if (nudStations)
+                {
+                    //A faire
+                };
+
+                if(stationsChange != null)
+                {
+                    Serveur.ModifNomStations(stationsChange);
+                }
+
+                if(coordonneesChange != null)
+                {
+                    Serveur.ModifCoordonneesStations(coordonneesChange);
+                };
+            }
         }
 
         private void lblCouleur_Click(object sender, EventArgs e)
