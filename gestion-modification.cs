@@ -33,15 +33,16 @@ namespace application_metro
                 nudNumLigne.Visible = true;
                 nudNbStations.Enabled = false;
 
-                cmbLigne.Items.Add(ligne);
-                cmbLigne.SelectedItem = ligne;
+                string nom = nomLigneDeconcatenation(ligne);
+                cmbLigne.Items.Add(nom);
+                cmbLigne.SelectedItem = nom;
 
                 ListeLignes lignes = Serveur.Lignes();
                 foreach (Ligne ligne1 in lignes.lignes)
                 {
                     if (ligne1.nom == ligne)
                     {
-                        nudNumLigne.Value = Convert.ToDecimal(ligne1.num);
+                        nudNumLigne.Value = numLigneDeconcatenation(ligne1.nom);
                         numeroLigne = Convert.ToInt32(ligne1.num);
                         txtCouleur.Text = ligne1.couleur;
 
@@ -61,12 +62,16 @@ namespace application_metro
 
         public string nomLigneDeconcatenation(string nom)
         {
-            string nomLigne = "";
-            for (int i = 0; i < nom.Length; i++) {
-                if (!char.IsDigit(nom[i])) {  nomLigne += nom[i]; }
+            for (int i = 0; i < nom.Length; i++)
+            {
+                if (char.IsDigit(nom[i]))
+                {
+                    return nom.Substring(0, i);
+                }
             }
-            return nomLigne;
+            return nom;
         }
+
 
         public int numLigneDeconcatenation(string nom)
         {
