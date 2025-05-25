@@ -10,18 +10,35 @@ using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
 using GestionReseau;
+using K4os.Compression.LZ4.Encoders;
 
 namespace application_metro
 {
     public partial class Connexion : Form
     {
+
+
+        private int trainStartX = -300; // Position de départ hors écran
+        private int trainEndX = 30;     // Position finale d'arrivée du train
         public Connexion()
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(100, 100); // Position en pixels à l’écran
+
+            picTrain1.Left = trainStartX; // Position de départ hors écran
+            picTrain1.Top = 210;
+            picTrain1.Controls.Add(lblErreur);
+            lblErreur.Text = "Identifiants incorrects";
+            lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
+            lblErreur.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            lblErreur.AutoSize = true;
+            lblErreur.Location = new Point(20, 15); // Position dans le train
+            lblErreur.Visible = true;
+
         }
+
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
@@ -41,7 +58,10 @@ namespace application_metro
             }
             else
             {
-                lblErreur.Visible = true;
+                picTrain1.Left = trainStartX;
+                picTrain1.Top = 210;
+                picTrain1.Visible = true;
+                timerTrain.Start();
             }
         }
 
@@ -179,6 +199,18 @@ namespace application_metro
             using (System.Drawing.Drawing2D.GraphicsPath path = RoundedRect(rect, borderRadius))
             {
                 e.Graphics.DrawPath(pen, path);
+            }
+        }
+
+        private void timerTrain_Tick(object sender, EventArgs e)
+        {
+            if (picTrain1.Left < trainEndX)
+            {
+                picTrain1.Left += 5;
+            }
+            else
+            {
+                timerTrain.Stop();
             }
         }
     }

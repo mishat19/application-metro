@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             lblTitre = new Label();
             txtEmail = new PlaceholderTextBox();
@@ -40,11 +41,14 @@
             picRetour = new PictureBox();
             picOeilOff = new PictureBox();
             grpConnexion = new GroupBox();
+            picTrain1 = new PictureBox();
             grpInscriptionConnexion = new GroupBox();
+            timerTrain = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             grpConnexion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
             grpInscriptionConnexion.SuspendLayout();
             SuspendLayout();
             // 
@@ -126,14 +130,15 @@
             // 
             // lblErreur
             // 
-            lblErreur.AutoSize = true;
+            lblErreur.BackColor = Color.Transparent;
             lblErreur.Font = new Font("DynaPuff", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblErreur.Location = new Point(20, 95);
+            lblErreur.Location = new Point(10, 10);
             lblErreur.Name = "lblErreur";
-            lblErreur.Size = new Size(204, 19);
+            lblErreur.Size = new Size(190, 20);
             lblErreur.TabIndex = 10;
             lblErreur.Text = "Identifiants incorrects";
+            lblErreur.TextAlign = ContentAlignment.MiddleCenter;
             lblErreur.Visible = false;
             // 
             // picConnexion
@@ -171,9 +176,9 @@
             // 
             // grpConnexion
             // 
+            grpConnexion.Controls.Add(picTrain1);
             grpConnexion.Controls.Add(txtEmail);
             grpConnexion.Controls.Add(picOeilOff);
-            grpConnexion.Controls.Add(lblErreur);
             grpConnexion.Controls.Add(txtMdp);
             grpConnexion.Location = new Point(12, 191);
             grpConnexion.Name = "grpConnexion";
@@ -181,6 +186,17 @@
             grpConnexion.TabIndex = 28;
             grpConnexion.TabStop = false;
             grpConnexion.Paint += groupBox1_Paint;
+            // 
+            // picTrain1
+            // 
+            picTrain1.Image = Properties.Resources.imgTrainRose1;
+            picTrain1.Location = new Point(0, 0);
+            picTrain1.Name = "picTrain1";
+            picTrain1.Size = new Size(211, 53);
+            picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
+            picTrain1.TabIndex = 61;
+            picTrain1.TabStop = false;
+            picTrain1.Visible = false;
             // 
             // grpInscriptionConnexion
             // 
@@ -192,6 +208,11 @@
             grpInscriptionConnexion.TabIndex = 29;
             grpInscriptionConnexion.TabStop = false;
             grpInscriptionConnexion.Paint += grpInscriptionConnexion_Paint;
+            // 
+            // timerTrain
+            // 
+            timerTrain.Interval = 5;
+            timerTrain.Tick += timerTrain_Tick;
             // 
             // Connexion
             // 
@@ -219,6 +240,7 @@
             ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();
             grpConnexion.ResumeLayout(false);
             grpConnexion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
             grpInscriptionConnexion.ResumeLayout(false);
             grpInscriptionConnexion.PerformLayout();
             ResumeLayout(false);
@@ -238,5 +260,7 @@
         private PictureBox picOeilOff;
         private GroupBox grpConnexion;
         private GroupBox grpInscriptionConnexion;
+        private PictureBox picTrain1;
+        private System.Windows.Forms.Timer timerTrain;
     }
 }
