@@ -158,5 +158,28 @@ namespace application_metro
         {
 
         }
+
+        private void grpInscriptionConnexion_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBox box = (GroupBox)sender;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            // Paramètres personnalisés
+            int borderRadius = 12;
+            int borderWidth = 5;
+            Color borderColor = Color.FromArgb(205, 33, 42);
+
+            // Zone intérieure du GroupBox
+            Rectangle rect = box.ClientRectangle;
+            rect.Width -= 2;
+            rect.Height -= 2;
+
+            // Définir le stylo
+            using (Pen pen = new Pen(borderColor, borderWidth))
+            using (System.Drawing.Drawing2D.GraphicsPath path = RoundedRect(rect, borderRadius))
+            {
+                e.Graphics.DrawPath(pen, path);
+            }
+        }
     }
 }

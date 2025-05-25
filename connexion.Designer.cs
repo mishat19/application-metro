@@ -40,45 +40,47 @@
             picRetour = new PictureBox();
             picOeilOff = new PictureBox();
             grpConnexion = new GroupBox();
+            grpInscriptionConnexion = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             grpConnexion.SuspendLayout();
+            grpInscriptionConnexion.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Microsoft Sans Serif", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Gliker", 28.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(61, 105);
+            lblTitre.Location = new Point(46, 105);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(247, 54);
+            lblTitre.Size = new Size(290, 56);
             lblTitre.TabIndex = 3;
-            lblTitre.Text = "Connexion";
+            lblTitre.Text = "CONNEXION";
             // 
             // txtEmail
             // 
-            txtEmail.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Font = new Font("DynaPuff", 7.79999971F);
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(20, 26);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
-            txtEmail.Size = new Size(318, 24);
+            txtEmail.Size = new Size(318, 23);
             txtEmail.TabIndex = 4;
             txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
             // 
-            txtMdp.Font = new Font("Microsoft Sans Serif", 9F);
+            txtMdp.Font = new Font("DynaPuff", 7.79999971F);
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
             txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
-            txtMdp.Size = new Size(318, 24);
+            txtMdp.Size = new Size(318, 23);
             txtMdp.TabIndex = 5;
             txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
@@ -87,7 +89,7 @@
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnConnexion.FlatStyle = FlatStyle.Flat;
-            btnConnexion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConnexion.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(236, 490);
             btnConnexion.Name = "btnConnexion";
@@ -100,11 +102,11 @@
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkInscription.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
-            lnkInscription.Location = new Point(296, 378);
+            lnkInscription.Location = new Point(274, 23);
             lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(69, 18);
+            lnkInscription.Size = new Size(78, 19);
             lnkInscription.TabIndex = 8;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
@@ -113,11 +115,11 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Font = new Font("Microsoft Sans Serif", 9F);
+            lblInscription.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
-            lblInscription.Location = new Point(12, 378);
+            lblInscription.Location = new Point(6, 23);
             lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(252, 18);
+            lblInscription.Size = new Size(272, 19);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             lblInscription.Click += lblInscription_Click;
@@ -125,11 +127,11 @@
             // lblErreur
             // 
             lblErreur.AutoSize = true;
-            lblErreur.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblErreur.Font = new Font("DynaPuff", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
             lblErreur.Location = new Point(20, 95);
             lblErreur.Name = "lblErreur";
-            lblErreur.Size = new Size(170, 18);
+            lblErreur.Size = new Size(204, 19);
             lblErreur.TabIndex = 10;
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.Visible = false;
@@ -137,9 +139,9 @@
             // picConnexion
             // 
             picConnexion.Image = Properties.Resources.imgFondMilan2;
-            picConnexion.Location = new Point(-359, 340);
+            picConnexion.Location = new Point(-359, 308);
             picConnexion.Name = "picConnexion";
-            picConnexion.Size = new Size(938, 446);
+            picConnexion.Size = new Size(938, 478);
             picConnexion.SizeMode = PictureBoxSizeMode.Zoom;
             picConnexion.TabIndex = 11;
             picConnexion.TabStop = false;
@@ -157,10 +159,11 @@
             // 
             // picOeilOff
             // 
+            picOeilOff.BackColor = Color.White;
             picOeilOff.Image = Properties.Resources.oeiloff;
             picOeilOff.Location = new Point(301, 57);
             picOeilOff.Name = "picOeilOff";
-            picOeilOff.Size = new Size(37, 25);
+            picOeilOff.Size = new Size(37, 23);
             picOeilOff.SizeMode = PictureBoxSizeMode.Zoom;
             picOeilOff.TabIndex = 27;
             picOeilOff.TabStop = false;
@@ -179,16 +182,26 @@
             grpConnexion.TabStop = false;
             grpConnexion.Paint += groupBox1_Paint;
             // 
+            // grpInscriptionConnexion
+            // 
+            grpInscriptionConnexion.Controls.Add(lblInscription);
+            grpInscriptionConnexion.Controls.Add(lnkInscription);
+            grpInscriptionConnexion.Location = new Point(12, 325);
+            grpInscriptionConnexion.Name = "grpInscriptionConnexion";
+            grpInscriptionConnexion.Size = new Size(358, 62);
+            grpInscriptionConnexion.TabIndex = 29;
+            grpInscriptionConnexion.TabStop = false;
+            grpInscriptionConnexion.Paint += grpInscriptionConnexion_Paint;
+            // 
             // Connexion
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(grpInscriptionConnexion);
             Controls.Add(grpConnexion);
             Controls.Add(picRetour);
-            Controls.Add(lblInscription);
-            Controls.Add(lnkInscription);
             Controls.Add(btnConnexion);
             Controls.Add(lblTitre);
             Controls.Add(picConnexion);
@@ -206,6 +219,8 @@
             ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();
             grpConnexion.ResumeLayout(false);
             grpConnexion.PerformLayout();
+            grpInscriptionConnexion.ResumeLayout(false);
+            grpInscriptionConnexion.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -222,5 +237,6 @@
         private PictureBox picRetour;
         private PictureBox picOeilOff;
         private GroupBox grpConnexion;
+        private GroupBox grpInscriptionConnexion;
     }
 }

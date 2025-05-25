@@ -1,5 +1,5 @@
-using System.Runtime.InteropServices;
 using GestionReseau;
+using System.Runtime.InteropServices;
 
 namespace application_metro
 {
@@ -8,50 +8,49 @@ namespace application_metro
         [DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
 
+        private int trainStartX = -300; // Position de départ hors écran
+        private int trainEndX = 30;     // Position finale d'arrivée du train
+
         public Ouverture()
         {
             InitializeComponent();
 
-            this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
-
-            AllocConsole(); //Ouverture de la console pour les Console.WriteLine()
+            // Affiche la console pour debug
+            AllocConsole();
             Serveur.OuvertureConnexion();
+
+            // Le label d'erreur est maintenant contenu dans le train
+            picTrain1.Controls.Add(labelTrainError);
+            labelTrainError.Text = "Lukas fait le Trello";
+            labelTrainError.ForeColor = Color.FromArgb(15, 93, 70);
+            labelTrainError.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            labelTrainError.AutoSize = true;
+            labelTrainError.Location = new Point(20, 15); // Position dans le train
+            labelTrainError.Visible = true; // visible dès l'apparition du train
         }
 
-        private void btnConnexion_Click(object sender, EventArgs e)
+        private void btnSubmit_Click(object sender, EventArgs e)
         {
-            Connexion connexionWindow = new Connexion();
-            connexionWindow.Show(this);
-            this.Hide();
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                picTrain1.Left = trainStartX;
+                picTrain1.Top = 210;
+                picTrain1.Visible = true;
+
+                timerTrain.Start();
+            }
         }
 
-        private void btnNoConnexion_Click(object sender, EventArgs e)
+        private void timerTrain_Tick(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
-            accueilWindow.Show(this);
-            accueilWindow.UpdateBtnRetourText("Se connecter");
-            this.Hide();
-        }
-
-        public void lblDeconnexion_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDeconnexion_Click_1(object sender, EventArgs e)
-        {
-
+            if (picTrain1.Left < trainEndX)
+            {
+                picTrain1.Left += 5;
+            }
+            else
+            {
+                timerTrain.Stop();
+            }
         }
 
         private void btnConnexion_Click_1(object sender, EventArgs e)
@@ -63,8 +62,9 @@ namespace application_metro
 
         private void btnNoConnexion_Click_1(object sender, EventArgs e)
         {
-            Accueil acueilWindow = new Accueil();
-            acueilWindow.Show(this);
+            Accueil accueilWindow = new Accueil();
+            accueilWindow.Show(this);
+            accueilWindow.UpdateBtnRetourText("Se connecter");
             this.Hide();
         }
 

@@ -47,18 +47,18 @@
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
-            picHome = new PictureBox();
-            picRetour = new PictureBox();
             nudNumLigne = new NumericUpDown();
             txtNumero = new TextBox();
             txtNomLigne = new TextBox();
             picFond2 = new PictureBox();
+            picHome = new PictureBox();
+            picRetour = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
@@ -78,7 +78,7 @@
             lblModif.AutoSize = true;
             lblModif.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             lblModif.ForeColor = Color.FromArgb(15, 93, 70);
-            lblModif.Location = new Point(152, 143);
+            lblModif.Location = new Point(129, 124);
             lblModif.Name = "lblModif";
             lblModif.Size = new Size(104, 26);
             lblModif.TabIndex = 40;
@@ -286,28 +286,6 @@
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
-            // picHome
-            // 
-            picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(67, 12);
-            picHome.Name = "picHome";
-            picHome.Size = new Size(27, 25);
-            picHome.SizeMode = PictureBoxSizeMode.Zoom;
-            picHome.TabIndex = 62;
-            picHome.TabStop = false;
-            picHome.Click += picHome_Click;
-            // 
-            // picRetour
-            // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(10, 12);
-            picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
-            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
-            picRetour.TabIndex = 61;
-            picRetour.TabStop = false;
-            picRetour.Click += picRetour_Click;
-            // 
             // nudNumLigne
             // 
             nudNumLigne.Font = new Font("Microsoft Sans Serif", 9F);
@@ -351,6 +329,28 @@
             picFond2.TabIndex = 63;
             picFond2.TabStop = false;
             // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(67, 12);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 62;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
+            // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(10, 12);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 61;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
             // Gestion_modification
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -363,15 +363,15 @@
             MinimizeBox = false;
             Name = "Gestion_modification";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Panneau de modification";
+            Text = "2";
             Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ResumeLayout(false);
         }
 

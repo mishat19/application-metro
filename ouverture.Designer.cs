@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ouverture));
             pnlOuverture = new Panel();
+            btnSubmit = new Button();
+            textBox1 = new TextBox();
             lblInscription = new Label();
             lnkInscription = new LinkLabel();
             picLogo1 = new PictureBox();
@@ -38,14 +41,21 @@
             btnNoConnexion = new Button();
             btnConnexion = new Button();
             picFond2 = new PictureBox();
+            picTrain1 = new PictureBox();
+            labelTrainError = new Label();
+            timerTrain = new System.Windows.Forms.Timer(components);
             pnlOuverture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
+            picTrain1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlOuverture
             // 
             pnlOuverture.BackColor = Color.FromArgb(255, 230, 188);
+            pnlOuverture.Controls.Add(btnSubmit);
+            pnlOuverture.Controls.Add(textBox1);
             pnlOuverture.Controls.Add(lblInscription);
             pnlOuverture.Controls.Add(lnkInscription);
             pnlOuverture.Controls.Add(picLogo1);
@@ -54,11 +64,29 @@
             pnlOuverture.Controls.Add(btnNoConnexion);
             pnlOuverture.Controls.Add(btnConnexion);
             pnlOuverture.Controls.Add(picFond2);
+            pnlOuverture.Controls.Add(picTrain1);
             pnlOuverture.Dock = DockStyle.Fill;
             pnlOuverture.Location = new Point(0, 0);
             pnlOuverture.Name = "pnlOuverture";
             pnlOuverture.Size = new Size(382, 753);
             pnlOuverture.TabIndex = 4;
+            // 
+            // btnSubmit
+            // 
+            btnSubmit.Location = new Point(65, 282);
+            btnSubmit.Name = "btnSubmit";
+            btnSubmit.Size = new Size(94, 29);
+            btnSubmit.TabIndex = 58;
+            btnSubmit.Text = "button1";
+            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(165, 284);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 57;
             // 
             // lblInscription
             // 
@@ -156,6 +184,35 @@
             picFond2.TabIndex = 53;
             picFond2.TabStop = false;
             // 
+            // picTrain1
+            // 
+            picTrain1.Controls.Add(labelTrainError);
+            picTrain1.Image = Properties.Resources.imgTrainRose1;
+            picTrain1.Location = new Point(119, 211);
+            picTrain1.Name = "picTrain1";
+            picTrain1.Size = new Size(211, 53);
+            picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
+            picTrain1.TabIndex = 60;
+            picTrain1.TabStop = false;
+            picTrain1.Visible = false;
+            // 
+            // labelTrainError
+            // 
+            labelTrainError.BackColor = Color.Transparent;
+            labelTrainError.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTrainError.Location = new Point(179, 221);
+            labelTrainError.Name = "labelTrainError";
+            labelTrainError.Size = new Size(180, 30);
+            labelTrainError.TabIndex = 59;
+            labelTrainError.Text = "label1";
+            labelTrainError.TextAlign = ContentAlignment.MiddleCenter;
+            labelTrainError.Visible = false;
+            // 
+            // timerTrain
+            // 
+            timerTrain.Interval = 5;
+            timerTrain.Tick += timerTrain_Tick;
+            // 
             // Ouverture
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -173,6 +230,8 @@
             pnlOuverture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
+            picTrain1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -187,5 +246,10 @@
         private PictureBox picLogo1;
         private Label lblInscription;
         private LinkLabel lnkInscription;
+        private Button btnSubmit;
+        private TextBox textBox1;
+        private Label labelTrainError;
+        private System.Windows.Forms.Timer timerTrain;
+        private PictureBox picTrain1;
     }
 }
