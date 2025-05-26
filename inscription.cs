@@ -13,18 +13,18 @@ namespace application_metro
 {
     public partial class Inscription : Form
     {
-        public Inscription()
+        public Inscription(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position;
 
         }
 
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Connexion connexion = new Connexion();
+            Connexion connexion = new Connexion(this.Location);
             connexion.Show();
             this.Close();
         }
@@ -39,7 +39,7 @@ namespace application_metro
             DateTime dateNaissance = dtpNaissance.Value;
 
             Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0);
-            Accueil accueilWindow = new Accueil();
+            Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
             this.Close();

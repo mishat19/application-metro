@@ -20,12 +20,12 @@ namespace application_metro
         string nomStation = "";
         string horaire = "";
 
-        public Gestion()
+        public Gestion(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position; // Position en pixels à l’écran
 
             lignes = Serveur.Lignes();
 
@@ -42,7 +42,7 @@ namespace application_metro
 
         private void btnRetour_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
@@ -51,7 +51,7 @@ namespace application_metro
         private void btnModif_Click(object sender, EventArgs e)
         {
             mode = "Modification";
-            Gestion_modification modif = new Gestion_modification(mode, nomLigne, nomStation, horaire);
+            Gestion_modification modif = new Gestion_modification(mode, this.Location, nomLigne, nomStation, horaire);
             modif.Show();
             this.Close();
         }
@@ -157,14 +157,14 @@ namespace application_metro
 
         private void picRetour_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
 
         private void picHome_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
@@ -172,7 +172,7 @@ namespace application_metro
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             mode = "Ajout";
-            Gestion_modification gestion_Modification = new Gestion_modification(mode);
+            Gestion_modification gestion_Modification = new Gestion_modification(mode, this.Location);
             gestion_Modification.Show();
             this.Close();
         }

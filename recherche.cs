@@ -12,12 +12,12 @@ namespace application_metro
 {
     public partial class Recherche : Form
     {
-        public Recherche()
+        public Recherche(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position; // Position en pixels à l’écran
 
         }
 
@@ -38,14 +38,14 @@ namespace application_metro
 
         private void picRetour_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
 
         private void picHome_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }

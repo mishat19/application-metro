@@ -34,7 +34,7 @@
             lblTitre = new Label();
             lblIntitule = new Label();
             lblCouleur = new Label();
-            txtCouleur = new TextBox();
+            txtCouleur = new PlaceholderTextBox();
             lblNbStations = new Label();
             nudNbStations = new NumericUpDown();
             lblNoms = new Label();
@@ -48,17 +48,17 @@
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
             nudNumLigne = new NumericUpDown();
-            txtNumero = new TextBox();
-            txtNomLigne = new TextBox();
+            txtNumero = new PlaceholderTextBox();
+            txtNomLigne = new PlaceholderTextBox();
             picFond2 = new PictureBox();
-            picHome = new PictureBox();
             picRetour = new PictureBox();
+            picHome = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
@@ -259,6 +259,8 @@
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestionModification.Controls.Add(picHome);
+            pnlGestionModification.Controls.Add(picRetour);
             pnlGestionModification.Controls.Add(lblHoraires);
             pnlGestionModification.Controls.Add(nudNumLigne);
             pnlGestionModification.Controls.Add(txtNumero);
@@ -322,34 +324,34 @@
             // picFond2
             // 
             picFond2.Image = Properties.Resources.logo4;
-            picFond2.Location = new Point(67, 3);
+            picFond2.Location = new Point(129, 3);
             picFond2.Name = "picFond2";
-            picFond2.Size = new Size(242, 96);
+            picFond2.Size = new Size(113, 96);
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 63;
             picFond2.TabStop = false;
             // 
-            // picHome
-            // 
-            picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(67, 12);
-            picHome.Name = "picHome";
-            picHome.Size = new Size(27, 25);
-            picHome.SizeMode = PictureBoxSizeMode.Zoom;
-            picHome.TabIndex = 62;
-            picHome.TabStop = false;
-            picHome.Click += picHome_Click;
-            // 
             // picRetour
             // 
             picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(10, 12);
+            picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(51, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
-            picRetour.TabIndex = 61;
+            picRetour.TabIndex = 64;
             picRetour.TabStop = false;
             picRetour.Click += picRetour_Click;
+            // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(57, 0);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 65;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
             // Gestion_modification
             // 
@@ -363,15 +365,15 @@
             MinimizeBox = false;
             Name = "Gestion_modification";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "2";
+            Text = "Panneau de configuration";
             Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ResumeLayout(false);
         }
 
@@ -382,7 +384,7 @@
         private Label lblTitre;
         private Label lblIntitule;
         private Label lblCouleur;
-        private TextBox txtCouleur;
+        private PlaceholderTextBox txtCouleur;
         private Label lblNbStations;
         private NumericUpDown nudNbStations;
         private Label lblNoms;
@@ -395,11 +397,11 @@
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
-        private TextBox txtNumero;
-        private TextBox txtNomLigne;
+        private PlaceholderTextBox txtNumero;
+        private PlaceholderTextBox txtNomLigne;
         private NumericUpDown nudNumLigne;
+        private PictureBox picFond2;
         private PictureBox picRetour;
         private PictureBox picHome;
-        private PictureBox picFond2;
     }
 }

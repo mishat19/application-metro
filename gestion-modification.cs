@@ -15,12 +15,12 @@ namespace application_metro
     {
         int numeroLigne = 0;
         string mode = "";
-        public Gestion_modification(string mode, string ligne = null, string station = null, string horaire = null)
+        public Gestion_modification(string mode, Point position, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position; // Position en pixels à l’écran
 
             if (mode == "Ajout")
             {
@@ -243,7 +243,7 @@ namespace application_metro
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
         {
-            if(mode == "Ajout")
+            if (mode == "Ajout")
             {
                 //Fonctions de Serveur à mettre ici
             }
@@ -253,22 +253,25 @@ namespace application_metro
                 {
                     string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
                     Serveur.ModifInfosLigne(numeroLigne, nom, txtCouleur.Text);
-                };
+                }
+                ;
 
                 if (nudStations)
                 {
                     //A faire
-                };
+                }
+                ;
 
-                if(stationsChange != null)
+                if (stationsChange != null)
                 {
                     Serveur.ModifNomStations(stationsChange);
                 }
 
-                if(coordonneesChange != null)
+                if (coordonneesChange != null)
                 {
                     Serveur.ModifCoordonneesStations(coordonneesChange);
-                };
+                }
+                ;
             }
         }
 
@@ -372,14 +375,14 @@ namespace application_metro
 
         private void picRetour_Click(object sender, EventArgs e)
         {
-            Gestion gestion = new Gestion();
+            Gestion gestion = new Gestion(this.Location);
             gestion.Show();
             this.Close();
         }
 
         private void picHome_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }

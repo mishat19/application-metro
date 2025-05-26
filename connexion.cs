@@ -20,12 +20,12 @@ namespace application_metro
 
         private int trainStartX = -300; // Position de départ hors écran
         private int trainEndX = 30;     // Position finale d'arrivée du train
-        public Connexion()
+        public Connexion(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position;
 
             picTrain1.Left = trainStartX; // Position de départ hors écran
             picTrain1.Top = 210;
@@ -51,7 +51,7 @@ namespace application_metro
             string mdp = txtMdp.Text.Trim();
             if (Serveur.UtilisateurConnexion(email, mdp))
             {
-                Accueil accueilWindow = new Accueil();
+                Accueil accueilWindow = new Accueil(this.Location);
                 accueilWindow.Show();
                 accueilWindow.btnRetour.Text = "Se déconnecter";
                 this.Close();
@@ -67,7 +67,7 @@ namespace application_metro
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Inscription inscription = new Inscription();
+            Inscription inscription = new Inscription(this.Location);
             inscription.Show();
             this.Close();
         }
@@ -137,41 +137,8 @@ namespace application_metro
 
         private void groupBox1_Paint(object sender, PaintEventArgs e)
         {
-            GroupBox box = (GroupBox)sender;
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
 
-            // Paramètres personnalisés
-            int borderRadius = 12;
-            int borderWidth = 5;
-            Color borderColor = Color.FromArgb(205, 33, 42);
-
-            // Zone intérieure du GroupBox
-            Rectangle rect = box.ClientRectangle;
-            rect.Width -= 2;
-            rect.Height -= 2;
-
-            // Définir le stylo
-            using (Pen pen = new Pen(borderColor, borderWidth))
-            using (System.Drawing.Drawing2D.GraphicsPath path = RoundedRect(rect, borderRadius))
-            {
-                e.Graphics.DrawPath(pen, path);
-            }
-        }
-
-        // Fonction utilitaire pour arrondir les coins
-        private System.Drawing.Drawing2D.GraphicsPath RoundedRect(Rectangle bounds, int radius)
-        {
-            int diameter = radius * 2;
-            System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-
-            path.StartFigure();
-            path.AddArc(bounds.Left, bounds.Top, diameter, diameter, 180, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Top, diameter, diameter, 270, 90);
-            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
-            path.AddArc(bounds.Left, bounds.Bottom - diameter, diameter, diameter, 90, 90);
-            path.CloseFigure();
-
-            return path;
         }
 
         private void lblInscription_Click(object sender, EventArgs e)
@@ -181,25 +148,7 @@ namespace application_metro
 
         private void grpInscriptionConnexion_Paint(object sender, PaintEventArgs e)
         {
-            GroupBox box = (GroupBox)sender;
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-            // Paramètres personnalisés
-            int borderRadius = 12;
-            int borderWidth = 5;
-            Color borderColor = Color.FromArgb(205, 33, 42);
-
-            // Zone intérieure du GroupBox
-            Rectangle rect = box.ClientRectangle;
-            rect.Width -= 2;
-            rect.Height -= 2;
-
-            // Définir le stylo
-            using (Pen pen = new Pen(borderColor, borderWidth))
-            using (System.Drawing.Drawing2D.GraphicsPath path = RoundedRect(rect, borderRadius))
-            {
-                e.Graphics.DrawPath(pen, path);
-            }
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
 
         private void timerTrain_Tick(object sender, EventArgs e)

@@ -11,9 +11,12 @@ namespace application_metro
         private int trainStartX = -300; // Position de départ hors écran
         private int trainEndX = 30;     // Position finale d'arrivée du train
 
-        public Ouverture()
+        public Ouverture(Point position)
         {
             InitializeComponent();
+
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = position; // Position en pixels à l’écran
 
             // Affiche la console pour debug
             AllocConsole();
@@ -55,14 +58,14 @@ namespace application_metro
 
         private void btnConnexion_Click_1(object sender, EventArgs e)
         {
-            Connexion connexion = new Connexion();
+            Connexion connexion = new Connexion(this.Location);
             connexion.Show(this);
             this.Hide();
         }
 
         private void btnNoConnexion_Click_1(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+            Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.Show(this);
             accueilWindow.UpdateBtnRetourText("Se connecter");
             this.Hide();
@@ -70,7 +73,7 @@ namespace application_metro
 
         private void lnkInscription_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Inscription inscription = new Inscription();
+            Inscription inscription = new Inscription(this.Location);
             inscription.Show();
             this.Close();
         }

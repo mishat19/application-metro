@@ -12,11 +12,11 @@ namespace application_metro
 {
     public partial class Accueil : Form
     {
-        public Accueil()
+        public Accueil(Point position)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position;
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -27,12 +27,14 @@ namespace application_metro
             {
                 if (btnRetour.Text.Contains("Se connecter"))
                 {
-                    Connexion connexion = new Connexion();
+                    Connexion connexion = new Connexion(this.Location);
                     connexion.Show();
                 }
                 else
                 {
                     ouverture.lblDeconnexion.Visible = true;
+                    ouverture.StartPosition = FormStartPosition.Manual;
+                    ouverture.Location = this.Location;
                     ouverture.Show();
                 }
             }
@@ -50,21 +52,21 @@ namespace application_metro
 
         private void btnConsultation_Click(object sender, EventArgs e)
         {
-            Carte carte = new Carte();
+            Carte carte = new Carte(this.Location);
             carte.Show();
             this.Close();
         }
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            Recherche consultation = new Recherche();
+            Recherche consultation = new Recherche(this.Location);
             consultation.Show();
             this.Close();
         }
 
         private void btnAdmin_Click(object sender, EventArgs e)
         {
-            Gestion gestion = new Gestion();
+            Gestion gestion = new Gestion(this.Location);
             gestion.Show();
             this.Close();
         }

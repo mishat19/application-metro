@@ -190,7 +190,7 @@
             // picTrain1
             // 
             picTrain1.Image = Properties.Resources.imgTrainRose1;
-            picTrain1.Location = new Point(0, 0);
+            picTrain1.Location = new Point(20, 86);
             picTrain1.Name = "picTrain1";
             picTrain1.Size = new Size(211, 53);
             picTrain1.SizeMode = PictureBoxSizeMode.Zoom;

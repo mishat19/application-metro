@@ -15,12 +15,12 @@ namespace application_metro
         private HttpListener serveur;
         private Task serveurTask;
 
-        public Carte()
+        public Carte(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(100, 100); // Position en pixels à l’écran
+            this.Location = position;
 
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
@@ -122,7 +122,7 @@ namespace application_metro
 
         private void btnHoraires_Click(object sender, EventArgs e)
         {
-            Consultation consultation = new Consultation(ligne);
+            Consultation consultation = new Consultation(ligne, this.Location);
             consultation.Show();
             this.Close();
         }
@@ -139,14 +139,14 @@ namespace application_metro
 
         private void picRetour_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
 
         private void picHome_Click(object sender, EventArgs e)
         {
-            Accueil accueil = new Accueil();
+            Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
         }
