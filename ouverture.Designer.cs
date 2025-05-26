@@ -91,22 +91,22 @@
             // lblInscription
             // 
             lblInscription.AutoSize = true;
-            lblInscription.Font = new Font("DynaPuff", 9F);
+            lblInscription.Font = new Font("Microsoft Sans Serif", 9F);
             lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
             lblInscription.Location = new Point(12, 391);
             lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(272, 19);
+            lblInscription.Size = new Size(252, 18);
             lblInscription.TabIndex = 56;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
             // 
             // lnkInscription
             // 
             lnkInscription.AutoSize = true;
-            lnkInscription.Font = new Font("Gliker", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lnkInscription.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
             lnkInscription.Location = new Point(296, 391);
             lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(74, 18);
+            lnkInscription.Size = new Size(69, 18);
             lnkInscription.TabIndex = 55;
             lnkInscription.TabStop = true;
             lnkInscription.Text = "S'inscrire";
@@ -126,11 +126,11 @@
             // 
             lblDeconnexion.AutoSize = true;
             lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
-            lblDeconnexion.Font = new Font("DynaPuff", 9F);
+            lblDeconnexion.Font = new Font("Microsoft Sans Serif", 9F);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
             lblDeconnexion.Location = new Point(85, 567);
             lblDeconnexion.Name = "lblDeconnexion";
-            lblDeconnexion.Size = new Size(207, 21);
+            lblDeconnexion.Size = new Size(184, 20);
             lblDeconnexion.TabIndex = 7;
             lblDeconnexion.Text = "Vous avez été déconnecté";
             lblDeconnexion.Visible = false;
@@ -138,11 +138,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Gliker", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
             lblTitre.Location = new Point(27, 150);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(329, 60);
+            lblTitre.Size = new Size(339, 58);
             lblTitre.TabIndex = 6;
             lblTitre.Text = "BIENVENUE !";
             // 
@@ -150,7 +150,7 @@
             // 
             btnNoConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnNoConnexion.FlatStyle = FlatStyle.Flat;
-            btnNoConnexion.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnNoConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNoConnexion.ForeColor = Color.White;
             btnNoConnexion.Location = new Point(40, 453);
             btnNoConnexion.Name = "btnNoConnexion";
@@ -164,7 +164,7 @@
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
             btnConnexion.FlatStyle = FlatStyle.Flat;
-            btnConnexion.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
             btnConnexion.Location = new Point(40, 314);
             btnConnexion.Name = "btnConnexion";
@@ -226,6 +226,7 @@
             Name = "Ouverture";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mon application métro";
+            Load += Ouverture_Load;
             pnlOuverture.ResumeLayout(false);
             pnlOuverture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo1).EndInit();

@@ -9,7 +9,18 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
+	
+	<ItemGroup>
+	  <None Remove="Fonts\DynaPuff-Regular.ttf" />
+	  <None Remove="Fonts\Gliker-Regular.ttf" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <EmbeddedResource Include="Fonts\DynaPuff-Regular.ttf" />
+	  <EmbeddedResource Include="Fonts\Gliker-Regular.ttf" />
+	</ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />

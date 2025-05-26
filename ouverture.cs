@@ -77,5 +77,11 @@ namespace application_metro
             inscription.Show();
             this.Close();
         }
+
+        private void Ouverture_Load(object sender, EventArgs e)
+        {
+            btnConnexion.Font = FontLoader.GetFont("DynaPuff", 18);
+            btnNoConnexion.Font = FontLoader.GetFont("Gliker", 18);
+        }
     }
 }

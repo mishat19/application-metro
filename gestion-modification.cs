@@ -386,5 +386,20 @@ namespace application_metro
             accueil.Show();
             this.Close();
         }
+
+        private void flpCoordonnees_Paint(object sender, PaintEventArgs e)
+        {
+            FlowLayoutPanelBordure.ApplyCustomStyle(flpCoordonnees, e);
+        }
+
+        private void flpStations_Paint(object sender, PaintEventArgs e)
+        {
+            FlowLayoutPanelBordure.ApplyCustomStyle(flpStations, e);
+        }
+
+        private void flpHoraires_Paint(object sender, PaintEventArgs e)
+        {
+            FlowLayoutPanelBordure.ApplyCustomStyle(flpHoraires, e);
+        }
     }
 }

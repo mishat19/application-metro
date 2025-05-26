@@ -47,24 +47,24 @@
             flpHoraires = new FlowLayoutPanel();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
+            picHome = new PictureBox();
+            picRetour = new PictureBox();
             nudNumLigne = new NumericUpDown();
             txtNumero = new PlaceholderTextBox();
             txtNomLigne = new PlaceholderTextBox();
             picFond2 = new PictureBox();
-            picRetour = new PictureBox();
-            picHome = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             pnlGestionModification.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             SuspendLayout();
             // 
             // cmbLigne
             // 
             cmbLigne.Enabled = false;
-            cmbLigne.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLigne.Font = new Font("Microsoft Sans Serif", 9F);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(11, 197);
@@ -111,7 +111,7 @@
             lblCouleur.AutoSize = true;
             lblCouleur.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCouleur.Location = new Point(3, 379);
+            lblCouleur.Location = new Point(11, 245);
             lblCouleur.Name = "lblCouleur";
             lblCouleur.Size = new Size(160, 22);
             lblCouleur.TabIndex = 45;
@@ -122,12 +122,14 @@
             // 
             txtCouleur.Font = new Font("Microsoft Sans Serif", 9F);
             txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
-            txtCouleur.Location = new Point(15, 427);
+            txtCouleur.Location = new Point(11, 299);
             txtCouleur.Margin = new Padding(3, 4, 3, 4);
             txtCouleur.Name = "txtCouleur";
+            txtCouleur.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtCouleur.PlaceholderText = "Couleur";
-            txtCouleur.Size = new Size(331, 24);
+            txtCouleur.Size = new Size(336, 24);
             txtCouleur.TabIndex = 46;
+            txtCouleur.Text = "Entrer du texte...";
             txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
             // lblNbStations
@@ -135,7 +137,7 @@
             lblNbStations.AutoSize = true;
             lblNbStations.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblNbStations.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNbStations.Location = new Point(14, 497);
+            lblNbStations.Location = new Point(12, 355);
             lblNbStations.Name = "lblNbStations";
             lblNbStations.Size = new Size(175, 22);
             lblNbStations.TabIndex = 47;
@@ -145,10 +147,10 @@
             // 
             nudNbStations.Font = new Font("Microsoft Sans Serif", 9F);
             nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNbStations.Location = new Point(246, 492);
+            nudNbStations.Location = new Point(196, 353);
             nudNbStations.Margin = new Padding(3, 4, 3, 4);
             nudNbStations.Name = "nudNbStations";
-            nudNbStations.Size = new Size(72, 24);
+            nudNbStations.Size = new Size(79, 24);
             nudNbStations.TabIndex = 49;
             nudNbStations.ValueChanged += nudNbStations_ValueChanged;
             // 
@@ -157,7 +159,7 @@
             lblNoms.AutoSize = true;
             lblNoms.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblNoms.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNoms.Location = new Point(10, 542);
+            lblNoms.Location = new Point(12, 412);
             lblNoms.Name = "lblNoms";
             lblNoms.Size = new Size(223, 44);
             lblNoms.TabIndex = 50;
@@ -168,7 +170,7 @@
             lblCoordonnees.AutoSize = true;
             lblCoordonnees.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblCoordonnees.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCoordonnees.Location = new Point(3, 737);
+            lblCoordonnees.Location = new Point(11, 712);
             lblCoordonnees.Name = "lblCoordonnees";
             lblCoordonnees.Size = new Size(272, 22);
             lblCoordonnees.TabIndex = 51;
@@ -177,27 +179,29 @@
             // flpStations
             // 
             flpStations.AutoScroll = true;
-            flpStations.Location = new Point(3, 590);
+            flpStations.Location = new Point(11, 481);
             flpStations.Margin = new Padding(3, 4, 3, 4);
             flpStations.Name = "flpStations";
-            flpStations.Size = new Size(355, 125);
+            flpStations.Size = new Size(336, 215);
             flpStations.TabIndex = 52;
+            flpStations.Paint += flpStations_Paint;
             // 
             // flpCoordonnees
             // 
             flpCoordonnees.AutoScroll = true;
-            flpCoordonnees.Location = new Point(3, 780);
+            flpCoordonnees.Location = new Point(11, 765);
             flpCoordonnees.Margin = new Padding(3, 4, 3, 4);
             flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(355, 125);
+            flpCoordonnees.Size = new Size(334, 215);
             flpCoordonnees.TabIndex = 53;
+            flpCoordonnees.Paint += flpCoordonnees_Paint;
             // 
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraires.Location = new Point(10, 1007);
+            lblHoraires.Location = new Point(13, 1164);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(189, 22);
             lblHoraires.TabIndex = 54;
@@ -209,7 +213,7 @@
             rbDirectionA.AutoSize = true;
             rbDirectionA.Font = new Font("Microsoft Sans Serif", 9F);
             rbDirectionA.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionA.Location = new Point(179, 958);
+            rbDirectionA.Location = new Point(169, 1098);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(179, 22);
             rbDirectionA.TabIndex = 55;
@@ -222,7 +226,7 @@
             rbDirectionB.AutoSize = true;
             rbDirectionB.Font = new Font("Microsoft Sans Serif", 9F);
             rbDirectionB.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionB.Location = new Point(169, 986);
+            rbDirectionB.Location = new Point(169, 1126);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(179, 22);
             rbDirectionB.TabIndex = 56;
@@ -233,10 +237,11 @@
             // flpHoraires
             // 
             flpHoraires.AutoScroll = true;
-            flpHoraires.Location = new Point(3, 1036);
+            flpHoraires.Location = new Point(13, 1210);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(355, 125);
+            flpHoraires.Size = new Size(335, 125);
             flpHoraires.TabIndex = 54;
+            flpHoraires.Paint += flpHoraires_Paint;
             // 
             // btnEnregistrement
             // 
@@ -245,7 +250,7 @@
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("Microsoft Sans Serif", 9F);
             btnEnregistrement.ForeColor = Color.White;
-            btnEnregistrement.Location = new Point(222, 1167);
+            btnEnregistrement.Location = new Point(220, 1350);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;
@@ -257,7 +262,7 @@
             // 
             pnlGestionModification.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlGestionModification.AutoScroll = true;
-            pnlGestionModification.AutoScrollMinSize = new Size(0, 1300);
+            pnlGestionModification.AutoScrollMinSize = new Size(0, 1500);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
             pnlGestionModification.Controls.Add(picHome);
             pnlGestionModification.Controls.Add(picRetour);
@@ -288,6 +293,28 @@
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
+            // picHome
+            // 
+            picHome.Image = Properties.Resources.home;
+            picHome.Location = new Point(57, 0);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 65;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
+            // 
+            // picRetour
+            // 
+            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Location = new Point(0, 0);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(51, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 64;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
+            // 
             // nudNumLigne
             // 
             nudNumLigne.Font = new Font("Microsoft Sans Serif", 9F);
@@ -303,22 +330,26 @@
             // 
             txtNumero.Font = new Font("Microsoft Sans Serif", 9F);
             txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNumero.Location = new Point(196, 237);
+            txtNumero.Location = new Point(196, 199);
             txtNumero.Name = "txtNumero";
+            txtNumero.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtNumero.PlaceholderText = "Numéro de ligne";
             txtNumero.Size = new Size(151, 24);
             txtNumero.TabIndex = 59;
+            txtNumero.Text = "Entrer du texte...";
             txtNumero.Visible = false;
             // 
             // txtNomLigne
             // 
-            txtNomLigne.Font = new Font("Microsoft Sans Serif", 9F);
+            txtNomLigne.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNomLigne.Location = new Point(13, 237);
+            txtNomLigne.Location = new Point(12, 199);
             txtNomLigne.Name = "txtNomLigne";
+            txtNomLigne.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
             txtNomLigne.Size = new Size(176, 24);
             txtNomLigne.TabIndex = 58;
+            txtNomLigne.Text = "Entrer du texte...";
             txtNomLigne.Visible = false;
             // 
             // picFond2
@@ -330,28 +361,6 @@
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 63;
             picFond2.TabStop = false;
-            // 
-            // picRetour
-            // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(0, 0);
-            picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
-            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
-            picRetour.TabIndex = 64;
-            picRetour.TabStop = false;
-            picRetour.Click += picRetour_Click;
-            // 
-            // picHome
-            // 
-            picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(57, 0);
-            picHome.Name = "picHome";
-            picHome.Size = new Size(27, 25);
-            picHome.SizeMode = PictureBoxSizeMode.Zoom;
-            picHome.TabIndex = 65;
-            picHome.TabStop = false;
-            picHome.Click += picHome_Click;
             // 
             // Gestion_modification
             // 
@@ -370,10 +379,10 @@
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ResumeLayout(false);
         }
 
