@@ -115,6 +115,21 @@ namespace GestionReseau
             }
         }
 
+        public static string UtilisateurConnecte()
+        {
+            string requete = $"SELECT Status FROM Utilisateur";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read()) {
+                int status = rdr.GetInt32("Status");
+                if (status == 0)
+                    return "Connexion";
+            }
+            return "Déconnexion";
+        }
+
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {
             string requete = @"INSERT INTO Utilisateur 

@@ -53,7 +53,7 @@ namespace application_metro
             {
                 Accueil accueilWindow = new Accueil(this.Location);
                 accueilWindow.Show();
-                accueilWindow.btnRetour.Text = "Se déconnecter";
+                //accueilWindow.btnRetour.Text = "Se déconnecter";
                 this.Close();
             }
             else

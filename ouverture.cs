@@ -67,7 +67,7 @@ namespace application_metro
         {
             Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.Show(this);
-            accueilWindow.UpdateBtnRetourText("Se connecter");
+            //accueilWindow.UpdateBtnRetourText("Se connecter");
             this.Hide();
         }
 

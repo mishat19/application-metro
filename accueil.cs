@@ -17,6 +17,7 @@ namespace application_metro
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
+            btnRetour.Text = UtilisateurConnecte();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
