@@ -38,7 +38,7 @@ namespace application_metro
                 cmbLigne.Visible = true;
                 txtNumero.Visible = false;
                 nudNumLigne.Visible = true;
-                nudNbStations.Enabled = false;
+                nudNbStations.Enabled = true;
 
                 string nom = nomLigneDeconcatenation(ligne);
                 cmbLigne.Items.Add(nom);
