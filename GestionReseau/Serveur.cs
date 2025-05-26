@@ -73,15 +73,44 @@ namespace GestionReseau
                 try
                 {
                     object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
-                    Console.WriteLine(result);
+                    //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
-
-                    return count > 0;
+                    if(count > 0)
+                    {
+                        StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
+                        return true;
+                    }
+                    return false;
                 }
                 catch (MySqlException ex)
                 {
                     Console.WriteLine(ex.Message);
                     return false;
+                }
+            }
+        }
+
+        public static void StatusUtilisateur(string email, string mdp, int action)
+        {
+            if (action == 0)
+            { //Déconnexion de l'utilisateur ou fermeture de l'application
+                string requete = $"UPDATE Utilisateur SET Status = @Action WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Mdp", mdp);
+                }
+            }
+            else if (action == 1) { //Connexion de l'utilisateur
+                string requete = $"UPDATE Utilisateur SET Status = @action WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Mdp", mdp);
                 }
             }
         }
@@ -106,6 +135,7 @@ namespace GestionReseau
                 try
                 {
                     cmd.ExecuteNonQuery();
+                    StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
                 }
                 catch (MySqlException ex)
                 {
