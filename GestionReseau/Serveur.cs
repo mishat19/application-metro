@@ -122,39 +122,54 @@ namespace GestionReseau
 
         public static string UtilisateurConnecte()
         {
-            string requete = $"SELECT Status FROM Utilisateur";
+            string requete = "SELECT Status FROM Utilisateur";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read()) {
-                int status = rdr.GetInt32("Status");
-                if (status == 0)
-                    return "Connexion";
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    int status = rdr.GetInt32("Status");
+                    if (status == 1)
+                        return "Déconnexion";
+                }
             }
-            return "Déconnexion";
+            return "Se connecter";
         }
 
         //Fonction de test
         public static void DeconnexionUtilisateurs()
         {
-            string requete = $"SELECT * FROM Utilisateur";
+            List<(string email, string mdp)> utilisateurs = new List<(string, string)>();
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
+            //Lecture de tous les utilisateurs
+            using (MySqlCommand cmd = new MySqlCommand("SELECT Email, Mdp FROM Utilisateur", connexion))
+            using (MySqlDataReader rdr = cmd.ExecuteReader())
             {
-                string deconnexion = $"UPDATE Utilisateur SET Status = @Status WHERE Email = {rdr.GetString("Email")} AND Mdp = {rdr.GetString("Mdp")}";
+                while (rdr.Read())
+                {
+                    utilisateurs.Add((rdr.GetString("Email"), rdr.GetString("Mdp")));
+                }
+            }
+            Console.WriteLine($"Déconnexion de {utilisateurs.Count} utilisateurs.");
 
-                using (MySqlCommand cmd2 = new MySqlCommand(deconnexion, connexion))
+            //Maj après fermeture reader
+            foreach (var (email, mdp) in utilisateurs)
+            {
+                Console.WriteLine($"Déconnexion : {email}, {mdp}");
+                string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd2 = new MySqlCommand(requete, connexion))
                 {
                     cmd2.Parameters.AddWithValue("@Status", 0);
+                    cmd2.Parameters.AddWithValue("@Email", email);
+                    cmd2.Parameters.AddWithValue("@Mdp", mdp);
 
                     cmd2.ExecuteNonQuery();
                 }
             }
         }
+
 
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {

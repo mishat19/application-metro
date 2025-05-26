@@ -32,6 +32,7 @@ namespace application_metro
             labelTrainError.Visible = true; // visible dès l'apparition du train
         }
 
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text))
