@@ -1,3 +1,5 @@
+using GestionReseau;
+
 namespace application_metro
 {
     internal static class Program
@@ -13,6 +15,14 @@ namespace application_metro
             ApplicationConfiguration.Initialize();
             Point positionInit = new Point(100, 100);
             Application.Run(new Ouverture(positionInit));
+
+            Application.ApplicationExit += new EventHandler(OnApplicationExit);
         }
+
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            Serveur.DeconnexionUtilisateurs();
+        }
+
     }
 }

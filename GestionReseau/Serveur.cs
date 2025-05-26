@@ -101,7 +101,10 @@ namespace GestionReseau
                     cmd.Parameters.AddWithValue("@Action", action);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Mdp", mdp);
+
+                    cmd.ExecuteNonQuery();
                 }
+
             }
             else if (action == 1) { //Connexion de l'utilisateur
                 string requete = $"UPDATE Utilisateur SET Status = @action WHERE Email = @Email AND Mdp = @Mdp";
@@ -111,6 +114,8 @@ namespace GestionReseau
                     cmd.Parameters.AddWithValue("@Action", action);
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Mdp", mdp);
+
+                    cmd.ExecuteNonQuery();
                 }
             }
         }
@@ -128,6 +133,27 @@ namespace GestionReseau
                     return "Connexion";
             }
             return "Déconnexion";
+        }
+
+        //Fonction de test
+        public static void DeconnexionUtilisateurs()
+        {
+            string requete = $"SELECT * FROM Utilisateur";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                string deconnexion = $"UPDATE Utilisateur SET Status = @Status WHERE Email = {rdr.GetString("Email")} AND Mdp = {rdr.GetString("Mdp")}";
+
+                using (MySqlCommand cmd2 = new MySqlCommand(deconnexion, connexion))
+                {
+                    cmd2.Parameters.AddWithValue("@Status", 0);
+
+                    cmd2.ExecuteNonQuery();
+                }
+            }
         }
 
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)

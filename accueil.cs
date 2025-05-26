@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 
 namespace application_metro
 {
@@ -17,7 +18,7 @@ namespace application_metro
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
-            btnRetour.Text = UtilisateurConnecte();
+            btnRetour.Text = Serveur.UtilisateurConnecte();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
