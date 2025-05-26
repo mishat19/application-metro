@@ -253,7 +253,7 @@ namespace GestionReseau
             List<string> horaireStation = new List<string>();
 
             string requete = @"
-            SELECT DISTINCT h.HoraireDepart, seg.DureeSegment
+            SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
             FROM Station st, Segment seg, Ligne l, Horaire h
             WHERE st.NomStation = @NomStation
             AND st.NumStation = seg.NumStationB
@@ -271,7 +271,7 @@ namespace GestionReseau
                     TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
                     int dureeSegment = rdr.GetInt32("DureeSegment");
 
-                    TimeSpan horaireLimite = new TimeSpan(22, 0, 0);
+                    TimeSpan horaireFin = rdr.GetTimeSpan("HoraireFin");
                     TimeSpan horaireActuel = horaireDepart;
 
                     double multiplicateur;
@@ -285,7 +285,7 @@ namespace GestionReseau
                         multiplicateur = 1;
                     }
 
-                    while (horaireActuel < horaireLimite)
+                    while (horaireActuel < horaireFin)
                     {
                         horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
                         horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
