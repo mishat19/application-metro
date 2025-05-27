@@ -19,6 +19,7 @@ namespace application_metro
         {
             InitializeComponent();
 
+            txtCouleur.SelectionLength = 0;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position; // Position en pixels à l’écran
 

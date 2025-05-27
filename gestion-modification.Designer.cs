@@ -129,6 +129,7 @@
             txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(336, 24);
             txtCouleur.TabIndex = 46;
+            txtCouleur.TabStop = false;
             txtCouleur.Text = "Couleur";
             txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
