@@ -13,11 +13,6 @@
   </PropertyGroup>
 	
 	<ItemGroup>
-	  <None Remove="Fonts\DynaPuff-Regular.ttf" />
-	  <None Remove="Fonts\Gliker-Regular.ttf" />
-	</ItemGroup>
-	
-	<ItemGroup>
 	  <EmbeddedResource Include="Fonts\DynaPuff-Regular.ttf" />
 	  <EmbeddedResource Include="Fonts\Gliker-Regular.ttf" />
 	</ItemGroup>
@@ -26,6 +21,12 @@
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3240.44" />
     <PackageReference Include="MySql.Data" Version="9.3.0" />
   </ItemGroup>
+
+	<ItemGroup>
+		<Content Include="map-milan.html">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="GestionReseau\GestionReseau.csproj" />

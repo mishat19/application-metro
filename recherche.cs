@@ -42,13 +42,14 @@ namespace application_metro
 
             //Serveur HTTP local
             serveur = new HttpListener();
-            serveur.Prefixes.Add("http://localhost:8080/");
+            serveur.Prefixes.Add("http://localhost:8081/");
             serveur.Start();
+            MessageBox.Show("Serveur démarré");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
             //Initialisation WebView2
             await webView.EnsureCoreWebView2Async(null);
-            webView.CoreWebView2.Navigate("http://localhost:8080/map-milan.html");
+            webView.CoreWebView2.Navigate("http://localhost:8081/map-milan.html");
         }
 
         private void EcouterRequetes(string dossier)
@@ -64,6 +65,7 @@ namespace application_metro
                         url = "map-milan.html";
 
                     string fichier = Path.Combine(dossier, url);
+                    MessageBox.Show(fichier);
 
                     if (File.Exists(fichier))
                     {
