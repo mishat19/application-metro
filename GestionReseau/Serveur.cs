@@ -643,5 +643,16 @@ namespace GestionReseau
 
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
+
+        public static void AjoutHoraireDepartFin(int NumLigne, DateTime HoraireDepart, DateTime HoraireFin)
+        {
+            string requete = @"INSERT INTO Horaire (NumLigne, HoraireDepart, HoraireFin) 
+                                VALUES (@NumLigne, @HoraireDepart, @HoraireFin)";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NumLigne", NumLigne);
+            cmd.Parameters.AddWithValue("@HoraireDepart", HoraireDepart);
+            cmd.Parameters.AddWithValue("@HoraireFin", HoraireFin);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
