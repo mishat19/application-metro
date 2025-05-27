@@ -276,7 +276,7 @@ namespace application_metro
                     }
                 }
 
-                int duree = txtDuree.Text;
+                int duree;
                 int idSegment;
                 int numLigne = Serveur.idLigneGraceNom(nomLigne);
                 int ordreIncrementation = 1;
@@ -286,16 +286,22 @@ namespace application_metro
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
                     int stationSuivante = station + 1;
+                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                    duree = (int)nud.Value;
                     Serveur.AjoutSegment(duree, station, stationSuivante);
                     idSegment = Serveur.RecupereIdDernierObjet();
                     Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
                 }
+
+                ordreIncrementation = 1;
 
                 // Ajout des segments dans la ligne
                 for (int i = 0; i < lstNomStation.Count; i++)
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
                     int stationSuivante = station + 1;
+                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                    duree = (int)nud.Value;
                     Serveur.AjoutSegment(duree, stationSuivante, station);
                     idSegment = Serveur.RecupereIdDernierObjet();
                     Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
