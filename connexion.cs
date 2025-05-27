@@ -94,6 +94,7 @@ namespace application_metro
             if (ouverture != null)
             {
                 ouverture.lblDeconnexion.Visible = false;
+                ouverture.Location = this.Location;
                 ouverture.Show();
                 this.Close();
             }
