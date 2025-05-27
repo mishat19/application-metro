@@ -644,12 +644,18 @@ namespace GestionReseau
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
+        /// <summary>
+        /// Ajoute un horaire de départ et de fin pour une ligne dans la base de données.
+        /// </summary>
+        /// <param name="NomLigne">Numéro de la ligne</param>
+        /// <param name="HoraireDepart"></param>
+        /// <param name="HoraireFin"></param>
         public static void AjoutHoraireDepartFin(int NumLigne, DateTime HoraireDepart, DateTime HoraireFin)
         {
             string requete = @"INSERT INTO Horaire (NumLigne, HoraireDepart, HoraireFin) 
                                 VALUES (@NumLigne, @HoraireDepart, @HoraireFin)";
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@NumLigne", NumLigne);
+            cmd.Parameters.AddWithValue("@NomLigne", NumLigne);
             cmd.Parameters.AddWithValue("@HoraireDepart", HoraireDepart);
             cmd.Parameters.AddWithValue("@HoraireFin", HoraireFin);
             cmd.ExecuteNonQuery();
