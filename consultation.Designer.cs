@@ -37,6 +37,7 @@
             picFond2 = new PictureBox();
             picRetour = new PictureBox();
             picHome = new PictureBox();
+            lblTitre = new Label();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
@@ -47,7 +48,7 @@
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRecherche.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
             btnRecherche.Location = new Point(93, 195);
             btnRecherche.Name = "btnRecherche";
@@ -60,13 +61,13 @@
             // cmbLignes
             // 
             cmbLignes.Enabled = false;
-            cmbLignes.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLignes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
             cmbLignes.Location = new Point(14, 136);
             cmbLignes.Margin = new Padding(3, 4, 3, 4);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 27);
+            cmbLignes.Size = new Size(186, 26);
             cmbLignes.TabIndex = 26;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
@@ -86,27 +87,27 @@
             // lstStations
             // 
             lstStations.BackColor = Color.FromArgb(255, 230, 188);
-            lstStations.Font = new Font("DynaPuff", 9F);
+            lstStations.Font = new Font("Microsoft Sans Serif", 9F);
             lstStations.ForeColor = Color.FromArgb(205, 33, 42);
             lstStations.FormattingEnabled = true;
-            lstStations.ItemHeight = 19;
+            lstStations.ItemHeight = 18;
             lstStations.Location = new Point(16, 267);
             lstStations.Margin = new Padding(3, 5, 3, 5);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(354, 194);
+            lstStations.Size = new Size(354, 184);
             lstStations.TabIndex = 31;
             lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
             // cmbStation
             // 
             cmbStation.Enabled = false;
-            cmbStation.Font = new Font("DynaPuff", 9F);
+            cmbStation.Font = new Font("Microsoft Sans Serif", 9F);
             cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
             cmbStation.FormattingEnabled = true;
             cmbStation.Location = new Point(206, 136);
             cmbStation.Margin = new Padding(3, 4, 3, 4);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(164, 27);
+            cmbStation.Size = new Size(164, 26);
             cmbStation.TabIndex = 32;
             cmbStation.Text = "Nom de la station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
@@ -143,12 +144,22 @@
             picHome.TabStop = false;
             picHome.Click += picHome_Click;
             // 
+            // lblTitre
+            // 
+            lblTitre.AutoSize = true;
+            lblTitre.Location = new Point(158, 60);
+            lblTitre.Name = "lblTitre";
+            lblTitre.Size = new Size(79, 20);
+            lblTitre.TabIndex = 56;
+            lblTitre.Text = "HORAIRES";
+            // 
             // Consultation
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(lblTitre);
             Controls.Add(picHome);
             Controls.Add(picRetour);
             Controls.Add(cmbStation);
@@ -169,6 +180,7 @@
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -181,5 +193,6 @@
         private PictureBox picFond2;
         private PictureBox picRetour;
         private PictureBox picHome;
+        private Label lblTitre;
     }
 }

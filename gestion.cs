@@ -1,13 +1,14 @@
-﻿using System;
+﻿using GestionReseau;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace application_metro
@@ -19,6 +20,8 @@ namespace application_metro
         string nomLigne = "";
         string nomStation = "";
         string horaire = "";
+
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Gestion(Point position)
         {
@@ -33,11 +36,25 @@ namespace application_metro
             {
                 cmbLigne.Items.Add(ligne.nom);
             }
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
         }
 
         private void gestion_Load(object sender, EventArgs e)
         {
-
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            lblAjout.Font = new Font(D, 14);
+            lblSelection.Font = new Font(G, 11, FontStyle.Underline);
+            lblGestion.Font = new Font(G, 11, FontStyle.Underline);
+            cmbLigne.Font = new Font(D, 9);
+            cmbStation.Font = new Font(D, 9);
+            cmbHoraire.Font = new Font(D, 9);
+            btnModif.Font = new Font(D, 14);
+            btnSupp.Font = new Font(D, 14);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

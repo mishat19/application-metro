@@ -1,10 +1,13 @@
 ﻿using GestionReseau;
+using System.Drawing.Text;
 
 namespace application_metro
 {
     public partial class Consultation : Form
     {
         string _ligne;
+
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Consultation(string ligne, Point position)
         {
@@ -15,6 +18,10 @@ namespace application_metro
 
             _ligne = ligne;
             cmbLignes.Text = _ligne;
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
         }
 
         private void consultation_Load(object sender, EventArgs e)
@@ -30,6 +37,15 @@ namespace application_metro
             {
                 cmbLignes.SelectedItem = _ligne;
             }
+
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            cmbLignes.Font = new Font(D, 9);
+            cmbStation.Font = new Font(D, 9);
+            btnRecherche.Font = new Font(D, 14);
+            lstStations.Font = new Font(D, 9);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
