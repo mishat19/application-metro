@@ -1,3 +1,4 @@
+using application_metro;
 using GestionReseau;
 using System.Runtime.InteropServices;
 
@@ -30,6 +31,24 @@ namespace application_metro
             labelTrainError.AutoSize = true;
             labelTrainError.Location = new Point(20, 15); // Position dans le train
             labelTrainError.Visible = true; // visible dès l'apparition du train
+
+            try
+            {
+                Font dynapuff = FontLoader.GetFont("DynaPuff", 18);
+                btnConnexion.Font = dynapuff;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur chargement police : " + ex.Message);
+            }
+            try
+            {
+                btnNoConnexion.Font = FontLoader.GetFont("Gliker", 18);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur chargement police : " + ex.Message);
+            }
         }
 
 
@@ -81,8 +100,7 @@ namespace application_metro
 
         private void Ouverture_Load(object sender, EventArgs e)
         {
-            btnConnexion.Font = FontLoader.GetFont("DynaPuff", 18);
-            btnNoConnexion.Font = FontLoader.GetFont("Gliker", 18);
+            
         }
     }
 }

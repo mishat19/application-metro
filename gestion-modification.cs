@@ -172,6 +172,14 @@ namespace application_metro
 
                 txt.TextChanged += Txt_TextChanged;
 
+                //NumericUpDown stations
+                NumericUpDown nud = new NumericUpDown
+                {
+                    Name = $"nudStation{i}",
+                    Location = new Point(310, 8),
+                    Width = 40
+                };
+
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
                 {
@@ -211,17 +219,9 @@ namespace application_metro
 
                 txt3.TextChanged += Txt3_TextChanged;
 
-                //CheckBox
-                //CheckBox chk = new CheckBox
-                //{
-                //    Name = $"chkStation{i}",
-                //    Location = new Point(300, 8),
-                //    Width = 20
-                //};
-
                 stationPanel.Controls.Add(lblNum);
                 stationPanel.Controls.Add(txt);
-                //stationPanel.Controls.Add(chk);
+                stationPanel.Controls.Add(nud);
 
                 coordonneePanel.Controls.Add(lblNum2);
                 coordonneePanel.Controls.Add(txt2);
