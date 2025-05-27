@@ -246,6 +246,53 @@ namespace application_metro
             if (mode == "Ajout")
             {
                 //Fonctions de Serveur à mettre ici
+
+                string nomLigne = txtNomLigne.Text;
+                string couleur = txtCouleur.Text;
+
+                Serveur.AjoutLigne(nomLigne, couleur);
+
+                List<string> lstNomStation = new List<string>();
+
+                for (int i = 0; i < nudNbStations.Value; i++)
+                {
+                    string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
+                    string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
+                    double latitudeDecimal = Convert.ToDouble(latitude);
+                    string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
+                    double longitudeDecimal = Convert.ToDouble(longitude);
+                    if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
+                    {
+                        lstNomStation.Add(nomStation);
+                        Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
+                    }
+                }
+
+                int duree = txtDuree.Text;
+                int idSegment;
+                int numLigne = Serveur.idLigneGraceNom(nomLigne);
+                int ordreIncrementation = 1;
+
+                // Ajout du segment dans le sens de l'aller et du retour
+                for (int i = 0; i < lstNomStation.Count; i++)
+                {
+                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                    int stationSuivante = station + 1;
+                    Serveur.AjoutSegment(duree, station, stationSuivante);
+                    idSegment = Serveur.RecupereIdDernierObjet();
+                    Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                }
+
+                // Ajout des segments dans la ligne
+                for (int i = 0; i < lstNomStation.Count; i++)
+                {
+                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                    int stationSuivante = station + 1;
+                    Serveur.AjoutSegment(duree, stationSuivante, station);
+                    idSegment = Serveur.RecupereIdDernierObjet();
+                    Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                }
+
             }
             else
             {

@@ -62,7 +62,7 @@ namespace GestionReseau
         public static bool UtilisateurConnexion(string email, string mdp)
         {
             string requete = $"SELECT Count(*) FROM Utilisateur WHERE Email = @Email AND Mdp = @Mdp";
-            
+
             using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
@@ -146,9 +146,9 @@ namespace GestionReseau
 
             rdr.Close();
 
-            for (int i = 1; i<=nbLignes; i++)
+            for (int i = 1; i <= nbLignes; i++)
             {
-                foreach(int segment in lignesTemp[i].segments)
+                foreach (int segment in lignesTemp[i].segments)
                 {
                     string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
                     //Console.WriteLine(requete2);
@@ -160,12 +160,13 @@ namespace GestionReseau
                         try
                         {
                             string nomStation = rdr2.GetString("NomStation");
-                            if(!lignesTemp[i].stations.Contains(nomStation))
+                            if (!lignesTemp[i].stations.Contains(nomStation))
                             {
                                 lignesTemp[i].stations.Add(nomStation);
                             }
                         }
-                        catch (MySqlException ex) {
+                        catch (MySqlException ex)
+                        {
                             Console.WriteLine(ex.Message);
                         }
                     }
@@ -184,7 +185,8 @@ namespace GestionReseau
         {
             List<List<decimal>> toutes = new List<List<decimal>>();
 
-            foreach (string nomStation in stations) {
+            foreach (string nomStation in stations)
+            {
                 string nomEchappe = nomStation.Replace("'", "''");
                 string requete = $"SELECT Latitude, Longitude FROM Station WHERE NomStation = '{nomEchappe}'";
                 Console.WriteLine(requete);
@@ -265,7 +267,7 @@ namespace GestionReseau
 
             using (var rdr = cmd.ExecuteReader())
             {
-                
+
                 while (rdr.Read())
                 {
                     TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
@@ -348,7 +350,7 @@ namespace GestionReseau
             cmdLigne.ExecuteNonQuery();
 
             string requeteInfoLigne = @"DELETE FROM InfoLigne WHERE Nom = @nomLigne";
-            
+
             MySqlCommand cmdInfoLigne = new MySqlCommand(requeteInfoLigne, connexion);
             cmdInfoLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
             cmdInfoLigne.ExecuteNonQuery();
@@ -376,11 +378,11 @@ namespace GestionReseau
         /// <param name="nomStation"></param>
         /// <param name="latitude"></param>
         /// <param name="longitude"></param>
-        public static void AjoutStation(string nomStation, double latitude, double longitude) 
+        public static void AjoutStation(string nomStation, double latitude, double longitude)
         {
             string requeteAjoutStation = @"INSERT INTO Station (NomStation, Latitude, Longitude)
                                            VALUES (@nomStation, @latitude, @longitude)";
-            
+
             MySqlCommand cmdAjoutStation = new MySqlCommand(requeteAjoutStation, connexion);
             cmdAjoutStation.Parameters.AddWithValue("@nomStation", nomStation);
             cmdAjoutStation.Parameters.AddWithValue("@latitude", latitude);
@@ -484,5 +486,77 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Ajoute un segment entre deux stations dans la base de données.
+        /// </summary>
+        /// <param name="dureeSegment">Temps en seconde pour aller de la station A à la station B</param>
+        /// <param name="numStationA">Station de départ du segment</param>
+        /// <param name="numStationB">Station d'arriver du segment</param>
+        public static void AjoutSegment(int dureeSegment, int numStationA, int numStationB)
+        {
+            // Ajoute un segment entre deux stations
+            string requete = @"INSERT INTO Segment (DureeSegment, NumStationA, NumStationB) 
+                                VALUES (@dureeSegment, @numStationA, @numStationB)";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@dureeSegment", dureeSegment);
+            cmd.Parameters.AddWithValue("@numStationA", numStationA);
+            cmd.Parameters.AddWithValue("@numStationB", numStationB);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void AjoutSegmentDansLigne(int numLigne, int numSegment, int ordre)
+        {
+            // Ajoute un segment à une ligne
+            string requete = @"INSERT INTO Ligne (NumLigne, NumSegment, Ordre) 
+                                VALUES (@numLigne, @numSegment, @ordre)";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@numLigne", numLigne);
+            cmd.Parameters.AddWithValue("@numSegment", numSegment);
+            cmd.Parameters.AddWithValue("@ordre", ordre);
+            cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Récupère l'ID d'une ligne à partir de son nom.
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <returns>Retourne l'ID </returns>
+        public static int idLigneGraceNom(string nom)
+        {
+            string requete = @"SELECT NumLigne FROM InfoLigne WHERE Nom = @nom";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@nom", nom);
+            cmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        /// <summary>
+        /// Récupère l'ID d'une station à partir de son nom.
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <returns>Retourne l'ID de la station</returns>
+        public static int idStationGraceNom(string nom)
+        {
+            string requete = @"SELECT NumStation FROM Station WHERE NomStation = @nom";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@nom", nom);
+            cmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        /// <summary>
+        /// Récupère l'ID du dernier objet inséré dans la base de données.
+        /// </summary>
+        /// <returns>Retourne l'ID récupérer</returns>
+        public static int RecupereIdDernierObjet()
+        {
+            string requete = @"SELECT LAST_INSERT_ID()";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.ExecuteNonQuery();
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
     }
 }
