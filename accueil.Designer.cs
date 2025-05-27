@@ -41,11 +41,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Gliker", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
             lblTitre.Location = new Point(81, 99);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(231, 60);
+            lblTitre.Size = new Size(241, 58);
             lblTitre.TabIndex = 5;
             lblTitre.Text = "ACCUEIL";
             lblTitre.Click += lblTitre_Click;
@@ -54,7 +54,7 @@
             // 
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("DynaPuff", 13.7999992F);
+            btnRecherche.Font = new Font("Microsoft Sans Serif", 13.7999992F);
             btnRecherche.ForeColor = Color.White;
             btnRecherche.Location = new Point(29, 337);
             btnRecherche.Name = "btnRecherche";
@@ -68,7 +68,7 @@
             // 
             btnConsultation.BackColor = Color.FromArgb(205, 33, 42);
             btnConsultation.FlatStyle = FlatStyle.Flat;
-            btnConsultation.Font = new Font("DynaPuff", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsultation.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConsultation.ForeColor = Color.White;
             btnConsultation.Location = new Point(29, 220);
             btnConsultation.Name = "btnConsultation";
@@ -82,7 +82,7 @@
             // 
             btnRetour.BackColor = Color.FromArgb(255, 230, 188);
             btnRetour.FlatStyle = FlatStyle.Flat;
-            btnRetour.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRetour.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRetour.ForeColor = Color.FromArgb(205, 33, 42);
             btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
@@ -96,7 +96,7 @@
             // 
             btnAdmin.BackColor = Color.FromArgb(205, 33, 42);
             btnAdmin.FlatStyle = FlatStyle.Flat;
-            btnAdmin.Font = new Font("DynaPuff", 13.7999992F);
+            btnAdmin.Font = new Font("Microsoft Sans Serif", 13.7999992F);
             btnAdmin.ForeColor = Color.White;
             btnAdmin.Location = new Point(29, 457);
             btnAdmin.Name = "btnAdmin";
@@ -133,6 +133,7 @@
             Name = "Accueil";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Menu";
+            Load += Accueil_Load;
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
             PerformLayout();

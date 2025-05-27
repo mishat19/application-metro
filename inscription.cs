@@ -1,24 +1,30 @@
-﻿using System;
+﻿using GestionReseau;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
 
 namespace application_metro
 {
     public partial class Inscription : Form
     {
+
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
         public Inscription(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = position;
+            this.Location = position; 
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
         }
 
@@ -87,5 +93,21 @@ namespace application_metro
             }
         }
 
+        private void Inscription_Load(object sender, EventArgs e)
+        {
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            txtNom.Font = new Font(D, 9);
+            txtPrenom.Font = new Font(D, 9);
+            txtEmail.Font = new Font(D, 9);
+            txtMdp.Font = new Font(D, 9);
+            dtpNaissance.Font = new Font(D, 9);
+            lblNaissance.Font = new Font(G, 9, FontStyle.Underline);
+            lblConnexion.Font = new Font(G, 9, FontStyle.Underline);
+            lnkConnexion.Font = new Font(D, 9, FontStyle.Underline);
+            btnInscription.Font = new Font(D, 14);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
+        }
     }
 }

@@ -112,7 +112,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(27, 150);
+            lblTitre.Location = new Point(22, 150);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(339, 58);
             lblTitre.TabIndex = 6;

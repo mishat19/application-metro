@@ -247,7 +247,6 @@
             // btnEnregistrement
             // 
             btnEnregistrement.BackColor = Color.FromArgb(205, 33, 42);
-            btnEnregistrement.Enabled = false;
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("Microsoft Sans Serif", 9F);
             btnEnregistrement.ForeColor = Color.White;
