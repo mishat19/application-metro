@@ -33,8 +33,6 @@
             pnlOuverture = new Panel();
             btnSubmit = new Button();
             textBox1 = new TextBox();
-            lblInscription = new Label();
-            lnkInscription = new LinkLabel();
             picLogo1 = new PictureBox();
             lblDeconnexion = new Label();
             lblTitre = new Label();
@@ -56,8 +54,6 @@
             pnlOuverture.BackColor = Color.FromArgb(255, 230, 188);
             pnlOuverture.Controls.Add(btnSubmit);
             pnlOuverture.Controls.Add(textBox1);
-            pnlOuverture.Controls.Add(lblInscription);
-            pnlOuverture.Controls.Add(lnkInscription);
             pnlOuverture.Controls.Add(picLogo1);
             pnlOuverture.Controls.Add(lblDeconnexion);
             pnlOuverture.Controls.Add(lblTitre);
@@ -87,30 +83,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 57;
-            // 
-            // lblInscription
-            // 
-            lblInscription.AutoSize = true;
-            lblInscription.Font = new Font("Microsoft Sans Serif", 9F);
-            lblInscription.ForeColor = Color.FromArgb(15, 93, 70);
-            lblInscription.Location = new Point(12, 391);
-            lblInscription.Name = "lblInscription";
-            lblInscription.Size = new Size(252, 18);
-            lblInscription.TabIndex = 56;
-            lblInscription.Text = "Vous n'avez pas encore de compte ?";
-            // 
-            // lnkInscription
-            // 
-            lnkInscription.AutoSize = true;
-            lnkInscription.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lnkInscription.LinkColor = Color.FromArgb(205, 33, 42);
-            lnkInscription.Location = new Point(296, 391);
-            lnkInscription.Name = "lnkInscription";
-            lnkInscription.Size = new Size(69, 18);
-            lnkInscription.TabIndex = 55;
-            lnkInscription.TabStop = true;
-            lnkInscription.Text = "S'inscrire";
-            lnkInscription.LinkClicked += lnkInscription_LinkClicked;
             // 
             // picLogo1
             // 
@@ -166,7 +138,7 @@
             btnConnexion.FlatStyle = FlatStyle.Flat;
             btnConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
-            btnConnexion.Location = new Point(40, 314);
+            btnConnexion.Location = new Point(40, 329);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(290, 74);
             btnConnexion.TabIndex = 4;
@@ -245,8 +217,6 @@
         private Button btnConnexion;
         private PictureBox picFond2;
         private PictureBox picLogo1;
-        private Label lblInscription;
-        private LinkLabel lnkInscription;
         private Button btnSubmit;
         private TextBox textBox1;
         private Label labelTrainError;

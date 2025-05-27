@@ -129,7 +129,7 @@
             txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(336, 24);
             txtCouleur.TabIndex = 46;
-            txtCouleur.Text = "Entrer du texte...";
+            txtCouleur.Text = "Couleur";
             txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
             // lblNbStations
@@ -161,9 +161,9 @@
             lblNoms.ForeColor = Color.FromArgb(15, 93, 70);
             lblNoms.Location = new Point(12, 412);
             lblNoms.Name = "lblNoms";
-            lblNoms.Size = new Size(223, 44);
+            lblNoms.Size = new Size(158, 22);
             lblNoms.TabIndex = 50;
-            lblNoms.Text = "Nom des stations :\r\n(cochez les deux terminus)\r\n";
+            lblNoms.Text = "Nom des stations :";
             // 
             // lblCoordonnees
             // 
@@ -349,7 +349,7 @@
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
             txtNomLigne.Size = new Size(176, 24);
             txtNomLigne.TabIndex = 58;
-            txtNomLigne.Text = "Entrer du texte...";
+            txtNomLigne.Text = "Nom de votre ligne";
             txtNomLigne.Visible = false;
             // 
             // picFond2

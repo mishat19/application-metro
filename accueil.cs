@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GestionReseau;
 
 namespace application_metro
 {
@@ -17,6 +18,15 @@ namespace application_metro
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
+            btnRetour.Text = Serveur.UtilisateurConnecte();
+
+            //Fermeture de la fenetre
+            this.FormClosing += Ouverture_FormClosing;
+        }
+
+        private void Ouverture_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Serveur.DeconnexionUtilisateurs();
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -35,6 +45,7 @@ namespace application_metro
                     ouverture.lblDeconnexion.Visible = true;
                     ouverture.StartPosition = FormStartPosition.Manual;
                     ouverture.Location = this.Location;
+                    Serveur.DeconnexionUtilisateurs();
                     ouverture.Show();
                 }
             }

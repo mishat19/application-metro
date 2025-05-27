@@ -38,7 +38,7 @@ namespace application_metro
                 cmbLigne.Visible = true;
                 txtNumero.Visible = false;
                 nudNumLigne.Visible = true;
-                nudNbStations.Enabled = false;
+                nudNbStations.Enabled = true;
 
                 string nom = nomLigneDeconcatenation(ligne);
                 cmbLigne.Items.Add(nom);
@@ -161,16 +161,32 @@ namespace application_metro
 
                 if (!string.IsNullOrEmpty(nom))
                 {
-                    Name = nom;
+                    txt.Name = nom;
                     txt.Text = nom;
                 }
                 else
                 {
-                    Name = $"txtStation{i}";
+                    txt.Name = $"txtStation{i}";
                     txt.PlaceholderText = $"Nom de la station {i}";
                 }
 
                 txt.TextChanged += Txt_TextChanged;
+
+                //NumericUpDown stations
+                NumericUpDown nud = new NumericUpDown
+                {
+                    Location = new Point(310, 8),
+                    Width = 40
+                };
+
+                if (!string.IsNullOrEmpty(nom))
+                {
+                    nud.Name = nom;
+                }
+                else
+                {
+                    nud.Name = $"nudStation{i}";
+                }
 
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
@@ -181,12 +197,12 @@ namespace application_metro
 
                 if (coordonnee != null)
                 {
-                    Name = nom;
+                    txt2.Name = nom;
                     txt2.Text = coordonnee[0].ToString();
                 }
                 else
                 {
-                    Name = $"txtCoordonneeLa{i}";
+                    txt2.Name = $"txtCoordonneeLa{i}";
                     txt2.PlaceholderText = $"Latitude{i}";
                 }
 
@@ -200,28 +216,20 @@ namespace application_metro
 
                 if (coordonnee != null)
                 {
-                    Name = nom;
+                    txt3.Name = nom;
                     txt3.Text = coordonnee[1].ToString();
                 }
                 else
                 {
-                    Name = $"txtCoordonneeLa{i}";
+                    txt3.Name = $"txtCoordonneeLa{i}";
                     txt3.PlaceholderText = $"Longitude{i}";
                 }
 
                 txt3.TextChanged += Txt3_TextChanged;
 
-                //CheckBox
-                //CheckBox chk = new CheckBox
-                //{
-                //    Name = $"chkStation{i}",
-                //    Location = new Point(300, 8),
-                //    Width = 20
-                //};
-
                 stationPanel.Controls.Add(lblNum);
                 stationPanel.Controls.Add(txt);
-                //stationPanel.Controls.Add(chk);
+                stationPanel.Controls.Add(nud);
 
                 coordonneePanel.Controls.Add(lblNum2);
                 coordonneePanel.Controls.Add(txt2);

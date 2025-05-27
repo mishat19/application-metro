@@ -73,10 +73,14 @@ namespace GestionReseau
                 try
                 {
                     object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
-                    Console.WriteLine(result);
+                    //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
-
-                    return count > 0;
+                    if(count > 0)
+                    {
+                        StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
+                        return true;
+                    }
+                    return false;
                 }
                 catch (MySqlException ex)
                 {
@@ -85,6 +89,87 @@ namespace GestionReseau
                 }
             }
         }
+
+        public static void StatusUtilisateur(string email, string mdp, int action)
+        {
+            if (action == 0)
+            { //Déconnexion de l'utilisateur ou fermeture de l'application
+                string requete = $"UPDATE Utilisateur SET Status = @Action WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Mdp", mdp);
+
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+            else if (action == 1) { //Connexion de l'utilisateur
+                string requete = $"UPDATE Utilisateur SET Status = @action WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    cmd.Parameters.AddWithValue("@Action", action);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Mdp", mdp);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static string UtilisateurConnecte()
+        {
+            string requete = "SELECT Status FROM Utilisateur";
+
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    int status = rdr.GetInt32("Status");
+                    if (status == 1)
+                        return "Déconnexion";
+                }
+            }
+            return "Se connecter";
+        }
+
+        //Fonction de test
+        public static void DeconnexionUtilisateurs()
+        {
+            List<(string email, string mdp)> utilisateurs = new List<(string, string)>();
+
+            //Lecture de tous les utilisateurs
+            using (MySqlCommand cmd = new MySqlCommand("SELECT Email, Mdp FROM Utilisateur", connexion))
+            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    utilisateurs.Add((rdr.GetString("Email"), rdr.GetString("Mdp")));
+                }
+            }
+            Console.WriteLine($"Déconnexion de {utilisateurs.Count} utilisateurs.");
+
+            //Maj après fermeture reader
+            foreach (var (email, mdp) in utilisateurs)
+            {
+                Console.WriteLine($"Déconnexion : {email}, {mdp}");
+                string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
+
+                using (MySqlCommand cmd2 = new MySqlCommand(requete, connexion))
+                {
+                    cmd2.Parameters.AddWithValue("@Status", 0);
+                    cmd2.Parameters.AddWithValue("@Email", email);
+                    cmd2.Parameters.AddWithValue("@Mdp", mdp);
+
+                    cmd2.ExecuteNonQuery();
+                }
+            }
+        }
+
 
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {
@@ -106,6 +191,7 @@ namespace GestionReseau
                 try
                 {
                     cmd.ExecuteNonQuery();
+                    StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
                 }
                 catch (MySqlException ex)
                 {
