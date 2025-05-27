@@ -177,7 +177,8 @@ namespace application_metro
                 NumericUpDown nud = new NumericUpDown
                 {
                     Location = new Point(310, 8),
-                    Width = 40
+                    Maximum = 999,
+                    Width = 50
                 };
 
                 if (!string.IsNullOrEmpty(nom))
@@ -320,11 +321,13 @@ namespace application_metro
         private void nudNumLigne_ValueChanged(object sender, EventArgs e)
         {
             nudChange = true;
+            btnEnregistrement.Enabled = true;
         }
 
         private void txtCouleur_TextChanged(object sender, EventArgs e)
         {
             couleurChange = true;
+            btnEnregistrement.Enabled = true;
         }
 
         private void Txt_TextChanged(object sender, EventArgs e)
@@ -336,6 +339,7 @@ namespace application_metro
                 string contenu = txt.Text;
                 stationsChange[nom] = contenu;
             }
+            btnEnregistrement.Enabled = true;
         }
 
         private void Txt2_TextChanged(object sender, EventArgs e)
@@ -357,6 +361,7 @@ namespace application_metro
                         coordonneesChange[nom] = (latitude, 0);
                     }
                 }
+                btnEnregistrement.Enabled = true;
             }
         }
 
@@ -379,6 +384,7 @@ namespace application_metro
                         coordonneesChange[nom] = (0, longitude);
                     }
                 }
+                btnEnregistrement.Enabled = true;
             }
         }
 
