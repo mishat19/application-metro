@@ -1,22 +1,23 @@
-﻿using System;
+﻿using GestionReseau;
+using K4os.Compression.LZ4.Encoders;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 
-using GestionReseau;
-using K4os.Compression.LZ4.Encoders;
-
 namespace application_metro
 {
     public partial class Connexion : Form
     {
 
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         private int trainStartX = -300; // Position de départ hors écran
         private int trainEndX = 30;     // Position finale d'arrivée du train
@@ -36,6 +37,9 @@ namespace application_metro
             lblErreur.AutoSize = true;
             lblErreur.Location = new Point(20, 15); // Position dans le train
             lblErreur.Visible = true;
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
         }
 
@@ -128,6 +132,14 @@ namespace application_metro
 
         private void Connexion_Load(object sender, EventArgs e)
         {
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            txtEmail.Font = new Font(D, 9);
+            txtMdp.Font = new Font(D, 9);
+            lblInscription.Font = new Font(D, 9);
+            lnkInscription.Font = new Font(D, 9);
+            btnConnexion.Font = new Font(D, 14);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
 
         }
 

@@ -1,13 +1,14 @@
-﻿using System;
+﻿using GestionReseau;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
 
 namespace application_metro
 {
@@ -15,6 +16,8 @@ namespace application_metro
     {
         int numeroLigne = 0;
         string mode = "";
+
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
         public Gestion_modification(string mode, Point position, string ligne = null, string station = null, string horaire = null)
         {
             InitializeComponent();
@@ -66,6 +69,9 @@ namespace application_metro
                     }
                 }
             }
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
         }
 
         public string nomLigneDeconcatenation(string nom)
@@ -243,7 +249,26 @@ namespace application_metro
         }
         private void gestion_modification_Load(object sender, EventArgs e)
         {
-
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            lblIntitule.Font = new Font(G, 11, FontStyle.Underline);
+            lblCouleur.Font = new Font(G, 11, FontStyle.Underline);
+            lblNbStations.Font = new Font(G, 11, FontStyle.Underline);
+            lblNoms.Font = new Font(G, 11, FontStyle.Underline);
+            lblCoordonnees.Font = new Font(G, 11, FontStyle.Underline);
+            lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
+            rbDirectionA.Font = new Font(D, 9);
+            rbDirectionB.Font = new Font(D, 9);
+            btnEnregistrement.Font = new Font(D, 9);
+            txtCouleur.Font = new Font(D, 9);
+            cmbLigne.Font = new Font(D, 9);
+            nudNumLigne.Font = new Font(D, 9);
+            txtNomLigne.Font = new Font(D, 9);
+            flpStations.Font = new Font(D, 9);
+            flpCoordonnees.Font = new Font(D, 9);
+            flpHoraires.Font = new Font(D, 9);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

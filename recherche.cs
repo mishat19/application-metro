@@ -1,15 +1,16 @@
-﻿using System;
+﻿using GestionReseau;
+using Microsoft.Web.WebView2.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
-using Microsoft.Web.WebView2.WinForms;
 
 namespace application_metro
 {
@@ -18,6 +19,8 @@ namespace application_metro
         private WebView2 webView;
         private HttpListener serveur;
         private Task serveurTask;
+
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Recherche(Point position)
         {
@@ -29,6 +32,9 @@ namespace application_metro
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
             this.Controls.Add(webView);
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
@@ -110,7 +116,26 @@ namespace application_metro
 
         private void consultation_Load(object sender, EventArgs e)
         {
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            lblDepart.Font = new Font(G, 9);
+            lblArrivee.Font = new Font(G, 9);
+            lblHoraireDepart.Font = new Font(G, 9);
+            lblHoraireArrivée.Font = new Font(G, 9);
+            lblHoraires.Font = new Font(G, 9, FontStyle.Underline);
+            dtpArrivee.Font = new Font(D, 9);
+            dtpDepart.Font = new Font(D, 9);
+            btnRecherche.Font = new Font(D, 14);
+            lblDépart.Font = new Font(D, 9);
+            lblArrivee2.Font = new Font(D, 9);
+            lblTempsArrivee.Font = new Font(D, 9);
+            lblTempsDepart.Font = new Font(D, 9);
+            lblNumLigne.Font = new Font(D, 9);
+            lblNumLigneResultat.Font = new Font(D, 9);
+            lblTemps.Font = new Font(D, 9);
 
+            lblTrajet.Font = new Font(G, 9, FontStyle.Underline);
+            lblTitre.Font = new Font(G, 14, FontStyle.Bold);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -130,6 +155,11 @@ namespace application_metro
             Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
+        }
+
+        private void grpResultat_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
     }
 }

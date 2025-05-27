@@ -1,24 +1,30 @@
-﻿using System;
+﻿using GestionReseau;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
 
 namespace application_metro
 {
     public partial class Accueil : Form
     {
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
+
         public Accueil(Point position)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
             btnRetour.Text = Serveur.UtilisateurConnecte();
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             //Fermeture de la fenetre
             this.FormClosing += Ouverture_FormClosing;
@@ -85,6 +91,17 @@ namespace application_metro
         private void lblTitre_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Accueil_Load(object sender, EventArgs e)
+        {
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            btnConsultation.Font = new Font(D, 14);
+            btnRecherche.Font = new Font(D, 14);
+            btnAdmin.Font = new Font(D, 14);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            btnRetour.Font = new Font(D, 9);
         }
     }
 }

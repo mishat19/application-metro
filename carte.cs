@@ -1,10 +1,11 @@
-﻿using System;
+﻿using GestionReseau;
+using Microsoft.Web.WebView2.WinForms;
+using System;
+using System.Drawing.Text;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GestionReseau;
-using Microsoft.Web.WebView2.WinForms;
 using static System.Windows.Forms.LinkLabel;
 
 namespace application_metro
@@ -15,12 +16,17 @@ namespace application_metro
         private HttpListener serveur;
         private Task serveurTask;
 
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
+
         public Carte(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
@@ -106,6 +112,11 @@ namespace application_metro
 
         private void carte_Load(object sender, EventArgs e)
         {
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            btnRecherche.Font = new Font(D, 9);
+            btnHoraires.Font = new Font(D, 14);
+            cmbLignes.Font = new Font(D, 9);
 
         }
 

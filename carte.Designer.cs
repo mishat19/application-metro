@@ -36,20 +36,22 @@
             picHome = new PictureBox();
             picCroix = new PictureBox();
             picLogo5 = new PictureBox();
+            pnlCarte = new Panel();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picCroix).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogo5).BeginInit();
+            pnlCarte.SuspendLayout();
             SuspendLayout();
             // 
             // cmbLignes
             // 
-            cmbLignes.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLignes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(12, 99);
+            cmbLignes.Location = new Point(12, 92);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 27);
+            cmbLignes.Size = new Size(186, 26);
             cmbLignes.TabIndex = 21;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
@@ -59,11 +61,11 @@
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Enabled = false;
             btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRecherche.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(242, 99);
+            btnRecherche.Location = new Point(230, 92);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(92, 28);
+            btnRecherche.Size = new Size(92, 27);
             btnRecherche.TabIndex = 22;
             btnRecherche.Text = "Afficher";
             btnRecherche.UseVisualStyleBackColor = false;
@@ -74,9 +76,9 @@
             btnHoraires.BackColor = Color.FromArgb(205, 33, 42);
             btnHoraires.Enabled = false;
             btnHoraires.FlatStyle = FlatStyle.Flat;
-            btnHoraires.Font = new Font("DynaPuff", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHoraires.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnHoraires.ForeColor = Color.White;
-            btnHoraires.Location = new Point(12, 151);
+            btnHoraires.Location = new Point(12, 137);
             btnHoraires.Name = "btnHoraires";
             btnHoraires.Size = new Size(358, 52);
             btnHoraires.TabIndex = 23;
@@ -87,9 +89,9 @@
             // picRetour
             // 
             picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(12, 12);
+            picRetour.Location = new Point(0, 3);
             picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
+            picRetour.Size = new Size(42, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 25;
             picRetour.TabStop = false;
@@ -98,7 +100,7 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(60, 12);
+            picHome.Location = new Point(39, 3);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
@@ -109,7 +111,7 @@
             // picCroix
             // 
             picCroix.Image = Properties.Resources.croix;
-            picCroix.Location = new Point(159, 99);
+            picCroix.Location = new Point(156, 92);
             picCroix.Name = "picCroix";
             picCroix.Size = new Size(16, 27);
             picCroix.SizeMode = PictureBoxSizeMode.Zoom;
@@ -120,26 +122,36 @@
             // picLogo5
             // 
             picLogo5.Image = Properties.Resources.logo5;
-            picLogo5.Location = new Point(241, 21);
+            picLogo5.Location = new Point(230, 12);
             picLogo5.Name = "picLogo5";
-            picLogo5.Size = new Size(93, 81);
+            picLogo5.Size = new Size(92, 81);
             picLogo5.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo5.TabIndex = 58;
             picLogo5.TabStop = false;
+            // 
+            // pnlCarte
+            // 
+            pnlCarte.BackColor = Color.FromArgb(255, 230, 188);
+            pnlCarte.Controls.Add(picLogo5);
+            pnlCarte.Controls.Add(picCroix);
+            pnlCarte.Controls.Add(btnRecherche);
+            pnlCarte.Controls.Add(picHome);
+            pnlCarte.Controls.Add(btnHoraires);
+            pnlCarte.Controls.Add(picRetour);
+            pnlCarte.Controls.Add(cmbLignes);
+            pnlCarte.Dock = DockStyle.Fill;
+            pnlCarte.Location = new Point(0, 0);
+            pnlCarte.Name = "pnlCarte";
+            pnlCarte.Size = new Size(382, 753);
+            pnlCarte.TabIndex = 59;
             // 
             // Carte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(255, 230, 188);
+            BackColor = Color.White;
             ClientSize = new Size(382, 753);
-            Controls.Add(picLogo5);
-            Controls.Add(picCroix);
-            Controls.Add(picHome);
-            Controls.Add(picRetour);
-            Controls.Add(btnHoraires);
-            Controls.Add(btnRecherche);
-            Controls.Add(cmbLignes);
+            Controls.Add(pnlCarte);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -152,6 +164,7 @@
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)picCroix).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogo5).EndInit();
+            pnlCarte.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -164,5 +177,6 @@
         private PictureBox picHome;
         private PictureBox picCroix;
         private PictureBox picLogo5;
+        private Panel pnlCarte;
     }
 }

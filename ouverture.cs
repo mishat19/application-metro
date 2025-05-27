@@ -25,6 +25,7 @@ namespace application_metro
             this.Location = position; // Position en pixels à l’écran
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             // Affiche la console pour debug
             AllocConsole();
@@ -92,9 +93,13 @@ namespace application_metro
 
         private void Ouverture_Load(object sender, EventArgs e)
         {
-            FontFamily F = fontCollection.Families[0];
-            btnConnexion.Font = new Font(F, 18);
-            btnNoConnexion.Font = new Font(F, 18);
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            btnConnexion.Font = new Font(D, 14);
+            btnNoConnexion.Font = new Font(D, 14);
+            lblDeconnexion.Font = new Font(D, 9);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
 
         }
     }
