@@ -1,6 +1,9 @@
 using application_metro;
 using GestionReseau;
+using System.Drawing.Text;
 using System.Runtime.InteropServices;
+
+using System.IO;
 
 namespace application_metro
 {
@@ -8,6 +11,8 @@ namespace application_metro
     {
         [DllImport("kernel32.dll")]
         private static extern bool AllocConsole();
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
+
 
         private int trainStartX = -300; // Position de départ hors écran
         private int trainEndX = 30;     // Position finale d'arrivée du train
@@ -18,6 +23,8 @@ namespace application_metro
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position; // Position en pixels à l’écran
+
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
 
             // Affiche la console pour debug
             AllocConsole();
@@ -32,24 +39,9 @@ namespace application_metro
             labelTrainError.Location = new Point(20, 15); // Position dans le train
             labelTrainError.Visible = true; // visible dès l'apparition du train
 
-            try
-            {
-                Font dynapuff = FontLoader.GetFont("DynaPuff", 18);
-                btnConnexion.Font = dynapuff;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur chargement police : " + ex.Message);
-            }
-            try
-            {
-                btnNoConnexion.Font = FontLoader.GetFont("Gliker", 18);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur chargement police : " + ex.Message);
-            }
         }
+
+
 
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -100,7 +92,10 @@ namespace application_metro
 
         private void Ouverture_Load(object sender, EventArgs e)
         {
-            
+            FontFamily F = fontCollection.Families[0];
+            btnConnexion.Font = new Font(F, 18);
+            btnNoConnexion.Font = new Font(F, 18);
+
         }
     }
 }
