@@ -232,12 +232,11 @@ namespace GestionReseau
 
             rdr.Close();
 
-            for (int i = 1; i <= nbLignes; i++)
+            foreach (var numLigne in lignesTemp.Keys)
             {
-                foreach (int segment in lignesTemp[i].segments)
+                foreach (int segment in lignesTemp[numLigne].segments)
                 {
                     string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
-                    //Console.WriteLine(requete2);
                     MySqlCommand cmd2 = new MySqlCommand(requete2, connexion);
                     MySqlDataReader rdr2 = cmd2.ExecuteReader();
 
@@ -246,9 +245,9 @@ namespace GestionReseau
                         try
                         {
                             string nomStation = rdr2.GetString("NomStation");
-                            if (!lignesTemp[i].stations.Contains(nomStation))
+                            if (!lignesTemp[numLigne].stations.Contains(nomStation))
                             {
-                                lignesTemp[i].stations.Add(nomStation);
+                                lignesTemp[numLigne].stations.Add(nomStation);
                             }
                         }
                         catch (MySqlException ex)

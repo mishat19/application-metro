@@ -15,7 +15,7 @@ namespace application_metro
     public partial class Gestion_modification : Form
     {
         int numeroLigne = 0;
-        string mode = "";
+        private string mode = "";
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
         public Gestion_modification(string mode, Point position, string ligne = null, string station = null, string horaire = null)
@@ -26,7 +26,9 @@ namespace application_metro
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position; // Position en pixels à l’écran
 
-            if (mode == "Ajout")
+            this.mode = mode;
+
+            if (this.mode == "Ajout")
             {
                 mode = "Ajout"; //Pour enregistrer données dans btnEnregistrement
                 lblModif.Text = "Ajout d'une ligne";
@@ -296,6 +298,7 @@ namespace application_metro
                     double latitudeDecimal = Convert.ToDouble(latitude);
                     string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
                     double longitudeDecimal = Convert.ToDouble(longitude);
+
                     if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
                     {
                         lstNomStation.Add(nomStation);
@@ -308,31 +311,49 @@ namespace application_metro
                 int numLigne = Serveur.idLigneGraceNom(nomLigne);
                 int ordreIncrementation = 1;
 
-                // Ajout du segment dans le sens de l'aller et du retour
-                for (int i = 0; i < lstNomStation.Count; i++)
+                // Ajout du segment dans le sens de l'aller
+                for (int i = 0; i < lstNomStation.Count - 1; i++) // ✅ -1 pour éviter dépassement
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                    int stationSuivante = station + 1;
+                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
                     NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
                     duree = (int)nud.Value;
-                    Serveur.AjoutSegment(duree, station, stationSuivante);
-                    idSegment = Serveur.RecupereIdDernierObjet();
-                    Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+
+                    try
+                    {
+                        Serveur.AjoutSegment(duree, station, stationSuivante);
+                        idSegment = Serveur.RecupereIdDernierObjet();
+                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du segment aller : " + ex.Message);
+                    }
                 }
 
+                // Ajout du segment dans le sens du retour
                 ordreIncrementation = 1;
 
-                // Ajout des segments dans la ligne
-                for (int i = 0; i < lstNomStation.Count; i++)
+                for (int i = 0; i < lstNomStation.Count - 1; i++) // ✅ -1 ici aussi
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                    int stationSuivante = station + 1;
+                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
                     NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
                     duree = (int)nud.Value;
-                    Serveur.AjoutSegment(duree, stationSuivante, station);
-                    idSegment = Serveur.RecupereIdDernierObjet();
-                    Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+
+                    try
+                    {
+                        Serveur.AjoutSegment(duree, stationSuivante, station); // Retour
+                        idSegment = Serveur.RecupereIdDernierObjet();
+                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de l'ajout du segment retour : " + ex.Message);
+                    }
                 }
+
+                ListeLignes lignes = Serveur.Lignes();
 
             }
             else
