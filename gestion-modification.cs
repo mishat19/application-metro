@@ -161,12 +161,12 @@ namespace application_metro
 
                 if (!string.IsNullOrEmpty(nom))
                 {
-                    Name = nom;
+                    txt.Name = nom;
                     txt.Text = nom;
                 }
                 else
                 {
-                    Name = $"txtStation{i}";
+                    txt.Name = $"txtStation{i}";
                     txt.PlaceholderText = $"Nom de la station {i}";
                 }
 
@@ -175,10 +175,18 @@ namespace application_metro
                 //NumericUpDown stations
                 NumericUpDown nud = new NumericUpDown
                 {
-                    Name = $"nudStation{i}",
                     Location = new Point(310, 8),
                     Width = 40
                 };
+
+                if (!string.IsNullOrEmpty(nom))
+                {
+                    nud.Name = nom;
+                }
+                else
+                {
+                    nud.Name = $"nudStation{i}";
+                }
 
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
@@ -189,12 +197,12 @@ namespace application_metro
 
                 if (coordonnee != null)
                 {
-                    Name = nom;
+                    txt2.Name = nom;
                     txt2.Text = coordonnee[0].ToString();
                 }
                 else
                 {
-                    Name = $"txtCoordonneeLa{i}";
+                    txt2.Name = $"txtCoordonneeLa{i}";
                     txt2.PlaceholderText = $"Latitude{i}";
                 }
 
@@ -208,12 +216,12 @@ namespace application_metro
 
                 if (coordonnee != null)
                 {
-                    Name = nom;
+                    txt3.Name = nom;
                     txt3.Text = coordonnee[1].ToString();
                 }
                 else
                 {
-                    Name = $"txtCoordonneeLa{i}";
+                    txt3.Name = $"txtCoordonneeLa{i}";
                     txt3.PlaceholderText = $"Longitude{i}";
                 }
 
