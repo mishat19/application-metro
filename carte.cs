@@ -36,10 +36,9 @@ namespace application_metro
 
             webView.Size = new Size(width, height);
 
-            // Centrage horizontal
+            //Centrage horizontal
             int x = (this.ClientSize.Width - width) / 2;
 
-            // Position en bas (ou adapte selon ton besoin)
             int marginBottom = 20;
             int y = this.ClientSize.Height - height - marginBottom;
 
@@ -48,7 +47,7 @@ namespace application_metro
             this.Controls.Add(webView);
             webView.BringToFront();
 
-            // Démarre serveur local + initialise WebView
+            //Démarre serveur local + initialisation WebView
             InitializeAsync();
 
             ListeLignes lignes = Serveur.Lignes();

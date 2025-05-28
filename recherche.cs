@@ -36,7 +36,22 @@ namespace application_metro
 
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
+
+            int width = this.ClientSize.Width - 60;
+            int height = 220;
+
+            webView.Size = new Size(width, height);
+
+            //Centrage horizontal
+            int x = (this.ClientSize.Width - width) / 2;
+
+            int marginTop = 50;
+            int y = marginTop;
+
+            webView.Location = new Point(x, y);
+            webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             this.Controls.Add(webView);
+            webView.BringToFront();
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
@@ -112,7 +127,6 @@ namespace application_metro
             {
                 serveur2.Stop();
                 serveur2.Close();
-                MessageBox.Show("Serveur2 fermé");
             }
             base.OnFormClosing(e);
         }
