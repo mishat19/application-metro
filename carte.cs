@@ -30,8 +30,9 @@ namespace application_metro
 
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
+
             int width = this.ClientSize.Width - 60;
-            int height = 400;
+            int height = 500;
 
             webView.Size = new Size(width, height);
 
@@ -39,11 +40,13 @@ namespace application_metro
             int x = (this.ClientSize.Width - width) / 2;
 
             // Position en bas (ou adapte selon ton besoin)
-            int y = this.ClientSize.Height - height;
+            int marginBottom = 20;
+            int y = this.ClientSize.Height - height - marginBottom;
 
             webView.Location = new Point(x, y);
             webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
             this.Controls.Add(webView);
+            webView.BringToFront();
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
