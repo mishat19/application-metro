@@ -30,6 +30,19 @@ namespace application_metro
 
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
+            int width = this.ClientSize.Width - 60;
+            int height = 400;
+
+            webView.Size = new Size(width, height);
+
+            // Centrage horizontal
+            int x = (this.ClientSize.Width - width) / 2;
+
+            // Position en bas (ou adapte selon ton besoin)
+            int y = this.ClientSize.Height - height;
+
+            webView.Location = new Point(x, y);
+            webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
             this.Controls.Add(webView);
 
             // Démarre serveur local + initialise WebView
@@ -51,6 +64,7 @@ namespace application_metro
             serveur = new HttpListener();
             serveur.Prefixes.Add("http://localhost:8080/");
             serveur.Start();
+            MessageBox.Show("Serveyr ouvert");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
             //Initialisation WebView2
@@ -106,6 +120,7 @@ namespace application_metro
             {
                 serveur.Stop();
                 serveur.Close();
+                MessageBox.Show("Serveur fermé");
             }
             base.OnFormClosing(e);
         }

@@ -22,7 +22,7 @@ namespace application_metro
     public partial class Recherche : Form
     {
         private WebView2 webView;
-        private HttpListener serveur;
+        private HttpListener serveur2;
         private Task serveurTask;
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
@@ -52,9 +52,9 @@ namespace application_metro
             string dossier = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\.."));
 
             //Serveur HTTP local
-            serveur = new HttpListener();
-            serveur.Prefixes.Add("http://localhost:8082/");
-            serveur.Start();
+            serveur2 = new HttpListener();
+            serveur2.Prefixes.Add("http://localhost:8082/");
+            serveur2.Start();
             //MessageBox.Show("Serveur démarré");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
@@ -67,9 +67,9 @@ namespace application_metro
         {
             try
             {
-                while (serveur.IsListening)
+                while (serveur2.IsListening)
                 {
-                    var context = serveur.GetContext();
+                    var context = serveur2.GetContext();
 
                     string url = context.Request.Url.LocalPath.TrimStart('/');
                     if (string.IsNullOrEmpty(url))
@@ -108,10 +108,11 @@ namespace application_metro
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if (serveur != null && serveur.IsListening)
+            if (serveur2 != null && serveur2.IsListening)
             {
-                serveur.Stop();
-                serveur.Close();
+                serveur2.Stop();
+                serveur2.Close();
+                MessageBox.Show("Serveur2 fermé");
             }
             base.OnFormClosing(e);
         }
