@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -256,10 +257,6 @@ namespace application_metro
             lblCouleur.Font = new Font(G, 11, FontStyle.Underline);
             lblNbStations.Font = new Font(G, 11, FontStyle.Underline);
             lblNoms.Font = new Font(G, 11, FontStyle.Underline);
-            lblCoordonnees.Font = new Font(G, 11, FontStyle.Underline);
-            lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
-            rbDirectionA.Font = new Font(D, 9);
-            rbDirectionB.Font = new Font(D, 9);
             btnEnregistrement.Font = new Font(D, 9);
             txtCouleur.Font = new Font(D, 9);
             cmbLigne.Font = new Font(D, 9);
@@ -268,8 +265,8 @@ namespace application_metro
             flpStations.Font = new Font(D, 9);
             flpCoordonnees.Font = new Font(D, 9);
             flpHoraires.Font = new Font(D, 9);
-            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
+            lblTitre.Font = new Font(G, 14, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 90); // Centrer le titre horizontalement
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -285,6 +282,7 @@ namespace application_metro
                 string couleur = txtCouleur.Text;
 
                 Serveur.AjoutLigne(nomLigne, couleur);
+                int numLigne = Serveur.idLigneGraceNom(nomLigne);
 
                 List<string> lstNomStation = new List<string>();
 
@@ -292,9 +290,22 @@ namespace application_metro
                 {
                     string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
                     string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
-                    double latitudeDecimal = Convert.ToDouble(latitude);
                     string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
-                    double longitudeDecimal = Convert.ToDouble(longitude);
+
+                    double latitudeDecimal;
+                    double longitudeDecimal;
+
+                    try 
+                    {
+                        latitudeDecimal = Convert.ToDouble(latitude);
+                        longitudeDecimal = Convert.ToDouble(longitude);
+                    }
+                    catch (FormatException)
+                    {
+                        Serveur.SupprimerUneInfoLigne(numLigne);
+                        MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
+                        return;
+                    }
 
                     if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
                     {
@@ -305,7 +316,6 @@ namespace application_metro
 
                 int duree;
                 int idSegment;
-                int numLigne = Serveur.idLigneGraceNom(nomLigne);
                 int ordreIncrementation = 1;
 
                 // Ajout du segment dans le sens de l'aller
@@ -324,14 +334,14 @@ namespace application_metro
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Erreur lors de l'ajout du segment aller : " + ex.Message);
+                        MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
                     }
                 }
 
                 // Ajout du segment dans le sens du retour
                 ordreIncrementation = 1;
 
-                for (int i = 0; i < lstNomStation.Count - 1; i++) 
+                for (int i = 0; i < lstNomStation.Count - 1; i++)
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
                     int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
@@ -346,8 +356,19 @@ namespace application_metro
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Erreur lors de l'ajout du segment retour : " + ex.Message);
+                        MessageBox.Show($"Erreur lors de l'ajout du segment retour : {ex.Message}");
                     }
+                }
+
+                DateTime HoraireDepart = dtp_HoraireDebut.Value;
+                DateTime HoraireFin = dtp_HoraireFin.Value;
+
+                try
+                {
+                    Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
+                } catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de l'ajout des horaires : {ex.Message}");
                 }
 
                 ListeLignes lignes = Serveur.Lignes();
@@ -511,6 +532,16 @@ namespace application_metro
         private void flpHoraires_Paint(object sender, PaintEventArgs e)
         {
             FlowLayoutPanelBordure.ApplyCustomStyle(flpHoraires, e);
+        }
+
+        private void dtp_HoraireDebut_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtp_HoraireFin_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

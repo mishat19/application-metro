@@ -470,7 +470,7 @@
             picVoirPlus.Image = Properties.Resources.plus2;
             picVoirPlus.Location = new Point(3, 242);
             picVoirPlus.Name = "picVoirPlus";
-            picVoirPlus.Size = new Size(51, 62);
+            picVoirPlus.Size = new Size(355, 62);
             picVoirPlus.SizeMode = PictureBoxSizeMode.Zoom;
             picVoirPlus.TabIndex = 1;
             picVoirPlus.TabStop = false;
@@ -478,7 +478,7 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(62, 12);
+            picHome.Location = new Point(47, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
@@ -489,7 +489,7 @@
             // picRetour
             // 
             picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(12, 12);
+            picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(51, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;

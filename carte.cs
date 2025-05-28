@@ -132,6 +132,8 @@ namespace application_metro
             FontFamily D = fontCollection.Families[0];
             FontFamily G = fontCollection.Families[1];
             btnRecherche.Font = new Font(D, 9);
+            btnRecherche.ForeColor = Color.White;
+            btnHoraires.ForeColor = Color.White;
             btnHoraires.Font = new Font(D, 14);
             cmbLignes.Font = new Font(D, 9);
 

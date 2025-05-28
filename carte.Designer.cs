@@ -113,6 +113,7 @@
             // 
             // cmbLignes
             // 
+            cmbLignes.BackColor = Color.White;
             cmbLignes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
