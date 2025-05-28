@@ -51,7 +51,7 @@ namespace application_metro
             webView.Location = new Point(x, y);
             webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
             this.Controls.Add(webView);
-            webView.BringToFront();
+            pnlRecherche.Controls.Add(webView);
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");

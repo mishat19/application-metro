@@ -66,7 +66,6 @@ namespace application_metro
             serveur = new HttpListener();
             serveur.Prefixes.Add("http://localhost:8080/");
             serveur.Start();
-            MessageBox.Show("Serveyr ouvert");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
             //Initialisation WebView2
@@ -122,7 +121,6 @@ namespace application_metro
             {
                 serveur.Stop();
                 serveur.Close();
-                MessageBox.Show("Serveur fermé");
             }
             base.OnFormClosing(e);
         }
@@ -184,6 +182,11 @@ namespace application_metro
         private void picCroix_Click(object sender, EventArgs e)
         {
             cmbLignes.SelectedIndex = -1; //Permet de sélectionner aucune ligne
+        }
+
+        private void picRetour_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

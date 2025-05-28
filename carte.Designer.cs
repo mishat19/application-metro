@@ -86,6 +86,7 @@
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 69;
             picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click_1;
             // 
             // picCroix
             // 
