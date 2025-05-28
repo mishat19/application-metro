@@ -42,9 +42,11 @@
             flpStations = new FlowLayoutPanel();
             flpCoordonnees = new FlowLayoutPanel();
             lblHoraires = new Label();
-            rbDirectionA = new RadioButton();
-            rbDirectionB = new RadioButton();
             flpHoraires = new FlowLayoutPanel();
+            label1 = new Label();
+            dtp_HoraireDebut = new DateTimePicker();
+            label2 = new Label();
+            dtp_HoraireFin = new DateTimePicker();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
             picHome = new PictureBox();
@@ -54,6 +56,7 @@
             txtNomLigne = new PlaceholderTextBox();
             picFond2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
+            flpHoraires.SuspendLayout();
             pnlGestionModification.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
@@ -202,47 +205,63 @@
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraires.Location = new Point(13, 1164);
+            lblHoraires.Location = new Point(11, 1003);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(189, 22);
             lblHoraires.TabIndex = 54;
             lblHoraires.Text = "Horaires des stations :";
             lblHoraires.Click += lblHoraires_Click;
             // 
-            // rbDirectionA
-            // 
-            rbDirectionA.AutoSize = true;
-            rbDirectionA.Font = new Font("Microsoft Sans Serif", 9F);
-            rbDirectionA.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionA.Location = new Point(169, 1098);
-            rbDirectionA.Name = "rbDirectionA";
-            rbDirectionA.Size = new Size(179, 22);
-            rbDirectionA.TabIndex = 55;
-            rbDirectionA.TabStop = true;
-            rbDirectionA.Text = "Direction NomStation1";
-            rbDirectionA.UseVisualStyleBackColor = true;
-            // 
-            // rbDirectionB
-            // 
-            rbDirectionB.AutoSize = true;
-            rbDirectionB.Font = new Font("Microsoft Sans Serif", 9F);
-            rbDirectionB.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionB.Location = new Point(169, 1126);
-            rbDirectionB.Name = "rbDirectionB";
-            rbDirectionB.Size = new Size(179, 22);
-            rbDirectionB.TabIndex = 56;
-            rbDirectionB.TabStop = true;
-            rbDirectionB.Text = "Direction NomStation2";
-            rbDirectionB.UseVisualStyleBackColor = true;
-            // 
             // flpHoraires
             // 
             flpHoraires.AutoScroll = true;
-            flpHoraires.Location = new Point(13, 1210);
+            flpHoraires.Controls.Add(label1);
+            flpHoraires.Controls.Add(dtp_HoraireDebut);
+            flpHoraires.Controls.Add(label2);
+            flpHoraires.Controls.Add(dtp_HoraireFin);
+            flpHoraires.Location = new Point(11, 1049);
             flpHoraires.Name = "flpHoraires";
             flpHoraires.Size = new Size(335, 125);
             flpHoraires.TabIndex = 54;
             flpHoraires.Paint += flpHoraires_Paint;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(192, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Premier passage de la ligne";
+            // 
+            // dtp_HoraireDebut
+            // 
+            dtp_HoraireDebut.Format = DateTimePickerFormat.Time;
+            dtp_HoraireDebut.Location = new Point(201, 3);
+            dtp_HoraireDebut.Name = "dtp_HoraireDebut";
+            dtp_HoraireDebut.ShowUpDown = true;
+            dtp_HoraireDebut.Size = new Size(101, 27);
+            dtp_HoraireDebut.TabIndex = 1;
+            dtp_HoraireDebut.ValueChanged += dtp_HoraireDebut_ValueChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 33);
+            label2.Name = "label2";
+            label2.Size = new Size(190, 20);
+            label2.TabIndex = 2;
+            label2.Text = "Dernier passage de la ligne";
+            // 
+            // dtp_HoraireFin
+            // 
+            dtp_HoraireFin.Format = DateTimePickerFormat.Time;
+            dtp_HoraireFin.Location = new Point(199, 36);
+            dtp_HoraireFin.Name = "dtp_HoraireFin";
+            dtp_HoraireFin.ShowUpDown = true;
+            dtp_HoraireFin.Size = new Size(103, 27);
+            dtp_HoraireFin.TabIndex = 3;
+            dtp_HoraireFin.ValueChanged += dtp_HoraireFin_ValueChanged;
             // 
             // btnEnregistrement
             // 
@@ -250,7 +269,7 @@
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("Microsoft Sans Serif", 9F);
             btnEnregistrement.ForeColor = Color.White;
-            btnEnregistrement.Location = new Point(220, 1350);
+            btnEnregistrement.Location = new Point(218, 1189);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;
@@ -274,9 +293,7 @@
             pnlGestionModification.Controls.Add(btnEnregistrement);
             pnlGestionModification.Controls.Add(flpHoraires);
             pnlGestionModification.Controls.Add(lblModif);
-            pnlGestionModification.Controls.Add(rbDirectionB);
             pnlGestionModification.Controls.Add(cmbLigne);
-            pnlGestionModification.Controls.Add(rbDirectionA);
             pnlGestionModification.Controls.Add(lblIntitule);
             pnlGestionModification.Controls.Add(lblCouleur);
             pnlGestionModification.Controls.Add(flpCoordonnees);
@@ -289,7 +306,7 @@
             pnlGestionModification.Controls.Add(picFond2);
             pnlGestionModification.Location = new Point(0, 0);
             pnlGestionModification.Name = "pnlGestionModification";
-            pnlGestionModification.Size = new Size(382, 753);
+            pnlGestionModification.Size = new Size(382, 754);
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
@@ -377,6 +394,8 @@
             Text = "Panneau de configuration";
             Load += gestion_modification_Load;
             ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
+            flpHoraires.ResumeLayout(false);
+            flpHoraires.PerformLayout();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
@@ -401,8 +420,6 @@
         private FlowLayoutPanel flpStations;
         private FlowLayoutPanel flpCoordonnees;
         private Label lblHoraires;
-        private RadioButton rbDirectionA;
-        private RadioButton rbDirectionB;
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
@@ -412,5 +429,9 @@
         private PictureBox picFond2;
         private PictureBox picRetour;
         private PictureBox picHome;
+        private Label label1;
+        private DateTimePicker dtp_HoraireDebut;
+        private Label label2;
+        private DateTimePicker dtp_HoraireFin;
     }
 }

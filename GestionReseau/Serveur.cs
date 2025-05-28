@@ -334,7 +334,7 @@ namespace GestionReseau
         /// <summary>
         /// Calcul les horaires de passage d'une station
         /// </summary>
-        /// <param name="nomStation"></param>
+        /// <param name="nomStation">Nom de la station</param>
         public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
@@ -654,9 +654,18 @@ namespace GestionReseau
             string requete = @"INSERT INTO Horaire (NumLigne, HoraireDepart, HoraireFin) 
                                 VALUES (@NumLigne, @HoraireDepart, @HoraireFin)";
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@NomLigne", NumLigne);
+            cmd.Parameters.AddWithValue("@NumLigne", NumLigne);
             cmd.Parameters.AddWithValue("@HoraireDepart", HoraireDepart);
             cmd.Parameters.AddWithValue("@HoraireFin", HoraireFin);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void SupprimerUneInfoLigne(int numLigne)
+        {
+            string requete = @"DELETE FROM InfoLigne WHERE NumLigne = @numLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
         }
     }
