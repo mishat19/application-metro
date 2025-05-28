@@ -45,7 +45,7 @@ namespace application_metro
         {
             FontFamily D = fontCollection.Families[0];
             FontFamily G = fontCollection.Families[1];
-            lblAjout.Font = new Font(D, 14);
+            lblAjout.Font = new Font(D, 11);
             lblSelection.Font = new Font(G, 11, FontStyle.Underline);
             lblGestion.Font = new Font(G, 11, FontStyle.Underline);
             cmbLigne.Font = new Font(D, 9);
@@ -53,8 +53,8 @@ namespace application_metro
             cmbHoraire.Font = new Font(D, 9);
             btnModif.Font = new Font(D, 14);
             btnSupp.Font = new Font(D, 14);
-            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
+            lblTitre.Font = new Font(G, 16, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 115); // Centrer le titre horizontalement
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

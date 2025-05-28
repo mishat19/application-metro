@@ -266,8 +266,8 @@ namespace application_metro
             flpStations.Font = new Font(D, 9);
             flpCoordonnees.Font = new Font(D, 9);
             flpHoraires.Font = new Font(D, 9);
-            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
+            lblTitre.Font = new Font(G, 14, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 90); // Centrer le titre horizontalement
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

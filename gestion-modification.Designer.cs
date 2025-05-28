@@ -313,7 +313,7 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(57, 0);
+            picHome.Location = new Point(47, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;

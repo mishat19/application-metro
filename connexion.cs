@@ -138,8 +138,9 @@ namespace application_metro
             txtMdp.Font = new Font(D, 9);
             lblInscription.Font = new Font(D, 9);
             lnkInscription.Font = new Font(D, 9);
-            btnConnexion.Font = new Font(D, 14);
+            btnConnexion.Font = new Font(D, 9);
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 90);
 
         }
 
