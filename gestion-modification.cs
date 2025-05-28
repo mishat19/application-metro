@@ -18,11 +18,10 @@ namespace application_metro
         private string mode = "";
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
-        public Gestion_modification(string mode, Point position, string ligne = null, string station = null, string horaire = null)
+        public Gestion_modification(string mode, Point position, string ligne = null, string station = null)
         {
             InitializeComponent();
 
-            txtCouleur.SelectionLength = 0;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position; // Position en pixels à l’écran
 

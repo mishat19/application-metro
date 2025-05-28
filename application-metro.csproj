@@ -23,9 +23,9 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<Content Include="map-milan.html">
+		<EmbeddedResource Include="map-milan.html">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
+		</EmbeddedResource>
 	</ItemGroup>
 
   <ItemGroup>

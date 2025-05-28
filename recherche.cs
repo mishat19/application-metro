@@ -11,6 +11,11 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using static System.Windows.Forms.LinkLabel;
 
 namespace application_metro
 {
@@ -48,14 +53,14 @@ namespace application_metro
 
             //Serveur HTTP local
             serveur = new HttpListener();
-            serveur.Prefixes.Add("http://localhost:8081/");
+            serveur.Prefixes.Add("http://localhost:8082/");
             serveur.Start();
-            MessageBox.Show("Serveur démarré");
+            //MessageBox.Show("Serveur démarré");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
             //Initialisation WebView2
             await webView.EnsureCoreWebView2Async(null);
-            webView.CoreWebView2.Navigate("http://localhost:8081/map-milan.html");
+            webView.CoreWebView2.Navigate("http://localhost:8082/map-milan.html");
         }
 
         private void EcouterRequetes(string dossier)
@@ -71,7 +76,7 @@ namespace application_metro
                         url = "map-milan.html";
 
                     string fichier = Path.Combine(dossier, url);
-                    MessageBox.Show(fichier);
+                    //MessageBox.Show(fichier);
 
                     if (File.Exists(fichier))
                     {
@@ -162,6 +167,11 @@ namespace application_metro
         private void grpResultat_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void cmbDepart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -50,7 +50,6 @@ namespace application_metro
             lblGestion.Font = new Font(G, 11, FontStyle.Underline);
             cmbLigne.Font = new Font(D, 9);
             cmbStation.Font = new Font(D, 9);
-            cmbHoraire.Font = new Font(D, 9);
             btnModif.Font = new Font(D, 14);
             btnSupp.Font = new Font(D, 14);
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
@@ -67,10 +66,16 @@ namespace application_metro
         string mode;
         private void btnModif_Click(object sender, EventArgs e)
         {
-            mode = "Modification";
-            Gestion_modification modif = new Gestion_modification(mode, this.Location, nomLigne, nomStation, horaire);
-            modif.Show();
-            this.Close();
+            if(!(cmbLigne.SelectedIndex == -1)) {
+                mode = "Modification";
+                Gestion_modification modif = new Gestion_modification(mode, this.Location, nomLigne, nomStation);
+                modif.Show();
+                this.Close();
+            }
+            else
+            {
+                lblErreur.Visible = true;
+            }
         }
 
         private void btnSupp_Click(object sender, EventArgs e)
@@ -156,21 +161,21 @@ namespace application_metro
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmbHoraire.Enabled = true;
-            cmbHoraire.Items.Clear();
+            //cmbHoraire.Enabled = true;
+            //cmbHoraire.Items.Clear();
 
             nomStation = cmbStation.SelectedItem.ToString().Trim();
 
-            DateTime date = DateTime.Now;
+            //DateTime date = DateTime.Now;
 
-            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, date);
-            cmbHoraire.Items.AddRange(horaires.ToArray());
+            //List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, date);
+            //cmbHoraire.Items.AddRange(horaires.ToArray());
         }
 
-        private void cmbHoraire_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            horaire = cmbHoraire.SelectedItem.ToString().Trim();
-        }
+        //private void cmbHoraire_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    horaire = cmbHoraire.SelectedItem.ToString().Trim();
+        //}
 
         private void picRetour_Click(object sender, EventArgs e)
         {

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             pnlGestion = new Panel();
+            lblErreur = new Label();
             picRetour = new PictureBox();
             picHome = new PictureBox();
             grpAjout = new GroupBox();
@@ -42,7 +43,6 @@
             lblGestion = new Label();
             cmbLigne = new ComboBox();
             cmbStation = new ComboBox();
-            cmbHoraire = new ComboBox();
             lblSelection = new Label();
             picFond2 = new PictureBox();
             pictureBox2 = new PictureBox();
@@ -58,6 +58,7 @@
             // pnlGestion
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestion.Controls.Add(lblErreur);
             pnlGestion.Controls.Add(picRetour);
             pnlGestion.Controls.Add(picHome);
             pnlGestion.Controls.Add(grpAjout);
@@ -68,7 +69,6 @@
             pnlGestion.Controls.Add(lblGestion);
             pnlGestion.Controls.Add(cmbLigne);
             pnlGestion.Controls.Add(cmbStation);
-            pnlGestion.Controls.Add(cmbHoraire);
             pnlGestion.Controls.Add(lblSelection);
             pnlGestion.Controls.Add(picFond2);
             pnlGestion.Controls.Add(pictureBox2);
@@ -78,6 +78,18 @@
             pnlGestion.Size = new Size(382, 753);
             pnlGestion.TabIndex = 41;
             pnlGestion.Paint += pnlGestion_Paint;
+            // 
+            // lblErreur
+            // 
+            lblErreur.AutoSize = true;
+            lblErreur.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblErreur.ForeColor = Color.FromArgb(0, 192, 0);
+            lblErreur.Location = new Point(14, 468);
+            lblErreur.Name = "lblErreur";
+            lblErreur.Size = new Size(284, 22);
+            lblErreur.TabIndex = 64;
+            lblErreur.Text = "Veuillez choisir au moins une ligne";
+            lblErreur.Visible = false;
             // 
             // picRetour
             // 
@@ -126,11 +138,11 @@
             // lblAjout
             // 
             lblAjout.AutoSize = true;
-            lblAjout.Font = new Font("DynaPuff", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAjout.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAjout.ForeColor = Color.FromArgb(205, 33, 42);
             lblAjout.Location = new Point(6, 35);
             lblAjout.Name = "lblAjout";
-            lblAjout.Size = new Size(247, 23);
+            lblAjout.Size = new Size(217, 22);
             lblAjout.TabIndex = 32;
             lblAjout.Text = "Ajouter une nouvelle ligne";
             // 
@@ -148,11 +160,11 @@
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Gliker", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
             lblTitre.Location = new Point(3, 120);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(380, 36);
+            lblTitre.Size = new Size(356, 36);
             lblTitre.TabIndex = 42;
             lblTitre.Text = "Panneau de configuration";
             // 
@@ -160,7 +172,7 @@
             // 
             btnModif.BackColor = Color.FromArgb(205, 33, 42);
             btnModif.FlatStyle = FlatStyle.Flat;
-            btnModif.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnModif.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnModif.ForeColor = Color.White;
             btnModif.Location = new Point(26, 567);
             btnModif.Name = "btnModif";
@@ -174,7 +186,7 @@
             // 
             btnSupp.BackColor = Color.FromArgb(205, 33, 42);
             btnSupp.FlatStyle = FlatStyle.Flat;
-            btnSupp.Font = new Font("Gliker", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSupp.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSupp.ForeColor = Color.White;
             btnSupp.Location = new Point(199, 567);
             btnSupp.Name = "btnSupp";
@@ -187,22 +199,22 @@
             // lblGestion
             // 
             lblGestion.AutoSize = true;
-            lblGestion.Font = new Font("Gliker", 10.8F, FontStyle.Underline);
+            lblGestion.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblGestion.ForeColor = Color.FromArgb(15, 93, 70);
             lblGestion.Location = new Point(20, 528);
             lblGestion.Name = "lblGestion";
-            lblGestion.Size = new Size(87, 21);
+            lblGestion.Size = new Size(82, 22);
             lblGestion.TabIndex = 49;
             lblGestion.Text = "Gestion :";
             // 
             // cmbLigne
             // 
-            cmbLigne.Font = new Font("DynaPuff", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLigne.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLigne.FormattingEnabled = true;
             cmbLigne.Location = new Point(14, 385);
             cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(358, 27);
+            cmbLigne.Size = new Size(358, 26);
             cmbLigne.TabIndex = 48;
             cmbLigne.Text = "Choisir une ligne";
             cmbLigne.SelectedIndexChanged += cmbLigne_SelectedIndexChanged;
@@ -210,37 +222,24 @@
             // cmbStation
             // 
             cmbStation.Enabled = false;
-            cmbStation.Font = new Font("DynaPuff", 9F);
+            cmbStation.Font = new Font("Microsoft Sans Serif", 9F);
             cmbStation.ForeColor = Color.FromArgb(205, 33, 42);
             cmbStation.FormattingEnabled = true;
             cmbStation.Location = new Point(14, 429);
             cmbStation.Name = "cmbStation";
-            cmbStation.Size = new Size(358, 27);
+            cmbStation.Size = new Size(358, 26);
             cmbStation.TabIndex = 47;
             cmbStation.Text = "Choisir une station";
             cmbStation.SelectedIndexChanged += cmbStation_SelectedIndexChanged;
             // 
-            // cmbHoraire
-            // 
-            cmbHoraire.Enabled = false;
-            cmbHoraire.Font = new Font("DynaPuff", 9F);
-            cmbHoraire.ForeColor = Color.FromArgb(205, 33, 42);
-            cmbHoraire.FormattingEnabled = true;
-            cmbHoraire.Location = new Point(14, 472);
-            cmbHoraire.Name = "cmbHoraire";
-            cmbHoraire.Size = new Size(358, 27);
-            cmbHoraire.TabIndex = 46;
-            cmbHoraire.Text = "Choisir un horaire";
-            cmbHoraire.SelectedIndexChanged += cmbHoraire_SelectedIndexChanged;
-            // 
             // lblSelection
             // 
             lblSelection.AutoSize = true;
-            lblSelection.Font = new Font("Gliker", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblSelection.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblSelection.ForeColor = Color.FromArgb(15, 93, 70);
             lblSelection.Location = new Point(20, 338);
             lblSelection.Name = "lblSelection";
-            lblSelection.Size = new Size(244, 21);
+            lblSelection.Size = new Size(227, 22);
             lblSelection.TabIndex = 45;
             lblSelection.Text = "Sélectionner vos données :";
             // 
@@ -302,12 +301,12 @@
         private Label lblGestion;
         private ComboBox cmbLigne;
         private ComboBox cmbStation;
-        private ComboBox cmbHoraire;
         private Label lblSelection;
         private PictureBox picFond2;
         private PictureBox picHome;
         private PictureBox picRetour;
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
+        private Label lblErreur;
     }
 }
