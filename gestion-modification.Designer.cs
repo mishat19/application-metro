@@ -214,7 +214,7 @@
             rbDirectionA.AutoSize = true;
             rbDirectionA.Font = new Font("Microsoft Sans Serif", 9F);
             rbDirectionA.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionA.Location = new Point(169, 1098);
+            rbDirectionA.Location = new Point(123, 1098);
             rbDirectionA.Name = "rbDirectionA";
             rbDirectionA.Size = new Size(179, 22);
             rbDirectionA.TabIndex = 55;
@@ -227,7 +227,7 @@
             rbDirectionB.AutoSize = true;
             rbDirectionB.Font = new Font("Microsoft Sans Serif", 9F);
             rbDirectionB.ForeColor = Color.FromArgb(205, 33, 42);
-            rbDirectionB.Location = new Point(169, 1126);
+            rbDirectionB.Location = new Point(123, 1126);
             rbDirectionB.Name = "rbDirectionB";
             rbDirectionB.Size = new Size(179, 22);
             rbDirectionB.TabIndex = 56;
@@ -296,7 +296,7 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(57, 0);
+            picHome.Location = new Point(47, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
