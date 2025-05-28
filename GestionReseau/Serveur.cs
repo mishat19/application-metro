@@ -397,8 +397,7 @@ namespace GestionReseau
             JOIN Ligne l ON seg.NumSegment = l.NumSegment
             JOIN InfoLigne il ON seg.NumSegment = l.NumSegment
             WHERE s.NomStation = @nomStation AND i.Nom = @nomLigne
-            LIMIT 1"
-            ;
+            LIMIT 1";
 
             MySqlCommand cmd1 = new MySqlCommand(requeteIdStation, connexion);
             cmd1.Parameters.AddWithValue("@nomLigne", nomLigne);
@@ -648,8 +647,8 @@ namespace GestionReseau
         /// Ajoute un horaire de départ et de fin pour une ligne dans la base de données.
         /// </summary>
         /// <param name="NomLigne">Numéro de la ligne</param>
-        /// <param name="HoraireDepart"></param>
-        /// <param name="HoraireFin"></param>
+        /// <param name="HoraireDepart">Horaire du premier passage de la ligne</param>
+        /// <param name="HoraireFin">Horaire du dernier passage de la ligne</param>
         public static void AjoutHoraireDepartFin(int NumLigne, DateTime HoraireDepart, DateTime HoraireFin)
         {
             string requete = @"INSERT INTO Horaire (NumLigne, HoraireDepart, HoraireFin) 

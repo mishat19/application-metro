@@ -282,8 +282,6 @@ namespace application_metro
         {
             if (mode == "Ajout")
             {
-                //Fonctions de Serveur à mettre ici
-
                 string nomLigne = txtNomLigne.Text;
                 string couleur = txtCouleur.Text;
 
@@ -312,7 +310,7 @@ namespace application_metro
                 int ordreIncrementation = 1;
 
                 // Ajout du segment dans le sens de l'aller
-                for (int i = 0; i < lstNomStation.Count - 1; i++) // ✅ -1 pour éviter dépassement
+                for (int i = 0; i < lstNomStation.Count - 1; i++)
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
                     int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
@@ -334,7 +332,7 @@ namespace application_metro
                 // Ajout du segment dans le sens du retour
                 ordreIncrementation = 1;
 
-                for (int i = 0; i < lstNomStation.Count - 1; i++) // ✅ -1 ici aussi
+                for (int i = 0; i < lstNomStation.Count - 1; i++) 
                 {
                     int station = Serveur.idStationGraceNom(lstNomStation[i]);
                     int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
@@ -343,7 +341,7 @@ namespace application_metro
 
                     try
                     {
-                        Serveur.AjoutSegment(duree, stationSuivante, station); // Retour
+                        Serveur.AjoutSegment(duree, stationSuivante, station);
                         idSegment = Serveur.RecupereIdDernierObjet();
                         Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
                     }
