@@ -32,11 +32,11 @@
             lblConnexion = new Label();
             lnkConnexion = new LinkLabel();
             btnInscription = new Button();
-            txtMdp = new PlaceholderTextBox();
-            txtEmail = new PlaceholderTextBox();
+            txtMdp = new TextBox();
+            txtEmail = new TextBox();
             lblTitre = new Label();
-            txtNom = new PlaceholderTextBox();
-            txtPrenom = new PlaceholderTextBox();
+            txtNom = new TextBox();
+            txtPrenom = new TextBox();
             lblNaissance = new Label();
             dtpNaissance = new DateTimePicker();
             picRetour = new PictureBox();
@@ -90,7 +90,6 @@
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(27, 402);
             txtMdp.Name = "txtMdp";
-            txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(322, 24);
             txtMdp.TabIndex = 13;
@@ -102,7 +101,6 @@
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(27, 369);
             txtEmail.Name = "txtEmail";
-            txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(322, 24);
             txtEmail.TabIndex = 12;
@@ -124,7 +122,6 @@
             txtNom.ForeColor = Color.FromArgb(205, 33, 42);
             txtNom.Location = new Point(27, 228);
             txtNom.Name = "txtNom";
-            txtNom.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtNom.PlaceholderText = "Nom";
             txtNom.Size = new Size(322, 24);
             txtNom.TabIndex = 18;
@@ -135,7 +132,6 @@
             txtPrenom.ForeColor = Color.FromArgb(205, 33, 42);
             txtPrenom.Location = new Point(27, 261);
             txtPrenom.Name = "txtPrenom";
-            txtPrenom.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtPrenom.PlaceholderText = "Prénom";
             txtPrenom.Size = new Size(322, 24);
             txtPrenom.TabIndex = 19;
@@ -236,11 +232,11 @@
         private Label lblConnexion;
         private LinkLabel lnkConnexion;
         private Button btnInscription;
-        private PlaceholderTextBox txtMdp;
-        private PlaceholderTextBox txtEmail;
+        private TextBox txtMdp;
+        private TextBox txtEmail;
         private Label lblTitre;
-        private PlaceholderTextBox txtNom;
-        private PlaceholderTextBox txtPrenom;
+        private TextBox txtNom;
+        private TextBox txtPrenom;
         private Label lblNaissance;
         private DateTimePicker dtpNaissance;
         private PictureBox picRetour;
