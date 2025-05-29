@@ -90,12 +90,10 @@
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(27, 402);
             txtMdp.Name = "txtMdp";
-            txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(322, 24);
             txtMdp.TabIndex = 13;
-            txtMdp.Text = "Entrer votre mot de passe...";
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // txtEmail
@@ -108,7 +106,6 @@
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(322, 24);
             txtEmail.TabIndex = 12;
-            txtEmail.Text = "Entrer votre e-mail...";
             // 
             // lblTitre
             // 
@@ -131,7 +128,6 @@
             txtNom.PlaceholderText = "Nom";
             txtNom.Size = new Size(322, 24);
             txtNom.TabIndex = 18;
-            txtNom.Text = "Entrer votre nom...";
             // 
             // txtPrenom
             // 
@@ -143,7 +139,6 @@
             txtPrenom.PlaceholderText = "Prénom";
             txtPrenom.Size = new Size(322, 24);
             txtPrenom.TabIndex = 19;
-            txtPrenom.Text = "Entrer votre prénom...";
             // 
             // lblNaissance
             // 

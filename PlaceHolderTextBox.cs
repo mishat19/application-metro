@@ -1,20 +1,10 @@
 ﻿public class PlaceholderTextBox : TextBox
 {
-    private string placeholderText = "Entrer du texte...";
     private Color placeholderColor = Color.FromArgb(205, 33, 42);
     private Color defaultForeColor;
     private bool isPlaceholderActive = false;
     private char defaultPasswordChar;
 
-    public string PlaceholderText
-    {
-        get => placeholderText;
-        set
-        {
-            placeholderText = value;
-            SetPlaceholder();
-        }
-    }
 
     public Color PlaceholderColor
     {
@@ -51,7 +41,6 @@
         if (string.IsNullOrWhiteSpace(Text))
         {
             isPlaceholderActive = true;
-            Text = placeholderText;
             ForeColor = placeholderColor;
             PasswordChar = '\0'; // désactive le masquage pour afficher le placeholder
         }
@@ -62,7 +51,6 @@
         if (isPlaceholderActive)
         {
             isPlaceholderActive = false;
-            Text = "";
             ForeColor = defaultForeColor;
             PasswordChar = defaultPasswordChar; // réactive le masquage
         }

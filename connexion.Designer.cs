@@ -73,7 +73,6 @@
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(318, 22);
             txtEmail.TabIndex = 4;
-            txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
@@ -86,7 +85,6 @@
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(318, 22);
             txtMdp.TabIndex = 5;
-            txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // btnConnexion

@@ -133,7 +133,6 @@
             txtCouleur.Size = new Size(336, 24);
             txtCouleur.TabIndex = 46;
             txtCouleur.TabStop = false;
-            txtCouleur.Text = "Couleur";
             txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
             // lblNbStations
@@ -366,7 +365,6 @@
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
             txtNomLigne.Size = new Size(176, 24);
             txtNomLigne.TabIndex = 58;
-            txtNomLigne.Text = "Nom de votre ligne";
             txtNomLigne.Visible = false;
             // 
             // picFond2
