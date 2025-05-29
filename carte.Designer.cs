@@ -59,6 +59,7 @@
             // 
             // picHome
             // 
+            picHome.BackColor = Color.FromArgb(255, 230, 188);
             picHome.Image = Properties.Resources.home;
             picHome.Location = new Point(61, 45);
             picHome.Name = "picHome";
@@ -66,6 +67,7 @@
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
             picHome.TabIndex = 70;
             picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
             // picLogo5
             // 
@@ -79,6 +81,7 @@
             // 
             // picRetour
             // 
+            picRetour.BackColor = Color.FromArgb(255, 230, 188);
             picRetour.Image = Properties.Resources.imgFlecheGauche;
             picRetour.Location = new Point(22, 45);
             picRetour.Name = "picRetour";
@@ -86,7 +89,7 @@
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 69;
             picRetour.TabStop = false;
-            picRetour.Click += picRetour_Click_1;
+            picRetour.Click += picRetour_Click;
             // 
             // picCroix
             // 
@@ -111,6 +114,7 @@
             btnHoraires.TabIndex = 68;
             btnHoraires.Text = "Voir les horaires";
             btnHoraires.UseVisualStyleBackColor = false;
+            btnHoraires.Click += btnHoraires_Click;
             // 
             // cmbLignes
             // 
@@ -123,6 +127,7 @@
             cmbLignes.Size = new Size(186, 26);
             cmbLignes.TabIndex = 66;
             cmbLignes.Text = "Ligne n°";
+            cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
             // 
             // btnRecherche
             // 
@@ -137,6 +142,7 @@
             btnRecherche.TabIndex = 67;
             btnRecherche.Text = "Afficher";
             btnRecherche.UseVisualStyleBackColor = false;
+            btnRecherche.Click += btnRecherche_Click;
             // 
             // pnlRecherche
             // 

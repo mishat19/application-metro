@@ -32,34 +32,36 @@ namespace application_metro
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = position; // Position en pixels à l’écran
+            this.Location = position;
 
             webView = new WebView2();
-            webView.Dock = DockStyle.Fill;
 
-            int width = this.ClientSize.Width - 60;
+            int width = pnlRecherche.ClientSize.Width - 60;
             int height = 220;
-
             webView.Size = new Size(width, height);
 
-            //Centrage horizontal
-            int x = (this.ClientSize.Width - width) / 2;
+            // Centrage horizontal dans le panel
+            int x = (pnlRecherche.ClientSize.Width - width) / 2;
 
+            // Marge
             int marginTop = 50;
             int y = marginTop;
 
             webView.Location = new Point(x, y);
-            webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-            this.Controls.Add(webView);
+
+
             pnlRecherche.Controls.Add(webView);
+            pnlRecherche.Controls.Add(flpResultat);
+            pnlRecherche.Controls.Add(grpRecherche);
+
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
-
         }
+
 
         private async void InitializeAsync()
         {

@@ -183,10 +183,5 @@ namespace application_metro
         {
             cmbLignes.SelectedIndex = -1; //Permet de sélectionner aucune ligne
         }
-
-        private void picRetour_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

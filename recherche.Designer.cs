@@ -91,9 +91,9 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(12, 7997);
+            grpTrajet.Location = new Point(12, 9341);
             grpTrajet.Name = "grpTrajet";
-            grpTrajet.Size = new Size(297, 282);
+            grpTrajet.Size = new Size(171, 282);
             grpTrajet.TabIndex = 16;
             grpTrajet.TabStop = false;
             // 
@@ -340,6 +340,7 @@
             // 
             // pnlRecherche
             // 
+            pnlRecherche.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlRecherche.AutoScroll = true;
             pnlRecherche.AutoScrollMinSize = new Size(0, 1200);
             pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
@@ -348,7 +349,6 @@
             pnlRecherche.Controls.Add(picHome);
             pnlRecherche.Controls.Add(picRetour);
             pnlRecherche.Controls.Add(grpTrajet);
-            pnlRecherche.Dock = DockStyle.Fill;
             pnlRecherche.Location = new Point(0, 0);
             pnlRecherche.Name = "pnlRecherche";
             pnlRecherche.Size = new Size(382, 753);
