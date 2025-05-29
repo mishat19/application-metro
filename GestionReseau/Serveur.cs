@@ -660,6 +660,10 @@ namespace GestionReseau
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Suprime une information d'une ligne dans la table InfoLigne.
+        /// </summary>
+        /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUneInfoLigne(int numLigne)
         {
             string requete = @"DELETE FROM InfoLigne WHERE NumLigne = @numLigne";
