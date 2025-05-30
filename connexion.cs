@@ -83,11 +83,7 @@ namespace application_metro
 
         private void txtMdp_TextChanged(object sender, EventArgs e)
         {
-            // Remet le caractère de mot de passe si le placeholder n'est plus actif
-            if (!txtMdp.IsPlaceholderActive)
-            {
-                txtMdp.PasswordChar = '*';
-            }
+
         }
 
 

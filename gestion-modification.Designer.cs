@@ -34,7 +34,7 @@
             lblTitre = new Label();
             lblIntitule = new Label();
             lblCouleur = new Label();
-            txtCouleur = new PlaceholderTextBox();
+            txtCouleur = new TextBox();
             lblNbStations = new Label();
             nudNbStations = new NumericUpDown();
             lblNoms = new Label();
@@ -52,8 +52,8 @@
             picHome = new PictureBox();
             picRetour = new PictureBox();
             nudNumLigne = new NumericUpDown();
-            txtNumero = new PlaceholderTextBox();
-            txtNomLigne = new PlaceholderTextBox();
+            txtNumero = new TextBox();
+            txtNomLigne = new TextBox();
             picFond2 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             flpHoraires.SuspendLayout();
@@ -128,12 +128,10 @@
             txtCouleur.Location = new Point(11, 299);
             txtCouleur.Margin = new Padding(3, 4, 3, 4);
             txtCouleur.Name = "txtCouleur";
-            txtCouleur.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtCouleur.PlaceholderText = "Couleur";
             txtCouleur.Size = new Size(336, 24);
             txtCouleur.TabIndex = 46;
             txtCouleur.TabStop = false;
-            txtCouleur.Text = "Couleur";
             txtCouleur.TextChanged += txtCouleur_TextChanged;
             // 
             // lblNbStations
@@ -349,7 +347,6 @@
             txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
             txtNumero.Location = new Point(196, 199);
             txtNumero.Name = "txtNumero";
-            txtNumero.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtNumero.PlaceholderText = "Numéro de ligne";
             txtNumero.Size = new Size(151, 24);
             txtNumero.TabIndex = 59;
@@ -362,11 +359,9 @@
             txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
             txtNomLigne.Location = new Point(12, 199);
             txtNomLigne.Name = "txtNomLigne";
-            txtNomLigne.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtNomLigne.PlaceholderText = "Nom de votre ligne";
             txtNomLigne.Size = new Size(176, 24);
             txtNomLigne.TabIndex = 58;
-            txtNomLigne.Text = "Nom de votre ligne";
             txtNomLigne.Visible = false;
             // 
             // picFond2
@@ -412,7 +407,7 @@
         private Label lblTitre;
         private Label lblIntitule;
         private Label lblCouleur;
-        private PlaceholderTextBox txtCouleur;
+        private TextBox txtCouleur;
         private Label lblNbStations;
         private NumericUpDown nudNbStations;
         private Label lblNoms;
@@ -423,8 +418,8 @@
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
-        private PlaceholderTextBox txtNumero;
-        private PlaceholderTextBox txtNomLigne;
+        private TextBox txtNumero;
+        private TextBox txtNomLigne;
         private NumericUpDown nudNumLigne;
         private PictureBox picFond2;
         private PictureBox picRetour;

@@ -31,8 +31,8 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Connexion));
             lblTitre = new Label();
-            txtEmail = new PlaceholderTextBox();
-            txtMdp = new PlaceholderTextBox();
+            txtEmail = new TextBox();
+            txtMdp = new TextBox();
             btnConnexion = new Button();
             lnkInscription = new LinkLabel();
             lblInscription = new Label();
@@ -69,11 +69,9 @@
             txtEmail.ForeColor = Color.FromArgb(205, 33, 42);
             txtEmail.Location = new Point(20, 26);
             txtEmail.Name = "txtEmail";
-            txtEmail.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtEmail.PlaceholderText = "Saisir votre adresse mail";
             txtEmail.Size = new Size(318, 22);
             txtEmail.TabIndex = 4;
-            txtEmail.Text = "Saisir votre adresse mail";
             txtEmail.TextChanged += txtEmail_TextChanged;
             // 
             // txtMdp
@@ -82,11 +80,9 @@
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
-            txtMdp.PlaceholderColor = Color.FromArgb(205, 33, 42);
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(318, 22);
             txtMdp.TabIndex = 5;
-            txtMdp.Text = "Saisir votre mot de passe";
             txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // btnConnexion
@@ -250,8 +246,8 @@
 
         #endregion
         private Label lblTitre;
-        private PlaceholderTextBox txtEmail;
-        private PlaceholderTextBox txtMdp;
+        private TextBox txtEmail;
+        private TextBox txtMdp;
         private Button btnConnexion;
         private LinkLabel lnkInscription;
         private Label lblInscription;
