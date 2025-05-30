@@ -331,6 +331,7 @@ namespace GestionReseau
             }
             return stations;
         }
+
         /// <summary>
         /// Calcul les horaires de passage d'une station
         /// </summary>
@@ -390,13 +391,13 @@ namespace GestionReseau
         /// <param name="nomStation"></param>
         public static void SupprimerUneStation(string nomLigne, string nomStation)
         {
-            string requeteIdStation =
-            @"SELECT s.NumStation
+            // Requête corrigée avec les bons alias
+            string requeteIdStation = @"SELECT st.NumStation
             FROM Station st
             JOIN Segment seg ON st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB
             JOIN Ligne l ON seg.NumSegment = l.NumSegment
-            JOIN InfoLigne il ON seg.NumSegment = l.NumSegment
-            WHERE s.NomStation = @nomStation AND i.Nom = @nomLigne
+            JOIN InfoLigne il ON l.NumLigne = il.NumLigne
+            WHERE st.NomStation = @nomStation AND il.Nom = @nomLigne
             LIMIT 1";
 
             MySqlCommand cmd1 = new MySqlCommand(requeteIdStation, connexion);
@@ -404,41 +405,23 @@ namespace GestionReseau
             cmd1.Parameters.AddWithValue("@nomStation", nomStation);
 
             object resultat = cmd1.ExecuteScalar();
+
             int idStation = Convert.ToInt32(resultat);
 
+            // Suppression des segments associés
             string requeteSupprimerSegment = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
-
             MySqlCommand cmd2 = new MySqlCommand(requeteSupprimerSegment, connexion);
+
             cmd2.Parameters.AddWithValue("@idStation", idStation);
+            cmd2.ExecuteNonQuery();
 
+            // Suppression de la station
             string requeteSupprimerStation = @"DELETE FROM Station WHERE NumStation = @idStation";
-
             MySqlCommand cmd3 = new MySqlCommand(requeteSupprimerStation, connexion);
             cmd3.Parameters.AddWithValue("@idStation", idStation);
             cmd3.ExecuteNonQuery();
         }
 
-        /// <summary>
-        /// Supprime les données d'une ligne présente dans les tables InfoLigne et Ligne
-        /// </summary>
-        /// <param name="nomLigne"></param>
-        public static void SupprimeUneLigne(string nomLigne)
-        {
-            string requeteLigne = @"DELETE FROM Ligne
-                                    WHERE numLigne = (SELECT numLigne
-                                                      FROM InfoLigne
-                                                      WHERE Nom = @nomLigne)";
-
-            MySqlCommand cmdLigne = new MySqlCommand(requeteLigne, connexion);
-            cmdLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
-            cmdLigne.ExecuteNonQuery();
-
-            string requeteInfoLigne = @"DELETE FROM InfoLigne WHERE Nom = @nomLigne";
-
-            MySqlCommand cmdInfoLigne = new MySqlCommand(requeteInfoLigne, connexion);
-            cmdInfoLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
-            cmdInfoLigne.ExecuteNonQuery();
-        }
 
         /// <summary>
         /// Ajoute une ligne dans la base de données
@@ -661,7 +644,7 @@ namespace GestionReseau
         }
 
         /// <summary>
-        /// Suprime une information d'une ligne dans la table InfoLigne.
+        /// Supprimme une information d'une ligne dans la table InfoLigne.
         /// </summary>
         /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUneInfoLigne(int numLigne)
@@ -671,6 +654,56 @@ namespace GestionReseau
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Supprime les informations en rapport avec une ligne dans la table Ligne.
+        /// </summary>
+        /// <param name="numLigne">Numéro de la ligne</param>
+        public static void SupprimerUneLigne(int numLigne)
+        {
+            string requete = @"DELETE FROM Ligne WHERE NumLigne = @numLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@numLigne", numLigne);
+            cmd.ExecuteNonQuery();
+        }
+
+        /// <summary>
+        /// Supprier les informations d'horaire d'une ligne dans la table Horaire
+        /// </summary>
+        /// <param name="numLigne">Numéro de la ligne</param>
+        public static void SupprimerUnHoraire(int numLigne)
+        {
+            string requete = @"DELETE FROM Horaire WHERE NumLigne = @numLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@numLigne", numLigne);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static List<string> idStationsParLigne(string nomLigne)
+        {
+            List<string> stations = new List<string>();
+            string requete = @"
+            SELECT DISTINCT st.NomStation
+            FROM InfoLigne il, Ligne l, Segment seg, Station st 
+            WHERE il.Nom = @NomLigne
+            AND il.NumLigne = l.NumLigne
+            AND l.NumSegment = seg.NumSegment
+            AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    stations.Add(rdr.GetString("NomStation"));
+                }
+            }
+            return stations;
         }
     }
 }

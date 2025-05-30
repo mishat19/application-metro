@@ -109,20 +109,22 @@ namespace application_metro
             {
                 string ligne = cmbLigne.ToString();
 
+                int idLigne = Serveur.idLigneGraceNom(ligne);
+
+                // Suppression des informations dans la table ligne
+                Serveur.SupprimerUneLigne(idLigne);
+
+                // Suppression des informations en rapport avec cette ligne dans Horaire
+                Serveur.SupprimerUnHoraire(idLigne);
+
+                // Suppression des informations de cette ligne dans InfoLigne
+                Serveur.SupprimerUneInfoLigne(idLigne);
+
                 List<string> listeStation = Serveur.StationsParLigne(ligne);
 
-                try
+                foreach (string station in listeStation)
                 {
-                    foreach (string station in listeStation)
-                    {
-                        Serveur.SupprimerUneStation(ligne, station);
-                    }
-
-                    Serveur.SupprimeUneLigne(ligne);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur lors de la suppression de la ligne : " + ex.Message);
+                    Serveur.SupprimerUneStation(ligne, station);
                 }
 
                 MessageBox.Show("La ligne et ses stations ont été supprimées avec succès.");
