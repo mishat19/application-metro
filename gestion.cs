@@ -93,6 +93,9 @@ namespace application_metro
                 MessageBoxIcon.Warning
             );
 
+            if (result != DialogResult.OK)
+                return;
+
             if (cmbStation.SelectedItem != null && cmbLigne.SelectedItem != null)
             {
                 string station = cmbStation.SelectedItem.ToString();
@@ -101,23 +104,17 @@ namespace application_metro
                 Serveur.SupprimerUneStation(ligne, station);
 
                 MessageBox.Show("La station a été supprimée avec succès.");
-
                 return;
             }
 
             if (cmbStation.SelectedItem == null && cmbLigne.SelectedItem != null)
             {
-                string ligne = cmbLigne.ToString();
+                string ligne = cmbLigne.SelectedItem.ToString();
 
                 int idLigne = Serveur.idLigneGraceNom(ligne);
 
-                // Suppression des informations dans la table ligne
                 Serveur.SupprimerUneLigne(idLigne);
-
-                // Suppression des informations en rapport avec cette ligne dans Horaire
                 Serveur.SupprimerUnHoraire(idLigne);
-
-                // Suppression des informations de cette ligne dans InfoLigne
                 Serveur.SupprimerUneInfoLigne(idLigne);
 
                 List<string> listeStation = Serveur.StationsParLigne(ligne);
@@ -131,6 +128,7 @@ namespace application_metro
                 return;
             }
         }
+
 
         private void picPlus_Click(object sender, EventArgs e)
         {
