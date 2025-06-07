@@ -35,7 +35,9 @@
             btnRetour = new Button();
             btnAdmin = new Button();
             picFond2 = new PictureBox();
+            picAccueil = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picAccueil).BeginInit();
             SuspendLayout();
             // 
             // lblTitre
@@ -43,7 +45,7 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(81, 99);
+            lblTitre.Location = new Point(69, 125);
             lblTitre.Name = "lblTitre";
             lblTitre.Size = new Size(241, 58);
             lblTitre.TabIndex = 5;
@@ -56,7 +58,7 @@
             btnRecherche.FlatStyle = FlatStyle.Flat;
             btnRecherche.Font = new Font("Microsoft Sans Serif", 13.7999992F);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(29, 337);
+            btnRecherche.Location = new Point(29, 358);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(324, 74);
             btnRecherche.TabIndex = 4;
@@ -70,7 +72,7 @@
             btnConsultation.FlatStyle = FlatStyle.Flat;
             btnConsultation.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConsultation.ForeColor = Color.White;
-            btnConsultation.Location = new Point(29, 220);
+            btnConsultation.Location = new Point(29, 259);
             btnConsultation.Name = "btnConsultation";
             btnConsultation.Size = new Size(324, 74);
             btnConsultation.TabIndex = 3;
@@ -109,12 +111,22 @@
             // picFond2
             // 
             picFond2.Image = Properties.Resources.imgFondMilan1;
-            picFond2.Location = new Point(-292, 265);
+            picFond2.Location = new Point(-287, 272);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 54;
             picFond2.TabStop = false;
+            // 
+            // picAccueil
+            // 
+            picAccueil.Image = Properties.Resources.logo5;
+            picAccueil.Location = new Point(142, 73);
+            picAccueil.Name = "picAccueil";
+            picAccueil.Size = new Size(99, 84);
+            picAccueil.SizeMode = PictureBoxSizeMode.Zoom;
+            picAccueil.TabIndex = 55;
+            picAccueil.TabStop = false;
             // 
             // Accueil
             // 
@@ -122,6 +134,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picAccueil);
             Controls.Add(btnAdmin);
             Controls.Add(btnRetour);
             Controls.Add(lblTitre);
@@ -135,6 +148,7 @@
             Text = "Menu";
             Load += Accueil_Load;
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAccueil).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,5 +161,6 @@
         public Button btnRetour;
         private Button btnAdmin;
         private PictureBox picFond2;
+        private PictureBox picAccueil;
     }
 }

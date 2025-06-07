@@ -142,11 +142,11 @@ namespace application_metro
         {
             FontFamily D = fontCollection.Families[0];
             FontFamily G = fontCollection.Families[1];
-            lblDepart.Font = new Font(G, 9);
-            lblArrivee.Font = new Font(G, 9);
+            lblDepart.Font = new Font(G, 11);
+            lblArrivee.Font = new Font(G, 11);
             lblHoraireDepart.Font = new Font(G, 9);
             lblHoraireArrivée.Font = new Font(G, 9);
-            lblHoraires.Font = new Font(G, 9, FontStyle.Underline);
+            lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
             dtpArrivee.Font = new Font(D, 9);
             dtpDepart.Font = new Font(D, 9);
             btnRecherche.Font = new Font(D, 14);
@@ -158,7 +158,7 @@ namespace application_metro
             lblNumLigneResultat.Font = new Font(D, 9);
             lblTemps.Font = new Font(D, 9);
 
-            lblTrajet.Font = new Font(G, 9, FontStyle.Underline);
+            lblTrajet.Font = new Font(G, 11, FontStyle.Underline);
             lblTitre.Font = new Font(G, 14, FontStyle.Bold);
         }
 
@@ -187,6 +187,26 @@ namespace application_metro
         }
 
         private void cmbDepart_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpRecherche1_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpRecherche1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grpRecherche2_Paint_1(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void pnlRecherche_Paint(object sender, PaintEventArgs e)
         {
 
         }

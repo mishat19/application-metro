@@ -35,7 +35,6 @@
             picCroix = new PictureBox();
             btnHoraires = new Button();
             cmbLignes = new ComboBox();
-            btnRecherche = new Button();
             pnlRecherche = new Panel();
             grpTrajet = new GroupBox();
             btnDetails = new Button();
@@ -61,7 +60,7 @@
             // 
             picHome.BackColor = Color.FromArgb(255, 230, 188);
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(61, 45);
+            picHome.Location = new Point(34, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
@@ -71,10 +70,11 @@
             // 
             // picLogo5
             // 
+            picLogo5.BackColor = Color.FromArgb(255, 230, 188);
             picLogo5.Image = Properties.Resources.logo5;
-            picLogo5.Location = new Point(248, 39);
+            picLogo5.Location = new Point(138, 24);
             picLogo5.Name = "picLogo5";
-            picLogo5.Size = new Size(92, 81);
+            picLogo5.Size = new Size(107, 96);
             picLogo5.SizeMode = PictureBoxSizeMode.Zoom;
             picLogo5.TabIndex = 72;
             picLogo5.TabStop = false;
@@ -83,9 +83,9 @@
             // 
             picRetour.BackColor = Color.FromArgb(255, 230, 188);
             picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(22, 45);
+            picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
-            picRetour.Size = new Size(42, 25);
+            picRetour.Size = new Size(28, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 69;
             picRetour.TabStop = false;
@@ -94,7 +94,7 @@
             // picCroix
             // 
             picCroix.Image = Properties.Resources.croix;
-            picCroix.Location = new Point(174, 119);
+            picCroix.Location = new Point(329, 119);
             picCroix.Name = "picCroix";
             picCroix.Size = new Size(16, 27);
             picCroix.SizeMode = PictureBoxSizeMode.Zoom;
@@ -122,34 +122,24 @@
             cmbLignes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
             cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(30, 119);
+            cmbLignes.Location = new Point(12, 120);
             cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 26);
+            cmbLignes.Size = new Size(358, 26);
             cmbLignes.TabIndex = 66;
             cmbLignes.Text = "Ligne n°";
             cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
-            // 
-            // btnRecherche
-            // 
-            btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
-            btnRecherche.Enabled = false;
-            btnRecherche.FlatStyle = FlatStyle.Flat;
-            btnRecherche.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(248, 119);
-            btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(92, 27);
-            btnRecherche.TabIndex = 67;
-            btnRecherche.Text = "Afficher";
-            btnRecherche.UseVisualStyleBackColor = false;
-            btnRecherche.Click += btnRecherche_Click;
             // 
             // pnlRecherche
             // 
             pnlRecherche.AutoScroll = true;
             pnlRecherche.AutoScrollMinSize = new Size(0, 400);
             pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
+            pnlRecherche.Controls.Add(picHome);
             pnlRecherche.Controls.Add(grpTrajet);
+            pnlRecherche.Controls.Add(picRetour);
+            pnlRecherche.Controls.Add(picLogo5);
+            pnlRecherche.Controls.Add(cmbLignes);
+            pnlRecherche.Controls.Add(picCroix);
             pnlRecherche.Dock = DockStyle.Fill;
             pnlRecherche.Location = new Point(0, 0);
             pnlRecherche.Name = "pnlRecherche";
@@ -288,13 +278,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(382, 753);
-            Controls.Add(picHome);
-            Controls.Add(picLogo5);
-            Controls.Add(picRetour);
-            Controls.Add(picCroix);
             Controls.Add(btnHoraires);
-            Controls.Add(cmbLignes);
-            Controls.Add(btnRecherche);
             Controls.Add(pnlRecherche);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -323,7 +307,6 @@
         private PictureBox picCroix;
         private Button btnHoraires;
         private ComboBox cmbLignes;
-        private Button btnRecherche;
         private Panel pnlRecherche;
         private GroupBox grpTrajet;
         private Button btnDetails;

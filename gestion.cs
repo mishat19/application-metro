@@ -54,6 +54,7 @@ namespace application_metro
             btnSupp.Font = new Font(D, 14);
             lblTitre.Font = new Font(G, 16, FontStyle.Bold);
             lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 115); // Centrer le titre horizontalement
+            lblErreur.Font = new Font(D, 9, FontStyle.Italic);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -66,7 +67,8 @@ namespace application_metro
         string mode;
         private void btnModif_Click(object sender, EventArgs e)
         {
-            if(!(cmbLigne.SelectedIndex == -1)) {
+            if (!(cmbLigne.SelectedIndex == -1))
+            {
                 mode = "Modification";
                 Gestion_modification modif = new Gestion_modification(mode, this.Location, nomLigne, nomStation);
                 modif.Show();
@@ -202,6 +204,11 @@ namespace application_metro
         private void pnlGestion_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void grpAjout_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
     }
 }

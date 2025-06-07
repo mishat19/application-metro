@@ -101,6 +101,7 @@ namespace application_metro
             btnRecherche.Font = new Font(D, 14);
             btnAdmin.Font = new Font(D, 14);
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
             btnRetour.Font = new Font(D, 9);
         }
     }

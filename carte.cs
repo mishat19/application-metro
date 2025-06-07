@@ -129,8 +129,6 @@ namespace application_metro
         {
             FontFamily D = fontCollection.Families[0];
             FontFamily G = fontCollection.Families[1];
-            btnRecherche.Font = new Font(D, 9);
-            btnRecherche.ForeColor = Color.White;
             btnHoraires.ForeColor = Color.White;
             btnHoraires.Font = new Font(D, 14);
             cmbLignes.Font = new Font(D, 9);
@@ -144,7 +142,7 @@ namespace application_metro
         string ligne;
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnRecherche.Enabled = true;
+            btnHoraires.Enabled = true;
             ligne = cmbLignes.Text;
         }
 
@@ -153,11 +151,6 @@ namespace application_metro
             Consultation consultation = new Consultation(ligne, this.Location);
             consultation.Show();
             this.Close();
-        }
-
-        private void btnRecherche_Click(object sender, EventArgs e)
-        {
-            btnHoraires.Enabled = true;
         }
 
         private void picSupprimer_Click(object sender, EventArgs e)

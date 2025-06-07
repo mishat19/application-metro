@@ -257,6 +257,8 @@ namespace application_metro
             lblCouleur.Font = new Font(G, 11, FontStyle.Underline);
             lblNbStations.Font = new Font(G, 11, FontStyle.Underline);
             lblNoms.Font = new Font(G, 11, FontStyle.Underline);
+            lblCoordonnees.Font = new Font(G, 11, FontStyle.Underline);
+            lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
             btnEnregistrement.Font = new Font(D, 9);
             txtCouleur.Font = new Font(D, 9);
             cmbLigne.Font = new Font(D, 9);
@@ -266,7 +268,8 @@ namespace application_metro
             flpCoordonnees.Font = new Font(D, 9);
             flpHoraires.Font = new Font(D, 9);
             lblTitre.Font = new Font(G, 14, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 90); // Centrer le titre horizontalement
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 100); // Centrer le titre horizontalement
+            nudNbStations.Font = new Font(D, 9);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -295,7 +298,7 @@ namespace application_metro
                     double latitudeDecimal;
                     double longitudeDecimal;
 
-                    try 
+                    try
                     {
                         latitudeDecimal = Convert.ToDouble(latitude);
                         longitudeDecimal = Convert.ToDouble(longitude);
@@ -366,7 +369,8 @@ namespace application_metro
                 try
                 {
                     Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show($"Erreur lors de l'ajout des horaires : {ex.Message}");
                 }
@@ -542,6 +546,11 @@ namespace application_metro
         private void dtp_HoraireFin_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void grpModif_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
     }
 }

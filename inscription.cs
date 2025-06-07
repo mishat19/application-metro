@@ -21,7 +21,7 @@ namespace application_metro
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = position; 
+            this.Location = position;
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
@@ -107,7 +107,17 @@ namespace application_metro
             lnkConnexion.Font = new Font(D, 9, FontStyle.Underline);
             btnInscription.Font = new Font(D, 14);
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 100); // Centrer le titre horizontalement
+        }
+
+        private void grpNomPrenom_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpAdrMdp_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
     }
 }

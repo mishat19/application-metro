@@ -83,7 +83,7 @@
             // 
             lblErreur.AutoSize = true;
             lblErreur.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblErreur.ForeColor = Color.FromArgb(0, 192, 0);
+            lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
             lblErreur.Location = new Point(14, 468);
             lblErreur.Name = "lblErreur";
             lblErreur.Size = new Size(284, 22);
@@ -94,9 +94,9 @@
             // picRetour
             // 
             picRetour.Image = Properties.Resources.imgFlecheGauche;
-            picRetour.Location = new Point(0, 3);
+            picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
+            picRetour.Size = new Size(28, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 62;
             picRetour.TabStop = false;
@@ -105,7 +105,7 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(47, 3);
+            picHome.Location = new Point(34, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
@@ -118,18 +118,19 @@
             grpAjout.Controls.Add(pictureBox1);
             grpAjout.Controls.Add(lblAjout);
             grpAjout.FlatStyle = FlatStyle.Flat;
-            grpAjout.Location = new Point(14, 205);
+            grpAjout.Location = new Point(14, 217);
             grpAjout.Name = "grpAjout";
             grpAjout.Size = new Size(358, 85);
             grpAjout.TabIndex = 44;
             grpAjout.TabStop = false;
+            grpAjout.Paint += grpAjout_Paint;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.plus2;
-            pictureBox1.Location = new Point(270, 17);
+            pictureBox1.Location = new Point(278, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(88, 62);
+            pictureBox1.Size = new Size(69, 61);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 63;
             pictureBox1.TabStop = false;
@@ -140,7 +141,7 @@
             lblAjout.AutoSize = true;
             lblAjout.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAjout.ForeColor = Color.FromArgb(205, 33, 42);
-            lblAjout.Location = new Point(6, 35);
+            lblAjout.Location = new Point(16, 30);
             lblAjout.Name = "lblAjout";
             lblAjout.Size = new Size(217, 22);
             lblAjout.TabIndex = 32;
@@ -201,7 +202,7 @@
             lblGestion.AutoSize = true;
             lblGestion.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblGestion.ForeColor = Color.FromArgb(15, 93, 70);
-            lblGestion.Location = new Point(20, 528);
+            lblGestion.Location = new Point(14, 518);
             lblGestion.Name = "lblGestion";
             lblGestion.Size = new Size(82, 22);
             lblGestion.TabIndex = 49;
@@ -237,7 +238,7 @@
             lblSelection.AutoSize = true;
             lblSelection.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
             lblSelection.ForeColor = Color.FromArgb(15, 93, 70);
-            lblSelection.Location = new Point(20, 338);
+            lblSelection.Location = new Point(14, 341);
             lblSelection.Name = "lblSelection";
             lblSelection.Size = new Size(227, 22);
             lblSelection.TabIndex = 45;

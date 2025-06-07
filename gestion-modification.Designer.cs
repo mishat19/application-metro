@@ -29,14 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion_modification));
-            cmbLigne = new ComboBox();
             lblModif = new Label();
             lblTitre = new Label();
-            lblIntitule = new Label();
-            lblCouleur = new Label();
-            txtCouleur = new TextBox();
-            lblNbStations = new Label();
-            nudNbStations = new NumericUpDown();
             lblNoms = new Label();
             lblCoordonnees = new Label();
             flpStations = new FlowLayoutPanel();
@@ -49,39 +43,35 @@
             dtp_HoraireFin = new DateTimePicker();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
-            picHome = new PictureBox();
-            picRetour = new PictureBox();
+            grpModif = new GroupBox();
             nudNumLigne = new NumericUpDown();
             txtNumero = new TextBox();
             txtNomLigne = new TextBox();
+            cmbLigne = new ComboBox();
+            lblIntitule = new Label();
+            lblCouleur = new Label();
+            txtCouleur = new TextBox();
+            lblNbStations = new Label();
+            nudNbStations = new NumericUpDown();
+            picHome = new PictureBox();
+            picRetour = new PictureBox();
             picFond2 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             flpHoraires.SuspendLayout();
             pnlGestionModification.SuspendLayout();
+            grpModif.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             SuspendLayout();
-            // 
-            // cmbLigne
-            // 
-            cmbLigne.Enabled = false;
-            cmbLigne.Font = new Font("Microsoft Sans Serif", 9F);
-            cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            cmbLigne.FormattingEnabled = true;
-            cmbLigne.Location = new Point(11, 197);
-            cmbLigne.Name = "cmbLigne";
-            cmbLigne.Size = new Size(178, 26);
-            cmbLigne.TabIndex = 41;
-            cmbLigne.Text = "Nom de la ligne";
             // 
             // lblModif
             // 
             lblModif.AutoSize = true;
             lblModif.Font = new Font("Segoe Print", 9F, FontStyle.Bold);
             lblModif.ForeColor = Color.FromArgb(15, 93, 70);
-            lblModif.Location = new Point(129, 124);
+            lblModif.Location = new Point(128, 124);
             lblModif.Name = "lblModif";
             lblModif.Size = new Size(104, 26);
             lblModif.TabIndex = 40;
@@ -98,70 +88,12 @@
             lblTitre.TabIndex = 39;
             lblTitre.Text = "Panneau de configuration";
             // 
-            // lblIntitule
-            // 
-            lblIntitule.AutoSize = true;
-            lblIntitule.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
-            lblIntitule.ForeColor = Color.FromArgb(15, 93, 70);
-            lblIntitule.Location = new Point(11, 164);
-            lblIntitule.Name = "lblIntitule";
-            lblIntitule.Size = new Size(149, 22);
-            lblIntitule.TabIndex = 42;
-            lblIntitule.Text = "Intitulé de la ligne";
-            // 
-            // lblCouleur
-            // 
-            lblCouleur.AutoSize = true;
-            lblCouleur.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
-            lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCouleur.Location = new Point(11, 245);
-            lblCouleur.Name = "lblCouleur";
-            lblCouleur.Size = new Size(160, 22);
-            lblCouleur.TabIndex = 45;
-            lblCouleur.Text = "Couleur de la ligne";
-            lblCouleur.Click += lblCouleur_Click;
-            // 
-            // txtCouleur
-            // 
-            txtCouleur.Font = new Font("Microsoft Sans Serif", 9F);
-            txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
-            txtCouleur.Location = new Point(11, 299);
-            txtCouleur.Margin = new Padding(3, 4, 3, 4);
-            txtCouleur.Name = "txtCouleur";
-            txtCouleur.PlaceholderText = "Couleur";
-            txtCouleur.Size = new Size(336, 24);
-            txtCouleur.TabIndex = 46;
-            txtCouleur.TabStop = false;
-            txtCouleur.TextChanged += txtCouleur_TextChanged;
-            // 
-            // lblNbStations
-            // 
-            lblNbStations.AutoSize = true;
-            lblNbStations.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
-            lblNbStations.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNbStations.Location = new Point(12, 355);
-            lblNbStations.Name = "lblNbStations";
-            lblNbStations.Size = new Size(175, 22);
-            lblNbStations.TabIndex = 47;
-            lblNbStations.Text = "Nombre de stations :";
-            // 
-            // nudNbStations
-            // 
-            nudNbStations.Font = new Font("Microsoft Sans Serif", 9F);
-            nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNbStations.Location = new Point(196, 353);
-            nudNbStations.Margin = new Padding(3, 4, 3, 4);
-            nudNbStations.Name = "nudNbStations";
-            nudNbStations.Size = new Size(79, 24);
-            nudNbStations.TabIndex = 49;
-            nudNbStations.ValueChanged += nudNbStations_ValueChanged;
-            // 
             // lblNoms
             // 
             lblNoms.AutoSize = true;
             lblNoms.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblNoms.ForeColor = Color.FromArgb(15, 93, 70);
-            lblNoms.Location = new Point(12, 412);
+            lblNoms.Location = new Point(24, 440);
             lblNoms.Name = "lblNoms";
             lblNoms.Size = new Size(158, 22);
             lblNoms.TabIndex = 50;
@@ -172,7 +104,7 @@
             lblCoordonnees.AutoSize = true;
             lblCoordonnees.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblCoordonnees.ForeColor = Color.FromArgb(15, 93, 70);
-            lblCoordonnees.Location = new Point(11, 712);
+            lblCoordonnees.Location = new Point(24, 722);
             lblCoordonnees.Name = "lblCoordonnees";
             lblCoordonnees.Size = new Size(272, 22);
             lblCoordonnees.TabIndex = 51;
@@ -203,7 +135,7 @@
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraires.Location = new Point(11, 1003);
+            lblHoraires.Location = new Point(24, 1004);
             lblHoraires.Name = "lblHoraires";
             lblHoraires.Size = new Size(189, 22);
             lblHoraires.TabIndex = 54;
@@ -267,7 +199,7 @@
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("Microsoft Sans Serif", 9F);
             btnEnregistrement.ForeColor = Color.White;
-            btnEnregistrement.Location = new Point(218, 1189);
+            btnEnregistrement.Location = new Point(219, 1212);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(126, 39);
             btnEnregistrement.TabIndex = 57;
@@ -281,26 +213,18 @@
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1500);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestionModification.Controls.Add(grpModif);
             pnlGestionModification.Controls.Add(picHome);
             pnlGestionModification.Controls.Add(picRetour);
             pnlGestionModification.Controls.Add(lblHoraires);
-            pnlGestionModification.Controls.Add(nudNumLigne);
-            pnlGestionModification.Controls.Add(txtNumero);
-            pnlGestionModification.Controls.Add(txtNomLigne);
             pnlGestionModification.Controls.Add(lblTitre);
             pnlGestionModification.Controls.Add(btnEnregistrement);
             pnlGestionModification.Controls.Add(flpHoraires);
             pnlGestionModification.Controls.Add(lblModif);
-            pnlGestionModification.Controls.Add(cmbLigne);
-            pnlGestionModification.Controls.Add(lblIntitule);
-            pnlGestionModification.Controls.Add(lblCouleur);
             pnlGestionModification.Controls.Add(flpCoordonnees);
-            pnlGestionModification.Controls.Add(txtCouleur);
             pnlGestionModification.Controls.Add(flpStations);
-            pnlGestionModification.Controls.Add(lblNbStations);
             pnlGestionModification.Controls.Add(lblCoordonnees);
             pnlGestionModification.Controls.Add(lblNoms);
-            pnlGestionModification.Controls.Add(nudNbStations);
             pnlGestionModification.Controls.Add(picFond2);
             pnlGestionModification.Location = new Point(0, 0);
             pnlGestionModification.Name = "pnlGestionModification";
@@ -308,10 +232,128 @@
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
+            // grpModif
+            // 
+            grpModif.Controls.Add(nudNumLigne);
+            grpModif.Controls.Add(txtNumero);
+            grpModif.Controls.Add(txtNomLigne);
+            grpModif.Controls.Add(cmbLigne);
+            grpModif.Controls.Add(lblIntitule);
+            grpModif.Controls.Add(lblCouleur);
+            grpModif.Controls.Add(txtCouleur);
+            grpModif.Controls.Add(lblNbStations);
+            grpModif.Controls.Add(nudNbStations);
+            grpModif.Location = new Point(14, 175);
+            grpModif.Name = "grpModif";
+            grpModif.Size = new Size(333, 251);
+            grpModif.TabIndex = 66;
+            grpModif.TabStop = false;
+            grpModif.Paint += grpModif_Paint;
+            // 
+            // nudNumLigne
+            // 
+            nudNumLigne.Font = new Font("Microsoft Sans Serif", 9F);
+            nudNumLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            nudNumLigne.Location = new Point(186, 63);
+            nudNumLigne.Margin = new Padding(3, 4, 3, 4);
+            nudNumLigne.Name = "nudNumLigne";
+            nudNumLigne.Size = new Size(134, 24);
+            nudNumLigne.TabIndex = 69;
+            // 
+            // txtNumero
+            // 
+            txtNumero.Font = new Font("Microsoft Sans Serif", 9F);
+            txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
+            txtNumero.Location = new Point(183, 62);
+            txtNumero.Name = "txtNumero";
+            txtNumero.PlaceholderText = "Numéro de ligne";
+            txtNumero.Size = new Size(137, 24);
+            txtNumero.TabIndex = 68;
+            txtNumero.Text = "Entrer du texte...";
+            txtNumero.Visible = false;
+            // 
+            // txtNomLigne
+            // 
+            txtNomLigne.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            txtNomLigne.Location = new Point(10, 64);
+            txtNomLigne.Name = "txtNomLigne";
+            txtNomLigne.PlaceholderText = "Nom de votre ligne";
+            txtNomLigne.Size = new Size(164, 24);
+            txtNomLigne.TabIndex = 67;
+            txtNomLigne.Visible = false;
+            // 
+            // cmbLigne
+            // 
+            cmbLigne.Enabled = false;
+            cmbLigne.Font = new Font("Microsoft Sans Serif", 9F);
+            cmbLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            cmbLigne.FormattingEnabled = true;
+            cmbLigne.Location = new Point(10, 62);
+            cmbLigne.Name = "cmbLigne";
+            cmbLigne.Size = new Size(166, 26);
+            cmbLigne.TabIndex = 61;
+            cmbLigne.Text = "Nom de la ligne";
+            // 
+            // lblIntitule
+            // 
+            lblIntitule.AutoSize = true;
+            lblIntitule.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline, GraphicsUnit.Point, 0);
+            lblIntitule.ForeColor = Color.FromArgb(15, 93, 70);
+            lblIntitule.Location = new Point(9, 23);
+            lblIntitule.Name = "lblIntitule";
+            lblIntitule.Size = new Size(149, 22);
+            lblIntitule.TabIndex = 62;
+            lblIntitule.Text = "Intitulé de la ligne";
+            // 
+            // lblCouleur
+            // 
+            lblCouleur.AutoSize = true;
+            lblCouleur.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
+            lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
+            lblCouleur.Location = new Point(9, 108);
+            lblCouleur.Name = "lblCouleur";
+            lblCouleur.Size = new Size(160, 22);
+            lblCouleur.TabIndex = 63;
+            lblCouleur.Text = "Couleur de la ligne";
+            // 
+            // txtCouleur
+            // 
+            txtCouleur.Font = new Font("Microsoft Sans Serif", 9F);
+            txtCouleur.ForeColor = Color.FromArgb(205, 33, 42);
+            txtCouleur.Location = new Point(10, 151);
+            txtCouleur.Margin = new Padding(3, 4, 3, 4);
+            txtCouleur.Name = "txtCouleur";
+            txtCouleur.PlaceholderText = "Couleur";
+            txtCouleur.Size = new Size(310, 24);
+            txtCouleur.TabIndex = 64;
+            txtCouleur.TabStop = false;
+            // 
+            // lblNbStations
+            // 
+            lblNbStations.AutoSize = true;
+            lblNbStations.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
+            lblNbStations.ForeColor = Color.FromArgb(15, 93, 70);
+            lblNbStations.Location = new Point(10, 207);
+            lblNbStations.Name = "lblNbStations";
+            lblNbStations.Size = new Size(175, 22);
+            lblNbStations.TabIndex = 65;
+            lblNbStations.Text = "Nombre de stations :";
+            // 
+            // nudNbStations
+            // 
+            nudNbStations.Font = new Font("Microsoft Sans Serif", 9F);
+            nudNbStations.ForeColor = Color.FromArgb(205, 33, 42);
+            nudNbStations.Location = new Point(241, 205);
+            nudNbStations.Margin = new Padding(3, 4, 3, 4);
+            nudNbStations.Name = "nudNbStations";
+            nudNbStations.Size = new Size(79, 24);
+            nudNbStations.TabIndex = 66;
+            // 
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(47, 0);
+            picHome.Location = new Point(35, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
@@ -324,50 +366,16 @@
             picRetour.Image = Properties.Resources.imgFlecheGauche;
             picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
-            picRetour.Size = new Size(51, 25);
+            picRetour.Size = new Size(29, 25);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 64;
             picRetour.TabStop = false;
             picRetour.Click += picRetour_Click;
             // 
-            // nudNumLigne
-            // 
-            nudNumLigne.Font = new Font("Microsoft Sans Serif", 9F);
-            nudNumLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            nudNumLigne.Location = new Point(196, 198);
-            nudNumLigne.Margin = new Padding(3, 4, 3, 4);
-            nudNumLigne.Name = "nudNumLigne";
-            nudNumLigne.Size = new Size(150, 24);
-            nudNumLigne.TabIndex = 60;
-            nudNumLigne.ValueChanged += nudNumLigne_ValueChanged;
-            // 
-            // txtNumero
-            // 
-            txtNumero.Font = new Font("Microsoft Sans Serif", 9F);
-            txtNumero.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNumero.Location = new Point(196, 199);
-            txtNumero.Name = "txtNumero";
-            txtNumero.PlaceholderText = "Numéro de ligne";
-            txtNumero.Size = new Size(151, 24);
-            txtNumero.TabIndex = 59;
-            txtNumero.Text = "Entrer du texte...";
-            txtNumero.Visible = false;
-            // 
-            // txtNomLigne
-            // 
-            txtNomLigne.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNomLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            txtNomLigne.Location = new Point(12, 199);
-            txtNomLigne.Name = "txtNomLigne";
-            txtNomLigne.PlaceholderText = "Nom de votre ligne";
-            txtNomLigne.Size = new Size(176, 24);
-            txtNomLigne.TabIndex = 58;
-            txtNomLigne.Visible = false;
-            // 
             // picFond2
             // 
             picFond2.Image = Properties.Resources.logo4;
-            picFond2.Location = new Point(129, 3);
+            picFond2.Location = new Point(119, 12);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(113, 96);
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -388,28 +396,23 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "Panneau de configuration";
             Load += gestion_modification_Load;
-            ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             flpHoraires.ResumeLayout(false);
             flpHoraires.PerformLayout();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
+            grpModif.ResumeLayout(false);
+            grpModif.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudNbStations).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ComboBox cmbLigne;
         private Label lblModif;
         private Label lblTitre;
-        private Label lblIntitule;
-        private Label lblCouleur;
-        private TextBox txtCouleur;
-        private Label lblNbStations;
-        private NumericUpDown nudNbStations;
         private Label lblNoms;
         private Label lblCoordonnees;
         private FlowLayoutPanel flpStations;
@@ -418,9 +421,6 @@
         private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
-        private TextBox txtNumero;
-        private TextBox txtNomLigne;
-        private NumericUpDown nudNumLigne;
         private PictureBox picFond2;
         private PictureBox picRetour;
         private PictureBox picHome;
@@ -428,5 +428,15 @@
         private DateTimePicker dtp_HoraireDebut;
         private Label label2;
         private DateTimePicker dtp_HoraireFin;
+        private GroupBox grpModif;
+        private NumericUpDown nudNumLigne;
+        private TextBox txtNumero;
+        private TextBox txtNomLigne;
+        private ComboBox cmbLigne;
+        private Label lblIntitule;
+        private Label lblCouleur;
+        private TextBox txtCouleur;
+        private Label lblNbStations;
+        private NumericUpDown nudNbStations;
     }
 }

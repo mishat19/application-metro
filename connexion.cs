@@ -19,24 +19,12 @@ namespace application_metro
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
-        private int trainStartX = -300; // Position de départ hors écran
-        private int trainEndX = 30;     // Position finale d'arrivée du train
         public Connexion(Point position)
         {
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
-
-            picTrain1.Left = trainStartX; // Position de départ hors écran
-            picTrain1.Top = 210;
-            picTrain1.Controls.Add(lblErreur);
-            lblErreur.Text = "Identifiants incorrects";
-            lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblErreur.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            lblErreur.AutoSize = true;
-            lblErreur.Location = new Point(20, 15); // Position dans le train
-            lblErreur.Visible = true;
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
@@ -62,10 +50,7 @@ namespace application_metro
             }
             else
             {
-                picTrain1.Left = trainStartX;
-                picTrain1.Top = 210;
-                picTrain1.Visible = true;
-                timerTrain.Start();
+
             }
         }
 
@@ -135,6 +120,7 @@ namespace application_metro
             lblInscription.Font = new Font(D, 9);
             lnkInscription.Font = new Font(D, 9);
             btnConnexion.Font = new Font(D, 9);
+            btnConnexion.ForeColor = Color.White;
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
             lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 90);
 
@@ -159,18 +145,6 @@ namespace application_metro
         private void grpInscriptionConnexion_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void timerTrain_Tick(object sender, EventArgs e)
-        {
-            if (picTrain1.Left < trainEndX)
-            {
-                picTrain1.Left += 5;
-            }
-            else
-            {
-                timerTrain.Stop();
-            }
         }
     }
 }

@@ -45,7 +45,7 @@ namespace application_metro
             btnRecherche.Font = new Font(D, 14);
             lstStations.Font = new Font(D, 9);
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
-            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 70);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)

@@ -44,12 +44,14 @@
             picTrain1 = new PictureBox();
             grpInscriptionConnexion = new GroupBox();
             timerTrain = new System.Windows.Forms.Timer(components);
+            picCoonexion = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picConnexion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             grpConnexion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
             grpInscriptionConnexion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picCoonexion).BeginInit();
             SuspendLayout();
             // 
             // lblTitre
@@ -206,10 +208,15 @@
             grpInscriptionConnexion.TabStop = false;
             grpInscriptionConnexion.Paint += grpInscriptionConnexion_Paint;
             // 
-            // timerTrain
+            // picCoonexion
             // 
-            timerTrain.Interval = 5;
-            timerTrain.Tick += timerTrain_Tick;
+            picCoonexion.Image = Properties.Resources.logo5;
+            picCoonexion.Location = new Point(113, 12);
+            picCoonexion.Name = "picCoonexion";
+            picCoonexion.Size = new Size(157, 88);
+            picCoonexion.SizeMode = PictureBoxSizeMode.Zoom;
+            picCoonexion.TabIndex = 30;
+            picCoonexion.TabStop = false;
             // 
             // Connexion
             // 
@@ -217,6 +224,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picCoonexion);
             Controls.Add(grpInscriptionConnexion);
             Controls.Add(grpConnexion);
             Controls.Add(picRetour);
@@ -240,6 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
             grpInscriptionConnexion.ResumeLayout(false);
             grpInscriptionConnexion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picCoonexion).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -259,5 +268,6 @@
         private GroupBox grpInscriptionConnexion;
         private PictureBox picTrain1;
         private System.Windows.Forms.Timer timerTrain;
+        private PictureBox picCoonexion;
     }
 }
