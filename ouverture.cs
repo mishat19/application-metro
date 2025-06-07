@@ -29,7 +29,7 @@ namespace application_metro
             AllocConsole();
             Serveur.OuvertureConnexion();
 
-            trainError = new TrainErrorManager(picTrain1, lblDeconnexion, trainTop: 504);
+            trainError = new TrainErrorManager(picTrain1, lblDeconnexion, endX : 40, trainTop: 504);
         }
 
 

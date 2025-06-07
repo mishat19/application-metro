@@ -48,7 +48,7 @@ namespace application_metro
             }
 
             // Setup error label inside the train
-            errorLabel.Location = new Point(20, 15); // position dans le train
+            errorLabel.Location = new Point(5, 15); // position dans le train
             errorLabel.ForeColor = Color.FromArgb(15, 93, 70);
             errorLabel.Font = dynapuffFont;
             errorLabel.AutoSize = true;

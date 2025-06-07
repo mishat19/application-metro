@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             pnlGestion = new Panel();
-            picTrain1 = new PictureBox();
+            picTrain2 = new PictureBox();
             lblErreur = new Label();
             picRetour = new PictureBox();
             picHome = new PictureBox();
@@ -48,7 +48,7 @@
             picFond2 = new PictureBox();
             pictureBox2 = new PictureBox();
             pnlGestion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             grpAjout.SuspendLayout();
@@ -60,7 +60,7 @@
             // pnlGestion
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
-            pnlGestion.Controls.Add(picTrain1);
+            pnlGestion.Controls.Add(picTrain2);
             pnlGestion.Controls.Add(lblErreur);
             pnlGestion.Controls.Add(picRetour);
             pnlGestion.Controls.Add(picHome);
@@ -82,18 +82,18 @@
             pnlGestion.TabIndex = 41;
             pnlGestion.Paint += pnlGestion_Paint;
             // 
-            // picTrain1
+            // picTrain2
             // 
-            picTrain1.BackColor = Color.Transparent;
-            picTrain1.Controls.Add(lblErreur);
-            picTrain1.Image = Properties.Resources.imgTrainRose1;
-            picTrain1.Location = new Point(12, 462);
-            picTrain1.Name = "picTrain1";
-            picTrain1.Size = new Size(229, 53);
-            picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
-            picTrain1.TabIndex = 65;
-            picTrain1.TabStop = false;
-            picTrain1.Visible = false;
+            picTrain2.BackColor = Color.Transparent;
+            picTrain2.Controls.Add(lblErreur);
+            picTrain2.Image = Properties.Resources.imgTrainRose2;
+            picTrain2.Location = new Point(12, 462);
+            picTrain2.Name = "picTrain2";
+            picTrain2.Size = new Size(286, 53);
+            picTrain2.SizeMode = PictureBoxSizeMode.Zoom;
+            picTrain2.TabIndex = 65;
+            picTrain2.TabStop = false;
+            picTrain2.Visible = false;
             // 
             // lblErreur
             // 
@@ -297,7 +297,7 @@
             Load += gestion_Load;
             pnlGestion.ResumeLayout(false);
             pnlGestion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain2).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             grpAjout.ResumeLayout(false);
@@ -327,6 +327,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label lblErreur;
-        private PictureBox picTrain1;
+        private PictureBox picTrain2;
     }
 }

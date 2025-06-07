@@ -73,7 +73,6 @@
             // 
             lblDeconnexion.AutoSize = true;
             lblDeconnexion.BackColor = Color.Transparent;
-            lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
             lblDeconnexion.Font = new Font("Microsoft Sans Serif", 9F);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
             lblDeconnexion.Location = new Point(88, 247);

@@ -40,7 +40,7 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
-            trainError = new TrainErrorManager(picTrain1, lblErreur, trainTop: 468);
+            trainError = new TrainErrorManager(picTrain2, lblErreur, endX : 15, trainTop: 460);
         }
 
         private void gestion_Load(object sender, EventArgs e)
