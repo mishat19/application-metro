@@ -13,10 +13,6 @@ namespace application_metro
         private static extern bool AllocConsole();
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
-
-        private int trainStartX = -300; // Position de départ hors écran
-        private int trainEndX = 30;     // Position finale d'arrivée du train
-
         public Ouverture(Point position)
         {
             InitializeComponent();
@@ -31,43 +27,12 @@ namespace application_metro
             AllocConsole();
             Serveur.OuvertureConnexion();
 
-            // Le label d'erreur est maintenant contenu dans le train
-            picTrain1.Controls.Add(labelTrainError);
-            labelTrainError.Text = "Lukas fait le Trello";
-            labelTrainError.ForeColor = Color.FromArgb(15, 93, 70);
-            labelTrainError.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            labelTrainError.AutoSize = true;
-            labelTrainError.Location = new Point(20, 15); // Position dans le train
-            labelTrainError.Visible = true; // visible dès l'apparition du train
 
         }
 
 
 
 
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                picTrain1.Left = trainStartX;
-                picTrain1.Top = 210;
-                picTrain1.Visible = true;
-
-                timerTrain.Start();
-            }
-        }
-
-        private void timerTrain_Tick(object sender, EventArgs e)
-        {
-            if (picTrain1.Left < trainEndX)
-            {
-                picTrain1.Left += 5;
-            }
-            else
-            {
-                timerTrain.Stop();
-            }
-        }
 
         private void btnConnexion_Click_1(object sender, EventArgs e)
         {

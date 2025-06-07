@@ -157,7 +157,8 @@ namespace application_metro
             lblNumLigne.Font = new Font(D, 9);
             lblNumLigneResultat.Font = new Font(D, 9);
             lblTemps.Font = new Font(D, 9);
-
+            cmbArrivee.Font = new Font(D, 9);
+            cmbDepart.Font = new Font(D, 9);
             lblTrajet.Font = new Font(G, 11, FontStyle.Underline);
             lblTitre.Font = new Font(G, 14, FontStyle.Bold);
         }

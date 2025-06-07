@@ -50,6 +50,7 @@
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             grpConnexion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
+            picTrain1.SuspendLayout();
             grpInscriptionConnexion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picCoonexion).BeginInit();
             SuspendLayout();
@@ -90,7 +91,6 @@
             // btnConnexion
             // 
             btnConnexion.BackColor = Color.FromArgb(205, 33, 42);
-            btnConnexion.Enabled = false;
             btnConnexion.FlatStyle = FlatStyle.Flat;
             btnConnexion.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
@@ -130,12 +130,11 @@
             // lblErreur
             // 
             lblErreur.BackColor = Color.Transparent;
-            lblErreur.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
+            lblErreur.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblErreur.Location = new Point(10, 10);
             lblErreur.Name = "lblErreur";
             lblErreur.Size = new Size(190, 20);
-            lblErreur.TabIndex = 10;
+            lblErreur.TabIndex = 59;
             lblErreur.Text = "Identifiants incorrects";
             lblErreur.TextAlign = ContentAlignment.MiddleCenter;
             lblErreur.Visible = false;
@@ -175,21 +174,21 @@
             // 
             // grpConnexion
             // 
-            grpConnexion.Controls.Add(picTrain1);
             grpConnexion.Controls.Add(txtEmail);
             grpConnexion.Controls.Add(picOeilOff);
             grpConnexion.Controls.Add(txtMdp);
             grpConnexion.Location = new Point(12, 191);
             grpConnexion.Name = "grpConnexion";
-            grpConnexion.Size = new Size(358, 128);
+            grpConnexion.Size = new Size(358, 139);
             grpConnexion.TabIndex = 28;
             grpConnexion.TabStop = false;
             grpConnexion.Paint += groupBox1_Paint;
             // 
             // picTrain1
             // 
+            picTrain1.Controls.Add(lblErreur);
             picTrain1.Image = Properties.Resources.imgTrainRose1;
-            picTrain1.Location = new Point(20, 86);
+            picTrain1.Location = new Point(18, 132);
             picTrain1.Name = "picTrain1";
             picTrain1.Size = new Size(211, 53);
             picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -201,7 +200,7 @@
             // 
             grpInscriptionConnexion.Controls.Add(lblInscription);
             grpInscriptionConnexion.Controls.Add(lnkInscription);
-            grpInscriptionConnexion.Location = new Point(12, 325);
+            grpInscriptionConnexion.Location = new Point(12, 336);
             grpInscriptionConnexion.Name = "grpInscriptionConnexion";
             grpInscriptionConnexion.Size = new Size(358, 62);
             grpInscriptionConnexion.TabIndex = 29;
@@ -224,6 +223,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picTrain1);
             Controls.Add(picCoonexion);
             Controls.Add(grpInscriptionConnexion);
             Controls.Add(grpConnexion);
@@ -246,6 +246,7 @@
             grpConnexion.ResumeLayout(false);
             grpConnexion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
+            picTrain1.ResumeLayout(false);
             grpInscriptionConnexion.ResumeLayout(false);
             grpInscriptionConnexion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picCoonexion).EndInit();

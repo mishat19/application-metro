@@ -44,11 +44,13 @@
             picFond2 = new PictureBox();
             grpNomPrenom = new GroupBox();
             grpAdrMdp = new GroupBox();
+            picInscription = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
             grpNomPrenom.SuspendLayout();
             grpAdrMdp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picInscription).BeginInit();
             SuspendLayout();
             // 
             // lblConnexion
@@ -220,12 +222,23 @@
             grpAdrMdp.TabStop = false;
             grpAdrMdp.Paint += grpAdrMdp_Paint;
             // 
+            // picInscription
+            // 
+            picInscription.Image = Properties.Resources.logo4;
+            picInscription.Location = new Point(150, 33);
+            picInscription.Name = "picInscription";
+            picInscription.Size = new Size(83, 76);
+            picInscription.SizeMode = PictureBoxSizeMode.Zoom;
+            picInscription.TabIndex = 57;
+            picInscription.TabStop = false;
+            // 
             // Inscription
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picInscription);
             Controls.Add(grpAdrMdp);
             Controls.Add(grpNomPrenom);
             Controls.Add(picRetour);
@@ -251,6 +264,7 @@
             grpNomPrenom.PerformLayout();
             grpAdrMdp.ResumeLayout(false);
             grpAdrMdp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picInscription).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -272,5 +286,6 @@
         private PictureBox picFond2;
         private GroupBox grpNomPrenom;
         private GroupBox grpAdrMdp;
+        private PictureBox picInscription;
     }
 }

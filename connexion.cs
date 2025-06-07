@@ -19,6 +19,7 @@ namespace application_metro
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
+        private TrainErrorManager trainError;
         public Connexion(Point position)
         {
             InitializeComponent();
@@ -28,6 +29,8 @@ namespace application_metro
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
+            trainError = new TrainErrorManager(picTrain1, lblErreur, trainTop : 273);
 
         }
 
@@ -50,7 +53,8 @@ namespace application_metro
             }
             else
             {
-
+                // Affiche une erreur si la connexion échoue
+                trainError.ShowError("Identifiants incorrects");
             }
         }
 
