@@ -36,20 +36,23 @@
             btnNoConnexion = new Button();
             btnConnexion = new Button();
             picFond2 = new PictureBox();
+            picTrain1 = new PictureBox();
             pnlOuverture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
+            picTrain1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlOuverture
             // 
             pnlOuverture.BackColor = Color.FromArgb(255, 230, 188);
             pnlOuverture.Controls.Add(picLogo1);
-            pnlOuverture.Controls.Add(lblDeconnexion);
             pnlOuverture.Controls.Add(lblTitre);
             pnlOuverture.Controls.Add(btnNoConnexion);
             pnlOuverture.Controls.Add(btnConnexion);
             pnlOuverture.Controls.Add(picFond2);
+            pnlOuverture.Controls.Add(picTrain1);
             pnlOuverture.Dock = DockStyle.Fill;
             pnlOuverture.Location = new Point(0, 0);
             pnlOuverture.Name = "pnlOuverture";
@@ -69,13 +72,14 @@
             // lblDeconnexion
             // 
             lblDeconnexion.AutoSize = true;
+            lblDeconnexion.BackColor = Color.Transparent;
             lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
             lblDeconnexion.Font = new Font("Microsoft Sans Serif", 9F);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
-            lblDeconnexion.Location = new Point(99, 551);
+            lblDeconnexion.Location = new Point(88, 247);
             lblDeconnexion.Name = "lblDeconnexion";
             lblDeconnexion.Size = new Size(184, 20);
-            lblDeconnexion.TabIndex = 7;
+            lblDeconnexion.TabIndex = 59;
             lblDeconnexion.Text = "Vous avez été déconnecté";
             lblDeconnexion.Visible = false;
             // 
@@ -96,7 +100,7 @@
             btnNoConnexion.FlatStyle = FlatStyle.Flat;
             btnNoConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNoConnexion.ForeColor = Color.White;
-            btnNoConnexion.Location = new Point(40, 434);
+            btnNoConnexion.Location = new Point(40, 392);
             btnNoConnexion.Name = "btnNoConnexion";
             btnNoConnexion.Size = new Size(290, 74);
             btnNoConnexion.TabIndex = 5;
@@ -110,7 +114,7 @@
             btnConnexion.FlatStyle = FlatStyle.Flat;
             btnConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConnexion.ForeColor = Color.White;
-            btnConnexion.Location = new Point(40, 329);
+            btnConnexion.Location = new Point(40, 287);
             btnConnexion.Name = "btnConnexion";
             btnConnexion.Size = new Size(290, 74);
             btnConnexion.TabIndex = 4;
@@ -127,6 +131,19 @@
             picFond2.SizeMode = PictureBoxSizeMode.Zoom;
             picFond2.TabIndex = 53;
             picFond2.TabStop = false;
+            // 
+            // picTrain1
+            // 
+            picTrain1.BackColor = Color.Transparent;
+            picTrain1.Controls.Add(lblDeconnexion);
+            picTrain1.Image = Properties.Resources.imgTrainRose1;
+            picTrain1.Location = new Point(74, 224);
+            picTrain1.Name = "picTrain1";
+            picTrain1.Size = new Size(226, 57);
+            picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
+            picTrain1.TabIndex = 55;
+            picTrain1.TabStop = false;
+            picTrain1.Visible = false;
             // 
             // Ouverture
             // 
@@ -146,6 +163,9 @@
             pnlOuverture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
+            picTrain1.ResumeLayout(false);
+            picTrain1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -158,5 +178,6 @@
         private Button btnConnexion;
         private PictureBox picFond2;
         private PictureBox picLogo1;
+        private PictureBox picTrain1;
     }
 }

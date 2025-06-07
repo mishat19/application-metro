@@ -48,7 +48,7 @@ namespace application_metro
                 }
                 else
                 {
-                    ouverture.lblDeconnexion.Visible = true;
+                    ouverture.trainError.ShowError("Vous avez été déconnecté");
                     ouverture.StartPosition = FormStartPosition.Manual;
                     ouverture.Location = this.Location;
                     Serveur.DeconnexionUtilisateurs();

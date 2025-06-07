@@ -186,6 +186,7 @@
             // 
             // picTrain1
             // 
+            picTrain1.BackColor = Color.Transparent;
             picTrain1.Controls.Add(lblErreur);
             picTrain1.Image = Properties.Resources.imgTrainRose1;
             picTrain1.Location = new Point(18, 132);

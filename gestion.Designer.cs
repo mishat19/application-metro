@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Gestion));
             pnlGestion = new Panel();
+            picTrain1 = new PictureBox();
             lblErreur = new Label();
             picRetour = new PictureBox();
             picHome = new PictureBox();
@@ -47,6 +48,7 @@
             picFond2 = new PictureBox();
             pictureBox2 = new PictureBox();
             pnlGestion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
             grpAjout.SuspendLayout();
@@ -58,6 +60,7 @@
             // pnlGestion
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestion.Controls.Add(picTrain1);
             pnlGestion.Controls.Add(lblErreur);
             pnlGestion.Controls.Add(picRetour);
             pnlGestion.Controls.Add(picHome);
@@ -79,12 +82,26 @@
             pnlGestion.TabIndex = 41;
             pnlGestion.Paint += pnlGestion_Paint;
             // 
+            // picTrain1
+            // 
+            picTrain1.BackColor = Color.Transparent;
+            picTrain1.Controls.Add(lblErreur);
+            picTrain1.Image = Properties.Resources.imgTrainRose1;
+            picTrain1.Location = new Point(12, 462);
+            picTrain1.Name = "picTrain1";
+            picTrain1.Size = new Size(229, 53);
+            picTrain1.SizeMode = PictureBoxSizeMode.Zoom;
+            picTrain1.TabIndex = 65;
+            picTrain1.TabStop = false;
+            picTrain1.Visible = false;
+            // 
             // lblErreur
             // 
             lblErreur.AutoSize = true;
+            lblErreur.BackColor = Color.Transparent;
             lblErreur.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblErreur.ForeColor = Color.FromArgb(15, 93, 70);
-            lblErreur.Location = new Point(14, 468);
+            lblErreur.Location = new Point(44, 477);
             lblErreur.Name = "lblErreur";
             lblErreur.Size = new Size(284, 22);
             lblErreur.TabIndex = 64;
@@ -280,6 +297,7 @@
             Load += gestion_Load;
             pnlGestion.ResumeLayout(false);
             pnlGestion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picTrain1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
             grpAjout.ResumeLayout(false);
@@ -309,5 +327,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label lblErreur;
+        private PictureBox picTrain1;
     }
 }

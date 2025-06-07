@@ -22,7 +22,7 @@ namespace application_metro
         string horaire = "";
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
-
+        private TrainErrorManager trainError;
         public Gestion(Point position)
         {
             InitializeComponent();
@@ -39,6 +39,8 @@ namespace application_metro
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
+            trainError = new TrainErrorManager(picTrain1, lblErreur, trainTop: 468);
         }
 
         private void gestion_Load(object sender, EventArgs e)
@@ -76,7 +78,7 @@ namespace application_metro
             }
             else
             {
-                lblErreur.Visible = true;
+                trainError.ShowError("Veuillez saisir au moins une donnée");
             }
         }
 

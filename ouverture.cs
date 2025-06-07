@@ -13,6 +13,8 @@ namespace application_metro
         private static extern bool AllocConsole();
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
+        public TrainErrorManager trainError;
+
         public Ouverture(Point position)
         {
             InitializeComponent();
@@ -27,7 +29,7 @@ namespace application_metro
             AllocConsole();
             Serveur.OuvertureConnexion();
 
-
+            trainError = new TrainErrorManager(picTrain1, lblDeconnexion, trainTop: 504);
         }
 
 
