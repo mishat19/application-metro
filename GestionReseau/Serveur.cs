@@ -266,6 +266,7 @@ namespace GestionReseau
 
             return listeLignes;
         }
+
         public static List<List<decimal>> CoordonneesStationsLigne(List<string> stations)
         {
             List<List<decimal>> toutes = new List<List<decimal>>();
@@ -703,6 +704,22 @@ namespace GestionReseau
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
 
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    stations.Add(rdr.GetString("NomStation"));
+                }
+            }
+            return stations;
+        }
+
+        public static List<string> ListeDesStations()
+        {
+            List<string> stations = new List<string>();
+            string requete = "SELECT NomStation FROM Station";
+
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())

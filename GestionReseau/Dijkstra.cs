@@ -1,0 +1,182 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MySql.Data.MySqlClient;
+
+namespace GestionReseau
+{
+    // Représente une station du réseau
+    internal class Station
+    {
+        public string Nom { get; set; }
+
+        public Station(string nom)
+        {
+            Nom = nom;
+        }
+
+        public override string ToString()
+        {
+            return Nom;
+        }
+    }
+
+    // Représente un trajet entre deux stations
+    internal class Trajet
+    {
+        public Station Depart { get; set; }
+        public Station Arrivee { get; set; }
+        public int DureeEnSecondes { get; set; }
+        public List<int> Lignes { get; set; }
+
+        public Trajet(Station depart, Station arrivee, int duree, List<int> lignes)
+        {
+            Depart = depart;
+            Arrivee = arrivee;
+            DureeEnSecondes = duree;
+            Lignes = lignes;
+        }
+    }
+
+    // Représente le graphe complet (stations et trajets)
+    internal class Graphe
+    {
+        public List<Station> Stations { get; set; } = new List<Station>();
+        public List<Trajet> Trajets { get; set; } = new List<Trajet>();
+
+        public void AjouterStation(Station station)
+        {
+            Stations.Add(station);
+        }
+
+        public void AjouterTrajet(Station depart, Station arrivee, int duree, List<int> lignes)
+        {
+            Trajets.Add(new Trajet(depart, arrivee, duree, lignes));
+        }
+
+        public List<Trajet> ObtenirTrajetsDepuis(Station station)
+        {
+            return Trajets.Where(t => t.Depart == station).ToList();
+        }
+    }
+
+    // Implémentation de l'algorithme de Dijkstra
+    internal class AlgorithmeDijkstra
+    {
+        public static Dictionary<Station, int> CalculerChemins(Graphe graphe, Station depart, out Dictionary<Station, Station> predecesseurs)
+        {
+            var distances = new Dictionary<Station, int>();
+            predecesseurs = new Dictionary<Station, Station>();
+            var aVisiter = new List<Station>();
+
+            foreach (var station in graphe.Stations)
+            {
+                distances[station] = int.MaxValue;
+                aVisiter.Add(station);
+            }
+
+            distances[depart] = 0;
+
+            while (aVisiter.Count > 0)
+            {
+                var stationActuelle = aVisiter.OrderBy(s => distances[s]).First();
+                aVisiter.Remove(stationActuelle);
+
+                foreach (var trajet in graphe.ObtenirTrajetsDepuis(stationActuelle))
+                {
+                    int nouvelleDistance = distances[stationActuelle] + trajet.DureeEnSecondes;
+
+                    if (nouvelleDistance < distances[trajet.Arrivee])
+                    {
+                        distances[trajet.Arrivee] = nouvelleDistance;
+                        predecesseurs[trajet.Arrivee] = stationActuelle;
+                    }
+                }
+            }
+
+            return distances;
+        }
+
+        public static List<Station> TrouverChemin(Station arrivee, Dictionary<Station, Station> predecesseurs)
+        {
+            var chemin = new List<Station>();
+            var station = arrivee;
+
+            while (predecesseurs.ContainsKey(station))
+            {
+                chemin.Add(station);
+                station = predecesseurs[station];
+            }
+
+            chemin.Add(station);
+            chemin.Reverse();
+            return chemin;
+        }
+    }
+
+    // Classe pour charger le graphe depuis une base de données MySQL
+    internal class ChargeurGrapheDepuisMySQL
+    {
+        public static Graphe Charger(string chaineConnexion)
+        {
+            var graphe = new Graphe();
+            var stations = new Dictionary<int, Station>();
+
+            using (var connexion = new MySqlConnection(chaineConnexion))
+            {
+                connexion.Open();
+
+                var commandeStation = new MySqlCommand("SELECT NumStation, NomStation FROM Station", connexion);
+                using (var lecteur = commandeStation.ExecuteReader())
+                {
+                    while (lecteur.Read())
+                    {
+                        int id = lecteur.GetInt32("NumStation");
+                        string nom = lecteur.GetString("NomStation");
+
+                        var station = new Station(nom);
+                        graphe.AjouterStation(station);
+                        stations[id] = station;
+                    }
+                }
+
+                var commandeSegment = new MySqlCommand(@"
+                    SELECT s.NumStationA, s.NumStationB, s.DureeSegment, l.NumLigne
+                    FROM Segment s
+                    JOIN Ligne l ON s.NumSegment = l.NumSegment", connexion);
+
+                using (var lecteur = commandeSegment.ExecuteReader())
+                {
+                    var trajetsTemp = new Dictionary<(int, int), (int duree, List<int> lignes)>();
+
+                    while (lecteur.Read())
+                    {
+                        int idA = lecteur.GetInt32("NumStationA");
+                        int idB = lecteur.GetInt32("NumStationB");
+                        int duree = lecteur.GetInt32("DureeSegment");
+                        int numLigne = lecteur.GetInt32("NumLigne");
+
+                        var cle = (idA, idB);
+                        if (!trajetsTemp.ContainsKey(cle))
+                            trajetsTemp[cle] = (duree, new List<int>());
+
+                        trajetsTemp[cle].lignes.Add(numLigne);
+                    }
+
+                    foreach (var kvp in trajetsTemp)
+                    {
+                        var (idA, idB) = kvp.Key;
+                        var (duree, lignes) = kvp.Value;
+
+                        if (stations.ContainsKey(idA) && stations.ContainsKey(idB))
+                        {
+                            graphe.AjouterTrajet(stations[idA], stations[idB], duree, lignes);
+                        }
+                    }
+                }
+            }
+
+            return graphe;
+        }
+    }
+}

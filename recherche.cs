@@ -36,6 +36,9 @@ namespace application_metro
 
             webView = new WebView2();
 
+            cmbDepart.Items.AddRange(Serveur.ListeDesStations().ToArray());
+            cmbArrivee.Items.AddRange(Serveur.ListeDesStations().ToArray());
+
             int width = pnlRecherche.ClientSize.Width - 60;
             int height = 220;
             webView.Size = new Size(width, height);
@@ -210,6 +213,33 @@ namespace application_metro
         private void pnlRecherche_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnRecherche_Click(object sender, EventArgs e)
+        {
+            string serveur = "10.1.139.236";
+            string login = "b3";
+            string mdp = "mdp";
+            string bd = "baseb3";
+
+            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";
+
+            Graphe graphe = ChargeurGrapheDepuisMySQL.Charger(chaineConnexion);
+
+            Station stationDepart = graphe.Stations.FirstOrDefault(s => s.Nom == cmbDepart.SelectedItem?.ToString());
+            Station stationArrivee = graphe.Stations.FirstOrDefault(s => s.Nom == cmbArrivee.SelectedItem?.ToString());
+
+            Dictionary<Station, Station> predecesseurs;
+            var distances = AlgorithmeDijkstra.CalculerChemins(graphe, stationDepart, out predecesseurs);
+            var chemin = AlgorithmeDijkstra.TrouverChemin(stationArrivee, predecesseurs);
+
+            MessageBox.Show("Chemin le plus court :");
+            foreach (var station in chemin)
+            {
+                MessageBox.Show($"- {station.Nom}");
+            }
+
+            MessageBox.Show($"Durée totale : {distances[stationArrivee]} secondes");
         }
     }
 }
