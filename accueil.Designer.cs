@@ -120,7 +120,7 @@
             // 
             // picAccueil
             // 
-            picAccueil.Image = Properties.Resources.logo5;
+            picAccueil.Image = Properties.Resources.logo1;
             picAccueil.Location = new Point(142, 73);
             picAccueil.Name = "picAccueil";
             picAccueil.Size = new Size(99, 84);

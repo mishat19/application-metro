@@ -33,16 +33,20 @@
             lblTitre = new Label();
             lblNoms = new Label();
             lblCoordonnees = new Label();
-            flpStations = new FlowLayoutPanel();
-            flpCoordonnees = new FlowLayoutPanel();
             lblHoraires = new Label();
-            flpHoraires = new FlowLayoutPanel();
-            label1 = new Label();
-            dtp_HoraireDebut = new DateTimePicker();
-            label2 = new Label();
-            dtp_HoraireFin = new DateTimePicker();
             btnEnregistrement = new Button();
             pnlGestionModification = new Panel();
+            flpHoraires = new FlowLayoutPanel();
+            lblPremier = new Label();
+            dtp_HoraireDebut = new DateTimePicker();
+            lblDernier = new Label();
+            dtp_HoraireFin = new DateTimePicker();
+            grpHorairesStations = new GroupBox();
+            lblDuree = new Label();
+            grpCoordonnees = new GroupBox();
+            flpCoordonnees = new FlowLayoutPanel();
+            grpNomStations = new GroupBox();
+            flpStations = new FlowLayoutPanel();
             grpModif = new GroupBox();
             nudNumLigne = new NumericUpDown();
             txtNumero = new TextBox();
@@ -56,8 +60,10 @@
             picHome = new PictureBox();
             picRetour = new PictureBox();
             picFond2 = new PictureBox();
-            flpHoraires.SuspendLayout();
             pnlGestionModification.SuspendLayout();
+            flpHoraires.SuspendLayout();
+            grpCoordonnees.SuspendLayout();
+            grpNomStations.SuspendLayout();
             grpModif.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudNbStations).BeginInit();
@@ -110,26 +116,6 @@
             lblCoordonnees.TabIndex = 51;
             lblCoordonnees.Text = "Coordonnées GPS des stations :";
             // 
-            // flpStations
-            // 
-            flpStations.AutoScroll = true;
-            flpStations.Location = new Point(11, 481);
-            flpStations.Margin = new Padding(3, 4, 3, 4);
-            flpStations.Name = "flpStations";
-            flpStations.Size = new Size(336, 215);
-            flpStations.TabIndex = 52;
-            flpStations.Paint += flpStations_Paint;
-            // 
-            // flpCoordonnees
-            // 
-            flpCoordonnees.AutoScroll = true;
-            flpCoordonnees.Location = new Point(11, 765);
-            flpCoordonnees.Margin = new Padding(3, 4, 3, 4);
-            flpCoordonnees.Name = "flpCoordonnees";
-            flpCoordonnees.Size = new Size(334, 215);
-            flpCoordonnees.TabIndex = 53;
-            flpCoordonnees.Paint += flpCoordonnees_Paint;
-            // 
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
@@ -142,57 +128,6 @@
             lblHoraires.Text = "Horaires des stations :";
             lblHoraires.Click += lblHoraires_Click;
             // 
-            // flpHoraires
-            // 
-            flpHoraires.AutoScroll = true;
-            flpHoraires.Controls.Add(label1);
-            flpHoraires.Controls.Add(dtp_HoraireDebut);
-            flpHoraires.Controls.Add(label2);
-            flpHoraires.Controls.Add(dtp_HoraireFin);
-            flpHoraires.Location = new Point(11, 1049);
-            flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(335, 125);
-            flpHoraires.TabIndex = 54;
-            flpHoraires.Paint += flpHoraires_Paint;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(192, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Premier passage de la ligne";
-            // 
-            // dtp_HoraireDebut
-            // 
-            dtp_HoraireDebut.Format = DateTimePickerFormat.Time;
-            dtp_HoraireDebut.Location = new Point(201, 3);
-            dtp_HoraireDebut.Name = "dtp_HoraireDebut";
-            dtp_HoraireDebut.ShowUpDown = true;
-            dtp_HoraireDebut.Size = new Size(101, 27);
-            dtp_HoraireDebut.TabIndex = 1;
-            dtp_HoraireDebut.ValueChanged += dtp_HoraireDebut_ValueChanged;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 33);
-            label2.Name = "label2";
-            label2.Size = new Size(190, 20);
-            label2.TabIndex = 2;
-            label2.Text = "Dernier passage de la ligne";
-            // 
-            // dtp_HoraireFin
-            // 
-            dtp_HoraireFin.Format = DateTimePickerFormat.Time;
-            dtp_HoraireFin.Location = new Point(199, 36);
-            dtp_HoraireFin.Name = "dtp_HoraireFin";
-            dtp_HoraireFin.ShowUpDown = true;
-            dtp_HoraireFin.Size = new Size(103, 27);
-            dtp_HoraireFin.TabIndex = 3;
-            dtp_HoraireFin.ValueChanged += dtp_HoraireFin_ValueChanged;
-            // 
             // btnEnregistrement
             // 
             btnEnregistrement.BackColor = Color.FromArgb(205, 33, 42);
@@ -201,7 +136,7 @@
             btnEnregistrement.ForeColor = Color.White;
             btnEnregistrement.Location = new Point(219, 1212);
             btnEnregistrement.Name = "btnEnregistrement";
-            btnEnregistrement.Size = new Size(126, 39);
+            btnEnregistrement.Size = new Size(128, 39);
             btnEnregistrement.TabIndex = 57;
             btnEnregistrement.Text = "Enregistrer";
             btnEnregistrement.UseVisualStyleBackColor = false;
@@ -213,16 +148,18 @@
             pnlGestionModification.AutoScroll = true;
             pnlGestionModification.AutoScrollMinSize = new Size(0, 1500);
             pnlGestionModification.BackColor = Color.FromArgb(255, 230, 188);
+            pnlGestionModification.Controls.Add(flpHoraires);
+            pnlGestionModification.Controls.Add(grpHorairesStations);
+            pnlGestionModification.Controls.Add(lblDuree);
+            pnlGestionModification.Controls.Add(grpCoordonnees);
+            pnlGestionModification.Controls.Add(grpNomStations);
             pnlGestionModification.Controls.Add(grpModif);
             pnlGestionModification.Controls.Add(picHome);
             pnlGestionModification.Controls.Add(picRetour);
             pnlGestionModification.Controls.Add(lblHoraires);
             pnlGestionModification.Controls.Add(lblTitre);
             pnlGestionModification.Controls.Add(btnEnregistrement);
-            pnlGestionModification.Controls.Add(flpHoraires);
             pnlGestionModification.Controls.Add(lblModif);
-            pnlGestionModification.Controls.Add(flpCoordonnees);
-            pnlGestionModification.Controls.Add(flpStations);
             pnlGestionModification.Controls.Add(lblCoordonnees);
             pnlGestionModification.Controls.Add(lblNoms);
             pnlGestionModification.Controls.Add(picFond2);
@@ -231,6 +168,119 @@
             pnlGestionModification.Size = new Size(382, 754);
             pnlGestionModification.TabIndex = 58;
             pnlGestionModification.Paint += pnlGestionModification_Paint;
+            // 
+            // flpHoraires
+            // 
+            flpHoraires.AutoScroll = true;
+            flpHoraires.Controls.Add(lblPremier);
+            flpHoraires.Controls.Add(dtp_HoraireDebut);
+            flpHoraires.Controls.Add(lblDernier);
+            flpHoraires.Controls.Add(dtp_HoraireFin);
+            flpHoraires.Location = new Point(18, 1074);
+            flpHoraires.Name = "flpHoraires";
+            flpHoraires.Size = new Size(323, 101);
+            flpHoraires.TabIndex = 55;
+            // 
+            // lblPremier
+            // 
+            lblPremier.AutoSize = true;
+            lblPremier.ForeColor = Color.FromArgb(15, 93, 70);
+            lblPremier.Location = new Point(3, 0);
+            lblPremier.Name = "lblPremier";
+            lblPremier.Size = new Size(199, 20);
+            lblPremier.TabIndex = 0;
+            lblPremier.Text = "Premier passage de la ligne :";
+            // 
+            // dtp_HoraireDebut
+            // 
+            dtp_HoraireDebut.CalendarForeColor = Color.FromArgb(205, 33, 42);
+            dtp_HoraireDebut.CalendarMonthBackground = Color.FromArgb(205, 33, 42);
+            dtp_HoraireDebut.CalendarTitleBackColor = Color.FromArgb(205, 33, 42);
+            dtp_HoraireDebut.CalendarTitleForeColor = Color.FromArgb(205, 33, 42);
+            dtp_HoraireDebut.CalendarTrailingForeColor = Color.FromArgb(205, 33, 42);
+            dtp_HoraireDebut.Format = DateTimePickerFormat.Time;
+            dtp_HoraireDebut.Location = new Point(208, 3);
+            dtp_HoraireDebut.Name = "dtp_HoraireDebut";
+            dtp_HoraireDebut.ShowUpDown = true;
+            dtp_HoraireDebut.Size = new Size(101, 27);
+            dtp_HoraireDebut.TabIndex = 1;
+            // 
+            // lblDernier
+            // 
+            lblDernier.AutoSize = true;
+            lblDernier.ForeColor = Color.FromArgb(15, 93, 70);
+            lblDernier.Location = new Point(3, 33);
+            lblDernier.Name = "lblDernier";
+            lblDernier.Size = new Size(197, 20);
+            lblDernier.TabIndex = 2;
+            lblDernier.Text = "Dernier passage de la ligne :";
+            // 
+            // dtp_HoraireFin
+            // 
+            dtp_HoraireFin.Format = DateTimePickerFormat.Time;
+            dtp_HoraireFin.Location = new Point(206, 36);
+            dtp_HoraireFin.Name = "dtp_HoraireFin";
+            dtp_HoraireFin.ShowUpDown = true;
+            dtp_HoraireFin.Size = new Size(103, 27);
+            dtp_HoraireFin.TabIndex = 3;
+            // 
+            // grpHorairesStations
+            // 
+            grpHorairesStations.Location = new Point(12, 1056);
+            grpHorairesStations.Name = "grpHorairesStations";
+            grpHorairesStations.Size = new Size(335, 125);
+            grpHorairesStations.TabIndex = 70;
+            grpHorairesStations.TabStop = false;
+            grpHorairesStations.Paint += grpHorairesStations_Paint;
+            // 
+            // lblDuree
+            // 
+            lblDuree.AutoSize = true;
+            lblDuree.Font = new Font("Microsoft Sans Serif", 10.8F, FontStyle.Underline);
+            lblDuree.ForeColor = Color.FromArgb(15, 93, 70);
+            lblDuree.Location = new Point(265, 440);
+            lblDuree.Name = "lblDuree";
+            lblDuree.Size = new Size(69, 22);
+            lblDuree.TabIndex = 69;
+            lblDuree.Text = "Durée :";
+            // 
+            // grpCoordonnees
+            // 
+            grpCoordonnees.Controls.Add(flpCoordonnees);
+            grpCoordonnees.Location = new Point(12, 761);
+            grpCoordonnees.Name = "grpCoordonnees";
+            grpCoordonnees.Size = new Size(335, 231);
+            grpCoordonnees.TabIndex = 68;
+            grpCoordonnees.TabStop = false;
+            grpCoordonnees.Paint += grpCoordonnees_Paint;
+            // 
+            // flpCoordonnees
+            // 
+            flpCoordonnees.AutoScroll = true;
+            flpCoordonnees.Location = new Point(6, 6);
+            flpCoordonnees.Margin = new Padding(3, 4, 3, 4);
+            flpCoordonnees.Name = "flpCoordonnees";
+            flpCoordonnees.Size = new Size(323, 218);
+            flpCoordonnees.TabIndex = 54;
+            // 
+            // grpNomStations
+            // 
+            grpNomStations.Controls.Add(flpStations);
+            grpNomStations.Location = new Point(12, 474);
+            grpNomStations.Name = "grpNomStations";
+            grpNomStations.Size = new Size(335, 231);
+            grpNomStations.TabIndex = 67;
+            grpNomStations.TabStop = false;
+            grpNomStations.Paint += grpNomStations_Paint;
+            // 
+            // flpStations
+            // 
+            flpStations.AutoScroll = true;
+            flpStations.Location = new Point(6, 6);
+            flpStations.Margin = new Padding(3, 4, 3, 4);
+            flpStations.Name = "flpStations";
+            flpStations.Size = new Size(323, 218);
+            flpStations.TabIndex = 53;
             // 
             // grpModif
             // 
@@ -302,9 +352,9 @@
             lblIntitule.ForeColor = Color.FromArgb(15, 93, 70);
             lblIntitule.Location = new Point(9, 23);
             lblIntitule.Name = "lblIntitule";
-            lblIntitule.Size = new Size(149, 22);
+            lblIntitule.Size = new Size(159, 22);
             lblIntitule.TabIndex = 62;
-            lblIntitule.Text = "Intitulé de la ligne";
+            lblIntitule.Text = "Intitulé de la ligne :";
             // 
             // lblCouleur
             // 
@@ -313,9 +363,9 @@
             lblCouleur.ForeColor = Color.FromArgb(15, 93, 70);
             lblCouleur.Location = new Point(9, 108);
             lblCouleur.Name = "lblCouleur";
-            lblCouleur.Size = new Size(160, 22);
+            lblCouleur.Size = new Size(170, 22);
             lblCouleur.TabIndex = 63;
-            lblCouleur.Text = "Couleur de la ligne";
+            lblCouleur.Text = "Couleur de la ligne :";
             // 
             // txtCouleur
             // 
@@ -396,10 +446,12 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "Panneau de configuration";
             Load += gestion_modification_Load;
-            flpHoraires.ResumeLayout(false);
-            flpHoraires.PerformLayout();
             pnlGestionModification.ResumeLayout(false);
             pnlGestionModification.PerformLayout();
+            flpHoraires.ResumeLayout(false);
+            flpHoraires.PerformLayout();
+            grpCoordonnees.ResumeLayout(false);
+            grpNomStations.ResumeLayout(false);
             grpModif.ResumeLayout(false);
             grpModif.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)nudNumLigne).EndInit();
@@ -415,19 +467,12 @@
         private Label lblTitre;
         private Label lblNoms;
         private Label lblCoordonnees;
-        private FlowLayoutPanel flpStations;
-        private FlowLayoutPanel flpCoordonnees;
         private Label lblHoraires;
-        private FlowLayoutPanel flpHoraires;
         private Button btnEnregistrement;
         private Panel pnlGestionModification;
         private PictureBox picFond2;
         private PictureBox picRetour;
         private PictureBox picHome;
-        private Label label1;
-        private DateTimePicker dtp_HoraireDebut;
-        private Label label2;
-        private DateTimePicker dtp_HoraireFin;
         private GroupBox grpModif;
         private NumericUpDown nudNumLigne;
         private TextBox txtNumero;
@@ -438,5 +483,16 @@
         private TextBox txtCouleur;
         private Label lblNbStations;
         private NumericUpDown nudNbStations;
+        private GroupBox grpNomStations;
+        private FlowLayoutPanel flpStations;
+        private GroupBox grpCoordonnees;
+        private FlowLayoutPanel flpCoordonnees;
+        private Label lblDuree;
+        private GroupBox grpHorairesStations;
+        private FlowLayoutPanel flpHoraires;
+        private Label lblPremier;
+        private DateTimePicker dtp_HoraireDebut;
+        private Label lblDernier;
+        private DateTimePicker dtp_HoraireFin;
     }
 }

@@ -100,7 +100,7 @@
             lblDeconnexion.BorderStyle = BorderStyle.Fixed3D;
             lblDeconnexion.Font = new Font("Microsoft Sans Serif", 9F);
             lblDeconnexion.ForeColor = Color.FromArgb(15, 93, 70);
-            lblDeconnexion.Location = new Point(85, 567);
+            lblDeconnexion.Location = new Point(99, 551);
             lblDeconnexion.Name = "lblDeconnexion";
             lblDeconnexion.Size = new Size(184, 20);
             lblDeconnexion.TabIndex = 7;
@@ -124,7 +124,7 @@
             btnNoConnexion.FlatStyle = FlatStyle.Flat;
             btnNoConnexion.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNoConnexion.ForeColor = Color.White;
-            btnNoConnexion.Location = new Point(40, 453);
+            btnNoConnexion.Location = new Point(40, 434);
             btnNoConnexion.Name = "btnNoConnexion";
             btnNoConnexion.Size = new Size(290, 74);
             btnNoConnexion.TabIndex = 5;

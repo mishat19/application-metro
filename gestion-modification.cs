@@ -74,6 +74,10 @@ namespace application_metro
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
+            nudNumLigne.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
+            nudNbStations.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
+
         }
 
         public string nomLigneDeconcatenation(string nom)
@@ -132,7 +136,9 @@ namespace application_metro
                     Width = 340,
                     Height = 35,
                     Margin = new Padding(5),
-                    AutoSize = false
+                    AutoSize = false,
+                    MaximumSize = new Size(flpStations.Width - 35, 35)
+
                 };
 
                 //Panel coordonneees
@@ -141,22 +147,25 @@ namespace application_metro
                     Width = 340,
                     Height = 35,
                     Margin = new Padding(5),
-                    AutoSize = false
+                    AutoSize = false,
+                    MaximumSize = new Size(flpStations.Width - 35, 35)
                 };
 
                 // Label du numéro
                 Label lblNum = new Label
                 {
                     Text = i.ToString(),
-                    Width = 25,
+                    ForeColor = Color.FromArgb(15, 93, 70),
+                    Width = 20,
                     TextAlign = ContentAlignment.MiddleCenter,
-                    Location = new Point(0, 8)
+                    Location = new Point(0, 7)
                 };
 
                 Label lblNum2 = new Label
                 {
                     Text = i.ToString(),
-                    Width = 25,
+                    ForeColor = Color.FromArgb(15, 93, 70),
+                    Width = 20,
                     TextAlign = ContentAlignment.MiddleCenter,
                     Location = new Point(0, 8)
                 };
@@ -164,8 +173,9 @@ namespace application_metro
                 //TextBox stations
                 TextBox txt = new TextBox
                 {
-                    Width = 260,
-                    Location = new Point(30, 5)
+                    Width = 200,
+                    ForeColor = Color.FromArgb(205, 33, 42),
+                    Location = new Point(22, 5)
                 };
 
                 if (!string.IsNullOrEmpty(nom))
@@ -184,10 +194,13 @@ namespace application_metro
                 //NumericUpDown stations
                 NumericUpDown nud = new NumericUpDown
                 {
-                    Location = new Point(310, 8),
+                    Location = new Point(240, 5),
+                    ForeColor = Color.FromArgb(205, 33, 42),
                     Maximum = 999,
                     Width = 50
                 };
+                nud.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
+
 
                 if (!string.IsNullOrEmpty(nom))
                 {
@@ -201,7 +214,8 @@ namespace application_metro
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
                 {
-                    Width = 120,
+                    Width = 110,
+                    ForeColor = Color.FromArgb(205, 33, 42),
                     Location = new Point(30, 5)
                 };
 
@@ -221,6 +235,7 @@ namespace application_metro
                 TextBox txt3 = new TextBox
                 {
                     Width = 120,
+                    ForeColor = Color.FromArgb(205, 33, 42),
                     Location = new Point(160, 5)
                 };
 
@@ -256,6 +271,7 @@ namespace application_metro
             lblIntitule.Font = new Font(G, 11, FontStyle.Underline);
             lblCouleur.Font = new Font(G, 11, FontStyle.Underline);
             lblNbStations.Font = new Font(G, 11, FontStyle.Underline);
+            lblDuree.Font = new Font(G, 11, FontStyle.Underline);
             lblNoms.Font = new Font(G, 11, FontStyle.Underline);
             lblCoordonnees.Font = new Font(G, 11, FontStyle.Underline);
             lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
@@ -270,6 +286,8 @@ namespace application_metro
             lblTitre.Font = new Font(G, 14, FontStyle.Bold);
             lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 100); // Centrer le titre horizontalement
             nudNbStations.Font = new Font(D, 9);
+            lblPremier.Font = new Font(G, 9);
+            lblDernier.Font = new Font(G, 9);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -530,12 +548,12 @@ namespace application_metro
 
         private void flpStations_Paint(object sender, PaintEventArgs e)
         {
-            FlowLayoutPanelBordure.ApplyCustomStyle(flpStations, e);
+
         }
 
         private void flpHoraires_Paint(object sender, PaintEventArgs e)
         {
-            FlowLayoutPanelBordure.ApplyCustomStyle(flpHoraires, e);
+
         }
 
         private void dtp_HoraireDebut_ValueChanged(object sender, EventArgs e)
@@ -549,6 +567,21 @@ namespace application_metro
         }
 
         private void grpModif_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpNomStations_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpCoordonnees_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpHorairesStations_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
