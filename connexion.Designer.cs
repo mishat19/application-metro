@@ -86,7 +86,6 @@
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(318, 22);
             txtMdp.TabIndex = 5;
-            txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // btnConnexion
             // 
@@ -125,7 +124,6 @@
             lblInscription.Size = new Size(252, 18);
             lblInscription.TabIndex = 9;
             lblInscription.Text = "Vous n'avez pas encore de compte ?";
-            lblInscription.Click += lblInscription_Click;
             // 
             // lblErreur
             // 
@@ -240,7 +238,6 @@
             StartPosition = FormStartPosition.CenterParent;
             Text = "Page de connexion";
             Load += Connexion_Load;
-            Paint += Connexion_Paint;
             ((System.ComponentModel.ISupportInitialize)picConnexion).EndInit();
             ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
             ((System.ComponentModel.ISupportInitialize)picOeilOff).EndInit();

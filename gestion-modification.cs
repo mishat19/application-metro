@@ -290,11 +290,6 @@ namespace application_metro
             lblDernier.Font = new Font(G, 9);
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEnregistrement_Click(object sender, EventArgs e)
         {
             if (mode == "Ajout")
@@ -424,31 +419,11 @@ namespace application_metro
             }
         }
 
-        private void lblCouleur_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dudNumLigne_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnlGestionModification_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void nudNbStations_ValueChanged(object sender, EventArgs e)
         {
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
             nudStations = true;
-        }
-
-        private void lblHoraires_Click(object sender, EventArgs e)
-        {
-
         }
 
         bool nudChange = false;
@@ -539,31 +514,6 @@ namespace application_metro
             Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
-        }
-
-        private void flpCoordonnees_Paint(object sender, PaintEventArgs e)
-        {
-            FlowLayoutPanelBordure.ApplyCustomStyle(flpCoordonnees, e);
-        }
-
-        private void flpStations_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flpHoraires_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void dtp_HoraireDebut_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtp_HoraireFin_ValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void grpModif_Paint(object sender, PaintEventArgs e)

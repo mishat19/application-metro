@@ -34,12 +34,6 @@ namespace application_metro
 
         }
 
-
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnConnexion_Click(object sender, EventArgs e)
         {
             string email = txtEmail.Text.Trim();
@@ -69,12 +63,6 @@ namespace application_metro
         {
             string nom = txtEmail.Text;
         }
-
-        private void txtMdp_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void picRetour_Click(object sender, EventArgs e)
         {
@@ -114,7 +102,6 @@ namespace application_metro
                 MessageBox.Show("Erreur : " + ex.Message);
             }
         }
-
         private void Connexion_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -130,19 +117,9 @@ namespace application_metro
 
         }
 
-        private void Connexion_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void groupBox1_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-
-        }
-
-        private void lblInscription_Click(object sender, EventArgs e)
-        {
 
         }
 

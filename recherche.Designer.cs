@@ -139,7 +139,6 @@
             lblLigne.Size = new Size(74, 22);
             lblLigne.TabIndex = 23;
             lblLigne.Text = "N°Ligne";
-            lblLigne.Click += label15_Click;
             // 
             // lblSeparation2
             // 
@@ -347,7 +346,6 @@
             grpRecherche1.TabIndex = 20;
             grpRecherche1.TabStop = false;
             grpRecherche1.Paint += grpRecherche1_Paint;
-            grpRecherche1.Enter += grpRecherche1_Enter;
             // 
             // lblHoraires
             // 

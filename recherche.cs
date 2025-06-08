@@ -128,21 +128,6 @@ namespace application_metro
             }
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            if (serveur2 != null && serveur2.IsListening)
-            {
-                serveur2.Stop();
-                serveur2.Close();
-            }
-            base.OnFormClosing(e);
-        }
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void consultation_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -171,11 +156,6 @@ namespace application_metro
             lstStations.Font = new Font(D, 9);
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void picRetour_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil(this.Location);
@@ -195,19 +175,9 @@ namespace application_metro
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
 
-        private void cmbDepart_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void grpRecherche1_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void grpRecherche1_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void grpRecherche2_Paint_1(object sender, PaintEventArgs e)

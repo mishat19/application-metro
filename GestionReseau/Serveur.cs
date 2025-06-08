@@ -13,7 +13,7 @@ namespace GestionReseau
 {
     public static class Serveur
     {
-        private static MySqlConnection connexion;
+        private static MySqlConnection? connexion;
 
         public static bool OuvertureConnexion()
         {
@@ -119,7 +119,6 @@ namespace GestionReseau
                 }
             }
         }
-
         public static string UtilisateurConnecte()
         {
             string requete = "SELECT Status FROM Utilisateur";
@@ -169,7 +168,6 @@ namespace GestionReseau
                 }
             }
         }
-
 
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {
@@ -478,22 +476,6 @@ namespace GestionReseau
         }
 
         /// <summary>
-        /// Ajoute un un horaire depart pour une ligne dans la base de donnée
-        /// </summary>
-        /// <param name="nomStation"></param>
-        /// <param name="horaire"></param>
-        public static void AjoutHoraireLigne(string nomStation, DateTime horaire)
-        {
-            string requeteAjoutHoraire = @"INSERT INTO Horaire (HoraireDepart, NumLigne)
-                                           VALUES (@horaireDepart, @numLigne)";
-
-            MySqlCommand cmdAjoutHoraire = new MySqlCommand(requeteAjoutHoraire, connexion);
-            cmdAjoutHoraire.Parameters.AddWithValue("@numLigne", nomStation);
-            cmdAjoutHoraire.Parameters.AddWithValue("@horaireDepart", horaire);
-            cmdAjoutHoraire.ExecuteNonQuery();
-        }
-
-        /// <summary>
         /// Permet de modifier InfoLigne
         /// </summary>
         /// <param name="numLigne"></param>
@@ -688,30 +670,6 @@ namespace GestionReseau
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
-        }
-
-        public static List<string> idStationsParLigne(string nomLigne)
-        {
-            List<string> stations = new List<string>();
-            string requete = @"
-            SELECT DISTINCT st.NomStation
-            FROM InfoLigne il, Ligne l, Segment seg, Station st 
-            WHERE il.Nom = @NomLigne
-            AND il.NumLigne = l.NumLigne
-            AND l.NumSegment = seg.NumSegment
-            AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
-
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
-
-            using (var rdr = cmd.ExecuteReader())
-            {
-                while (rdr.Read())
-                {
-                    stations.Add(rdr.GetString("NomStation"));
-                }
-            }
-            return stations;
         }
 
         public static List<string> ListeDesStations()

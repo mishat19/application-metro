@@ -153,11 +153,6 @@ namespace application_metro
             this.Close();
         }
 
-        private void picSupprimer_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void picRetour_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil(this.Location);
@@ -170,11 +165,6 @@ namespace application_metro
             Accueil accueil = new Accueil(this.Location);
             accueil.Show();
             this.Close();
-        }
-
-        private void picCroix_Click(object sender, EventArgs e)
-        {
-            cmbLignes.SelectedIndex = -1; //Permet de sélectionner aucune ligne
         }
     }
 }

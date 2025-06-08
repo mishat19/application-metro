@@ -48,11 +48,6 @@ namespace application_metro
             lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 70);
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbLignes.SelectedIndex != -1)
@@ -83,15 +78,6 @@ namespace application_metro
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnRecherche.Enabled = cmbStation.SelectedIndex != -1;
-        }
-
-        private void lstStations_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void calDate_DateSelected(object sender, DateRangeEventArgs e)
-        {
         }
 
         private void picRetour_Click(object sender, EventArgs e)

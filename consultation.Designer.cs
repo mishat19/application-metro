@@ -70,7 +70,6 @@
             calDate.TitleBackColor = Color.Aqua;
             calDate.TitleForeColor = Color.Aqua;
             calDate.TrailingForeColor = Color.Green;
-            calDate.DateSelected += calDate_DateSelected;
             // 
             // lstStations
             // 
@@ -84,7 +83,6 @@
             lstStations.Name = "lstStations";
             lstStations.Size = new Size(354, 184);
             lstStations.TabIndex = 31;
-            lstStations.SelectedIndexChanged += lstStations_SelectedIndexChanged;
             // 
             // cmbStation
             // 

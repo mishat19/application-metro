@@ -50,7 +50,6 @@
             lblTitre.Size = new Size(241, 58);
             lblTitre.TabIndex = 5;
             lblTitre.Text = "ACCUEIL";
-            lblTitre.Click += lblTitre_Click;
             // 
             // btnRecherche
             // 

@@ -59,14 +59,6 @@ namespace application_metro
             this.Close();
         }
 
-        public void UpdateBtnRetourText(string newText)
-        {
-            if (btnRetour != null)
-            {
-                btnRetour.Text = newText;
-            }
-        }
-
         private void btnConsultation_Click(object sender, EventArgs e)
         {
             Carte carte = new Carte(this.Location);
@@ -86,11 +78,6 @@ namespace application_metro
             Gestion gestion = new Gestion(this.Location);
             gestion.Show();
             this.Close();
-        }
-
-        private void lblTitre_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void Accueil_Load(object sender, EventArgs e)

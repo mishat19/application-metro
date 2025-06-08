@@ -126,7 +126,6 @@
             lblHoraires.Size = new Size(189, 22);
             lblHoraires.TabIndex = 54;
             lblHoraires.Text = "Horaires des stations :";
-            lblHoraires.Click += lblHoraires_Click;
             // 
             // btnEnregistrement
             // 
@@ -167,7 +166,6 @@
             pnlGestionModification.Name = "pnlGestionModification";
             pnlGestionModification.Size = new Size(382, 754);
             pnlGestionModification.TabIndex = 58;
-            pnlGestionModification.Paint += pnlGestionModification_Paint;
             // 
             // flpHoraires
             // 
