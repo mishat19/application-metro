@@ -24,6 +24,7 @@ namespace application_metro
         private WebView2 webView;
         private HttpListener serveur2;
         private Task serveurTask;
+        private int hauteurInitialeGrpResultat;
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
@@ -60,6 +61,7 @@ namespace application_metro
 
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+            hauteurInitialeGrpResultat = grpResultat.Height;
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
@@ -157,13 +159,16 @@ namespace application_metro
             lblArrivee2.Font = new Font(D, 9);
             lblTempsArrivee.Font = new Font(D, 9);
             lblTempsDepart.Font = new Font(D, 9);
-            lblNumLigne.Font = new Font(D, 9);
+            lblIntituleNumLigne.Font = new Font(G, 11);
+            lblIntituleHeures.Font = new Font(G, 11);
+            lblIntituleStations.Font = new Font(G, 11);
             lblNumLigneResultat.Font = new Font(D, 9);
             lblTemps.Font = new Font(D, 9);
             cmbArrivee.Font = new Font(D, 9);
             cmbDepart.Font = new Font(D, 9);
             lblTrajet.Font = new Font(G, 11, FontStyle.Underline);
             lblTitre.Font = new Font(G, 14, FontStyle.Bold);
+            lstStations.Font = new Font(D, 9);
         }
 
         private void btnRetour_Click(object sender, EventArgs e)
@@ -210,11 +215,6 @@ namespace application_metro
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
 
-        private void pnlRecherche_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnRecherche_Click(object sender, EventArgs e)
         {
             string serveur = "10.1.139.236";
@@ -229,17 +229,102 @@ namespace application_metro
             Station stationDepart = graphe.Stations.FirstOrDefault(s => s.Nom == cmbDepart.SelectedItem?.ToString());
             Station stationArrivee = graphe.Stations.FirstOrDefault(s => s.Nom == cmbArrivee.SelectedItem?.ToString());
 
+            if (stationDepart == null || stationArrivee == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une station de départ et une station d'arrivée.");
+                return;
+            }
+
             Dictionary<Station, Station> predecesseurs;
             var distances = AlgorithmeDijkstra.CalculerChemins(graphe, stationDepart, out predecesseurs);
             var chemin = AlgorithmeDijkstra.TrouverChemin(stationArrivee, predecesseurs);
 
-            MessageBox.Show("Chemin le plus court :");
-            foreach (var station in chemin)
+            if (chemin == null || chemin.Count < 2)
             {
-                MessageBox.Show($"- {station.Nom}");
+                MessageBox.Show("Aucun trajet trouvé.");
+                return;
             }
 
-            MessageBox.Show($"Durée totale : {distances[stationArrivee]} secondes");
+            // Mise à jour des labels avec les données du trajet
+            lblDépart.Text = chemin.First().Nom;
+            lblArrivee2.Text = chemin.Last().Nom;
+
+            // Heure actuelle comme départ simulé
+            DateTime heureDepart = DateTime.Now;
+            int dureeTotale = distances[stationArrivee];
+            DateTime heureArrivee = heureDepart.AddSeconds(dureeTotale);
+
+            lblTempsDepart.Text = heureDepart.ToString("HH:mm");
+            lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+            lblTemps.Text = $"{(int)(dureeTotale / 60)} min";
+
+            // Trouver le trajet entre les deux premières stations du chemin
+            Station s1 = chemin[0];
+            Station s2 = chemin[1];
+
+            var trajet = graphe.Trajets.FirstOrDefault(t =>
+                (t.Depart == s1 && t.Arrivee == s2) ||
+                (t.Depart == s2 && t.Arrivee == s1));
+
+            if (trajet != null && trajet.Lignes.Count > 0)
+            {
+                lblNumLigneResultat.Text = string.Join(", ", trajet.Lignes);
+            }
+            else
+            {
+                lblNumLigneResultat.Text = "Inconnue";
+            }
+
+            lstStations.Items.Clear();
+            for (int i = 0; i < chemin.Count; i++)
+            {
+                var nom = chemin[i].Nom;
+                string ligne = "";
+
+                if (i < chemin.Count - 1)
+                {
+                    var trajet1 = graphe.Trajets.FirstOrDefault(t =>
+                        (t.Depart == chemin[i] && t.Arrivee == chemin[i + 1]) ||
+                        (t.Depart == chemin[i + 1] && t.Arrivee == chemin[i]));
+
+                    if (trajet1 != null && trajet1.Lignes.Count > 0)
+                        ligne = $" (Ligne {string.Join(", ", trajet1.Lignes)})";
+                }
+
+                lstStations.Items.Add($"{i + 1}. {nom}{ligne}");
+            }
+            flpResultat.Visible = true;
+        }
+
+        private bool detailsVisible = false;
+
+        private void picVoirPlus_Click(object sender, EventArgs e)
+        {
+            detailsVisible = !detailsVisible;
+            lstStations.Visible = detailsVisible;
+
+            if (detailsVisible)
+            {
+                // Afficher "moins" pour signifier qu'on peut réduire
+                picVoirPlus.Image = Image.FromFile(@"..\..\..\moins.png");
+
+                // Agrandir le groupbox pour englober la listbox
+                int nouvelleHauteur = lstStations.Bottom + 10; // 10 = petite marge de sécurité
+                grpResultat.Height = nouvelleHauteur;
+            }
+            else
+            {
+                // Afficher "points" pour signifier qu'on peut agrandir
+                picVoirPlus.Image = Image.FromFile(@"..\..\..\points.png");
+                grpResultat.Height = hauteurInitialeGrpResultat;
+            }
+
+            flpResultat.PerformLayout();
+        }
+
+        private void grpResultatItineraire_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
         }
     }
 }
