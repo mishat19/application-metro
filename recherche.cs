@@ -39,6 +39,8 @@ namespace application_metro
 
             cmbDepart.Items.AddRange(Serveur.ListeDesStations().ToArray());
             cmbArrivee.Items.AddRange(Serveur.ListeDesStations().ToArray());
+            cmbDepart.SelectedIndex = -1;
+            cmbArrivee.SelectedIndex = -1;
 
             int width = pnlRecherche.ClientSize.Width - 60;
             int height = 220;
@@ -146,7 +148,9 @@ namespace application_metro
             lblTempsDepart.Font = new Font(D, 9);
             lblIntituleNumLigne.Font = new Font(G, 11);
             lblIntituleHeures.Font = new Font(G, 11);
-            lblIntituleStations.Font = new Font(G, 11);
+            lblStationDepTrajet.Font = new Font(G, 11);
+            lblSeparation1.Font = new Font(G, 11);
+            lblStationArrTrajet.Font = new Font(G, 11);
             lblNumLigneResultat.Font = new Font(D, 9);
             lblTemps.Font = new Font(D, 9);
             cmbArrivee.Font = new Font(D, 9);
@@ -160,6 +164,7 @@ namespace application_metro
         {
             Accueil accueil = new Accueil(this.Location);
             accueil.Show();
+            serveur2.Stop();
             this.Close();
         }
 
@@ -167,6 +172,7 @@ namespace application_metro
         {
             Accueil accueil = new Accueil(this.Location);
             accueil.Show();
+            serveur2.Stop();
             this.Close();
         }
 
