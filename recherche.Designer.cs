@@ -100,7 +100,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(11, 19728);
+            grpTrajet.Location = new Point(11, 20146);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(0, 283);
             grpTrajet.TabIndex = 16;
@@ -223,6 +223,7 @@
             lblTrajet.Size = new Size(167, 20);
             lblTrajet.TabIndex = 15;
             lblTrajet.Text = "Trajet le plus rapide :";
+            lblTrajet.Visible = false;
             // 
             // btnRecherche
             // 
@@ -410,9 +411,9 @@
             // 
             flpResultat.Controls.Add(grpResultat);
             flpResultat.Controls.Add(picVoirPlus);
-            flpResultat.Location = new Point(3, 620);
+            flpResultat.Location = new Point(3, 627);
             flpResultat.Name = "flpResultat";
-            flpResultat.Size = new Size(358, 553);
+            flpResultat.Size = new Size(358, 542);
             flpResultat.TabIndex = 57;
             flpResultat.Visible = false;
             // 

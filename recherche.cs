@@ -271,6 +271,7 @@ namespace application_metro
                 lstStations.Items.Add($"{i + 1}. {nom}{ligne}");
             }
             flpResultat.Visible = true;
+            lblTrajet.Visible = true;
         }
 
         private bool detailsVisible = false;
