@@ -6,7 +6,7 @@ using MySql.Data.MySqlClient;
 namespace GestionReseau
 {
     // Représente une station du réseau
-    internal class Station
+    public class Station
     {
         public string Nom { get; set; }
 
@@ -117,66 +117,41 @@ namespace GestionReseau
     // Classe pour charger le graphe depuis une base de données MySQL
     internal class ChargeurGrapheDepuisMySQL
     {
-        public static Graphe Charger(string chaineConnexion)
+        public static Graphe Charger(Dictionary<int, Station> stations, List<(int idA, int idB, int duree, int numLigne)> segments)
         {
             var graphe = new Graphe();
-            var stations = new Dictionary<int, Station>();
 
-            using (var connexion = new MySqlConnection(chaineConnexion))
+            // Ajouter stations
+            foreach (var station in stations.Values)
             {
-                connexion.Open();
+                graphe.AjouterStation(station);
+            }
 
-                var commandeStation = new MySqlCommand("SELECT NumStation, NomStation FROM Station", connexion);
-                using (var lecteur = commandeStation.ExecuteReader())
+            // Construire trajets
+            var trajetsTemp = new Dictionary<(int, int), (int duree, List<int> lignes)>();
+
+            foreach (var seg in segments)
+            {
+                var cle = (seg.idA, seg.idB);
+                if (!trajetsTemp.ContainsKey(cle))
+                    trajetsTemp[cle] = (seg.duree, new List<int>());
+
+                trajetsTemp[cle].lignes.Add(seg.numLigne);
+            }
+
+            foreach (var kvp in trajetsTemp)
+            {
+                var (idA, idB) = kvp.Key;
+                var (duree, lignes) = kvp.Value;
+
+                if (stations.ContainsKey(idA) && stations.ContainsKey(idB))
                 {
-                    while (lecteur.Read())
-                    {
-                        int id = lecteur.GetInt32("NumStation");
-                        string nom = lecteur.GetString("NomStation");
-
-                        var station = new Station(nom);
-                        graphe.AjouterStation(station);
-                        stations[id] = station;
-                    }
-                }
-
-                var commandeSegment = new MySqlCommand(@"
-                    SELECT s.NumStationA, s.NumStationB, s.DureeSegment, l.NumLigne
-                    FROM Segment s
-                    JOIN Ligne l ON s.NumSegment = l.NumSegment", connexion);
-
-                using (var lecteur = commandeSegment.ExecuteReader())
-                {
-                    var trajetsTemp = new Dictionary<(int, int), (int duree, List<int> lignes)>();
-
-                    while (lecteur.Read())
-                    {
-                        int idA = lecteur.GetInt32("NumStationA");
-                        int idB = lecteur.GetInt32("NumStationB");
-                        int duree = lecteur.GetInt32("DureeSegment");
-                        int numLigne = lecteur.GetInt32("NumLigne");
-
-                        var cle = (idA, idB);
-                        if (!trajetsTemp.ContainsKey(cle))
-                            trajetsTemp[cle] = (duree, new List<int>());
-
-                        trajetsTemp[cle].lignes.Add(numLigne);
-                    }
-
-                    foreach (var kvp in trajetsTemp)
-                    {
-                        var (idA, idB) = kvp.Key;
-                        var (duree, lignes) = kvp.Value;
-
-                        if (stations.ContainsKey(idA) && stations.ContainsKey(idB))
-                        {
-                            graphe.AjouterTrajet(stations[idA], stations[idB], duree, lignes);
-                        }
-                    }
+                    graphe.AjouterTrajet(stations[idA], stations[idB], duree, lignes);
                 }
             }
 
             return graphe;
         }
+
     }
 }

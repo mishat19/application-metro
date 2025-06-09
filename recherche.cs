@@ -142,7 +142,7 @@ namespace application_metro
             dtpArrivee.Font = new Font(D, 9);
             dtpDepart.Font = new Font(D, 9);
             btnRecherche.Font = new Font(D, 14);
-            lblDépart.Font = new Font(D, 9);
+            lblDepart2.Font = new Font(D, 9);
             lblArrivee2.Font = new Font(D, 9);
             lblTempsArrivee.Font = new Font(D, 9);
             lblTempsDepart.Font = new Font(D, 9);
@@ -193,83 +193,9 @@ namespace application_metro
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            string serveur = "10.1.139.236";
-            string login = "b3";
-            string mdp = "mdp";
-            string bd = "baseb3";
+            var donnees = Serveur.ObtenirDonneesGraphe();
+            Graphe graphe = ChargeurGrapheDepuisMySQL.Charger(donnees.stations, donnees.segments);
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";
-
-            Graphe graphe = ChargeurGrapheDepuisMySQL.Charger(chaineConnexion);
-
-            Station stationDepart = graphe.Stations.FirstOrDefault(s => s.Nom == cmbDepart.SelectedItem?.ToString());
-            Station stationArrivee = graphe.Stations.FirstOrDefault(s => s.Nom == cmbArrivee.SelectedItem?.ToString());
-
-            if (stationDepart == null || stationArrivee == null)
-            {
-                MessageBox.Show("Veuillez sélectionner une station de départ et une station d'arrivée.");
-                return;
-            }
-
-            Dictionary<Station, Station> predecesseurs;
-            var distances = AlgorithmeDijkstra.CalculerChemins(graphe, stationDepart, out predecesseurs);
-            var chemin = AlgorithmeDijkstra.TrouverChemin(stationArrivee, predecesseurs);
-
-            if (chemin == null || chemin.Count < 2)
-            {
-                MessageBox.Show("Aucun trajet trouvé.");
-                return;
-            }
-
-            // Mise à jour des labels avec les données du trajet
-            lblDépart.Text = chemin.First().Nom;
-            lblArrivee2.Text = chemin.Last().Nom;
-
-            // Heure actuelle comme départ simulé
-            DateTime heureDepart = DateTime.Now;
-            int dureeTotale = distances[stationArrivee];
-            DateTime heureArrivee = heureDepart.AddSeconds(dureeTotale);
-
-            lblTempsDepart.Text = heureDepart.ToString("HH:mm");
-            lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
-            lblTemps.Text = $"{(int)(dureeTotale / 60)} min";
-
-            // Trouver le trajet entre les deux premières stations du chemin
-            Station s1 = chemin[0];
-            Station s2 = chemin[1];
-
-            var trajet = graphe.Trajets.FirstOrDefault(t =>
-                (t.Depart == s1 && t.Arrivee == s2) ||
-                (t.Depart == s2 && t.Arrivee == s1));
-
-            if (trajet != null && trajet.Lignes.Count > 0)
-            {
-                lblNumLigneResultat.Text = string.Join(", ", trajet.Lignes);
-            }
-            else
-            {
-                lblNumLigneResultat.Text = "Inconnue";
-            }
-
-            lstStations.Items.Clear();
-            for (int i = 0; i < chemin.Count; i++)
-            {
-                var nom = chemin[i].Nom;
-                string ligne = "";
-
-                if (i < chemin.Count - 1)
-                {
-                    var trajet1 = graphe.Trajets.FirstOrDefault(t =>
-                        (t.Depart == chemin[i] && t.Arrivee == chemin[i + 1]) ||
-                        (t.Depart == chemin[i + 1] && t.Arrivee == chemin[i]));
-
-                    if (trajet1 != null && trajet1.Lignes.Count > 0)
-                        ligne = $" (Ligne {string.Join(", ", trajet1.Lignes)})";
-                }
-
-                lstStations.Items.Add($"{i + 1}. {nom}{ligne}");
-            }
-            flpResultat.Visible = true;
         }
 
         private bool detailsVisible = false;
@@ -301,6 +227,11 @@ namespace application_metro
         private void grpResultatItineraire_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
+        }
+
+        private void lblDépart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

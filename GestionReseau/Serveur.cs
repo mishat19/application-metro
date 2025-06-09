@@ -687,5 +687,45 @@ namespace GestionReseau
             }
             return stations;
         }
+
+        public static (Dictionary<int, Station> stations, List<(int idA, int idB, int duree, int numLigne)> segments) ObtenirDonneesGraphe()
+        {
+            Dictionary<int, Station> stations = new Dictionary<int, Station>();
+            List<(int, int, int, int)> segments = new List<(int, int, int, int)>();
+
+            string requeteStations = "SELECT NumStation, NomStation FROM Station";
+            using (var cmdStations = new MySqlCommand(requeteStations, connexion))
+            using (var lecteur = cmdStations.ExecuteReader())
+            {
+                while (lecteur.Read())
+                {
+                    int id = lecteur.GetInt32("NumStation");
+                    string nom = lecteur.GetString("NomStation");
+                    stations[id] = new Station(nom);
+                }
+            }
+
+            string requeteSegments = @"
+            SELECT s.NumStationA, s.NumStationB, s.DureeSegment, l.NumLigne
+            FROM Segment s
+            JOIN Ligne l ON s.NumSegment = l.NumSegment";
+
+            using (var cmdSegments = new MySqlCommand(requeteSegments, connexion))
+            using (var lecteur = cmdSegments.ExecuteReader())
+            {
+                while (lecteur.Read())
+                {
+                    int idA = lecteur.GetInt32("NumStationA");
+                    int idB = lecteur.GetInt32("NumStationB");
+                    int duree = lecteur.GetInt32("DureeSegment");
+                    int numLigne = lecteur.GetInt32("NumLigne");
+
+                    segments.Add((idA, idB, duree, numLigne));
+                }
+            }
+
+            return (stations, segments);
+        }
+
     }
 }
