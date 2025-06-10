@@ -59,19 +59,24 @@ namespace application_metro
                         numeroLigne = Convert.ToInt32(ligne1.num);
                         txtCouleur.Text = ligne1.couleur;
 
-                        int nb = 0;
-                        string sta;
-                        foreach (string nStation in ligne1.stations)
-                        {
-                            nb++;
-                        }
+                        int nb = ligne1.stations.Count;
+
+                        // Récupère les coordonnées des stations
                         List<List<decimal>> coordonnees = Serveur.CoordonneesStationsLigne(ligne1.stations);
-                        CreationTextBox(nb, ligne1.stations, coordonnees);
+
+                        // Récupère les segments avec durée, ordonnés
+                        List<(string stationA, string stationB, int duree)> segments = Serveur.DureeSegmentsLigne(numeroLigne);
+
+                        // Crée les TextBox et Labels
+                        CreationTextBox(nb, ligne1.stations, coordonnees, segments);
+
+                        // Met à jour le nombre de stations
                         nudNbStations.Value = nb;
                     }
                 }
             }
 
+            //Importation des polices d'écritures pour l'interface
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
@@ -92,7 +97,7 @@ namespace application_metro
             return nom;
         }
 
-
+        //On déconcatène le nom d'une ligne pour récupérer seulement le numéro
         public int numLigneDeconcatenation(string nom)
         {
             for (int i = 0; i < nom.Length; i++)
@@ -103,7 +108,7 @@ namespace application_metro
             return -1;
         }
 
-        //Expression lambda
+        //Expression lambda pour concaténer les informations d'une ligne (nom et numéro)
         public string ligneConcatenation(string nom, int numero) => nom + numero;
 
 
@@ -117,7 +122,7 @@ namespace application_metro
             return nbStations;
         }
 
-        public void CreationTextBox(int nbStations, List<string> noms = null, List<List<decimal>> coordonnees = null)
+        public void CreationTextBox(int nbStations, List<string> noms = null, List<List<decimal>> coordonnees = null, List<(string stationA, string stationB, int duree)> segments = null)
         {
             while (flpStations.Controls.Count > nbStations)
             {
@@ -209,6 +214,34 @@ namespace application_metro
                 else
                 {
                     nud.Name = $"nudStation{i}";
+                }
+
+                // Si ce n'est pas la dernière station et si segments est fourni
+                if (segments != null && i < nbStations && noms != null && noms.Count >= i + 1)
+                {
+                    string stationActuelle = noms[i - 1];
+                    string stationSuivante = noms[i]; // station suivante
+
+                    // Cherche le segment correspondant (sens direct ou inverse)
+                    var segmentTrouve = segments.FirstOrDefault(seg =>
+                        (seg.stationA == stationActuelle && seg.stationB == stationSuivante) ||
+                        (seg.stationB == stationActuelle && seg.stationA == stationSuivante)
+                    );
+
+                    // Si on a trouvé un segment, on met la durée, sinon 0
+                    if (segmentTrouve != default)
+                    {
+                        nud.Value = segmentTrouve.duree;
+                    }
+                    else
+                    {
+                        nud.Value = 0; // ou tu peux mettre -1 pour signaler erreur, à toi de voir
+                    }
+                }
+                else
+                {
+                    // Dernière station : pas de segment après → on grise le nud
+                    nud.Enabled = false;
                 }
 
                 //TextBox coordonnees

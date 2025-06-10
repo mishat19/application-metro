@@ -688,6 +688,46 @@ namespace GestionReseau
             return stations;
         }
 
+        public static List<(string stationDepart, string stationArrivee, int duree)> DureeSegmentsLigne(int numLigne)
+        {
+            List<(string, string, int)> segmentsLigne = new List<(string, string, int)>();
+
+            string requete = @"
+                SELECT 
+                    s.NumStationA, s.NumStationB, s.DureeSegment,
+                    sa.NomStation AS NomStationA,
+                    sb.NomStation AS NomStationB
+                FROM Ligne l
+                JOIN Segment s ON l.NumSegment = s.NumSegment
+                JOIN Station sa ON s.NumStationA = sa.NumStation
+                JOIN Station sb ON s.NumStationB = sb.NumStation
+                WHERE l.NumLigne = @numLigne
+                ORDER BY l.Ordre
+            ";
+
+            using (var cmd = new MySqlCommand(requete, connexion))
+            {
+                cmd.Parameters.AddWithValue("@numLigne", numLigne);
+
+                using (var lecteur = cmd.ExecuteReader())
+                {
+                    while (lecteur.Read())
+                    {
+                        string stationDepart = lecteur.GetString("NomStationA");
+                        string stationArrivee = lecteur.GetString("NomStationB");
+                        int duree = lecteur.GetInt32("DureeSegment");
+
+                        segmentsLigne.Add((stationDepart, stationArrivee, duree));
+                    }
+                }
+            }
+
+            return segmentsLigne;
+        }
+
+
+
+
         public static (Dictionary<int, Station> stations, List<(int idA, int idB, int duree, int numLigne)> segments) ObtenirDonneesGraphe()
         {
             Dictionary<int, Station> stations = new Dictionary<int, Station>();
@@ -726,6 +766,5 @@ namespace GestionReseau
 
             return (stations, segments);
         }
-
     }
 }
