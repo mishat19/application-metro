@@ -105,7 +105,6 @@
             btnAdmin.TabIndex = 7;
             btnAdmin.Text = "Gérer les données";
             btnAdmin.UseVisualStyleBackColor = false;
-            btnAdmin.Visible = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
             // picFond2

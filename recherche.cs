@@ -67,8 +67,20 @@ namespace application_metro
             hauteurInitialeGrpResultat = grpResultat.Height;
 
             // On désactive l'horaire les DateTime tant qu'aucune checkbox n'est cochée
-            dtpDepart.Enabled = false;
-            dtpArrivee.Enabled = false;
+            dtpHeureDepart.Enabled = false;
+            dtpHeureArrivee.Enabled = false;
+
+            // Heure départ - définit le format du sélecteur de date et l'initialise à l'heure actuelle
+            dtpHeureDepart.Format = DateTimePickerFormat.Custom;
+            dtpHeureDepart.CustomFormat = "dd/MM/yyyy HH:mm"; // Format d'affichage (date et heure)
+            DateTime dateHeureSouhaitee = DateTime.Now; // Récupère l’heure actuelle
+            dtpHeureDepart.Value = dateHeureSouhaitee; // Affiche l'heure souhaitée
+
+            // Heure d'arrivée - définit le format du sélecteur de date et l'initialise à l'heure actuelle
+            dtpHeureArrivee.Format = DateTimePickerFormat.Custom;
+            dtpHeureArrivee.CustomFormat = "dd/MM/yyyy HH:mm";
+            DateTime dateHeureSouhaitee2 = DateTime.Now;
+            dtpHeureArrivee.Value = dateHeureSouhaitee2;
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
@@ -143,7 +155,6 @@ namespace application_metro
             lblArrivee.Font = new Font(G, 11);
             lblHoraireDepart.Font = new Font(G, 9);
             lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
-            dtpDepart.Font = new Font(D, 9);
             btnRecherche.Font = new Font(D, 14);
             lblDepart2.Font = new Font(D, 9);
             lblArrivee2.Font = new Font(D, 9);
@@ -226,33 +237,46 @@ namespace application_metro
             int dureeTotale;
 
 
-            if (dtpDepart.Enabled == false && dtpArrivee.Enabled == false)
+            if (dtpHeureDepart.Enabled == false && dtpHeureArrivee.Enabled == false)
             {
-                MessageBox.Show("Veuillez choisir si vous voulez calculer en fonction de l'heure de départ ou l'heure d'arriver");
+                MessageBox.Show("Veuillez choisir si vous voulez calculer en fonction de l'heure de départ ou l'heure d'arrivée");
+                return; // pour bloquer le reste du code
             }
-            if (dtpDepart.Enabled == true && dtpArrivee.Enabled == false)
-            {
-                // Si dtpDepart est activé, on calcule l'heure d'arrivée
-                heureDepart = dtpDepart.Value;
-                dureeTotale = distances[stationArrivee];
-                heureArrivee = heureDepart.AddSeconds(dureeTotale);
 
-                // Affichage de l'heure de départ et d'arrivée
-                lblTempsDepart.Text = heureDepart.ToString("HH:mm");
-                lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+            if (dtpHeureDepart.Enabled == true && dtpHeureArrivee.Enabled == false)
+            {
+                // On cherche le vrai horaire de passage du train
+                string prochainHoraireStr = Serveur.CalculeProchainHoraire(stationDepart.Nom, dtpHeureDepart.Value);
+
+                if (prochainHoraireStr != null)
+                {
+                    TimeSpan prochainHoraire = TimeSpan.Parse(prochainHoraireStr);
+                    heureDepart = dtpHeureDepart.Value.Date + prochainHoraire;
+
+                    dureeTotale = distances[stationArrivee];
+                    heureArrivee = heureDepart.AddSeconds(dureeTotale);
+
+                    lblTempsDepart.Text = heureDepart.ToString("HH:mm");
+                    lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+                }
+                else
+                {
+                    MessageBox.Show("Aucun horaire trouvé pour cette station.");
+                    return;
+                }
             }
             else
             {
-                // Si dtpArrivee est activé, on calcule l'heure de départ
+                // Si l'utilisateur a choisi une heure d'arrivée
                 dureeTotale = distances[stationArrivee];
                 TimeSpan duree = TimeSpan.FromSeconds(dureeTotale);
-                heureArrivee = dtpArrivee.Value;
+                heureArrivee = dtpHeureArrivee.Value;
                 heureDepart = heureArrivee.Subtract(duree);
 
-                // Affichage de l'heure de départ et d'arrivée
                 lblTempsDepart.Text = heureDepart.ToString("HH:mm");
                 lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
             }
+
 
 
             // Affichage de la durée en minutes
@@ -375,13 +399,13 @@ namespace application_metro
                 {
                     chkHoraireArrivee.Checked = false;
                 }
-                dtpDepart.Enabled = true;
-                dtpArrivee.Enabled = false;
+                dtpHeureDepart.Enabled = true;
+                dtpHeureArrivee.Enabled = false;
             }
             else
             {
-                dtpDepart.Enabled = false;
-                dtpArrivee.Enabled = false;
+                dtpHeureDepart.Enabled = false;
+                dtpHeureArrivee.Enabled = false;
             }
         }
         private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
@@ -392,13 +416,13 @@ namespace application_metro
                 {
                     chkHoraireDepart.Checked = false;
                 }
-                dtpDepart.Enabled = false;
-                dtpArrivee.Enabled = true;
+                dtpHeureDepart.Enabled = false;
+                dtpHeureArrivee.Enabled = true;
             }
             else
             {
-                dtpDepart.Enabled = false;
-                dtpArrivee.Enabled = false;
+                dtpHeureDepart.Enabled = false;
+                dtpHeureArrivee.Enabled = false;
             }
         }
     }

@@ -443,6 +443,50 @@ namespace GestionReseau
             return horaireStation;
         }
 
+        public static string CalculeProchainHoraire(string nomStation, DateTime date)
+        {
+            string prochainHoraire = null;
+            TimeSpan heure = date.TimeOfDay;
+
+            string requete = @"
+            SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
+            FROM Station st, Segment seg, Ligne l, Horaire h
+            WHERE st.NomStation = @NomStation
+            AND st.NumStation = seg.NumStationB
+            AND seg.NumSegment = l.NumSegment
+            AND l.NumLigne = h.NumLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@NomStation", nomStation);
+
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
+                    int dureeSegment = rdr.GetInt32("DureeSegment");
+
+                    TimeSpan horaireFin = rdr.GetTimeSpan("HoraireFin");
+                    TimeSpan horaireActuel = horaireDepart;
+
+                    double multiplicateur = (date.DayOfWeek == DayOfWeek.Sunday) ? 1.75 : 1;
+
+                    while (horaireActuel < horaireFin)
+                    {
+                        if (horaireActuel > heure)
+                        {
+                            // On retourne le premier horaire trouvé
+                            return horaireActuel.ToString(@"hh\:mm\:ss");
+                        }
+                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
+                    }
+                }
+            }
+
+            return prochainHoraire; // Peut être null si aucun horaire trouvé
+        }
+
+
         /// <summary>
         /// Supprime une information de ligne dans la base de données.
         /// </summary>
