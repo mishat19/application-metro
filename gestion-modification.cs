@@ -83,6 +83,10 @@ namespace application_metro
             nudNumLigne.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
             nudNbStations.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
 
+            (DateTime, DateTime) tupleHoraire = Serveur.RecupererHorairesLigne(numeroLigne);
+
+            dtp_HoraireDebut.Value = tupleHoraire.Item1;
+            dtp_HoraireFin.Value = tupleHoraire.Item2;
         }
 
         public string nomLigneDeconcatenation(string nom)

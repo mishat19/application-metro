@@ -8,5 +8,6 @@ namespace GestionReseau
 {
     internal class Utilisateur
     {
+
     }
 }
