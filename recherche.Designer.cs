@@ -54,7 +54,6 @@
             lblArrivee2 = new Label();
             lblDepart2 = new Label();
             lblIntituleHeures = new Label();
-            lblStationDepTrajet = new Label();
             lstStations = new ListBox();
             lblIntituleNumLigne = new Label();
             grpRecherche = new GroupBox();
@@ -80,7 +79,6 @@
             lblTempsArrivee = new Label();
             lblTempsDepart = new Label();
             lblArrivee2 = new Label();
-            lblDépart = new Label();
             lblIntituleHeures = new Label();
             lstStations = new ListBox();
             lblIntituleNumLigne = new Label();
@@ -273,7 +271,6 @@
             grpResultat.Controls.Add(lblStationArrTrajet);
             grpResultat.Controls.Add(grpResultatItineraire);
             grpResultat.Controls.Add(lblIntituleHeures);
-            grpResultat.Controls.Add(lblStationDepTrajet);
             grpResultat.Controls.Add(lstStations);
             grpResultat.Controls.Add(lblIntituleNumLigne);
             grpResultat.ForeColor = Color.FromArgb(15, 93, 70);
@@ -387,14 +384,7 @@
             lblIntituleHeures.Size = new Size(72, 20);
             lblIntituleHeures.TabIndex = 9;
             lblIntituleHeures.Text = "Horaires :";
-            // 
-            // lblStationDepTrajet
-            // 
-            lblStationDepTrajet.Location = new Point(0, 0);
-            lblStationDepTrajet.Name = "lblStationDepTrajet";
-            lblStationDepTrajet.Size = new Size(114, 31);
-            lblStationDepTrajet.TabIndex = 12;
-            // 
+            //
             // lstStations
             // 
             lstStations.BackColor = Color.FromArgb(255, 230, 188);
@@ -610,7 +600,6 @@
             grpResultatItineraire.Controls.Add(lblTempsArrivee);
             grpResultatItineraire.Controls.Add(lblTempsDepart);
             grpResultatItineraire.Controls.Add(lblArrivee2);
-            grpResultatItineraire.Controls.Add(lblDépart);
             grpResultatItineraire.Location = new Point(193, 16);
             grpResultatItineraire.Name = "grpResultatItineraire";
             grpResultatItineraire.Size = new Size(154, 211);
@@ -677,17 +666,7 @@
             lblArrivee2.Size = new Size(56, 20);
             lblArrivee2.TabIndex = 8;
             lblArrivee2.Text = "Arrivée";
-            // 
-            // lblDépart
-            // 
-            lblDépart.AutoSize = true;
-            lblDépart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblDépart.Location = new Point(10, 28);
-            lblDépart.Name = "lblDépart";
-            lblDépart.Size = new Size(55, 20);
-            lblDépart.TabIndex = 7;
-            lblDépart.Text = "Départ";
-            // 
+            //
             // lblIntituleHeures
             // 
             lblIntituleHeures.AutoSize = true;
