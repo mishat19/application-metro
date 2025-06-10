@@ -22,28 +22,33 @@ namespace application_metro
 {
     public partial class Recherche : Form
     {
+
+        // Composants utilisés
         private WebView2 webView;
         private HttpListener serveur2;
         private Task serveurTask;
         private int hauteurInitialeGrpResultat;
 
-
+        // Gestion des polices personnalisées
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Recherche(Point position)
         {
             InitializeComponent();
 
+            // Positionnement manuel du formulaire à la position donnée
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
 
             webView = new WebView2();
 
+            // Initialisation des ComboBox avec les noms des stations
             cmbDepart.Items.AddRange(Serveur.ListeDesStations().ToArray());
             cmbArrivee.Items.AddRange(Serveur.ListeDesStations().ToArray());
             cmbDepart.SelectedIndex = -1;
             cmbArrivee.SelectedIndex = -1;
 
+            // Définition de la taille et position du WebView
             int width = pnlRecherche.ClientSize.Width - 60;
             int height = 220;
             webView.Size = new Size(width, height);
@@ -57,11 +62,11 @@ namespace application_metro
 
             webView.Location = new Point(x, y);
 
-
+            // Ajout du WebView et des groupes de recherche dans le panel
             pnlRecherche.Controls.Add(webView);
             pnlRecherche.Controls.Add(grpRecherche);
 
-
+            // Chargement des polices personnalisées
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
             hauteurInitialeGrpResultat = grpResultat.Height;
@@ -86,7 +91,7 @@ namespace application_metro
             InitializeAsync();
         }
 
-
+        // Méthode asynchrone pour initialiser le WebView et le serveur local
         private async void InitializeAsync()
         {
             //Dossier de map-milan.html
@@ -104,6 +109,9 @@ namespace application_metro
             webView.CoreWebView2.Navigate("http://localhost:8082/map-milan.html");
         }
 
+        /// <summary>
+        /// Serveur HTTP local pour servir la carte HTML
+        /// <summary>
         private void EcouterRequetes(string dossier)
         {
             try
@@ -147,6 +155,9 @@ namespace application_metro
             }
         }
 
+        /// <summary>
+        /// Chargement des polices sur tous les labels et boutons à l’ouverture du formulaire
+        /// <summary>
         private void consultation_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -170,6 +181,7 @@ namespace application_metro
             lstStations.Font = new Font(D, 9);
         }
 
+        // Boutons de retour ou de retour à l’accueil
         private void picRetour_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil(this.Location);
@@ -186,11 +198,7 @@ namespace application_metro
             this.Close();
         }
 
-        private void GrpResultat_Paint(object sender, PaintEventArgs e)
-        {
-            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
+        // Application de styles personnalisés aux GroupBox
         private void grpRecherche1_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
@@ -201,6 +209,8 @@ namespace application_metro
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
 
+
+        // Bouton pour lancer une recherche de trajet
         private void btnRecherche_Click(object sender, EventArgs e)
         {
             var donnees = Serveur.ObtenirDonneesGraphe();
@@ -336,6 +346,8 @@ namespace application_metro
 
         private bool detailsVisible = false;
 
+
+        // Bouton voir plus / voir moins
         private void picVoirPlus_Click(object sender, EventArgs e)
         {
             detailsVisible = !detailsVisible;
@@ -381,45 +393,39 @@ namespace application_metro
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
         }
 
-        private void dtpDepart_ValueChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void dtpArrivee_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        // Gestion des checkbox horaires (mutuellement exclusives)
         private void chkHoraireDepart_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkHoraireDepart.Checked)
+            if (chkHoraireDepart.Checked)// Si l'heure de départ est cochée
             {
-                if (chkHoraireArrivee.Checked)
+                if (chkHoraireArrivee.Checked)// Si l'heure d'arrivée est cochée
                 {
                     chkHoraireArrivee.Checked = false;
                 }
                 dtpHeureDepart.Enabled = true;
                 dtpHeureArrivee.Enabled = false;
             }
-            else
+            else// Si l'heure de départ n'est pas cochée
             {
                 dtpHeureDepart.Enabled = false;
                 dtpHeureArrivee.Enabled = false;
             }
         }
+
+        // Checkbox pour l'heure d'arrivée, désactive l'heure de départ si cochée
         private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkHoraireArrivee.Checked)
+            if (chkHoraireArrivee.Checked) // Si l'heure d'arrivée est cochée
             {
-                if (chkHoraireDepart.Checked)
+                if (chkHoraireDepart.Checked)// Si l'heure de départ est cochée
                 {
                     chkHoraireDepart.Checked = false;
                 }
                 dtpHeureDepart.Enabled = false;
                 dtpHeureArrivee.Enabled = true;
             }
-            else
+            else // Si l'heure d'arrivée n'est pas cochée
             {
                 dtpHeureDepart.Enabled = false;
                 dtpHeureArrivee.Enabled = false;
