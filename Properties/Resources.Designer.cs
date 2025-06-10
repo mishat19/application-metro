@@ -73,6 +73,16 @@ namespace application_metro.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap deuxpoints {
+            get {
+                object obj = ResourceManager.GetObject("deuxpoints", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fleche_gauche {
             get {
                 object obj = ResourceManager.GetObject("fleche-gauche", resourceCulture);
@@ -96,6 +106,16 @@ namespace application_metro.Properties {
         internal static System.Drawing.Bitmap home {
             get {
                 object obj = ResourceManager.GetObject("home", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imgFlecheDroite {
+            get {
+                object obj = ResourceManager.GetObject("imgFlecheDroite", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
