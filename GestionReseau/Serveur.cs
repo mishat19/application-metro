@@ -849,7 +849,7 @@ namespace GestionReseau
                 }
                 else
                 {
-                    // Latitude et longitude = 0 => ne rien faire
+                    // Tous les deux à 0 donc on ne fait rien
                     continue;
                 }
 
