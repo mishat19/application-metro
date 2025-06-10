@@ -858,6 +858,32 @@ namespace GestionReseau
             }
         }
 
+        public static void ModifierHoraireParLigne(int numLigne, TimeSpan horaireDebut, TimeSpan horaireFin)
+        {
+            string requete = "UPDATE Horaire SET HoraireDepart = @debut, HoraireFin = @fin WHERE NumLigne = @numLigne";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion)) // connexion déjà existante
+                {
+                    cmd.Parameters.AddWithValue("@debut", horaireDebut);
+                    cmd.Parameters.AddWithValue("@fin", horaireFin);
+                    cmd.Parameters.AddWithValue("@numLigne", numLigne);
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    if (result == 0)
+                    {
+                        throw new Exception("Aucun horaire mis à jour. Vérifiez NumLigne.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Erreur dans ModifierHoraireParLigne : " + ex.Message);
+            }
+        }
+
         /// <summary>
         /// Récupère la durée des segments d'une ligne spécifique.
         /// </summary>

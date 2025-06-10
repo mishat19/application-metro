@@ -572,9 +572,10 @@ namespace application_metro
                 TimeSpan horaireDebut = dtp_HoraireDebut.Value.TimeOfDay;
                 TimeSpan horaireFin = dtp_HoraireFin.Value.TimeOfDay;
 
-                Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, nom, couleur);
+                Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
                 Serveur.MettreAJourNomsStations(stationsChange);
                 Serveur.MettreAJourCoordonneesStations(coordonneesChange);
+                Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
             }
         }
     }
