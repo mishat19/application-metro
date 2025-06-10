@@ -338,6 +338,7 @@ namespace GestionReseau
         public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
+            TimeSpan heure = date.TimeOfDay;
 
             string requete = @"
             SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
@@ -352,7 +353,6 @@ namespace GestionReseau
 
             using (var rdr = cmd.ExecuteReader())
             {
-
                 while (rdr.Read())
                 {
                     TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
@@ -374,7 +374,12 @@ namespace GestionReseau
 
                     while (horaireActuel < horaireFin)
                     {
-                        horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
+                        Console.WriteLine(horaireActuel.ToString());
+                        Console.WriteLine(heure.ToString());
+                        if(horaireActuel > heure)
+                        {
+                            horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
+                        }
                         horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
                     }
                 }

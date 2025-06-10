@@ -122,6 +122,7 @@ namespace application_metro
             return nbStations;
         }
 
+        List<NumericUpDown> listeSegments = new List<NumericUpDown>();
         public void CreationTextBox(int nbStations, List<string> noms = null, List<List<decimal>> coordonnees = null, List<(string stationA, string stationB, int duree)> segments = null)
         {
             while (flpStations.Controls.Count > nbStations)
@@ -216,6 +217,8 @@ namespace application_metro
                     nud.Name = $"nudStation{i}";
                 }
 
+                listeSegments.Add(nud);
+
                 // Si ce n'est pas la dernière station et si segments est fourni
                 if (segments != null && i < nbStations && noms != null && noms.Count >= i + 1)
                 {
@@ -240,9 +243,13 @@ namespace application_metro
                 }
                 else
                 {
-                    if(mode != "Ajout")
-                        //Dernière station donc pas de Segment
-                        nud.Enabled = false;
+                    //Dernière station donc pas de Segment
+                    nud.Enabled = false;
+
+                    if(segments == null && mode == "Ajout")
+                    {
+                        nud.Enabled = true;
+                    }
                 }
 
                 //TextBox coordonnees

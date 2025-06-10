@@ -19,9 +19,15 @@ namespace application_metro
             _ligne = ligne;
             cmbLignes.Text = _ligne;
 
+            //Ajout de polices d'écritures
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
+            //On initialise à la date du jour
+            dtpDateTime.Format = DateTimePickerFormat.Custom;
+            dtpDateTime.CustomFormat = "dd/MM/yyyy HH:mm";
+            DateTime dateHeureSouhaitee = DateTime.Now;
+            dtpDateTime.Value = dateHeureSouhaitee;
         }
 
         private void consultation_Load(object sender, EventArgs e)
@@ -66,14 +72,22 @@ namespace application_metro
 
         private void btnRecherche_Click(object sender, EventArgs e)
         {
-            lstStations.Items.Clear();
+            try
+            {
+                lstStations.Items.Clear();
 
-            string nomStation = cmbStation.SelectedItem?.ToString();
-            DateTime date = calDate.SelectionStart;
+                string nomStation = cmbStation.SelectedItem?.ToString();
+                DateTime dateHoraire = dtpDateTime.Value;
 
-            List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, date);
-            lstStations.Items.AddRange(horaires.ToArray());
+                List<string> horaires = Serveur.CalculeHorairePassageStation(nomStation, dateHoraire);
+                lstStations.Items.AddRange(horaires.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Une erreur est survenue : {ex.Message}");
+            }
         }
+
 
         private void cmbStation_SelectedIndexChanged(object sender, EventArgs e)
         {

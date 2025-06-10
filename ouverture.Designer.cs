@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ouverture));
             pnlOuverture = new Panel();
-            dateTimePicker1 = new DateTimePicker();
             picLogo1 = new PictureBox();
             lblTitre = new Label();
             btnNoConnexion = new Button();
@@ -48,7 +47,6 @@
             // pnlOuverture
             // 
             pnlOuverture.BackColor = Color.FromArgb(255, 230, 188);
-            pnlOuverture.Controls.Add(dateTimePicker1);
             pnlOuverture.Controls.Add(picLogo1);
             pnlOuverture.Controls.Add(lblTitre);
             pnlOuverture.Controls.Add(btnNoConnexion);
@@ -60,15 +58,6 @@
             pnlOuverture.Name = "pnlOuverture";
             pnlOuverture.Size = new Size(382, 753);
             pnlOuverture.TabIndex = 4;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.Location = new Point(3, 211);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.ShowUpDown = true;
-            dateTimePicker1.Size = new Size(379, 27);
-            dateTimePicker1.TabIndex = 56;
             // 
             // picLogo1
             // 
@@ -189,6 +178,5 @@
         private PictureBox picFond2;
         private PictureBox picLogo1;
         private PictureBox picTrain1;
-        private DateTimePicker dateTimePicker1;
     }
 }
