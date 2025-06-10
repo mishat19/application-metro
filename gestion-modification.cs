@@ -335,134 +335,6 @@ namespace application_metro
             lblDernier.Font = new Font(G, 9);
         }
 
-        private void btnEnregistrement_Click(object sender, EventArgs e)
-        {
-            if (mode == "Ajout")
-            {
-                string nomLigne = txtNomLigne.Text;
-                string couleur = txtCouleur.Text;
-
-                Serveur.AjoutLigne(nomLigne, couleur);
-                int numLigne = Serveur.idLigneGraceNom(nomLigne);
-
-                List<string> lstNomStation = new List<string>();
-
-                for (int i = 0; i < nudNbStations.Value; i++)
-                {
-                    string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
-                    string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
-                    string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
-
-                    double latitudeDecimal;
-                    double longitudeDecimal;
-
-                    try
-                    {
-                        latitudeDecimal = Convert.ToDouble(latitude);
-                        longitudeDecimal = Convert.ToDouble(longitude);
-                    }
-                    catch (FormatException)
-                    {
-                        Serveur.SupprimerUneInfoLigne(numLigne);
-                        MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
-                        return;
-                    }
-
-                    if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
-                    {
-                        lstNomStation.Add(nomStation);
-                        Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
-                    }
-                }
-
-                int duree;
-                int idSegment;
-                int ordreIncrementation = 1;
-
-                // Ajout du segment dans le sens de l'aller
-                for (int i = 0; i < lstNomStation.Count - 1; i++)
-                {
-                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
-                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
-                    duree = (int)nud.Value;
-
-                    try
-                    {
-                        Serveur.AjoutSegment(duree, station, stationSuivante);
-                        idSegment = Serveur.RecupereIdDernierObjet();
-                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
-                    }
-                }
-
-                // Ajout du segment dans le sens du retour
-                ordreIncrementation = 1;
-
-                for (int i = 0; i < lstNomStation.Count - 1; i++)
-                {
-                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
-                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
-                    duree = (int)nud.Value;
-
-                    try
-                    {
-                        Serveur.AjoutSegment(duree, stationSuivante, station);
-                        idSegment = Serveur.RecupereIdDernierObjet();
-                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erreur lors de l'ajout du segment retour : {ex.Message}");
-                    }
-                }
-
-                DateTime HoraireDepart = dtp_HoraireDebut.Value;
-                DateTime HoraireFin = dtp_HoraireFin.Value;
-
-                try
-                {
-                    Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Erreur lors de l'ajout des horaires : {ex.Message}");
-                }
-
-                ListeLignes lignes = Serveur.Lignes();
-
-            }
-            else
-            {
-                if (nudChange || couleurChange)
-                {
-                    string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
-                    Serveur.ModifInfosLigne(numeroLigne, nom, txtCouleur.Text);
-                }
-                ;
-                if (nudStations)
-                {
-                    //A faire
-                }
-                ;
-
-                if (stationsChange != null)
-                {
-                    Serveur.ModifNomStations(stationsChange);
-                }
-
-                if (coordonneesChange != null)
-                {
-                    Serveur.ModifCoordonneesStations(coordonneesChange);
-                }
-                ;
-            }
-        }
-
         bool nudChange = false;
         bool couleurChange = false;
         bool nudStations = false;
@@ -587,6 +459,117 @@ namespace application_metro
         private void txtCouleur_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEnregistrement_Click(object sender, EventArgs e)
+        {
+            if (mode == "Ajout")
+            {
+                string nomLigne = txtNomLigne.Text;
+                string couleur = txtCouleur.Text;
+
+                Serveur.AjoutLigne(nomLigne, couleur);
+                int numLigne = Serveur.idLigneGraceNom(nomLigne);
+
+                List<string> lstNomStation = new List<string>();
+
+                for (int i = 0; i < nudNbStations.Value; i++)
+                {
+                    string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
+                    string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
+                    string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
+
+                    double latitudeDecimal;
+                    double longitudeDecimal;
+
+                    try
+                    {
+                        latitudeDecimal = Convert.ToDouble(latitude);
+                        longitudeDecimal = Convert.ToDouble(longitude);
+                    }
+                    catch (FormatException)
+                    {
+                        Serveur.SupprimerUneInfoLigne(numLigne);
+                        MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
+                        return;
+                    }
+
+                    if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
+                    {
+                        lstNomStation.Add(nomStation);
+                        Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
+                    }
+                }
+
+                int duree;
+                int idSegment;
+                int ordreIncrementation = 1;
+
+                // Ajout du segment dans le sens de l'aller
+                for (int i = 0; i < lstNomStation.Count - 1; i++)
+                {
+                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
+                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                    duree = (int)nud.Value;
+
+                    try
+                    {
+                        Serveur.AjoutSegment(duree, station, stationSuivante);
+                        idSegment = Serveur.RecupereIdDernierObjet();
+                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
+                    }
+                }
+
+                // Ajout du segment dans le sens du retour
+                ordreIncrementation = 1;
+
+                for (int i = 0; i < lstNomStation.Count - 1; i++)
+                {
+                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
+                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                    duree = (int)nud.Value;
+
+                    try
+                    {
+                        Serveur.AjoutSegment(duree, stationSuivante, station);
+                        idSegment = Serveur.RecupereIdDernierObjet();
+                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de l'ajout du segment retour : {ex.Message}");
+                    }
+                }
+
+                DateTime HoraireDepart = dtp_HoraireDebut.Value;
+                DateTime HoraireFin = dtp_HoraireFin.Value;
+
+                try
+                {
+                    Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de l'ajout des horaires : {ex.Message}");
+                }
+
+                ListeLignes lignes = Serveur.Lignes();
+
+            }
+            else
+            {
+                int numLigne = (int)nudNumLigne.Value;
+                string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
+                string couleur = txtCouleur.Text;
+                TimeSpan horaireDebut = dtp_HoraireDebut.Value.TimeOfDay;
+                TimeSpan horaireFin = dtp_HoraireFin.Value.TimeOfDay;
+            }
         }
     }
 }
