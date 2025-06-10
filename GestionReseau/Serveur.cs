@@ -26,7 +26,7 @@ namespace GestionReseau
             string mdp = "mdp";
             string bd = "baseb3";
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; // Ligne de connexion
+            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; //Ligne de connexion
 
             connexion = new MySqlConnection(chaineConnexion);
 
@@ -86,7 +86,7 @@ namespace GestionReseau
 
                 try
                 {
-                    object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
+                    object result = cmd.ExecuteScalar(); //Retourne la 1ère cellule de la 1ère ligne
                     //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
                     if(count > 0)
