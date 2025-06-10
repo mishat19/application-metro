@@ -71,6 +71,19 @@
             lblHoraireDepart = new Label();
             dtpDepart = new DateTimePicker();
             flpResultat = new FlowLayoutPanel();
+            grpResultat = new GroupBox();
+            lblStationArrTrajet = new Label();
+            grpResultatItineraire = new GroupBox();
+            lblSeparation1 = new Label();
+            lblTemps = new Label();
+            lblNumLigneResultat = new Label();
+            lblTempsArrivee = new Label();
+            lblTempsDepart = new Label();
+            lblArrivee2 = new Label();
+            lblDépart = new Label();
+            lblIntituleHeures = new Label();
+            lstStations = new ListBox();
+            lblIntituleNumLigne = new Label();
             picVoirPlus = new PictureBox();
             picHome = new PictureBox();
             picRetour = new PictureBox();
@@ -101,7 +114,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(11, 19426);
+            grpTrajet.Location = new Point(11, 20146);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(0, 283);
             grpTrajet.TabIndex = 16;
@@ -224,6 +237,7 @@
             lblTrajet.Size = new Size(167, 20);
             lblTrajet.TabIndex = 15;
             lblTrajet.Text = "Trajet le plus rapide :";
+            lblTrajet.Visible = false;
             // 
             // btnRecherche
             // 
@@ -244,7 +258,6 @@
             pnlRecherche.AutoScroll = true;
             pnlRecherche.AutoScrollMinSize = new Size(0, 1000);
             pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
-            pnlRecherche.Controls.Add(grpResultat);
             pnlRecherche.Controls.Add(grpRecherche);
             pnlRecherche.Controls.Add(flpResultat);
             pnlRecherche.Controls.Add(picHome);
@@ -557,17 +570,157 @@
             // 
             // flpResultat
             // 
+            flpResultat.Controls.Add(grpResultat);
             flpResultat.Controls.Add(picVoirPlus);
-            flpResultat.Location = new Point(3, 869);
+            flpResultat.Location = new Point(3, 627);
             flpResultat.Name = "flpResultat";
-            flpResultat.Size = new Size(358, 553);
+            flpResultat.Size = new Size(358, 542);
             flpResultat.TabIndex = 57;
             flpResultat.Visible = false;
+            // 
+            // grpResultat
+            // 
+            grpResultat.Controls.Add(lblStationArrTrajet);
+            grpResultat.Controls.Add(grpResultatItineraire);
+            grpResultat.Controls.Add(lblIntituleHeures);
+            grpResultat.Controls.Add(lstStations);
+            grpResultat.Controls.Add(lblIntituleNumLigne);
+            grpResultat.ForeColor = Color.FromArgb(15, 93, 70);
+            grpResultat.Location = new Point(3, 3);
+            grpResultat.Name = "grpResultat";
+            grpResultat.Size = new Size(355, 233);
+            grpResultat.TabIndex = 0;
+            grpResultat.TabStop = false;
+            grpResultat.Paint += grpResultat_Paint;
+            // 
+            // lblStationArrTrajet
+            // 
+            lblStationArrTrajet.AutoSize = true;
+            lblStationArrTrajet.Location = new Point(13, 145);
+            lblStationArrTrajet.Name = "lblStationArrTrajet";
+            lblStationArrTrajet.Size = new Size(112, 20);
+            lblStationArrTrajet.TabIndex = 11;
+            lblStationArrTrajet.Text = "Station arrivée :";
+            // 
+            // grpResultatItineraire
+            // 
+            grpResultatItineraire.Controls.Add(lblSeparation1);
+            grpResultatItineraire.Controls.Add(lblTemps);
+            grpResultatItineraire.Controls.Add(lblNumLigneResultat);
+            grpResultatItineraire.Controls.Add(lblTempsArrivee);
+            grpResultatItineraire.Controls.Add(lblTempsDepart);
+            grpResultatItineraire.Controls.Add(lblArrivee2);
+            grpResultatItineraire.Controls.Add(lblDépart);
+            grpResultatItineraire.Location = new Point(193, 16);
+            grpResultatItineraire.Name = "grpResultatItineraire";
+            grpResultatItineraire.Size = new Size(154, 211);
+            grpResultatItineraire.TabIndex = 10;
+            grpResultatItineraire.TabStop = false;
+            grpResultatItineraire.Paint += grpResultatItineraire_Paint;
+            // 
+            // lblSeparation1
+            // 
+            lblSeparation1.AutoSize = true;
+            lblSeparation1.ForeColor = Color.FromArgb(205, 33, 42);
+            lblSeparation1.Location = new Point(80, 139);
+            lblSeparation1.Name = "lblSeparation1";
+            lblSeparation1.Size = new Size(15, 20);
+            lblSeparation1.TabIndex = 13;
+            lblSeparation1.Text = "-";
+            // 
+            // lblTemps
+            // 
+            lblTemps.AutoSize = true;
+            lblTemps.ForeColor = Color.FromArgb(205, 33, 42);
+            lblTemps.Location = new Point(89, 141);
+            lblTemps.Name = "lblTemps";
+            lblTemps.Size = new Size(50, 20);
+            lblTemps.TabIndex = 12;
+            lblTemps.Text = "40min";
+            // 
+            // lblNumLigneResultat
+            // 
+            lblNumLigneResultat.AutoSize = true;
+            lblNumLigneResultat.ForeColor = Color.FromArgb(205, 33, 42);
+            lblNumLigneResultat.Location = new Point(96, 180);
+            lblNumLigneResultat.Name = "lblNumLigneResultat";
+            lblNumLigneResultat.Size = new Size(43, 20);
+            lblNumLigneResultat.TabIndex = 11;
+            lblNumLigneResultat.Text = "NUM";
+            // 
+            // lblTempsArrivee
+            // 
+            lblTempsArrivee.AutoSize = true;
+            lblTempsArrivee.ForeColor = Color.FromArgb(205, 33, 42);
+            lblTempsArrivee.Location = new Point(91, 104);
+            lblTempsArrivee.Name = "lblTempsArrivee";
+            lblTempsArrivee.Size = new Size(48, 20);
+            lblTempsArrivee.TabIndex = 10;
+            lblTempsArrivee.Text = "heurA";
+            // 
+            // lblTempsDepart
+            // 
+            lblTempsDepart.AutoSize = true;
+            lblTempsDepart.ForeColor = Color.FromArgb(205, 33, 42);
+            lblTempsDepart.Location = new Point(37, 104);
+            lblTempsDepart.Name = "lblTempsDepart";
+            lblTempsDepart.Size = new Size(49, 20);
+            lblTempsDepart.TabIndex = 9;
+            lblTempsDepart.Text = "heurD";
+            // 
+            // lblArrivee2
+            // 
+            lblArrivee2.AutoSize = true;
+            lblArrivee2.ForeColor = Color.FromArgb(205, 33, 42);
+            lblArrivee2.Location = new Point(10, 65);
+            lblArrivee2.Name = "lblArrivee2";
+            lblArrivee2.Size = new Size(56, 20);
+            lblArrivee2.TabIndex = 8;
+            lblArrivee2.Text = "Arrivée";
+            // 
+            // lblDépart
+            // 
+            lblDépart.AutoSize = true;
+            lblDépart.ForeColor = Color.FromArgb(205, 33, 42);
+            lblDépart.Location = new Point(10, 28);
+            lblDépart.Name = "lblDépart";
+            lblDépart.Size = new Size(55, 20);
+            lblDépart.TabIndex = 7;
+            lblDépart.Text = "Départ";
+            // 
+            // lblIntituleHeures
+            // 
+            lblIntituleHeures.AutoSize = true;
+            lblIntituleHeures.Location = new Point(13, 44);
+            lblIntituleHeures.Name = "lblIntituleHeures";
+            lblIntituleHeures.Size = new Size(72, 20);
+            lblIntituleHeures.TabIndex = 9;
+            lblIntituleHeures.Text = "Horaires :";
+            // 
+            // lstStations
+            // 
+            lstStations.BackColor = Color.FromArgb(255, 230, 188);
+            lstStations.ForeColor = Color.FromArgb(15, 93, 70);
+            lstStations.FormattingEnabled = true;
+            lstStations.Location = new Point(6, 251);
+            lstStations.Name = "lstStations";
+            lstStations.Size = new Size(343, 164);
+            lstStations.TabIndex = 7;
+            lstStations.Visible = false;
+            // 
+            // lblIntituleNumLigne
+            // 
+            lblIntituleNumLigne.AutoSize = true;
+            lblIntituleNumLigne.Location = new Point(11, 196);
+            lblIntituleNumLigne.Name = "lblIntituleNumLigne";
+            lblIntituleNumLigne.Size = new Size(138, 20);
+            lblIntituleNumLigne.TabIndex = 4;
+            lblIntituleNumLigne.Text = "N°Ligne de départ :";
             // 
             // picVoirPlus
             // 
             picVoirPlus.Image = (Image)resources.GetObject("picVoirPlus.Image");
-            picVoirPlus.Location = new Point(3, 3);
+            picVoirPlus.Location = new Point(3, 242);
             picVoirPlus.Name = "picVoirPlus";
             picVoirPlus.Size = new Size(355, 61);
             picVoirPlus.SizeMode = PictureBoxSizeMode.Zoom;
@@ -670,7 +823,6 @@
         private ComboBox cmbArrivee;
         private ListBox lstStations;
         private Label lblIntituleHeures;
-        private Label lblStationDepTrajet;
         private GroupBox grpResultatItineraire;
         private Label lblTemps;
         private Label lblNumLigneResultat;

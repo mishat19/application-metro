@@ -26,6 +26,7 @@ namespace application_metro
         private Task serveurTask;
         private int hauteurInitialeGrpResultat;
 
+
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Recherche(Point position)
@@ -64,6 +65,7 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
             hauteurInitialeGrpResultat = grpResultat.Height;
+
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
@@ -148,7 +150,6 @@ namespace application_metro
             lblTempsDepart.Font = new Font(D, 9);
             lblIntituleNumLigne.Font = new Font(G, 11);
             lblIntituleHeures.Font = new Font(G, 11);
-            lblStationDepTrajet.Font = new Font(G, 11);
             lblSeparation1.Font = new Font(G, 11);
             lblStationArrTrajet.Font = new Font(G, 11);
             lblNumLigneResultat.Font = new Font(D, 9);
@@ -276,6 +277,7 @@ namespace application_metro
 
             // On rend visible le panneau des résultats
             flpResultat.Visible = true;
+            lblTrajet.Visible = true;
         }
 
         private bool detailsVisible = false;
@@ -291,13 +293,15 @@ namespace application_metro
                 picVoirPlus.Image = Image.FromFile(@"..\..\..\moins.png");
 
                 // Agrandir le groupbox pour englober la listbox
-                int nouvelleHauteur = lstStations.Bottom + 10; // 10 = petite marge de sécurité
+                int nouvelleHauteur = lstStations.Bottom + 10; // 10 = petite marge
                 grpResultat.Height = nouvelleHauteur;
             }
             else
             {
                 // Afficher "points" pour signifier qu'on peut agrandir
                 picVoirPlus.Image = Image.FromFile(@"..\..\..\points.png");
+
+                // Rétablir la hauteur initiale
                 grpResultat.Height = hauteurInitialeGrpResultat;
             }
 
