@@ -34,16 +34,19 @@ namespace application_metro
 
         }
 
+        /// <summary>
+        /// Bouton de connexion
+        /// </summary>
         private void btnConnexion_Click(object sender, EventArgs e)
         {
+            // Récupère l'email et mdp et ce connecte
             string email = txtEmail.Text.Trim();
             string mdp = txtMdp.Text.Trim();
             if (Serveur.UtilisateurConnexion(email, mdp))
             {
                 Accueil accueilWindow = new Accueil(this.Location);
                 accueilWindow.Show();
-                //accueilWindow.btnRetour.Text = "Se déconnecter";
-                this.Close();
+                this.Close(); // Ferme la page de connexion
             }
             else
             {
@@ -64,6 +67,7 @@ namespace application_metro
             string nom = txtEmail.Text;
         }
 
+        // Bouton pour rétourner a la page précédente
         private void picRetour_Click(object sender, EventArgs e)
         {
             Ouverture ouverture = Application.OpenForms[0] as Ouverture;
@@ -77,9 +81,11 @@ namespace application_metro
             }
         }
 
+        // Logo pour masquer ou afficher le mot de passe
         string cheminOff = @"..\..\..\oeiloff.png";
         string cheminOn = @"..\..\..\oeilon.png";
 
+        // Bouton pour masquer ou afficher le mot de passe
         private void picOeilOff_Click(object sender, EventArgs e)
         {
             try
@@ -102,6 +108,8 @@ namespace application_metro
                 MessageBox.Show("Erreur : " + ex.Message);
             }
         }
+
+        // Chargement de la page de connexion
         private void Connexion_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];

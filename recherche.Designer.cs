@@ -65,10 +65,10 @@
             cmbDepart = new ComboBox();
             cmbArrivee = new ComboBox();
             grpRecherche1 = new GroupBox();
+            lblHoraireArrivee = new Label();
             chkHoraireArrivee = new CheckBox();
             chkHoraireDepart = new CheckBox();
             dtpArrivee = new DateTimePicker();
-            lblHoraireArrivee = new Label();
             lblHoraires = new Label();
             lblHoraireDepart = new Label();
             dtpDepart = new DateTimePicker();
@@ -104,10 +104,10 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(13, 32672);
-            grpTrajet.Margin = new Padding(3, 4, 3, 4);
+            grpTrajet.Location = new Point(11, 24578);
             grpTrajet.Name = "grpTrajet";
-            grpTrajet.Size = new Size(0, 283);
+            grpTrajet.Padding = new Padding(3, 2, 3, 2);
+            grpTrajet.Size = new Size(0, 212);
             grpTrajet.TabIndex = 16;
             grpTrajet.TabStop = false;
             // 
@@ -117,9 +117,10 @@
             btnDetails.FlatStyle = FlatStyle.Flat;
             btnDetails.Font = new Font("Microsoft Sans Serif", 10.2F);
             btnDetails.ForeColor = Color.White;
-            btnDetails.Location = new Point(105, 0);
+            btnDetails.Location = new Point(92, 0);
+            btnDetails.Margin = new Padding(3, 2, 3, 2);
             btnDetails.Name = "btnDetails";
-            btnDetails.Size = new Size(126, 28);
+            btnDetails.Size = new Size(110, 21);
             btnDetails.TabIndex = 17;
             btnDetails.Text = "Détails";
             btnDetails.UseVisualStyleBackColor = false;
@@ -129,9 +130,9 @@
             lblDuree.AutoSize = true;
             lblDuree.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDuree.ForeColor = Color.FromArgb(205, 33, 42);
-            lblDuree.Location = new Point(275, 0);
+            lblDuree.Location = new Point(241, 0);
             lblDuree.Name = "lblDuree";
-            lblDuree.Size = new Size(58, 22);
+            lblDuree.Size = new Size(48, 18);
             lblDuree.TabIndex = 24;
             lblDuree.Text = "40min";
             // 
@@ -142,16 +143,16 @@
             lblLigne.ForeColor = Color.FromArgb(205, 33, 42);
             lblLigne.Location = new Point(0, 0);
             lblLigne.Name = "lblLigne";
-            lblLigne.Size = new Size(74, 22);
+            lblLigne.Size = new Size(60, 18);
             lblLigne.TabIndex = 23;
             lblLigne.Text = "N°Ligne";
             // 
             // lblSeparation2
             // 
             lblSeparation2.AutoSize = true;
-            lblSeparation2.Location = new Point(160, 0);
+            lblSeparation2.Location = new Point(140, 0);
             lblSeparation2.Name = "lblSeparation2";
-            lblSeparation2.Size = new Size(31, 20);
+            lblSeparation2.Size = new Size(25, 15);
             lblSeparation2.TabIndex = 22;
             lblSeparation2.Text = "-->";
             // 
@@ -160,17 +161,18 @@
             lblHeureArrivee.AutoSize = true;
             lblHeureArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblHeureArrivee.ForeColor = Color.FromArgb(205, 33, 42);
-            lblHeureArrivee.Location = new Point(197, 0);
+            lblHeureArrivee.Location = new Point(172, 0);
             lblHeureArrivee.Name = "lblHeureArrivee";
-            lblHeureArrivee.Size = new Size(89, 16);
+            lblHeureArrivee.Size = new Size(71, 13);
             lblHeureArrivee.TabIndex = 21;
             lblHeureArrivee.Text = "Heure arrivée";
             // 
             // picPlus
             // 
-            picPlus.Location = new Point(143, 0);
+            picPlus.Location = new Point(125, 0);
+            picPlus.Margin = new Padding(3, 2, 3, 2);
             picPlus.Name = "picPlus";
-            picPlus.Size = new Size(48, 53);
+            picPlus.Size = new Size(42, 40);
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
             picPlus.TabIndex = 17;
             picPlus.TabStop = false;
@@ -180,18 +182,18 @@
             lblHeureDepart.AutoSize = true;
             lblHeureDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblHeureDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblHeureDepart.Location = new Point(57, 0);
+            lblHeureDepart.Location = new Point(50, 0);
             lblHeureDepart.Name = "lblHeureDepart";
-            lblHeureDepart.Size = new Size(86, 16);
+            lblHeureDepart.Size = new Size(69, 13);
             lblHeureDepart.TabIndex = 20;
             lblHeureDepart.Text = "Heure départ";
             // 
             // lblSeparation
             // 
             lblSeparation.AutoSize = true;
-            lblSeparation.Location = new Point(160, 0);
+            lblSeparation.Location = new Point(140, 0);
             lblSeparation.Name = "lblSeparation";
-            lblSeparation.Size = new Size(31, 20);
+            lblSeparation.Size = new Size(25, 15);
             lblSeparation.TabIndex = 19;
             lblSeparation.Text = "-->";
             // 
@@ -200,9 +202,9 @@
             lblStationArrivee.AutoSize = true;
             lblStationArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblStationArrivee.ForeColor = Color.FromArgb(205, 33, 42);
-            lblStationArrivee.Location = new Point(197, 0);
+            lblStationArrivee.Location = new Point(172, 0);
             lblStationArrivee.Name = "lblStationArrivee";
-            lblStationArrivee.Size = new Size(94, 16);
+            lblStationArrivee.Size = new Size(76, 13);
             lblStationArrivee.TabIndex = 18;
             lblStationArrivee.Text = "Station Arrivée";
             // 
@@ -211,9 +213,9 @@
             lblStationDepart.AutoSize = true;
             lblStationDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStationDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblStationDepart.Location = new Point(48, 0);
+            lblStationDepart.Location = new Point(42, 0);
             lblStationDepart.Name = "lblStationDepart";
-            lblStationDepart.Size = new Size(92, 16);
+            lblStationDepart.Size = new Size(75, 13);
             lblStationDepart.TabIndex = 17;
             lblStationDepart.Text = "Station Départ";
             // 
@@ -222,9 +224,9 @@
             lblTrajet.AutoSize = true;
             lblTrajet.Font = new Font("Microsoft Sans Serif", 10.2F);
             lblTrajet.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTrajet.Location = new Point(22, 811);
+            lblTrajet.Location = new Point(19, 608);
             lblTrajet.Name = "lblTrajet";
-            lblTrajet.Size = new Size(167, 20);
+            lblTrajet.Size = new Size(142, 17);
             lblTrajet.TabIndex = 15;
             lblTrajet.Text = "Trajet le plus rapide :";
             lblTrajet.Visible = false;
@@ -234,9 +236,10 @@
             btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
             btnRecherche.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(6, 732);
+            btnRecherche.Location = new Point(5, 549);
+            btnRecherche.Margin = new Padding(3, 2, 3, 2);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(341, 64);
+            btnRecherche.Size = new Size(298, 48);
             btnRecherche.TabIndex = 8;
             btnRecherche.Text = "Lancer la recherche";
             btnRecherche.UseVisualStyleBackColor = false;
@@ -256,17 +259,19 @@
             pnlRecherche.Controls.Add(picRetour);
             pnlRecherche.Controls.Add(grpTrajet);
             pnlRecherche.Location = new Point(0, 0);
+            pnlRecherche.Margin = new Padding(3, 2, 3, 2);
             pnlRecherche.Name = "pnlRecherche";
-            pnlRecherche.Size = new Size(382, 753);
+            pnlRecherche.Size = new Size(334, 565);
             pnlRecherche.TabIndex = 20;
             // 
             // flpResultat
             // 
             flpResultat.Controls.Add(grpResultat);
             flpResultat.Controls.Add(picVoirPlus);
-            flpResultat.Location = new Point(0, 853);
+            flpResultat.Location = new Point(0, 640);
+            flpResultat.Margin = new Padding(3, 2, 3, 2);
             flpResultat.Name = "flpResultat";
-            flpResultat.Size = new Size(358, 463);
+            flpResultat.Size = new Size(313, 347);
             flpResultat.TabIndex = 59;
             flpResultat.Visible = false;
             // 
@@ -279,9 +284,11 @@
             grpResultat.Controls.Add(grpResultat2);
             grpResultat.Controls.Add(lblIntituleNumLigne);
             grpResultat.ForeColor = Color.FromArgb(15, 93, 70);
-            grpResultat.Location = new Point(3, 3);
+            grpResultat.Location = new Point(3, 2);
+            grpResultat.Margin = new Padding(3, 2, 3, 2);
             grpResultat.Name = "grpResultat";
-            grpResultat.Size = new Size(355, 272);
+            grpResultat.Padding = new Padding(3, 2, 3, 2);
+            grpResultat.Size = new Size(311, 204);
             grpResultat.TabIndex = 2;
             grpResultat.TabStop = false;
             grpResultat.Paint += grpResultat_Paint;
@@ -294,27 +301,29 @@
             grpResultat1.Controls.Add(lblTempsDepart);
             grpResultat1.Controls.Add(lblArrivee2);
             grpResultat1.Controls.Add(lblDepart2);
-            grpResultat1.Location = new Point(9, 27);
+            grpResultat1.Location = new Point(8, 20);
+            grpResultat1.Margin = new Padding(3, 2, 3, 2);
             grpResultat1.Name = "grpResultat1";
-            grpResultat1.Size = new Size(335, 149);
+            grpResultat1.Padding = new Padding(3, 2, 3, 2);
+            grpResultat1.Size = new Size(293, 112);
             grpResultat1.TabIndex = 18;
             grpResultat1.TabStop = false;
             grpResultat1.Paint += grpResultat1_Paint;
             // 
             // picDeuxPoints
             // 
-            picDeuxPoints.Location = new Point(179, 145);
-            picDeuxPoints.Margin = new Padding(3, 4, 3, 4);
+            picDeuxPoints.Location = new Point(157, 109);
             picDeuxPoints.Name = "picDeuxPoints";
-            picDeuxPoints.Size = new Size(101, 51);
+            picDeuxPoints.Size = new Size(88, 38);
             picDeuxPoints.TabIndex = 0;
             picDeuxPoints.TabStop = false;
             // 
             // picFlecheItineraire
             // 
-            picFlecheItineraire.Location = new Point(161, 57);
+            picFlecheItineraire.Location = new Point(141, 43);
+            picFlecheItineraire.Margin = new Padding(3, 2, 3, 2);
             picFlecheItineraire.Name = "picFlecheItineraire";
-            picFlecheItineraire.Size = new Size(27, 23);
+            picFlecheItineraire.Size = new Size(24, 17);
             picFlecheItineraire.SizeMode = PictureBoxSizeMode.Zoom;
             picFlecheItineraire.TabIndex = 60;
             picFlecheItineraire.TabStop = false;
@@ -323,9 +332,9 @@
             // 
             lblTempsArrivee.AutoSize = true;
             lblTempsArrivee.ForeColor = Color.FromArgb(205, 33, 42);
-            lblTempsArrivee.Location = new Point(178, 112);
+            lblTempsArrivee.Location = new Point(156, 84);
             lblTempsArrivee.Name = "lblTempsArrivee";
-            lblTempsArrivee.Size = new Size(48, 20);
+            lblTempsArrivee.Size = new Size(39, 15);
             lblTempsArrivee.TabIndex = 19;
             lblTempsArrivee.Text = "heurA";
             // 
@@ -333,9 +342,9 @@
             // 
             lblTempsDepart.AutoSize = true;
             lblTempsDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblTempsDepart.Location = new Point(102, 112);
+            lblTempsDepart.Location = new Point(89, 84);
             lblTempsDepart.Name = "lblTempsDepart";
-            lblTempsDepart.Size = new Size(49, 20);
+            lblTempsDepart.Size = new Size(39, 15);
             lblTempsDepart.TabIndex = 18;
             lblTempsDepart.Text = "heurD";
             // 
@@ -343,9 +352,9 @@
             // 
             lblArrivee2.AutoSize = true;
             lblArrivee2.ForeColor = Color.FromArgb(205, 33, 42);
-            lblArrivee2.Location = new Point(144, 83);
+            lblArrivee2.Location = new Point(126, 62);
             lblArrivee2.Name = "lblArrivee2";
-            lblArrivee2.Size = new Size(56, 20);
+            lblArrivee2.Size = new Size(44, 15);
             lblArrivee2.TabIndex = 17;
             lblArrivee2.Text = "Arrivée";
             // 
@@ -353,9 +362,9 @@
             // 
             lblDepart2.AutoSize = true;
             lblDepart2.ForeColor = Color.FromArgb(205, 33, 42);
-            lblDepart2.Location = new Point(122, 23);
+            lblDepart2.Location = new Point(107, 17);
             lblDepart2.Name = "lblDepart2";
-            lblDepart2.Size = new Size(55, 20);
+            lblDepart2.Size = new Size(42, 15);
             lblDepart2.TabIndex = 16;
             lblDepart2.Text = "Départ";
             // 
@@ -363,9 +372,9 @@
             // 
             lblNumLigneResultat.AutoSize = true;
             lblNumLigneResultat.ForeColor = Color.FromArgb(205, 33, 42);
-            lblNumLigneResultat.Location = new Point(181, 237);
+            lblNumLigneResultat.Location = new Point(158, 178);
             lblNumLigneResultat.Name = "lblNumLigneResultat";
-            lblNumLigneResultat.Size = new Size(43, 20);
+            lblNumLigneResultat.Size = new Size(35, 15);
             lblNumLigneResultat.TabIndex = 16;
             lblNumLigneResultat.Text = "NUM";
             // 
@@ -374,18 +383,22 @@
             lstStations.BackColor = Color.FromArgb(255, 230, 188);
             lstStations.ForeColor = Color.FromArgb(205, 33, 42);
             lstStations.FormattingEnabled = true;
-            lstStations.Location = new Point(6, 275);
+            lstStations.ItemHeight = 15;
+            lstStations.Location = new Point(5, 206);
+            lstStations.Margin = new Padding(3, 2, 3, 2);
             lstStations.Name = "lstStations";
-            lstStations.Size = new Size(343, 164);
+            lstStations.Size = new Size(301, 124);
             lstStations.TabIndex = 7;
             lstStations.Visible = false;
             // 
             // grpResultat2
             // 
             grpResultat2.Controls.Add(lblTemps);
-            grpResultat2.Location = new Point(113, 161);
+            grpResultat2.Location = new Point(99, 121);
+            grpResultat2.Margin = new Padding(3, 2, 3, 2);
             grpResultat2.Name = "grpResultat2";
-            grpResultat2.Size = new Size(126, 68);
+            grpResultat2.Padding = new Padding(3, 2, 3, 2);
+            grpResultat2.Size = new Size(110, 51);
             grpResultat2.TabIndex = 19;
             grpResultat2.TabStop = false;
             grpResultat2.Paint += grpResultat2_Paint;
@@ -394,9 +407,9 @@
             // 
             lblTemps.AutoSize = true;
             lblTemps.ForeColor = Color.FromArgb(205, 33, 42);
-            lblTemps.Location = new Point(42, 23);
+            lblTemps.Location = new Point(37, 17);
             lblTemps.Name = "lblTemps";
-            lblTemps.Size = new Size(43, 20);
+            lblTemps.Size = new Size(35, 15);
             lblTemps.TabIndex = 18;
             lblTemps.Text = "Xmin";
             lblTemps.TextAlign = ContentAlignment.MiddleCenter;
@@ -404,18 +417,19 @@
             // lblIntituleNumLigne
             // 
             lblIntituleNumLigne.AutoSize = true;
-            lblIntituleNumLigne.Location = new Point(9, 237);
+            lblIntituleNumLigne.Location = new Point(8, 178);
             lblIntituleNumLigne.Name = "lblIntituleNumLigne";
-            lblIntituleNumLigne.Size = new Size(138, 20);
+            lblIntituleNumLigne.Size = new Size(109, 15);
             lblIntituleNumLigne.TabIndex = 4;
             lblIntituleNumLigne.Text = "N°Ligne de départ :";
             // 
             // picVoirPlus
             // 
             picVoirPlus.Dock = DockStyle.Top;
-            picVoirPlus.Location = new Point(3, 281);
+            picVoirPlus.Location = new Point(3, 210);
+            picVoirPlus.Margin = new Padding(3, 2, 3, 2);
             picVoirPlus.Name = "picVoirPlus";
-            picVoirPlus.Size = new Size(350, 61);
+            picVoirPlus.Size = new Size(306, 46);
             picVoirPlus.SizeMode = PictureBoxSizeMode.Zoom;
             picVoirPlus.TabIndex = 3;
             picVoirPlus.TabStop = false;
@@ -426,9 +440,11 @@
             grpRecherche.Controls.Add(lblTitre);
             grpRecherche.Controls.Add(grpRecherche2);
             grpRecherche.Controls.Add(grpRecherche1);
-            grpRecherche.Location = new Point(3, 281);
+            grpRecherche.Location = new Point(3, 211);
+            grpRecherche.Margin = new Padding(3, 2, 3, 2);
             grpRecherche.Name = "grpRecherche";
-            grpRecherche.Size = new Size(355, 445);
+            grpRecherche.Padding = new Padding(3, 2, 3, 2);
+            grpRecherche.Size = new Size(311, 334);
             grpRecherche.TabIndex = 58;
             grpRecherche.TabStop = false;
             // 
@@ -437,9 +453,9 @@
             lblTitre.AutoSize = true;
             lblTitre.Font = new Font("Microsoft Sans Serif", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
-            lblTitre.Location = new Point(9, 45);
+            lblTitre.Location = new Point(8, 34);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(163, 29);
+            lblTitre.Size = new Size(129, 24);
             lblTitre.TabIndex = 30;
             lblTitre.Text = "RECHERCHE";
             // 
@@ -449,9 +465,11 @@
             grpRecherche2.Controls.Add(lblDepart);
             grpRecherche2.Controls.Add(cmbDepart);
             grpRecherche2.Controls.Add(cmbArrivee);
-            grpRecherche2.Location = new Point(3, 89);
+            grpRecherche2.Location = new Point(3, 67);
+            grpRecherche2.Margin = new Padding(3, 2, 3, 2);
             grpRecherche2.Name = "grpRecherche2";
-            grpRecherche2.Size = new Size(347, 195);
+            grpRecherche2.Padding = new Padding(3, 2, 3, 2);
+            grpRecherche2.Size = new Size(304, 146);
             grpRecherche2.TabIndex = 31;
             grpRecherche2.TabStop = false;
             grpRecherche2.Paint += grpRecherche2_Paint_1;
@@ -461,9 +479,9 @@
             lblArrivee.AutoSize = true;
             lblArrivee.Font = new Font("Microsoft Sans Serif", 10.2F);
             lblArrivee.ForeColor = Color.FromArgb(15, 93, 70);
-            lblArrivee.Location = new Point(16, 107);
+            lblArrivee.Location = new Point(14, 80);
             lblArrivee.Name = "lblArrivee";
-            lblArrivee.Size = new Size(140, 20);
+            lblArrivee.Size = new Size(119, 17);
             lblArrivee.TabIndex = 32;
             lblArrivee.Text = "Station d'arrivée :";
             // 
@@ -472,9 +490,9 @@
             lblDepart.AutoSize = true;
             lblDepart.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDepart.ForeColor = Color.FromArgb(15, 93, 70);
-            lblDepart.Location = new Point(16, 23);
+            lblDepart.Location = new Point(14, 17);
             lblDepart.Name = "lblDepart";
-            lblDepart.Size = new Size(146, 20);
+            lblDepart.Size = new Size(125, 17);
             lblDepart.TabIndex = 31;
             lblDepart.Text = "Station de départ :";
             // 
@@ -483,9 +501,10 @@
             cmbDepart.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmbDepart.ForeColor = Color.FromArgb(205, 33, 42);
             cmbDepart.FormattingEnabled = true;
-            cmbDepart.Location = new Point(16, 59);
+            cmbDepart.Location = new Point(14, 44);
+            cmbDepart.Margin = new Padding(3, 2, 3, 2);
             cmbDepart.Name = "cmbDepart";
-            cmbDepart.Size = new Size(316, 26);
+            cmbDepart.Size = new Size(277, 23);
             cmbDepart.TabIndex = 33;
             cmbDepart.Text = "Choisir une station";
             // 
@@ -494,47 +513,63 @@
             cmbArrivee.Font = new Font("Microsoft Sans Serif", 9F);
             cmbArrivee.ForeColor = Color.FromArgb(205, 33, 42);
             cmbArrivee.FormattingEnabled = true;
-            cmbArrivee.Location = new Point(16, 139);
+            cmbArrivee.Location = new Point(14, 104);
+            cmbArrivee.Margin = new Padding(3, 2, 3, 2);
             cmbArrivee.Name = "cmbArrivee";
-            cmbArrivee.Size = new Size(316, 26);
+            cmbArrivee.Size = new Size(277, 23);
             cmbArrivee.TabIndex = 34;
             cmbArrivee.Text = "Choisir une station";
             // 
             // grpRecherche1
             // 
+            grpRecherche1.Controls.Add(lblHoraireArrivee);
             grpRecherche1.Controls.Add(chkHoraireArrivee);
             grpRecherche1.Controls.Add(chkHoraireDepart);
             grpRecherche1.Controls.Add(dtpArrivee);
-            grpRecherche1.Controls.Add(lblHoraireArrivee);
             grpRecherche1.Controls.Add(lblHoraires);
             grpRecherche1.Controls.Add(lblHoraireDepart);
             grpRecherche1.Controls.Add(dtpDepart);
-            grpRecherche1.Location = new Point(3, 281);
+            grpRecherche1.Location = new Point(3, 211);
+            grpRecherche1.Margin = new Padding(3, 2, 3, 2);
             grpRecherche1.Name = "grpRecherche1";
-            grpRecherche1.Size = new Size(347, 157);
+            grpRecherche1.Padding = new Padding(3, 2, 3, 2);
+            grpRecherche1.Size = new Size(304, 118);
             grpRecherche1.TabIndex = 20;
             grpRecherche1.TabStop = false;
             grpRecherche1.Paint += grpRecherche1_Paint;
             // 
+            // lblHoraireArrivee
+            // 
+            lblHoraireArrivee.AutoSize = true;
+            lblHoraireArrivee.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHoraireArrivee.ForeColor = Color.FromArgb(15, 93, 70);
+            lblHoraireArrivee.Location = new Point(35, 85);
+            lblHoraireArrivee.Name = "lblHoraireArrivee";
+            lblHoraireArrivee.Size = new Size(104, 15);
+            lblHoraireArrivee.TabIndex = 31;
+            lblHoraireArrivee.Text = "Horaire d'arrivée :";
+            // 
             // chkHoraireArrivee
             // 
             chkHoraireArrivee.AutoSize = true;
-            chkHoraireArrivee.Location = new Point(29, 137);
+            chkHoraireArrivee.Location = new Point(14, 84);
+            chkHoraireArrivee.Margin = new Padding(3, 2, 3, 2);
             chkHoraireArrivee.Name = "chkHoraireArrivee";
-            chkHoraireArrivee.Size = new Size(101, 24);
+            chkHoraireArrivee.Size = new Size(15, 14);
             chkHoraireArrivee.TabIndex = 30;
-            chkHoraireArrivee.Text = "checkBox2";
             chkHoraireArrivee.UseVisualStyleBackColor = true;
+            chkHoraireArrivee.CheckedChanged += chkHoraireArrivee_CheckedChanged;
             // 
             // chkHoraireDepart
             // 
             chkHoraireDepart.AutoSize = true;
-            chkHoraireDepart.Location = new Point(29, 107);
+            chkHoraireDepart.Location = new Point(14, 50);
+            chkHoraireDepart.Margin = new Padding(3, 2, 3, 2);
             chkHoraireDepart.Name = "chkHoraireDepart";
-            chkHoraireDepart.Size = new Size(101, 24);
+            chkHoraireDepart.Size = new Size(15, 14);
             chkHoraireDepart.TabIndex = 29;
-            chkHoraireDepart.Text = "checkBox1";
             chkHoraireDepart.UseVisualStyleBackColor = true;
+            chkHoraireDepart.CheckedChanged += chkHoraireDepart_CheckedChanged;
             // 
             // dtpArrivee
             // 
@@ -542,28 +577,20 @@
             dtpArrivee.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpArrivee.CustomFormat = "\"HH:mm:SS\"";
             dtpArrivee.Format = DateTimePickerFormat.Time;
-            dtpArrivee.Location = new Point(203, 107);
-            dtpArrivee.Margin = new Padding(3, 4, 3, 4);
+            dtpArrivee.Location = new Point(178, 80);
             dtpArrivee.Name = "dtpArrivee";
             dtpArrivee.ShowUpDown = true;
-            dtpArrivee.Size = new Size(129, 27);
+            dtpArrivee.Size = new Size(113, 23);
             dtpArrivee.TabIndex = 27;
-            // 
-            // lblHoraireArrivee
-            // 
-            lblHoraireArrivee.Location = new Point(0, 0);
-            lblHoraireArrivee.Name = "lblHoraireArrivee";
-            lblHoraireArrivee.Size = new Size(114, 31);
-            lblHoraireArrivee.TabIndex = 28;
             // 
             // lblHoraires
             // 
             lblHoraires.AutoSize = true;
             lblHoraires.Font = new Font("Microsoft Sans Serif", 10.2F);
             lblHoraires.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraires.Location = new Point(16, 23);
+            lblHoraires.Location = new Point(14, 17);
             lblHoraires.Name = "lblHoraires";
-            lblHoraires.Size = new Size(84, 20);
+            lblHoraires.Size = new Size(70, 17);
             lblHoraires.TabIndex = 23;
             lblHoraires.Text = "Horaires :";
             // 
@@ -572,9 +599,9 @@
             lblHoraireDepart.AutoSize = true;
             lblHoraireDepart.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblHoraireDepart.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraireDepart.Location = new Point(29, 67);
+            lblHoraireDepart.Location = new Point(35, 50);
             lblHoraireDepart.Name = "lblHoraireDepart";
-            lblHoraireDepart.Size = new Size(130, 18);
+            lblHoraireDepart.Size = new Size(109, 15);
             lblHoraireDepart.TabIndex = 24;
             lblHoraireDepart.Text = "Horaire de départ :";
             // 
@@ -584,10 +611,11 @@
             dtpDepart.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpDepart.CustomFormat = "\"HH:mm:SS\"";
             dtpDepart.Format = DateTimePickerFormat.Time;
-            dtpDepart.Location = new Point(203, 60);
+            dtpDepart.Location = new Point(178, 45);
+            dtpDepart.Margin = new Padding(3, 2, 3, 2);
             dtpDepart.Name = "dtpDepart";
             dtpDepart.ShowUpDown = true;
-            dtpDepart.Size = new Size(129, 27);
+            dtpDepart.Size = new Size(113, 23);
             dtpDepart.TabIndex = 26;
             dtpDepart.Value = new DateTime(2025, 4, 29, 22, 31, 8, 0);
             dtpDepart.ValueChanged += dtpDepart_ValueChanged;
@@ -595,9 +623,10 @@
             // picHome
             // 
             picHome.Image = Properties.Resources.home;
-            picHome.Location = new Point(34, 0);
+            picHome.Location = new Point(30, 0);
+            picHome.Margin = new Padding(3, 2, 3, 2);
             picHome.Name = "picHome";
-            picHome.Size = new Size(27, 25);
+            picHome.Size = new Size(24, 19);
             picHome.SizeMode = PictureBoxSizeMode.Zoom;
             picHome.TabIndex = 56;
             picHome.TabStop = false;
@@ -607,8 +636,9 @@
             // 
             picRetour.Image = Properties.Resources.imgFlecheGauche;
             picRetour.Location = new Point(0, 0);
+            picRetour.Margin = new Padding(3, 2, 3, 2);
             picRetour.Name = "picRetour";
-            picRetour.Size = new Size(27, 25);
+            picRetour.Size = new Size(24, 19);
             picRetour.SizeMode = PictureBoxSizeMode.Zoom;
             picRetour.TabIndex = 23;
             picRetour.TabStop = false;
@@ -616,11 +646,12 @@
             // 
             // Recherche
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(382, 753);
+            ClientSize = new Size(334, 565);
             Controls.Add(pnlRecherche);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Recherche";
@@ -698,9 +729,9 @@
         private Label lblTemps;
         private PictureBox picDeuxPoints;
         private PictureBox picFlecheItineraire;
-        private Label lblHoraireArrivee;
         private DateTimePicker dtpArrivee;
         private CheckBox chkHoraireArrivee;
         private CheckBox chkHoraireDepart;
+        private Label lblHoraireArrivee;
     }
 }
