@@ -395,7 +395,6 @@ namespace application_metro
                     stationsChange.Remove(nom);
                 }
                 stationsChange.Add(nom, contenu);
-                Console.WriteLine($"[{nom}] -> Nom de station : {stationsChange[nom]}");
             }
             btnEnregistrement.Enabled = true;
         }
@@ -419,9 +418,6 @@ namespace application_metro
 
                     // Met à jour la latitude
                     coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
-
-                    // Affiche la mise à jour dans la console
-                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
                 }
 
                 // Active le bouton d'enregistrement
@@ -447,9 +443,6 @@ namespace application_metro
 
                     // Met à jour la longitude
                     coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
-
-                    // Affiche la mise à jour dans la console
-                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
                 }
 
                 // Active le bouton d'enregistrement
@@ -466,8 +459,6 @@ namespace application_metro
                 if (!string.IsNullOrEmpty(nom))
                 {
                     dureesChange[nom] = valeur;
-
-                    Console.WriteLine($"[{nom}] -> Durée modifiée : {valeur} minutes");
 
                     btnEnregistrement.Enabled = true;
                 }
@@ -490,11 +481,11 @@ namespace application_metro
         {
             if (mode == "Ajout")
             {
-                string nomLigne = txtNomLigne.Text;
+                string nom = ligneConcatenation(txtNomLigne.Text, (int)nudNumLigne.Value);
                 string couleur = txtCouleur.Text;
 
-                Serveur.AjoutLigne(nomLigne, couleur);
-                int numLigne = Serveur.idLigneGraceNom(nomLigne);
+                Serveur.AjoutLigne(nom, couleur);
+                int numLigne = Serveur.idLigneGraceNom(nom);
 
                 List<string> lstNomStation = new List<string>();
 
