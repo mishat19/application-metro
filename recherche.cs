@@ -16,6 +16,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.LinkLabel;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace application_metro
 {
@@ -65,6 +66,9 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
             hauteurInitialeGrpResultat = grpResultat.Height;
 
+            // On désactive l'horaire les DateTime tant qu'aucune checkbox n'est cochée
+            dtpDepart.Enabled = false;
+            dtpArrivee.Enabled = false;
 
             // Démarre serveur local + initialise WebView
             InitializeAsync();
@@ -217,14 +221,39 @@ namespace application_metro
             lblDepart2.Text = chemin.First().Nom;
             lblArrivee2.Text = chemin.Last().Nom;
 
-            // Heure actuelle comme heure de départ simulée
-            DateTime heureDepart = DateTime.Now;
-            int dureeTotale = distances[stationArrivee];
-            DateTime heureArrivee = heureDepart.AddSeconds(dureeTotale);
+            DateTime heureDepart;
+            DateTime heureArrivee;
+            int dureeTotale;
 
-            // Affichage de l'heure de départ et d'arrivée
-            lblTempsDepart.Text = heureDepart.ToString("HH:mm");
-            lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+
+            if (dtpDepart.Enabled == false && dtpArrivee.Enabled == false)
+            {
+                MessageBox.Show("Veuillez choisir si vous voulez calculer en fonction de l'heure de départ ou l'heure d'arriver");
+            }
+            if (dtpDepart.Enabled == true && dtpArrivee.Enabled == false)
+            {
+                // Si dtpDepart est activé, on calcule l'heure d'arrivée
+                heureDepart = dtpDepart.Value;
+                dureeTotale = distances[stationArrivee];
+                heureArrivee = heureDepart.AddSeconds(dureeTotale);
+
+                // Affichage de l'heure de départ et d'arrivée
+                lblTempsDepart.Text = heureDepart.ToString("HH:mm");
+                lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+            }
+            else
+            {
+                // Si dtpArrivee est activé, on calcule l'heure de départ
+                dureeTotale = distances[stationArrivee];
+                TimeSpan duree = TimeSpan.FromSeconds(dureeTotale);
+                heureArrivee = dtpArrivee.Value;
+                heureDepart = heureArrivee.Subtract(duree);
+
+                // Affichage de l'heure de départ et d'arrivée
+                lblTempsDepart.Text = heureDepart.ToString("HH:mm");
+                lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+            }
+
 
             // Affichage de la durée en minutes
             lblTemps.Text = $"{(int)(dureeTotale / 60)} min";
@@ -326,6 +355,51 @@ namespace application_metro
         private void grpResultat3_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
+        }
+
+        private void dtpDepart_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpArrivee_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkHoraireDepart_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHoraireDepart.Checked)
+            {
+                if (chkHoraireArrivee.Checked)
+                {
+                    chkHoraireArrivee.Checked = false;
+                }
+                dtpDepart.Enabled = true;
+                dtpArrivee.Enabled = false;
+            }
+            else
+            {
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = false;
+            }
+        }
+        private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkHoraireArrivee.Checked)
+            {
+                if (chkHoraireDepart.Checked)
+                {
+                    chkHoraireDepart.Checked = false;
+                }
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = true;
+            }
+            else
+            {
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = false;
+            }
         }
     }
 }
