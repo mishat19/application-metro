@@ -65,6 +65,8 @@
             cmbDepart = new ComboBox();
             cmbArrivee = new ComboBox();
             grpRecherche1 = new GroupBox();
+            chkHoraireArrivee = new CheckBox();
+            chkHoraireDepart = new CheckBox();
             dtpArrivee = new DateTimePicker();
             lblHoraireArrivee = new Label();
             lblHoraires = new Label();
@@ -102,7 +104,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(13, 32767);
+            grpTrajet.Location = new Point(13, 32672);
             grpTrajet.Margin = new Padding(3, 4, 3, 4);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Size = new Size(0, 283);
@@ -115,7 +117,7 @@
             btnDetails.FlatStyle = FlatStyle.Flat;
             btnDetails.Font = new Font("Microsoft Sans Serif", 10.2F);
             btnDetails.ForeColor = Color.White;
-            btnDetails.Location = new Point(105, 179);
+            btnDetails.Location = new Point(105, 0);
             btnDetails.Name = "btnDetails";
             btnDetails.Size = new Size(126, 28);
             btnDetails.TabIndex = 17;
@@ -127,7 +129,7 @@
             lblDuree.AutoSize = true;
             lblDuree.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblDuree.ForeColor = Color.FromArgb(205, 33, 42);
-            lblDuree.Location = new Point(275, 127);
+            lblDuree.Location = new Point(275, 0);
             lblDuree.Name = "lblDuree";
             lblDuree.Size = new Size(58, 22);
             lblDuree.TabIndex = 24;
@@ -138,7 +140,7 @@
             lblLigne.AutoSize = true;
             lblLigne.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblLigne.ForeColor = Color.FromArgb(205, 33, 42);
-            lblLigne.Location = new Point(0, 127);
+            lblLigne.Location = new Point(0, 0);
             lblLigne.Name = "lblLigne";
             lblLigne.Size = new Size(74, 22);
             lblLigne.TabIndex = 23;
@@ -147,7 +149,7 @@
             // lblSeparation2
             // 
             lblSeparation2.AutoSize = true;
-            lblSeparation2.Location = new Point(160, 61);
+            lblSeparation2.Location = new Point(160, 0);
             lblSeparation2.Name = "lblSeparation2";
             lblSeparation2.Size = new Size(31, 20);
             lblSeparation2.TabIndex = 22;
@@ -158,7 +160,7 @@
             lblHeureArrivee.AutoSize = true;
             lblHeureArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblHeureArrivee.ForeColor = Color.FromArgb(205, 33, 42);
-            lblHeureArrivee.Location = new Point(197, 61);
+            lblHeureArrivee.Location = new Point(197, 0);
             lblHeureArrivee.Name = "lblHeureArrivee";
             lblHeureArrivee.Size = new Size(89, 16);
             lblHeureArrivee.TabIndex = 21;
@@ -166,7 +168,7 @@
             // 
             // picPlus
             // 
-            picPlus.Location = new Point(143, 223);
+            picPlus.Location = new Point(143, 0);
             picPlus.Name = "picPlus";
             picPlus.Size = new Size(48, 53);
             picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
@@ -178,7 +180,7 @@
             lblHeureDepart.AutoSize = true;
             lblHeureDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblHeureDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblHeureDepart.Location = new Point(57, 61);
+            lblHeureDepart.Location = new Point(57, 0);
             lblHeureDepart.Name = "lblHeureDepart";
             lblHeureDepart.Size = new Size(86, 16);
             lblHeureDepart.TabIndex = 20;
@@ -187,7 +189,7 @@
             // lblSeparation
             // 
             lblSeparation.AutoSize = true;
-            lblSeparation.Location = new Point(160, 33);
+            lblSeparation.Location = new Point(160, 0);
             lblSeparation.Name = "lblSeparation";
             lblSeparation.Size = new Size(31, 20);
             lblSeparation.TabIndex = 19;
@@ -198,7 +200,7 @@
             lblStationArrivee.AutoSize = true;
             lblStationArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
             lblStationArrivee.ForeColor = Color.FromArgb(205, 33, 42);
-            lblStationArrivee.Location = new Point(197, 33);
+            lblStationArrivee.Location = new Point(197, 0);
             lblStationArrivee.Name = "lblStationArrivee";
             lblStationArrivee.Size = new Size(94, 16);
             lblStationArrivee.TabIndex = 18;
@@ -209,7 +211,7 @@
             lblStationDepart.AutoSize = true;
             lblStationDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStationDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblStationDepart.Location = new Point(48, 33);
+            lblStationDepart.Location = new Point(48, 0);
             lblStationDepart.Name = "lblStationDepart";
             lblStationDepart.Size = new Size(92, 16);
             lblStationDepart.TabIndex = 17;
@@ -500,6 +502,8 @@
             // 
             // grpRecherche1
             // 
+            grpRecherche1.Controls.Add(chkHoraireArrivee);
+            grpRecherche1.Controls.Add(chkHoraireDepart);
             grpRecherche1.Controls.Add(dtpArrivee);
             grpRecherche1.Controls.Add(lblHoraireArrivee);
             grpRecherche1.Controls.Add(lblHoraires);
@@ -512,17 +516,37 @@
             grpRecherche1.TabStop = false;
             grpRecherche1.Paint += grpRecherche1_Paint;
             // 
+            // chkHoraireArrivee
+            // 
+            chkHoraireArrivee.AutoSize = true;
+            chkHoraireArrivee.Location = new Point(29, 137);
+            chkHoraireArrivee.Name = "chkHoraireArrivee";
+            chkHoraireArrivee.Size = new Size(101, 24);
+            chkHoraireArrivee.TabIndex = 30;
+            chkHoraireArrivee.Text = "checkBox2";
+            chkHoraireArrivee.UseVisualStyleBackColor = true;
+            // 
+            // chkHoraireDepart
+            // 
+            chkHoraireDepart.AutoSize = true;
+            chkHoraireDepart.Location = new Point(29, 107);
+            chkHoraireDepart.Name = "chkHoraireDepart";
+            chkHoraireDepart.Size = new Size(101, 24);
+            chkHoraireDepart.TabIndex = 29;
+            chkHoraireDepart.Text = "checkBox1";
+            chkHoraireDepart.UseVisualStyleBackColor = true;
+            // 
             // dtpArrivee
             // 
             dtpArrivee.CalendarFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpArrivee.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpArrivee.CustomFormat = "\"HH:mm:SS\"";
             dtpArrivee.Format = DateTimePickerFormat.Time;
-            dtpArrivee.Location = new Point(232, 145);
+            dtpArrivee.Location = new Point(203, 107);
             dtpArrivee.Margin = new Padding(3, 4, 3, 4);
             dtpArrivee.Name = "dtpArrivee";
             dtpArrivee.ShowUpDown = true;
-            dtpArrivee.Size = new Size(147, 27);
+            dtpArrivee.Size = new Size(129, 27);
             dtpArrivee.TabIndex = 27;
             // 
             // lblHoraireArrivee
@@ -676,5 +700,7 @@
         private PictureBox picFlecheItineraire;
         private Label lblHoraireArrivee;
         private DateTimePicker dtpArrivee;
+        private CheckBox chkHoraireArrivee;
+        private CheckBox chkHoraireDepart;
     }
 }
