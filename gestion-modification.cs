@@ -246,7 +246,7 @@ namespace application_metro
                     //Dernière station donc pas de Segment
                     nud.Enabled = false;
 
-                    if(segments == null && mode == "Ajout")
+                    if (segments == null && mode == "Ajout")
                     {
                         nud.Enabled = true;
                     }
@@ -287,7 +287,7 @@ namespace application_metro
                 }
                 else
                 {
-                    txt3.Name = $"txtCoordonneeLa{i}";
+                    txt3.Name = $"txtCoordonneeLon{i}";
                     txt3.PlaceholderText = $"Longitude{i}";
                 }
 
@@ -440,7 +440,6 @@ namespace application_metro
                     Serveur.ModifInfosLigne(numeroLigne, nom, txtCouleur.Text);
                 }
                 ;
-
                 if (nudStations)
                 {
                     //A faire
@@ -466,18 +465,7 @@ namespace application_metro
         Dictionary<string, string> stationsChange = new Dictionary<string, string>();
         Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
 
-        private void nudNumLigne_ValueChanged(object sender, EventArgs e)
-        {
-            nudChange = true;
-            btnEnregistrement.Enabled = true;
-        }
-
-        private void txtCouleur_TextChanged(object sender, EventArgs e)
-        {
-            couleurChange = true;
-            btnEnregistrement.Enabled = true;
-        }
-
+        //Vérifie le texte des noms de stations
         private void Txt_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
@@ -486,10 +474,12 @@ namespace application_metro
                 string nom = txt.Name;
                 string contenu = txt.Text;
                 stationsChange[nom] = contenu;
+                Console.WriteLine($"[{nom}] -> Nom de station : {stationsChange[nom]}");
             }
             btnEnregistrement.Enabled = true;
         }
 
+        //Vérifie le texte de la latitude
         private void Txt2_TextChanged(object sender, EventArgs e)
         {
             TextBox txt = sender as TextBox;
@@ -500,15 +490,21 @@ namespace application_metro
 
                 if (decimal.TryParse(contenu, out decimal latitude))
                 {
-                    if (coordonneesChange.ContainsKey(nom))
+                    // Vérifie si l'entrée existe déjà
+                    if (coordonneesChange.TryGetValue(nom, out var currentValue))
                     {
-                        coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
+                        // Met à jour uniquement la latitude
+                        coordonneesChange[nom] = (latitude, currentValue.lon);
                     }
                     else
                     {
+                        // Crée une nouvelle entrée avec la longitude par défaut à 0
                         coordonneesChange[nom] = (latitude, 0);
                     }
+
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
                 }
+
                 btnEnregistrement.Enabled = true;
             }
         }
@@ -523,18 +519,25 @@ namespace application_metro
 
                 if (decimal.TryParse(contenu, out decimal longitude))
                 {
-                    if (coordonneesChange.ContainsKey(nom))
+                    // Vérifie si l'entrée existe déjà
+                    if (coordonneesChange.TryGetValue(nom, out var currentValue))
                     {
-                        coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
+                        // Met à jour uniquement la longitude
+                        coordonneesChange[nom] = (currentValue.lat, longitude);
                     }
                     else
                     {
+                        // Crée une nouvelle entrée avec la latitude par défaut à 0
                         coordonneesChange[nom] = (0, longitude);
                     }
+
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
                 }
+
                 btnEnregistrement.Enabled = true;
             }
         }
+
 
         private void picRetour_Click(object sender, EventArgs e)
         {
@@ -575,6 +578,11 @@ namespace application_metro
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
             nudStations = true;
+        }
+
+        private void txtCouleur_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
