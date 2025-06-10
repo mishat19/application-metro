@@ -40,6 +40,7 @@ namespace application_metro
             // Affiche "Se connecter" ou "Déconnexion" selon le status de connexion
             btnRetour.Text = texteBouton;
 
+            //Si l'utilisateur est un admin, affiche le bouton Gestion des données
             btnAdmin.Visible = estConnecte==1;
 
             // A la fermeture de la fenêtre, exécute la méthode FormClosing de Ouverture
