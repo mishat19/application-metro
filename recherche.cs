@@ -58,7 +58,6 @@ namespace application_metro
 
 
             pnlRecherche.Controls.Add(webView);
-            pnlRecherche.Controls.Add(flpResultat);
             pnlRecherche.Controls.Add(grpRecherche);
 
 
@@ -149,11 +148,8 @@ namespace application_metro
             lblTempsArrivee.Font = new Font(D, 9);
             lblTempsDepart.Font = new Font(D, 9);
             lblIntituleNumLigne.Font = new Font(G, 11);
-            lblIntituleHeures.Font = new Font(G, 11);
-            lblSeparation1.Font = new Font(G, 11);
-            lblStationArrTrajet.Font = new Font(G, 11);
-            lblNumLigneResultat.Font = new Font(D, 9);
-            lblTemps.Font = new Font(D, 9);
+            lblNumLigneResultat.Font = new Font(G, 11);
+            lblTemps.Font = new Font(G, 11);
             cmbArrivee.Font = new Font(D, 9);
             cmbDepart.Font = new Font(D, 9);
             lblTrajet.Font = new Font(G, 11, FontStyle.Underline);
@@ -177,7 +173,7 @@ namespace application_metro
             this.Close();
         }
 
-        private void grpResultat_Paint(object sender, PaintEventArgs e)
+        private void GrpResultat_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
@@ -276,9 +272,16 @@ namespace application_metro
             }
 
             // On rend visible le panneau des résultats
+
             flpResultat.Visible = true;
             lblTrajet.Visible = true;
+
+            flpResultat.Location = new Point(
+                ((this.ClientSize.Width - flpResultat.Width) / 2) - 10,
+                lblTrajet.Bottom + 10
+            );
         }
+
 
         private bool detailsVisible = false;
 
@@ -305,10 +308,24 @@ namespace application_metro
                 grpResultat.Height = hauteurInitialeGrpResultat;
             }
 
-            flpResultat.PerformLayout();
         }
 
-        private void grpResultatItineraire_Paint(object sender, PaintEventArgs e)
+        private void grpResultat_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpResultat1_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
+        }
+
+        private void grpResultat2_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
+        }
+
+        private void grpResultat3_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
         }
