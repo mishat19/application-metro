@@ -34,6 +34,9 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
+            //Affiche "Se Connecter" ou "Déconnexion" selon si un utilisateur s'est connecté ou non
+            btnRetour.Text = Serveur.UtilisateurConnecte();
+
             // A la fermeture de la fenêtre, exécute la méthode FormClosing de Ouverture
             this.FormClosing += Ouverture_FormClosing;
         }

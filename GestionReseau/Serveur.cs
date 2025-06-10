@@ -144,9 +144,12 @@ namespace GestionReseau
         /// Status de connexion de l'utilisateur
         /// </summary>
         /// <returns>Se connecter / Déconnexion</returns>
-        public static string UtilisateurConnecte()
+        public static (string, bool) UtilisateurConnecte()
         {
-            string requete = "SELECT Status FROM Utilisateur";
+            string connexionText = "Se connecter";
+            string deconnexionText = "Déconnexion";
+
+            string requete = "SELECT Status, Admin FROM Utilisateur";
 
             using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             using (MySqlDataReader rdr = cmd.ExecuteReader())
@@ -155,10 +158,10 @@ namespace GestionReseau
                 {
                     int status = rdr.GetInt32("Status");
                     if (status == 1)
-                        return "Déconnexion";
+                        return (deconnexionText, true);
                 }
             }
-            return "Se connecter";
+            return (connexionText, true);
         }
 
         /// <summary>
