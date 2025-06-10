@@ -83,6 +83,7 @@
             txtMdp.ForeColor = Color.FromArgb(205, 33, 42);
             txtMdp.Location = new Point(20, 57);
             txtMdp.Name = "txtMdp";
+            txtMdp.PasswordChar = '*';
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(318, 22);
             txtMdp.TabIndex = 5;

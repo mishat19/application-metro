@@ -141,9 +141,7 @@ namespace application_metro
             lblDepart.Font = new Font(G, 11);
             lblArrivee.Font = new Font(G, 11);
             lblHoraireDepart.Font = new Font(G, 9);
-            lblHoraireArrivée.Font = new Font(G, 9);
             lblHoraires.Font = new Font(G, 11, FontStyle.Underline);
-            dtpArrivee.Font = new Font(D, 9);
             dtpDepart.Font = new Font(D, 9);
             btnRecherche.Font = new Font(D, 14);
             lblDepart2.Font = new Font(D, 9);

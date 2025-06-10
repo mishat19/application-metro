@@ -26,7 +26,7 @@ namespace GestionReseau
             string mdp = "mdp";
             string bd = "baseb3";
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; // Ligne de connexion
+            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; //Ligne de connexion
 
             connexion = new MySqlConnection(chaineConnexion);
 
@@ -86,7 +86,7 @@ namespace GestionReseau
 
                 try
                 {
-                    object result = cmd.ExecuteScalar(); // retourne la 1ère cellule de la 1ère ligne
+                    object result = cmd.ExecuteScalar(); //Retourne la 1ère cellule de la 1ère ligne
                     //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
                     if(count > 0)
@@ -386,6 +386,7 @@ namespace GestionReseau
         public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
+            TimeSpan heure = date.TimeOfDay;
 
             string requete = @"
             SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
@@ -400,7 +401,6 @@ namespace GestionReseau
 
             using (var rdr = cmd.ExecuteReader())
             {
-
                 while (rdr.Read())
                 {
                     TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
@@ -422,7 +422,12 @@ namespace GestionReseau
 
                     while (horaireActuel < horaireFin)
                     {
-                        horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
+                        Console.WriteLine(horaireActuel.ToString());
+                        Console.WriteLine(heure.ToString());
+                        if(horaireActuel > heure)
+                        {
+                            horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
+                        }
                         horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
                     }
                 }

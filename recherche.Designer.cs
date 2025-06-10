@@ -69,12 +69,12 @@
             chkHoraireArrivee = new CheckBox();
             chkHoraireDepart = new CheckBox();
             lblHoraires = new Label();
-            lblHoraireArrivée = new Label();
-            dtpArrivee = new DateTimePicker();
             lblHoraireDepart = new Label();
             dtpDepart = new DateTimePicker();
             picHome = new PictureBox();
             picRetour = new PictureBox();
+            lblHoraireArrivee = new Label();
+            dtpArrivee = new DateTimePicker();
             grpTrajet.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             pnlRecherche.SuspendLayout();
@@ -315,8 +315,8 @@
             // 
             // picDeuxPoints
             // 
-            picDeuxPoints.Location = new Point(0, 0);
-            picDeuxPoints.Margin = new Padding(3, 2, 3, 2);
+            picDeuxPoints.Image = Properties.Resources.deuxpoints;
+            picDeuxPoints.Location = new Point(157, 109);
             picDeuxPoints.Name = "picDeuxPoints";
             picDeuxPoints.Size = new Size(88, 38);
             picDeuxPoints.TabIndex = 0;
@@ -528,11 +528,11 @@
             // 
             // grpRecherche1
             // 
-            grpRecherche1.Controls.Add(chkHoraireArrivee);
-            grpRecherche1.Controls.Add(chkHoraireDepart);
             grpRecherche1.Controls.Add(lblHoraires);
             grpRecherche1.Controls.Add(lblHoraireArrivée);
             grpRecherche1.Controls.Add(dtpArrivee);
+            grpRecherche1.Controls.Add(lblHoraireArrivee);
+            grpRecherche1.Controls.Add(lblHoraires);
             grpRecherche1.Controls.Add(lblHoraireDepart);
             grpRecherche1.Controls.Add(dtpDepart);
             grpRecherche1.Location = new Point(3, 211);
@@ -580,9 +580,9 @@
             lblHoraireArrivée.AutoSize = true;
             lblHoraireArrivée.Font = new Font("Microsoft Sans Serif", 9F);
             lblHoraireArrivée.ForeColor = Color.FromArgb(15, 93, 70);
-            lblHoraireArrivée.Location = new Point(24, 86);
+            lblHoraireArrivée.Location = new Point(16, 115);
             lblHoraireArrivée.Name = "lblHoraireArrivée";
-            lblHoraireArrivée.Size = new Size(104, 15);
+            lblHoraireArrivée.Size = new Size(124, 18);
             lblHoraireArrivée.TabIndex = 25;
             lblHoraireArrivée.Text = "Horaire d'arrivée :";
             // 
@@ -592,13 +592,11 @@
             dtpArrivee.CalendarForeColor = Color.FromArgb(205, 33, 42);
             dtpArrivee.CustomFormat = "\"HH:mm:SS\"";
             dtpArrivee.Format = DateTimePickerFormat.Time;
-            dtpArrivee.Location = new Point(178, 82);
-            dtpArrivee.Margin = new Padding(3, 2, 3, 2);
+            dtpArrivee.Location = new Point(203, 109);
             dtpArrivee.Name = "dtpArrivee";
             dtpArrivee.ShowUpDown = true;
-            dtpArrivee.Size = new Size(113, 23);
+            dtpArrivee.Size = new Size(129, 27);
             dtpArrivee.TabIndex = 27;
-            dtpArrivee.ValueChanged += dtpArrivee_ValueChanged;
             // 
             // lblHoraireDepart
             // 
@@ -649,6 +647,30 @@
             picRetour.TabIndex = 23;
             picRetour.TabStop = false;
             picRetour.Click += picRetour_Click;
+            // 
+            // lblHoraireArrivee
+            // 
+            lblHoraireArrivee.AutoSize = true;
+            lblHoraireArrivee.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHoraireArrivee.ForeColor = Color.FromArgb(15, 93, 70);
+            lblHoraireArrivee.Location = new Point(16, 108);
+            lblHoraireArrivee.Name = "lblHoraireArrivee";
+            lblHoraireArrivee.Size = new Size(130, 18);
+            lblHoraireArrivee.TabIndex = 27;
+            lblHoraireArrivee.Text = "Horaire de départ :";
+            // 
+            // dtpArrivee
+            // 
+            dtpArrivee.CalendarFont = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpArrivee.CalendarForeColor = Color.FromArgb(205, 33, 42);
+            dtpArrivee.CustomFormat = "\"HH:mm:SS\"";
+            dtpArrivee.Format = DateTimePickerFormat.Time;
+            dtpArrivee.Location = new Point(203, 102);
+            dtpArrivee.Name = "dtpArrivee";
+            dtpArrivee.ShowUpDown = true;
+            dtpArrivee.Size = new Size(129, 27);
+            dtpArrivee.TabIndex = 28;
+            dtpArrivee.Value = new DateTime(2025, 4, 29, 22, 31, 8, 0);
             // 
             // Recherche
             // 
@@ -713,8 +735,6 @@
         private GroupBox grpRecherche;
         private GroupBox grpRecherche1;
         private Label lblHoraires;
-        private Label lblHoraireArrivée;
-        private DateTimePicker dtpArrivee;
         private Label lblHoraireDepart;
         private DateTimePicker dtpDepart;
         private GroupBox grpRecherche2;
@@ -738,7 +758,5 @@
         private Label lblTemps;
         private PictureBox picDeuxPoints;
         private PictureBox picFlecheItineraire;
-        private CheckBox chkHoraireDepart;
-        private CheckBox chkHoraireArrivee;
     }
 }
