@@ -235,13 +235,14 @@ namespace application_metro
                     }
                     else
                     {
-                        nud.Value = 0; // ou tu peux mettre -1 pour signaler erreur, à toi de voir
+                        nud.Value = 0; //si aucune durée
                     }
                 }
                 else
                 {
-                    // Dernière station : pas de segment après → on grise le nud
-                    nud.Enabled = false;
+                    if(mode != "Ajout")
+                        //Dernière station donc pas de Segment
+                        nud.Enabled = false;
                 }
 
                 //TextBox coordonnees
