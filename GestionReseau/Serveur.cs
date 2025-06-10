@@ -15,6 +15,10 @@ namespace GestionReseau
     {
         private static MySqlConnection? connexion;
 
+        /// <summary>
+        /// Fonction permettant l'ouverture de la base de donnée
+        /// </summary>
+        /// <returns>Confirmation de l'ouverture</returns>
         public static bool OuvertureConnexion()
         {
             string serveur = "10.1.139.236";
@@ -22,7 +26,7 @@ namespace GestionReseau
             string mdp = "mdp";
             string bd = "baseb3";
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";
+            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; // Ligne de connexion
 
             connexion = new MySqlConnection(chaineConnexion);
 
@@ -39,6 +43,10 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Fonction permettant la fermeture de la bd
+        /// </summary>
+        /// <returns>Confirmation de la fermeture</returns>
         public static bool FermetureConnexion()
         {
             try
@@ -59,6 +67,12 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Récupère le nombre d'utilisateur
+        /// </summary>
+        /// <param name="email">Email de l'utilisateur</param>
+        /// <param name="mdp">Mot de passe de l'utilisateur</param>
+        /// <returns>True si l'utilisateur est connecté, false sinon</returns>
         public static bool UtilisateurConnexion(string email, string mdp)
         {
             string requete = $"SELECT Count(*) FROM Utilisateur WHERE Email = @Email AND Mdp = @Mdp";
@@ -90,6 +104,12 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Fonction permettant la connexion et la deconnexion d'un utilsiateur
+        /// </summary>
+        /// <param name="email">Email de l'utilisateur</param>
+        /// <param name="mdp">Mot de passe</param>
+        /// <param name="action">0 = Deconnexion / 1 = Connexion</param>
         public static void StatusUtilisateur(string email, string mdp, int action)
         {
             if (action == 0)
@@ -119,6 +139,11 @@ namespace GestionReseau
                 }
             }
         }
+
+        /// <summary>
+        /// Status de connexion de l'utilisateur
+        /// </summary>
+        /// <returns>Se connecter / Déconnexion</returns>
         public static string UtilisateurConnecte()
         {
             string requete = "SELECT Status FROM Utilisateur";
@@ -136,7 +161,9 @@ namespace GestionReseau
             return "Se connecter";
         }
 
-        //Fonction de test
+        /// <summary>
+        /// Permet la deconnexion de tout les utilisateurs
+        /// </summary>
         public static void DeconnexionUtilisateurs()
         {
             List<(string email, string mdp)> utilisateurs = new List<(string, string)>();
@@ -150,12 +177,10 @@ namespace GestionReseau
                     utilisateurs.Add((rdr.GetString("Email"), rdr.GetString("Mdp")));
                 }
             }
-            //Console.WriteLine($"Déconnexion de {utilisateurs.Count} utilisateurs.");
 
             //Maj après fermeture reader
             foreach (var (email, mdp) in utilisateurs)
             {
-                //Console.WriteLine($"Déconnexion : {email}, {mdp}");
                 string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
 
                 using (MySqlCommand cmd2 = new MySqlCommand(requete, connexion))
@@ -169,6 +194,16 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Fonction pour inscrire un utilisateur
+        /// </summary>
+        /// <param name="nom">Nom de l'utilisateur</param>
+        /// <param name="prenom">Prénom de l'utilisateur</param>
+        /// <param name="email">Email de l'utilisateur</param>
+        /// <param name="mdp">Mot de passe de l'utilisateur</param>
+        /// <param name="dateInscription">Date d'inscription de l'utilisateur</param>
+        /// <param name="dateNaissance">Date de naissance de l'utilisateur</param>
+        /// <param name="admin">Si l'utilisateur est administrateur ou non</param>
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
         {
             string requete = @"INSERT INTO Utilisateur 
@@ -198,11 +233,14 @@ namespace GestionReseau
             }
         }
 
+        /// <summary>
+        /// Récupère la liste des lignes de métro et leurs informations associées.
+        /// </summary>
+        /// <returns>Retourne la liste</returns>
         public static ListeLignes Lignes()
         {
             ListeLignes listeLignes = new ListeLignes();
             string requete = $"SELECT * FROM InfoLigne INNER JOIN Ligne ON InfoLigne.NumLigne = Ligne.NumLigne";
-            //Console.WriteLine(requete);
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -265,6 +303,11 @@ namespace GestionReseau
             return listeLignes;
         }
 
+        /// <summary>
+        /// Récupère les coordonnées GPS des stations d'une ligne donnée.
+        /// </summary>
+        /// <param name="stations">Liste des stations</param>
+        /// <returns>Retourne les coordonnées de toutes les stations</returns>
         public static List<List<decimal>> CoordonneesStationsLigne(List<string> stations)
         {
             List<List<decimal>> toutes = new List<List<decimal>>();
@@ -307,6 +350,11 @@ namespace GestionReseau
             return lignes;
         }
 
+        /// <summary>
+        /// Récupère la liste des stations d'une ligne donnée.
+        /// </summary>
+        /// <param name="nomLigne">Nom de la ligne</param>
+        /// <returns>Retourne le nom de la ligne</returns>
         public static List<string> StationsParLigne(string nomLigne)
         {
             List<string> stations = new List<string>();
@@ -389,10 +437,9 @@ namespace GestionReseau
         }
 
         /// <summary>
-        /// Permet de supprimer une station a partir du numero de la ligne et du nom de la station
+        /// Supprime une information de ligne dans la base de données.
         /// </summary>
-        /// <param name="nomLigne"></param>
-        /// <param name="nomStation"></param>
+        /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUneInfoLigne(int numLigne)
         {
             string requete = @"DELETE FROM InfoLigne WHERE NumLigne = @numLigne";
@@ -402,37 +449,14 @@ namespace GestionReseau
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Supprime une station et ses segments associés d'une ligne spécifique dans la base de données.
+        /// </summary>
+        /// <param name="nomLigne">Nom de la ligne</param>
+        /// <param name="nomStation">Nom de la station</param>
         public static void SupprimerUneStation(string nomLigne, string nomStation)
         {
-            string requeteIdStation = @"SELECT st.NumStation
-            FROM Station st
-            JOIN Segment seg ON st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB
-            JOIN Ligne l ON seg.NumSegment = l.NumSegment
-            JOIN InfoLigne il ON l.NumLigne = il.NumLigne
-            WHERE st.NomStation = @nomStation AND il.Nom = @nomLigne
-            LIMIT 1";
-
-            MySqlCommand cmd1 = new MySqlCommand(requeteIdStation, connexion);
-            cmd1.Parameters.AddWithValue("@nomLigne", nomLigne);
-            cmd1.Parameters.AddWithValue("@nomStation", nomStation);
-
-            object resultat = cmd1.ExecuteScalar();
-
-            if (resultat == null)
-                return;
-
-            int idStation = Convert.ToInt32(resultat);
-
-            string requeteSupprimerLigne = @"DELETE FROM Ligne
-            WHERE NumSegment IN (
-                SELECT NumSegment
-                FROM Segment
-                WHERE NumStationA = @NumStation OR NumStationB = @NumStation
-            )";
-
-            MySqlCommand cmdSupprimerLigne = new MySqlCommand(requeteSupprimerLigne, connexion);
-            cmdSupprimerLigne.Parameters.AddWithValue("@NumStation", idStation);
-            cmdSupprimerLigne.ExecuteNonQuery();
+            int idStation = idStationGraceNom(nomStation);
 
             string requeteSupprimerSegment = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
             MySqlCommand cmd2 = new MySqlCommand(requeteSupprimerSegment, connexion);
@@ -445,12 +469,11 @@ namespace GestionReseau
             cmd3.ExecuteNonQuery();
         }
 
-
         /// <summary>
         /// Ajoute une ligne dans la base de données
         /// </summary>
-        /// <param name="nomLigne"></param>
-        /// <param name="couleur"></param>
+        /// <param name="nomLigne">Nom de la ligne</param>
+        /// <param name="couleur">Couleur de la ligne</param>
         public static void AjoutLigne(string nomLigne, string couleur)
         {
             string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
@@ -593,7 +616,7 @@ namespace GestionReseau
         /// <summary>
         /// Récupère l'ID d'une ligne à partir de son nom.
         /// </summary>
-        /// <param name="nom"></param>
+        /// <param name="nom">Nom de la ligne</param>
         /// <returns>Retourne l'ID </returns>
         public static int idLigneGraceNom(string nom)
         {
@@ -608,7 +631,7 @@ namespace GestionReseau
         /// <summary>
         /// Récupère l'ID d'une station à partir de son nom.
         /// </summary>
-        /// <param name="nom"></param>
+        /// <param name="nom">Nom de la station</param>
         /// <returns>Retourne l'ID de la station</returns>
         public static int idStationGraceNom(string nom)
         {
@@ -677,6 +700,10 @@ namespace GestionReseau
             cmd.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// Liste des stations
+        /// </summary>
+        /// <returns>Liste des stations en fonction du nom</returns>
         public static List<string> ListeDesStations()
         {
             List<string> stations = new List<string>();
@@ -693,15 +720,19 @@ namespace GestionReseau
             return stations;
         }
 
+        /// <summary>
+        /// Récupère la durée des segments d'une ligne spécifique.
+        /// </summary>
+        /// <param name="numLigne">Numéro de la ligne</param>
+        /// <returns>Retourne la liste de durée des segments d'une ligne</returns>
         public static List<(string stationDepart, string stationArrivee, int duree)> DureeSegmentsLigne(int numLigne)
         {
             List<(string, string, int)> segmentsLigne = new List<(string, string, int)>();
 
             string requete = @"
-                SELECT 
-                    s.NumStationA, s.NumStationB, s.DureeSegment,
-                    sa.NomStation AS NomStationA,
-                    sb.NomStation AS NomStationB
+                SELECT s.NumStationA, s.NumStationB, s.DureeSegment,
+                sa.NomStation AS NomStationA,
+                sb.NomStation AS NomStationB
                 FROM Ligne l
                 JOIN Segment s ON l.NumSegment = s.NumSegment
                 JOIN Station sa ON s.NumStationA = sa.NumStation
@@ -730,9 +761,10 @@ namespace GestionReseau
             return segmentsLigne;
         }
 
-
-
-
+        /// <summary>
+        /// Récupère les données du graphe, incluant les stations et les segments.
+        /// </summary>
+        /// <returns>Retourne les données du graphe</returns>
         public static (Dictionary<int, Station> stations, List<(int idA, int idB, int duree, int numLigne)> segments) ObtenirDonneesGraphe()
         {
             Dictionary<int, Station> stations = new Dictionary<int, Station>();
@@ -770,6 +802,14 @@ namespace GestionReseau
             }
 
             return (stations, segments);
+        }
+
+        public static void SupprimerUnSegment(int idStation)
+        {
+            string requete = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@nomStation", idStation);
+            cmd.ExecuteNonQuery();
         }
     }
 }
