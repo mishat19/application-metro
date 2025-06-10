@@ -369,37 +369,37 @@ namespace application_metro
 
         private void chkHoraireDepart_CheckedChanged(object sender, EventArgs e)
         {
-            //if (chkHoraireDepart.Checked)
-            //{
-            //    if (chkHoraireArrivee.Checked)
-            //    {
-            //        chkHoraireArrivee.Checked = false;
-            //    }
-            //    dtpDepart.Enabled = true;
-            //    dtpArrivee.Enabled = false;
-            //}
-            //else
-            //{
-            //    dtpDepart.Enabled = false;
-            //    dtpArrivee.Enabled = false;
-            //}
+            if (chkHoraireDepart.Checked)
+            {
+                if (chkHoraireArrivee.Checked)
+                {
+                    chkHoraireArrivee.Checked = false;
+                }
+                dtpDepart.Enabled = true;
+                dtpArrivee.Enabled = false;
+            }
+            else
+            {
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = false;
+            }
         }
         private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
         {
-            //if (chkHoraireArrivee.Checked)
-            //{
-            //    if (chkHoraireDepart.Checked)
-            //    {
-            //        chkHoraireDepart.Checked = false;
-            //    }
-            //    dtpDepart.Enabled = false;
-            //    dtpArrivee.Enabled = true;
-            //}
-            //else
-            //{
-            //    dtpDepart.Enabled = false;
-            //    dtpArrivee.Enabled = false;
-            //}
+            if (chkHoraireArrivee.Checked)
+            {
+                if (chkHoraireDepart.Checked)
+                {
+                    chkHoraireDepart.Checked = false;
+                }
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = true;
+            }
+            else
+            {
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = false;
+            }
         }
     }
 }
