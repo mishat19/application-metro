@@ -34,8 +34,11 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
-            //Affiche "Se Connecter" ou "Déconnexion" selon si un utilisateur s'est connecté ou non
-            btnRetour.Text = Serveur.UtilisateurConnecte();
+            // Récupère le status de l'utilisateur (Se connecter ou Déconnexion) et s'il est admin
+            (string texteBouton, bool estConnecte) = Serveur.UtilisateurConnecte();
+
+            // Affiche "Se connecter" ou "Déconnexion" selon le status de connexion
+            btnRetour.Text = texteBouton;
 
             // A la fermeture de la fenêtre, exécute la méthode FormClosing de Ouverture
             this.FormClosing += Ouverture_FormClosing;

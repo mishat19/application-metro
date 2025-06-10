@@ -157,11 +157,19 @@ namespace GestionReseau
                 while (rdr.Read())
                 {
                     int status = rdr.GetInt32("Status");
-                    if (status == 1)
+                    int admin = rdr.GetInt32("Admin");
+                    if (status == 1 && admin == 1)
                         return (deconnexionText, true);
+                    else if (status == 1 && admin == 0)
+                    {
+                        return (deconnexionText, false);
+                    } else if (status == 0 && admin == 1)
+                    {
+                        return (connexionText, true);
+                    }
                 }
             }
-            return (connexionText, true);
+            return (connexionText, false);
         }
 
         /// <summary>
