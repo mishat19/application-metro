@@ -68,7 +68,7 @@ namespace GestionReseau
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Mdp", mdp);
 
-                Console.WriteLine(requete);
+                //Console.WriteLine(requete);
 
                 try
                 {
@@ -150,12 +150,12 @@ namespace GestionReseau
                     utilisateurs.Add((rdr.GetString("Email"), rdr.GetString("Mdp")));
                 }
             }
-            Console.WriteLine($"Déconnexion de {utilisateurs.Count} utilisateurs.");
+            //Console.WriteLine($"Déconnexion de {utilisateurs.Count} utilisateurs.");
 
             //Maj après fermeture reader
             foreach (var (email, mdp) in utilisateurs)
             {
-                Console.WriteLine($"Déconnexion : {email}, {mdp}");
+                //Console.WriteLine($"Déconnexion : {email}, {mdp}");
                 string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
 
                 using (MySqlCommand cmd2 = new MySqlCommand(requete, connexion))
@@ -185,7 +185,7 @@ namespace GestionReseau
                 cmd.Parameters.AddWithValue("@DateNaissance", dateNaissance);
                 cmd.Parameters.AddWithValue("@Admin", admin);
 
-                Console.WriteLine(requete);
+                //Console.WriteLine(requete);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -202,7 +202,7 @@ namespace GestionReseau
         {
             ListeLignes listeLignes = new ListeLignes();
             string requete = $"SELECT * FROM InfoLigne INNER JOIN Ligne ON InfoLigne.NumLigne = Ligne.NumLigne";
-            Console.WriteLine(requete);
+            //Console.WriteLine(requete);
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -273,7 +273,7 @@ namespace GestionReseau
             {
                 string nomEchappe = nomStation.Replace("'", "''");
                 string requete = $"SELECT Latitude, Longitude FROM Station WHERE NomStation = '{nomEchappe}'";
-                Console.WriteLine(requete);
+                //Console.WriteLine(requete);
                 MySqlCommand cmd = new MySqlCommand(requete, connexion);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 

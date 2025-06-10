@@ -151,12 +151,12 @@ namespace application_metro
         {
             foreach (Ligne ligne in lignes.lignes)
             {
-                Console.WriteLine(ligne.nom);
+                //Console.WriteLine(ligne.nom);
                 if (ligne.nom == nomLigne)
                 {
                     foreach (string nomStation in ligne.stations)
                     {
-                        Console.WriteLine(nomStation);
+                        //Console.WriteLine(nomStation);
                         cmbStation.Items.Add(nomStation);
                     }
                 }

@@ -9,8 +9,9 @@ namespace application_metro
 {
     public partial class Ouverture : Form
     {
-        [DllImport("kernel32.dll")]
-        private static extern bool AllocConsole();
+        //Création d'un CMD
+        //[DllImport("kernel32.dll")]
+        //private static extern bool AllocConsole();
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public TrainErrorManager trainError;
@@ -25,16 +26,12 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
-            // Affiche la console pour debug
-            AllocConsole();
+            //Affiche la console pour debug
+            //AllocConsole();
             Serveur.OuvertureConnexion();
 
             trainError = new TrainErrorManager(picTrain1, lblDeconnexion, endX : 40, trainTop: 504);
         }
-
-
-
-
 
         private void btnConnexion_Click_1(object sender, EventArgs e)
         {
