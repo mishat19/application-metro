@@ -397,6 +397,7 @@
             nudNbStations.Name = "nudNbStations";
             nudNbStations.Size = new Size(79, 24);
             nudNbStations.TabIndex = 66;
+            nudNbStations.ValueChanged += nudNbStations_ValueChanged;
             // 
             // picHome
             // 

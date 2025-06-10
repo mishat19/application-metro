@@ -452,13 +452,6 @@ namespace application_metro
             }
         }
 
-        private void nudNbStations_ValueChanged(object sender, EventArgs e)
-        {
-            int nbStations = (int)nudNbStations.Value;
-            CreationTextBox(nbStations);
-            nudStations = true;
-        }
-
         bool nudChange = false;
         bool couleurChange = false;
         bool nudStations = false;
@@ -567,6 +560,13 @@ namespace application_metro
         private void grpHorairesStations_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void nudNbStations_ValueChanged(object sender, EventArgs e)
+        {
+            int nbStations = (int)nudNbStations.Value;
+            CreationTextBox(nbStations);
+            nudStations = true;
         }
     }
 }
