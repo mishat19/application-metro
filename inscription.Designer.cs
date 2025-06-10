@@ -100,7 +100,6 @@
             txtMdp.PlaceholderText = "Saisir votre mot de passe";
             txtMdp.Size = new Size(322, 24);
             txtMdp.TabIndex = 13;
-            txtMdp.TextChanged += txtMdp_TextChanged;
             // 
             // txtEmail
             // 

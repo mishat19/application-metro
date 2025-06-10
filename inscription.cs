@@ -14,20 +14,33 @@ namespace application_metro
 {
     public partial class Inscription : Form
     {
-
+        // Chargement de polices personnalisées à utiliser dans le formulaire
         PrivateFontCollection fontCollection = new PrivateFontCollection();
+
+
+        /// <summary>
+        /// Initialise une nouvelle instance du formulaire d'inscription à la position spécifiée.
+        /// </summary>
+        /// <param name="position">Position d'affichage du formulaire.</param>
         public Inscription(Point position)
         {
             InitializeComponent();
 
+
+            /// Initialise une nouvelle instance du formulaire d'inscription à la position spécifiée.
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
 
+
+            // Chargement des fichiers de police personnalisée
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
         }
 
+        /// <summary>
+        /// Ouvre la fenêtre de connexion et ferme la fenêtre actuelle.
+        /// </summary>
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Connexion connexion = new Connexion(this.Location);
@@ -35,8 +48,13 @@ namespace application_metro
             this.Close();
         }
 
+        /// <summary>
+        /// Récupère les données saisies, inscrit l'utilisateur, et ouvre la fenêtre d'accueil.
+        /// </summary>
         private void btnInscription_Click(object sender, EventArgs e)
         {
+
+            // Récupération et nettoyage des valeurs du formulaire
             string nom = txtNom.Text.Trim();
             string prenom = txtPrenom.Text.Trim();
             string email = txtEmail.Text.Trim();
@@ -44,7 +62,10 @@ namespace application_metro
             DateTime dateInscription = DateTime.Now;
             DateTime dateNaissance = dtpNaissance.Value;
 
+
+            // Appel du serveur pour inscription
             Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0);
+
             Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
@@ -52,11 +73,9 @@ namespace application_metro
         }
 
 
-        private void txtMdp_TextChanged(object sender, EventArgs e)
-        {
-            string pswd = txtMdp.Text;
-        }
-
+        /// <summary>
+        /// Gère le clic sur le logo pour revenir à la fenêtre d'ouverture.
+        /// </summary>
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             Ouverture ouverture = Application.OpenForms[0] as Ouverture;
@@ -67,9 +86,13 @@ namespace application_metro
             }
         }
 
+        // Chemins vers les images pour afficher ou masquer le mot de passe
         string cheminOff = @"..\..\..\oeiloff.png";
         string cheminOn = @"..\..\..\oeilon.png";
 
+        /// <summary>
+        /// Affiche ou masque le mot de passe et change l’icône en conséquence.
+        /// </summary>
         private void picOeilOff_Click(object sender, EventArgs e)
         {
             try
@@ -89,10 +112,15 @@ namespace application_metro
             }
             catch (Exception ex)
             {
+                // Gestion d'erreur lors du chargement des images
                 MessageBox.Show("Erreur : " + ex.Message);
             }
         }
 
+
+        /// <summary>
+        /// Applique les polices personnalisées aux contrôles du formulaire à son chargement.
+        /// </summary>
         private void Inscription_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -109,7 +137,11 @@ namespace application_metro
             lblTitre.Font = new Font(G, 24, FontStyle.Bold);
             lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 100); // Centrer le titre horizontalement
         }
+        
 
+        /// <summary>
+        /// Dessine le contour personnalisé pour le groupbox du nom et prénom.
+        /// </summary>
         private void grpNomPrenom_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
