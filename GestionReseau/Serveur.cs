@@ -822,5 +822,23 @@ namespace GestionReseau
             cmd.Parameters.AddWithValue("@nomStation", idStation);
             cmd.ExecuteNonQuery();
         }
+        public static (DateTime, DateTime) RecupererHorairesLigne(int idLigne)
+        {
+            string requeteHoraireDebut = @"SELECT HoraireDepart FROM Horaire WHERE NumLigne = @numLigne";
+            MySqlCommand cmdHoraireDebut = new MySqlCommand(requeteHoraireDebut, connexion);
+            cmdHoraireDebut.Parameters.AddWithValue("@numLigne", idLigne);
+            TimeSpan horaireDebut = (TimeSpan)cmdHoraireDebut.ExecuteScalar();
+
+            string requeteHoraireFin = @"SELECT HoraireFin FROM Horaire WHERE NumLigne = @numLigne";
+            MySqlCommand cmdHoraireFin = new MySqlCommand(requeteHoraireFin, connexion);
+            cmdHoraireFin.Parameters.AddWithValue("@numLigne", idLigne);
+            TimeSpan horaireFin = (TimeSpan)cmdHoraireFin.ExecuteScalar();
+
+            DateTime baseDate = DateTime.Today;
+            DateTime resultatHoraireDebut = baseDate.Add(horaireDebut);
+            DateTime resultatHoraireFin = baseDate.Add(horaireFin);
+
+            return (resultatHoraireDebut, resultatHoraireFin);
+        }
     }
 }
