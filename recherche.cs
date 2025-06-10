@@ -58,7 +58,6 @@ namespace application_metro
 
 
             pnlRecherche.Controls.Add(webView);
-            pnlRecherche.Controls.Add(flpResultat);
             pnlRecherche.Controls.Add(grpRecherche);
 
 
@@ -276,8 +275,14 @@ namespace application_metro
             }
 
             // On rend visible le panneau des résultats
+
             flpResultat.Visible = true;
             lblTrajet.Visible = true;
+
+            flpResultat.Location = new Point(
+                lblTrajet.Left,
+                lblTrajet.Bottom + 10 // 10 px de marge
+);
         }
 
         private bool detailsVisible = false;
@@ -305,12 +310,12 @@ namespace application_metro
                 grpResultat.Height = hauteurInitialeGrpResultat;
             }
 
-            flpResultat.PerformLayout();
         }
 
         private void grpResultatItineraire_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
         }
+
     }
 }
