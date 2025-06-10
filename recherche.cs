@@ -196,6 +196,86 @@ namespace application_metro
             var donnees = Serveur.ObtenirDonneesGraphe();
             Graphe graphe = ChargeurGrapheDepuisMySQL.Charger(donnees.stations, donnees.segments);
 
+            // Récupérer stations sélectionnées
+            Station stationDepart = graphe.Stations.FirstOrDefault(s => s.Nom == cmbDepart.SelectedItem?.ToString());
+            Station stationArrivee = graphe.Stations.FirstOrDefault(s => s.Nom == cmbArrivee.SelectedItem?.ToString());
+
+            // Vérification
+            if (stationDepart == null || stationArrivee == null)
+            {
+                MessageBox.Show("Veuillez sélectionner une station de départ et une station d'arrivée.");
+                return;
+            }
+
+            // Calcul du chemin
+            Dictionary<Station, Station> predecesseurs;
+            var distances = AlgorithmeDijkstra.CalculerChemins(graphe, stationDepart, out predecesseurs);
+            var chemin = AlgorithmeDijkstra.TrouverChemin(stationArrivee, predecesseurs);
+
+            if (chemin == null || chemin.Count < 2)
+            {
+                MessageBox.Show("Aucun trajet trouvé.");
+                return;
+            }
+
+            // Mise à jour des labels de départ et arrivée
+            lblDepart2.Text = chemin.First().Nom;
+            lblArrivee2.Text = chemin.Last().Nom;
+
+            // Heure actuelle comme heure de départ simulée
+            DateTime heureDepart = DateTime.Now;
+            int dureeTotale = distances[stationArrivee];
+            DateTime heureArrivee = heureDepart.AddSeconds(dureeTotale);
+
+            // Affichage de l'heure de départ et d'arrivée
+            lblTempsDepart.Text = heureDepart.ToString("HH:mm");
+            lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
+
+            // Affichage de la durée en minutes
+            lblTemps.Text = $"{(int)(dureeTotale / 60)} min";
+
+            // Trouver la ligne utilisée entre les deux premières stations du chemin
+            Station s1 = chemin[0];
+            Station s2 = chemin[1];
+
+            var trajet = graphe.Trajets.FirstOrDefault(t =>
+                (t.Depart == s1 && t.Arrivee == s2) ||
+                (t.Depart == s2 && t.Arrivee == s1));
+
+            if (trajet != null && trajet.Lignes.Count > 0)
+            {
+                lblNumLigneResultat.Text = $"Ligne {string.Join(", ", trajet.Lignes)}";
+            }
+            else
+            {
+                lblNumLigneResultat.Text = "Ligne inconnue";
+            }
+
+            // Affichage de la liste des stations parcourues
+            lstStations.Items.Clear();
+
+            for (int i = 0; i < chemin.Count; i++)
+            {
+                var nomStation = chemin[i].Nom;
+                string lignesInfo = "";
+
+                if (i < chemin.Count - 1)
+                {
+                    var trajetEntreStations = graphe.Trajets.FirstOrDefault(t =>
+                        (t.Depart == chemin[i] && t.Arrivee == chemin[i + 1]) ||
+                        (t.Depart == chemin[i + 1] && t.Arrivee == chemin[i]));
+
+                    if (trajetEntreStations != null && trajetEntreStations.Lignes.Count > 0)
+                    {
+                        lignesInfo = $" (Ligne {string.Join(", ", trajetEntreStations.Lignes)})";
+                    }
+                }
+
+                lstStations.Items.Add($"{i + 1}. {nomStation}{lignesInfo}");
+            }
+
+            // On rend visible le panneau des résultats
+            flpResultat.Visible = true;
         }
 
         private bool detailsVisible = false;
@@ -227,11 +307,6 @@ namespace application_metro
         private void grpResultatItineraire_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
-        }
-
-        private void lblDépart_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
