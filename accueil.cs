@@ -41,7 +41,7 @@ namespace application_metro
             btnRetour.Text = texteBouton;
 
             //Si l'utilisateur est un admin, affiche le bouton Gestion des données
-            btnAdmin.Visible = estConnecte==1;
+            //btnAdmin.Visible = estConnecte==1;
 
             // A la fermeture de la fenêtre, exécute la méthode FormClosing de Ouverture
             //this.FormClosing += Ouverture_FormClosing;
