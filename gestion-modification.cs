@@ -74,6 +74,13 @@ namespace application_metro
                         nudNbStations.Value = nb;
                     }
                 }
+
+                // Récupération des horaires de la ligne
+                (DateTime, DateTime) tupleHoraire = Serveur.RecupererHorairesLigne(numeroLigne);
+
+                dtp_HoraireDebut.Value = tupleHoraire.Item1;
+                dtp_HoraireFin.Value = tupleHoraire.Item2;
+
             }
 
             //Importation des polices d'écritures pour l'interface
@@ -82,11 +89,6 @@ namespace application_metro
 
             nudNumLigne.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
             nudNbStations.MouseWheel += (s, e) => ((HandledMouseEventArgs)e).Handled = true;
-
-            (DateTime, DateTime) tupleHoraire = Serveur.RecupererHorairesLigne(numeroLigne);
-
-            dtp_HoraireDebut.Value = tupleHoraire.Item1;
-            dtp_HoraireFin.Value = tupleHoraire.Item2;
         }
 
         public string nomLigneDeconcatenation(string nom)
