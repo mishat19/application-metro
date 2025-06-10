@@ -120,6 +120,7 @@ namespace application_metro
                 Serveur.SupprimerUneLigne(idLigne);
                 Serveur.SupprimerUnHoraire(idLigne);
                 Serveur.SupprimerUneInfoLigne(idLigne);
+                
 
                 List<string> listeStation = Serveur.StationsParLigne(ligne);
 
@@ -129,6 +130,7 @@ namespace application_metro
                 }
 
                 MessageBox.Show("La ligne et ses stations ont été supprimées avec succès.");
+
                 return;
             }
         }
