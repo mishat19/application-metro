@@ -258,6 +258,8 @@ namespace application_metro
                     }
                 }
 
+                nud.ValueChanged += Nud_ValueChanged;
+
                 //TextBox coordonnees
                 TextBox txt2 = new TextBox
                 {
@@ -377,6 +379,7 @@ namespace application_metro
         bool nudStations = false;
         Dictionary<string, string> stationsChange = new Dictionary<string, string>();
         Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
+        Dictionary<string, int> dureesChange = new();
 
         //Vérifie le texte des noms de stations
         private void Txt_TextChanged(object sender, EventArgs e)
@@ -451,6 +454,23 @@ namespace application_metro
 
                 // Active le bouton d'enregistrement
                 btnEnregistrement.Enabled = true;
+            }
+        }
+        private void Nud_ValueChanged(object sender, EventArgs e)
+        {
+            if (sender is NumericUpDown nud)
+            {
+                string nom = nud.Name;        // que ce soit un vrai nom ou "nudStation{i}"
+                int valeur = (int)nud.Value;
+
+                if (!string.IsNullOrEmpty(nom))
+                {
+                    dureesChange[nom] = valeur;
+
+                    Console.WriteLine($"[{nom}] -> Durée modifiée : {valeur} minutes");
+
+                    btnEnregistrement.Enabled = true;
+                }
             }
         }
 
@@ -576,6 +596,7 @@ namespace application_metro
 
                 Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
                 Serveur.MettreAJourNomsStations(stationsChange);
+                Serveur.UpdateDureesSegments(dureesChange);
                 Serveur.MettreAJourCoordonneesStations(coordonneesChange);
                 Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
             }

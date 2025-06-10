@@ -788,12 +788,13 @@ namespace GestionReseau
                        SET Couleur = @Couleur, Nom = @Nom
                        WHERE NumLigne = @NumLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@Couleur", couleur);
-            cmd.Parameters.AddWithValue("@Nom", nom);
-            cmd.Parameters.AddWithValue("@NumLigne", numLigne);
-
-            cmd.ExecuteNonQuery();
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            {
+                cmd.Parameters.AddWithValue("@Couleur", couleur);
+                cmd.Parameters.AddWithValue("@Nom", nom);
+                cmd.Parameters.AddWithValue("@NumLigne", numLigne);
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void MettreAJourNomsStations(Dictionary<string, string> stations)
@@ -803,18 +804,50 @@ namespace GestionReseau
                 string ancienNom = station.Key;
                 string nouveauNom = station.Value;
 
-                // On met à jour uniquement si le nom a changé
                 if (!string.Equals(ancienNom, nouveauNom, StringComparison.Ordinal))
                 {
                     string requete = @"UPDATE Station 
                                SET NomStation = @NouveauNom 
                                WHERE NomStation = @AncienNom";
 
-                    MySqlCommand cmd = new MySqlCommand(requete, connexion);
-                    cmd.Parameters.AddWithValue("@NouveauNom", nouveauNom);
-                    cmd.Parameters.AddWithValue("@AncienNom", ancienNom);
+                    using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                    {
+                        cmd.Parameters.AddWithValue("@NouveauNom", nouveauNom);
+                        cmd.Parameters.AddWithValue("@AncienNom", ancienNom);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
 
-                    cmd.ExecuteNonQuery();
+        public static void UpdateDureesSegments(Dictionary<string, int> dureesChange)
+        {
+            using (MySqlCommand cmd = new MySqlCommand("", connexion))
+            {
+                foreach (var entree in dureesChange)
+                {
+                    string nomStation = entree.Key;
+                    int nouvelleDuree = entree.Value;
+
+                    cmd.CommandText = "SELECT NumStation FROM Station WHERE NomStation = @nomStation";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("@nomStation", nomStation);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int numStationA))
+                    {
+                        cmd.CommandText = "UPDATE Segment SET DureeSegment = @duree WHERE NumStationA = @numStationA";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@duree", nouvelleDuree);
+                        cmd.Parameters.AddWithValue("@numStationA", numStationA);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Station non trouvée : {nomStation}");
+                    }
                 }
             }
         }
@@ -827,44 +860,41 @@ namespace GestionReseau
                 decimal latitude = station.Value.Latitude;
                 decimal longitude = station.Value.Longitude;
 
-                MySqlCommand cmd = null;
-
+                string requete = "";
                 if (latitude != 0 && longitude != 0)
                 {
-                    // Met à jour latitude et longitude
-                    string requete = @"UPDATE Station 
-                               SET Latitude = @Latitude, Longitude = @Longitude 
-                               WHERE NomStation = @NomStation";
-                    cmd = new MySqlCommand(requete, connexion);
-                    cmd.Parameters.AddWithValue("@Latitude", latitude);
-                    cmd.Parameters.AddWithValue("@Longitude", longitude);
+                    requete = @"UPDATE Station 
+                        SET Latitude = @Latitude, Longitude = @Longitude 
+                        WHERE NomStation = @NomStation";
                 }
                 else if (latitude != 0)
                 {
-                    // Met à jour uniquement la latitude
-                    string requete = @"UPDATE Station 
-                               SET Latitude = @Latitude 
-                               WHERE NomStation = @NomStation";
-                    cmd = new MySqlCommand(requete, connexion);
-                    cmd.Parameters.AddWithValue("@Latitude", latitude);
+                    requete = @"UPDATE Station 
+                        SET Latitude = @Latitude 
+                        WHERE NomStation = @NomStation";
                 }
                 else if (longitude != 0)
                 {
-                    // Met à jour uniquement la longitude
-                    string requete = @"UPDATE Station 
-                               SET Longitude = @Longitude 
-                               WHERE NomStation = @NomStation";
-                    cmd = new MySqlCommand(requete, connexion);
-                    cmd.Parameters.AddWithValue("@Longitude", longitude);
+                    requete = @"UPDATE Station 
+                        SET Longitude = @Longitude 
+                        WHERE NomStation = @NomStation";
                 }
                 else
                 {
-                    // Tous les deux à 0 donc on ne fait rien
-                    continue;
+                    continue; // pas de mise à jour
                 }
 
-                cmd.Parameters.AddWithValue("@NomStation", nomStation);
-                cmd.ExecuteNonQuery();
+                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                {
+                    if (latitude != 0)
+                        cmd.Parameters.AddWithValue("@Latitude", latitude);
+                    if (longitude != 0)
+                        cmd.Parameters.AddWithValue("@Longitude", longitude);
+
+                    cmd.Parameters.AddWithValue("@NomStation", nomStation);
+
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -872,25 +902,16 @@ namespace GestionReseau
         {
             string requete = "UPDATE Horaire SET HoraireDepart = @debut, HoraireFin = @fin WHERE NumLigne = @numLigne";
 
-            try
+            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             {
-                using (MySqlCommand cmd = new MySqlCommand(requete, connexion)) // connexion déjà existante
-                {
-                    cmd.Parameters.AddWithValue("@debut", horaireDebut);
-                    cmd.Parameters.AddWithValue("@fin", horaireFin);
-                    cmd.Parameters.AddWithValue("@numLigne", numLigne);
+                cmd.Parameters.AddWithValue("@debut", horaireDebut);
+                cmd.Parameters.AddWithValue("@fin", horaireFin);
+                cmd.Parameters.AddWithValue("@numLigne", numLigne);
 
-                    int result = cmd.ExecuteNonQuery();
+                int result = cmd.ExecuteNonQuery();
 
-                    if (result == 0)
-                    {
-                        throw new Exception("Aucun horaire mis à jour. Vérifiez NumLigne.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Erreur dans ModifierHoraireParLigne : " + ex.Message);
+                if (result == 0)
+                    throw new Exception("Aucun horaire mis à jour. Vérifiez NumLigne.");
             }
         }
 
