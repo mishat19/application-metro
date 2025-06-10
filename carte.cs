@@ -20,6 +20,7 @@ namespace application_metro
 
         public Carte(Point position)
         {
+            // Initialisation des composants de la fenêtre
             InitializeComponent();
 
             this.StartPosition = FormStartPosition.Manual;
@@ -73,6 +74,7 @@ namespace application_metro
             webView.CoreWebView2.Navigate("http://localhost:8080/map-milan.html");
         }
 
+        // Cherche la carte dans le dossier et la renvoie
         private void EcouterRequetes(string dossier)
         {
             try
@@ -125,6 +127,7 @@ namespace application_metro
             base.OnFormClosing(e);
         }
 
+        // Chargement de la carte
         private void carte_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -139,6 +142,8 @@ namespace application_metro
         {
 
         }
+
+        // Active le bouton en cas de selection d'une ligne
         string ligne;
         private void cmbLignes_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,6 +151,7 @@ namespace application_metro
             ligne = cmbLignes.Text;
         }
 
+        // Ouvre la consultation des horaires pour la ligne sélectionnée quand on clique sur le bouton
         private void btnHoraires_Click(object sender, EventArgs e)
         {
             Consultation consultation = new Consultation(ligne, this.Location);
@@ -153,6 +159,7 @@ namespace application_metro
             this.Close();
         }
 
+        // Bouton retour à la page précédente
         private void picRetour_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil(this.Location);
@@ -160,6 +167,7 @@ namespace application_metro
             this.Close();
         }
 
+        // Bouton retour à la page d'accueil
         private void picHome_Click(object sender, EventArgs e)
         {
             Accueil accueil = new Accueil(this.Location);
