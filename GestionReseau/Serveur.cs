@@ -26,7 +26,7 @@ namespace GestionReseau
             string mdp = "mdp";
             string bd = "baseb3";
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}"; //Ligne de connexion
+            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";  // Chaîne de connexion à la base MySQL
 
             connexion = new MySqlConnection(chaineConnexion);
 
@@ -55,7 +55,7 @@ namespace GestionReseau
                 {
                     connexion.Close();
                     Console.WriteLine("Déconnexion réussie");
-                    connexion.Dispose();
+                    connexion.Dispose(); // Libère les ressources associées à la connexion
                     return true;
                 }
                 return false;
@@ -86,12 +86,12 @@ namespace GestionReseau
 
                 try
                 {
-                    object result = cmd.ExecuteScalar(); //Retourne la 1ère cellule de la 1ère ligne
+                    object result = cmd.ExecuteScalar(); // Exécute la requête et retourne la première cellule (nombre d'utilisateurs)
                     //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
                     if(count > 0)
                     {
-                        StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
+                        StatusUtilisateur(email, mdp, 1); // Met à jour le statut en connecté
                         return true;
                     }
                     return false;
@@ -122,7 +122,7 @@ namespace GestionReseau
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Mdp", mdp);
 
-                    cmd.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery(); // Met à jour le statut dans la base
                 }
 
             }
@@ -160,7 +160,7 @@ namespace GestionReseau
                     int status = rdr.GetInt32("Status");
                     int admin = rdr.GetInt32("Admin");
                     if (status == 1){
-                        estConnecte = (admin == 1) ? 1 : 0;
+                        estConnecte = (admin == 1) ? 1 : 0; // Si admin connecté, renvoie 1, sinon 0
                         return (deconnexionText, estConnecte);
                     }
                 }
@@ -175,7 +175,7 @@ namespace GestionReseau
         {
             List<(string email, string mdp)> utilisateurs = new List<(string, string)>();
 
-            //Lecture de tous les utilisateurs
+            // Lecture de tous les utilisateurs pour récupérer leur email/mdp
             using (MySqlCommand cmd = new MySqlCommand("SELECT Email, Mdp FROM Utilisateur", connexion))
             using (MySqlDataReader rdr = cmd.ExecuteReader())
             {
@@ -185,7 +185,7 @@ namespace GestionReseau
                 }
             }
 
-            //Maj après fermeture reader
+            // Mise à jour du statut après la fermeture du reader
             foreach (var (email, mdp) in utilisateurs)
             {
                 string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
@@ -215,7 +215,7 @@ namespace GestionReseau
         {
             string requete = @"INSERT INTO Utilisateur 
                        (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin)
-                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin)";
+                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin)"; //  Requête SQL d'insertion paramétrée : permet d'éviter l’injection SQL
 
             using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             {
@@ -231,7 +231,7 @@ namespace GestionReseau
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    StatusUtilisateur(email, mdp, 1); //1 pour Connexion de l'utilisateur
+                    StatusUtilisateur(email, mdp, 1); //Appel de la méthode enregistrant l'événement de connexion après inscription
                 }
                 catch (MySqlException ex)
                 {
@@ -251,7 +251,7 @@ namespace GestionReseau
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
-            Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
+            Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>(); //Utilisé pour éviter de recréer plusieurs fois la même ligne(optimisation)
             int nbLignes = 0;
 
             while (rdr.Read())
@@ -264,7 +264,7 @@ namespace GestionReseau
                 List<string> stations = new List<string>();
                 //Console.WriteLine($"{numLigne} + {nom} {couleur} {numSegment}");
 
-                if (!lignesTemp.ContainsKey(numLigne))
+                if (!lignesTemp.ContainsKey(numLigne))// Initialise une nouvelle ligne seulement si elle n'a pas encore été ajoutée
                 {
                     lignesTemp[numLigne] = new Ligne(numLigne, nom, couleur, segments, stations);
                     nbLignes++;
@@ -279,7 +279,7 @@ namespace GestionReseau
             {
                 foreach (int segment in lignesTemp[numLigne].segments)
                 {
-                    string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
+                    string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});"; //Sous-requête imbriquée : on récupère la station de départ (NumStationA) associée à un segment précis
                     MySqlCommand cmd2 = new MySqlCommand(requete2, connexion);
                     MySqlDataReader rdr2 = cmd2.ExecuteReader();
 
@@ -288,7 +288,7 @@ namespace GestionReseau
                         try
                         {
                             string nomStation = rdr2.GetString("NomStation");
-                            if (!lignesTemp[numLigne].stations.Contains(nomStation))
+                            if (!lignesTemp[numLigne].stations.Contains(nomStation)) // Évite les doublons dans la liste des stations d’une ligne
                             {
                                 lignesTemp[numLigne].stations.Add(nomStation);
                             }
@@ -321,13 +321,13 @@ namespace GestionReseau
 
             foreach (string nomStation in stations)
             {
-                string nomEchappe = nomStation.Replace("'", "''");
+                string nomEchappe = nomStation.Replace("'", "''"); // Échappe les apostrophes dans le nom de la station pour éviter des erreurs SQL
                 string requete = $"SELECT Latitude, Longitude FROM Station WHERE NomStation = '{nomEchappe}'";
                 //Console.WriteLine(requete);
                 MySqlCommand cmd = new MySqlCommand(requete, connexion);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
-                List<decimal> gps = new List<decimal>();
+                List<decimal> gps = new List<decimal>(); // Structure contenant toutes les coordonnées GPS : chaque élément est une liste [latitude, longitude]
 
                 if (rdr.Read())
                 {
@@ -372,6 +372,7 @@ namespace GestionReseau
             AND il.NumLigne = l.NumLigne
             AND l.NumSegment = seg.NumSegment
             AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
+            //On récupère la station de début ou de fin du segment (car une ligne peut passer par les deux extrémités d’un segment)
 
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
@@ -393,7 +394,7 @@ namespace GestionReseau
         public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
-            TimeSpan heure = date.TimeOfDay;
+            TimeSpan heure = date.TimeOfDay;//On extrait uniquement l’heure actuelle (exclut la date) pour la comparaison
 
             string requete = @"
             SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
@@ -416,7 +417,7 @@ namespace GestionReseau
                     TimeSpan horaireFin = rdr.GetTimeSpan("HoraireFin");
                     TimeSpan horaireActuel = horaireDepart;
 
-                    double multiplicateur;
+                    double multiplicateur;//Multiplie le temps de trajet si c’est un dimanche (plus de temps pour les trajets)
 
                     if (date.DayOfWeek == DayOfWeek.Sunday)
                     {
@@ -431,7 +432,7 @@ namespace GestionReseau
                     {
                         Console.WriteLine(horaireActuel.ToString());
                         Console.WriteLine(heure.ToString());
-                        if(horaireActuel > heure)
+                        if(horaireActuel > heure)//N’ajoute que les horaires futurs (après l’heure actuelle)
                         {
                             horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
                         }
@@ -478,7 +479,7 @@ namespace GestionReseau
                             // On retourne le premier horaire trouvé
                             return horaireActuel.ToString(@"hh\:mm\:ss");
                         }
-                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
+                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));//Calcule l’heure suivante de passage à la station, selon la durée du segment
                     }
                 }
             }
