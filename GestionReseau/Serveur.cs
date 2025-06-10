@@ -144,10 +144,11 @@ namespace GestionReseau
         /// Status de connexion de l'utilisateur
         /// </summary>
         /// <returns>Se connecter / Déconnexion</returns>
-        public static (string, bool) UtilisateurConnecte()
+        public static (string, int) UtilisateurConnecte()
         {
             string connexionText = "Se connecter";
             string deconnexionText = "Déconnexion";
+            int estConnecte = 0;
 
             string requete = "SELECT Status, Admin FROM Utilisateur";
 
@@ -158,18 +159,13 @@ namespace GestionReseau
                 {
                     int status = rdr.GetInt32("Status");
                     int admin = rdr.GetInt32("Admin");
-                    if (status == 1 && admin == 1)
-                        return (deconnexionText, true);
-                    else if (status == 1 && admin == 0)
-                    {
-                        return (deconnexionText, false);
-                    } else if (status == 0 && admin == 1)
-                    {
-                        return (connexionText, true);
+                    if (status == 1){
+                        estConnecte = (admin == 1) ? 1 : 0;
+                        return (deconnexionText, estConnecte);
                     }
                 }
             }
-            return (connexionText, false);
+            return (connexionText, estConnecte);
         }
 
         /// <summary>

@@ -35,13 +35,15 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             // Récupère le status de l'utilisateur (Se connecter ou Déconnexion) et s'il est admin
-            (string texteBouton, bool estConnecte) = Serveur.UtilisateurConnecte();
+            (string texteBouton, int estConnecte) = Serveur.UtilisateurConnecte();
 
             // Affiche "Se connecter" ou "Déconnexion" selon le status de connexion
             btnRetour.Text = texteBouton;
 
+            btnAdmin.Visible = estConnecte==1;
+
             // A la fermeture de la fenêtre, exécute la méthode FormClosing de Ouverture
-            this.FormClosing += Ouverture_FormClosing;
+            //this.FormClosing += Ouverture_FormClosing;
         }
 
         /// <summary>
@@ -49,10 +51,10 @@ namespace application_metro
         /// Déconnecte tous les utilisateurs du serveur - version allégée d'une déconnexion
         /// comme un compte est inutile dans cette version.
         /// </summary>
-        private void Ouverture_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Serveur.DeconnexionUtilisateurs();
-        }
+        //private void Ouverture_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    Serveur.DeconnexionUtilisateurs();
+        //}
 
         /// <summary>
         /// Événement déclenché au clic sur le bouton btnRetour.
