@@ -67,7 +67,7 @@
             cmbArrivee = new ComboBox();
             grpRecherche1 = new GroupBox();
             chkHoraireArrivee = new CheckBox();
-            chkHeureDepart = new CheckBox();
+            chkHoraireDepart = new CheckBox();
             lblHoraires = new Label();
             lblHoraireArrivée = new Label();
             dtpArrivee = new DateTimePicker();
@@ -105,7 +105,7 @@
             grpTrajet.Controls.Add(lblSeparation);
             grpTrajet.Controls.Add(lblStationArrivee);
             grpTrajet.Controls.Add(lblStationDepart);
-            grpTrajet.Location = new Point(10, 24152);
+            grpTrajet.Location = new Point(10, 24588);
             grpTrajet.Margin = new Padding(3, 2, 3, 2);
             grpTrajet.Name = "grpTrajet";
             grpTrajet.Padding = new Padding(3, 2, 3, 2);
@@ -529,7 +529,7 @@
             // grpRecherche1
             // 
             grpRecherche1.Controls.Add(chkHoraireArrivee);
-            grpRecherche1.Controls.Add(chkHeureDepart);
+            grpRecherche1.Controls.Add(chkHoraireDepart);
             grpRecherche1.Controls.Add(lblHoraires);
             grpRecherche1.Controls.Add(lblHoraireArrivée);
             grpRecherche1.Controls.Add(dtpArrivee);
@@ -554,15 +554,15 @@
             chkHoraireArrivee.UseVisualStyleBackColor = true;
             chkHoraireArrivee.CheckedChanged += chkHoraireArrivee_CheckedChanged;
             // 
-            // chkHeureDepart
+            // chkHoraireDepart
             // 
-            chkHeureDepart.AutoSize = true;
-            chkHeureDepart.Location = new Point(6, 52);
-            chkHeureDepart.Name = "chkHeureDepart";
-            chkHeureDepart.Size = new Size(15, 14);
-            chkHeureDepart.TabIndex = 28;
-            chkHeureDepart.UseVisualStyleBackColor = true;
-            chkHeureDepart.CheckedChanged += chkHeureDepart_CheckedChanged;
+            chkHoraireDepart.AutoSize = true;
+            chkHoraireDepart.Location = new Point(6, 52);
+            chkHoraireDepart.Name = "chkHoraireDepart";
+            chkHoraireDepart.Size = new Size(15, 14);
+            chkHoraireDepart.TabIndex = 28;
+            chkHoraireDepart.UseVisualStyleBackColor = true;
+            chkHoraireDepart.CheckedChanged += chkHoraireDepart_CheckedChanged;
             // 
             // lblHoraires
             // 
@@ -738,7 +738,7 @@
         private Label lblTemps;
         private PictureBox picDeuxPoints;
         private PictureBox picFlecheItineraire;
-        private CheckBox chkHeureDepart;
+        private CheckBox chkHoraireDepart;
         private CheckBox chkHoraireArrivee;
     }
 }

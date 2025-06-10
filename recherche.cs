@@ -231,7 +231,7 @@ namespace application_metro
             {
                 MessageBox.Show("Veuillez choisir si vous voulez calculer en fonction de l'heure de départ ou l'heure d'arriver");
             }
-            if(dtpDepart.Enabled == true && dtpArrivee.Enabled == false)
+            if (dtpDepart.Enabled == true && dtpArrivee.Enabled == false)
             {
                 // Si dtpDepart est activé, on calcule l'heure d'arrivée
                 heureDepart = dtpDepart.Value;
@@ -241,14 +241,15 @@ namespace application_metro
                 // Affichage de l'heure de départ et d'arrivée
                 lblTempsDepart.Text = heureDepart.ToString("HH:mm");
                 lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
-            } else
+            }
+            else
             {
                 // Si dtpArrivee est activé, on calcule l'heure de départ
                 dureeTotale = distances[stationArrivee];
                 TimeSpan duree = TimeSpan.FromSeconds(dureeTotale);
                 heureArrivee = dtpArrivee.Value;
                 heureDepart = heureArrivee.Subtract(duree);
-                
+
                 // Affichage de l'heure de départ et d'arrivée
                 lblTempsDepart.Text = heureDepart.ToString("HH:mm");
                 lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
@@ -367,12 +368,16 @@ namespace application_metro
 
         }
 
-        private void chkHeureDepart_CheckedChanged(object sender, EventArgs e)
+        private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkHeureDepart.Checked)
+            if (chkHoraireArrivee.Checked)
             {
-                dtpDepart.Enabled = true;
-                dtpArrivee.Enabled = false;
+                if (chkHoraireDepart.Checked)
+                {
+                    chkHoraireDepart.Checked = false;
+                }
+                dtpDepart.Enabled = false;
+                dtpArrivee.Enabled = true;
             }
             else
             {
@@ -381,12 +386,16 @@ namespace application_metro
             }
         }
 
-        private void chkHoraireArrivee_CheckedChanged(object sender, EventArgs e)
+        private void chkHoraireDepart_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkHoraireArrivee.Checked)
+            if (chkHoraireDepart.Checked)
             {
-                dtpDepart.Enabled = false;
-                dtpArrivee.Enabled = true;
+                if (chkHoraireArrivee.Checked)
+                {
+                    chkHoraireArrivee.Checked = false;
+                }
+                dtpDepart.Enabled = true;
+                dtpArrivee.Enabled = false;
             }
             else
             {
