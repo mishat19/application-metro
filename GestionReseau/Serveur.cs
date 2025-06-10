@@ -365,25 +365,22 @@ namespace GestionReseau
         public static List<string> StationsParLigne(string nomLigne)
         {
             List<string> stations = new List<string>();
+
             string requete = @"
             SELECT DISTINCT st.NomStation
-            FROM InfoLigne il, Ligne l, Segment seg, Station st 
-            WHERE il.Nom = @NomLigne
+            FROM InfoLigne il, Ligne l, Segment seg, Station st
+            WHERE il.Nom = 'NomLigne'
             AND il.NumLigne = l.NumLigne
             AND l.NumSegment = seg.NumSegment
             AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
-            //On récupère la station de début ou de fin du segment (car une ligne peut passer par les deux extrémités d’un segment)
 
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
 
-            using (var rdr = cmd.ExecuteReader())
-            {
-                while (rdr.Read())
-                {
-                    stations.Add(rdr.GetString("NomStation"));
-                }
-            }
+            using (var reader = cmd.ExecuteReader())
+                while (reader.Read())
+                    stations.Add(reader.GetString(0));  // 0 = première colonne : NomStation
+
             return stations;
         }
 
@@ -506,19 +503,32 @@ namespace GestionReseau
         /// </summary>
         /// <param name="nomLigne">Nom de la ligne</param>
         /// <param name="nomStation">Nom de la station</param>
-        public static void SupprimerUneStation(string nomLigne, string nomStation)
+        public static void SupprimerUnSegment(string nomStation)
         {
             int idStation = idStationGraceNom(nomStation);
 
+            string requeteDesactiverFK = @"SET FOREIGN_KEY_CHECKS = 0";
+            MySqlCommand cmdDesactiverFK = new MySqlCommand(requeteDesactiverFK, connexion);
+            cmdDesactiverFK.ExecuteNonQuery();
+
             string requeteSupprimerSegment = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
-            MySqlCommand cmd2 = new MySqlCommand(requeteSupprimerSegment, connexion);
-            cmd2.Parameters.AddWithValue("@idStation", idStation);
-            cmd2.ExecuteNonQuery();
+            MySqlCommand cmd = new MySqlCommand(requeteSupprimerSegment, connexion);
+            cmd.Parameters.AddWithValue("@idStation", idStation);
+            cmd.ExecuteNonQuery();
+
+            string requeteActiverFK = @"SET FOREIGN_KEY_CHECKS = 1";
+            MySqlCommand cmdActiverFK = new MySqlCommand(requeteActiverFK, connexion);
+            cmdActiverFK.ExecuteNonQuery();
+        }
+
+        public static void SupprimerUneStation(string nomStation)
+        {
+            int idStation = idStationGraceNom(nomStation);
 
             string requeteSupprimerStation = @"DELETE FROM Station WHERE NumStation = @idStation";
-            MySqlCommand cmd3 = new MySqlCommand(requeteSupprimerStation, connexion);
-            cmd3.Parameters.AddWithValue("@idStation", idStation);
-            cmd3.ExecuteNonQuery();
+            MySqlCommand cmd = new MySqlCommand(requeteSupprimerStation, connexion);
+            cmd.Parameters.AddWithValue("@idStation", idStation);
+            cmd.ExecuteNonQuery();
         }
 
         /// <summary>

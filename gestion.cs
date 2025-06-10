@@ -123,7 +123,8 @@ namespace application_metro
                 string ligne = cmbLigne.SelectedItem.ToString();
 
                 // On supprime la station de la ligne
-                Serveur.SupprimerUneStation(ligne, station);
+                Serveur.SupprimerUnSegment(station);
+                Serveur.SupprimerUneStation(station);
 
                 // On supprime les horaires associés à cette station
                 MessageBox.Show("La station a été supprimée avec succès.");
@@ -142,17 +143,8 @@ namespace application_metro
                 Serveur.SupprimerUnHoraire(idLigne);
                 Serveur.SupprimerUneInfoLigne(idLigne);
 
-                // On fait une liste de toutes les stations de la ligne
-                List<string> listeStation = Serveur.StationsParLigne(ligne);
-
-                // On supprime chaque station de la ligne
-                foreach (string station in listeStation)
-                {
-                    Serveur.SupprimerUneStation(ligne, station);
-                }
-
                 // Affichage d'un message de succès
-                MessageBox.Show("La ligne et ses stations ont été supprimées avec succès.");
+                MessageBox.Show("Les informations de la ligne ont bien été supprimé.");
 
                 return;
             }
