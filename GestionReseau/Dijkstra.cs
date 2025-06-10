@@ -10,13 +10,16 @@ namespace GestionReseau
     /// </summary>
     public class Station
     {
+        // Nom de la station
         public string Nom { get; set; }
 
+        // Constructeur initialisant le nom de la station
         public Station(string nom)
         {
             Nom = nom;
         }
 
+        // Retourne le nom de la station
         public override string ToString()
         {
             return Nom;
@@ -28,11 +31,16 @@ namespace GestionReseau
     /// </summary>
     internal class Trajet
     {
+        // Station de départ
         public Station Depart { get; set; }
+        // Station d'arrivée
         public Station Arrivee { get; set; }
+        // Durée du trajet en secondes
         public int DureeEnSecondes { get; set; }
+        // Liste des numéros de lignes
         public List<int> Lignes { get; set; }
 
+        // Constructeur
         public Trajet(Station depart, Station arrivee, int duree, List<int> lignes)
         {
             Depart = depart;
@@ -47,7 +55,9 @@ namespace GestionReseau
     /// </summary>
     internal class Graphe
     {
+        // Liste des stations du réseau
         public List<Station> Stations { get; set; } = new List<Station>();
+        // Liste des trajets entre stations
         public List<Trajet> Trajets { get; set; } = new List<Trajet>();
 
         /// <summary>
@@ -71,6 +81,7 @@ namespace GestionReseau
         /// </summary>
         public List<Trajet> ObtenirTrajetsDepuis(Station station)
         {
+            // Filtre la liste des trajets pour ceux dont la station de départ est celle passée en paramètre
             return Trajets.Where(t => t.Depart == station).ToList();
         }
     }
@@ -93,7 +104,7 @@ namespace GestionReseau
             predecesseurs = new Dictionary<Station, Station>();
             var aVisiter = new List<Station>();
 
-            // Initialisation : toutes distances à l’infini sauf départ à 0
+            // Initialisation : toutes distances sont infinies sauf celle de départ qui vaut 0
             foreach (var station in graphe.Stations)
             {
                 distances[station] = int.MaxValue;
@@ -105,24 +116,25 @@ namespace GestionReseau
             // Tant qu’il reste des stations à visiter
             while (aVisiter.Count > 0)
             {
-                // Station non visitée avec distance minimale
+                // Sélection de la station non visitée ayant la distance minimale
                 var stationActuelle = aVisiter.OrderBy(s => distances[s]).First();
                 aVisiter.Remove(stationActuelle);
 
-
-                // Mise à jour des distances des voisins via la station actuelle
+                // Mise à jour des distances des stations voisines via la station actuelle
                 foreach (var trajet in graphe.ObtenirTrajetsDepuis(stationActuelle))
                 {
                     int nouvelleDistance = distances[stationActuelle] + trajet.DureeEnSecondes;
 
+                    // Si on trouve un chemin plus court vers la station d'arrivée du trajet
                     if (nouvelleDistance < distances[trajet.Arrivee])
                     {
                         distances[trajet.Arrivee] = nouvelleDistance;
-                        predecesseurs[trajet.Arrivee] = stationActuelle;
+                        predecesseurs[trajet.Arrivee] = stationActuelle; // Mise à jour du prédécesseur
                     }
                 }
             }
 
+            // Renvoie les distances minimales vers chaque station depuis le départ
             return distances;
         }
 
@@ -137,14 +149,15 @@ namespace GestionReseau
             var chemin = new List<Station>();
             var station = arrivee;
 
+            // Remonte la chaîne des prédécesseurs jusqu'à la station de départ
             while (predecesseurs.ContainsKey(station))
             {
                 chemin.Add(station);
                 station = predecesseurs[station];
             }
 
-            chemin.Add(station); // Ajouter la station de départ
-            chemin.Reverse();
+            chemin.Add(station); // Ajoute la station de départ
+            chemin.Reverse(); // Inverse pour obtenir l'ordre du chemin du départ vers l'arrivée
             return chemin;
         }
     }
@@ -164,30 +177,33 @@ namespace GestionReseau
         {
             var graphe = new Graphe();
 
-            // Ajouter toutes les stations au graphe
+            // Ajout de toutes les stations dans le graphe
             foreach (var station in stations.Values)
             {
                 graphe.AjouterStation(station);
             }
 
-            // Construire les trajets en combinant les segments pour gérer plusieurs lignes par trajet
+            // Dictionnaire temporaire pour combiner segments similaires (même départ/arrivée) en un trajet avec plusieurs lignes
             var trajetsTemp = new Dictionary<(int, int), (int duree, List<int> lignes)>();
 
             foreach (var seg in segments)
             {
                 var cle = (seg.idA, seg.idB);
+                // Si le trajet n'existe pas encore, on l'ajoute avec la durée et une liste vide pour les lignes
                 if (!trajetsTemp.ContainsKey(cle))
                     trajetsTemp[cle] = (seg.duree, new List<int>());
 
+                // On ajoute le numéro de ligne correspondant à ce segment dans la liste
                 trajetsTemp[cle].lignes.Add(seg.numLigne);
             }
 
-            // Ajouter les trajets au graphe
+            // Ajout des trajets au graphe à partir du dictionnaire temporaire
             foreach (var kvp in trajetsTemp)
             {
                 var (idA, idB) = kvp.Key;
                 var (duree, lignes) = kvp.Value;
 
+                // Vérifie que les stations existent avant d'ajouter le trajet
                 if (stations.ContainsKey(idA) && stations.ContainsKey(idB))
                 {
                     graphe.AjouterTrajet(stations[idA], stations[idB], duree, lignes);

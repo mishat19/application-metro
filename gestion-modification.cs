@@ -335,85 +335,6 @@ namespace application_metro
             lblDernier.Font = new Font(G, 9);
         }
 
-        bool nudChange = false;
-        bool couleurChange = false;
-        bool nudStations = false;
-        Dictionary<string, string> stationsChange = new Dictionary<string, string>();
-        Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
-
-        //Vérifie le texte des noms de stations
-        private void Txt_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-                stationsChange[nom] = contenu;
-                Console.WriteLine($"[{nom}] -> Nom de station : {stationsChange[nom]}");
-            }
-            btnEnregistrement.Enabled = true;
-        }
-
-        //Vérifie le texte de la latitude
-        private void Txt2_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-
-                if (decimal.TryParse(contenu, out decimal latitude))
-                {
-                    // Vérifie si l'entrée existe déjà
-                    if (coordonneesChange.TryGetValue(nom, out var currentValue))
-                    {
-                        // Met à jour uniquement la latitude
-                        coordonneesChange[nom] = (latitude, currentValue.lon);
-                    }
-                    else
-                    {
-                        // Crée une nouvelle entrée avec la longitude par défaut à 0
-                        coordonneesChange[nom] = (latitude, 0);
-                    }
-
-                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
-                }
-
-                btnEnregistrement.Enabled = true;
-            }
-        }
-
-        private void Txt3_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-
-                if (decimal.TryParse(contenu, out decimal longitude))
-                {
-                    // Vérifie si l'entrée existe déjà
-                    if (coordonneesChange.TryGetValue(nom, out var currentValue))
-                    {
-                        // Met à jour uniquement la longitude
-                        coordonneesChange[nom] = (currentValue.lat, longitude);
-                    }
-                    else
-                    {
-                        // Crée une nouvelle entrée avec la latitude par défaut à 0
-                        coordonneesChange[nom] = (0, longitude);
-                    }
-
-                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
-                }
-
-                btnEnregistrement.Enabled = true;
-            }
-        }
-
 
         private void picRetour_Click(object sender, EventArgs e)
         {
@@ -447,6 +368,88 @@ namespace application_metro
         private void grpHorairesStations_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        bool nudChange = false;
+        bool couleurChange = false;
+        bool nudStations = false;
+        Dictionary<string, string> stationsChange = new Dictionary<string, string>();
+        Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
+
+        //Vérifie le texte des noms de stations
+        private void Txt_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (stationsChange.ContainsKey(nom))
+                {
+                    stationsChange.Remove(nom);
+                }
+                stationsChange.Add(nom, contenu);
+                Console.WriteLine($"[{nom}] -> Nom de station : {stationsChange[nom]}");
+            }
+            btnEnregistrement.Enabled = true;
+        }
+
+        //Vérifie le texte de la latitude
+        private void Txt2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (decimal.TryParse(contenu, out decimal latitude))
+                {
+                    // Initialise l'entrée si elle n'existe pas encore
+                    if (!coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (0, 0);
+                    }
+
+                    // Met à jour la latitude
+                    coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
+
+                    // Affiche la mise à jour dans la console
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
+                }
+
+                // Active le bouton d'enregistrement
+                btnEnregistrement.Enabled = true;
+            }
+        }
+
+        private void Txt3_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (decimal.TryParse(contenu, out decimal longitude))
+                {
+                    // Initialise l'entrée si elle n'existe pas encore
+                    if (!coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (0, 0);
+                    }
+
+                    // Met à jour la longitude
+                    coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
+
+                    // Affiche la mise à jour dans la console
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
+                }
+
+                // Active le bouton d'enregistrement
+                btnEnregistrement.Enabled = true;
+            }
         }
 
         private void nudNbStations_ValueChanged(object sender, EventArgs e)
@@ -564,11 +567,14 @@ namespace application_metro
             }
             else
             {
-                int numLigne = (int)nudNumLigne.Value;
                 string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
                 string couleur = txtCouleur.Text;
                 TimeSpan horaireDebut = dtp_HoraireDebut.Value.TimeOfDay;
                 TimeSpan horaireFin = dtp_HoraireFin.Value.TimeOfDay;
+
+                Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, nom, couleur);
+                Serveur.MettreAJourNomsStations(stationsChange);
+                Serveur.MettreAJourCoordonneesStations(coordonneesChange);
             }
         }
     }

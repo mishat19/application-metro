@@ -772,6 +772,92 @@ namespace GestionReseau
             return stations;
         }
 
+        public static void MettreAJourCouleurEtNumeroLigne(int numLigne, string couleur, string nom)
+        {
+            string requete = @"UPDATE InfoLigne 
+                       SET Couleur = @Couleur, Nom = @Nom
+                       WHERE NumLigne = @NumLigne";
+
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@Couleur", couleur);
+            cmd.Parameters.AddWithValue("@Nom", nom);
+            cmd.Parameters.AddWithValue("@NumLigne", numLigne);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        public static void MettreAJourNomsStations(Dictionary<string, string> stations)
+        {
+            foreach (var station in stations)
+            {
+                string ancienNom = station.Key;
+                string nouveauNom = station.Value;
+
+                // On met à jour uniquement si le nom a changé
+                if (!string.Equals(ancienNom, nouveauNom, StringComparison.Ordinal))
+                {
+                    string requete = @"UPDATE Station 
+                               SET NomStation = @NouveauNom 
+                               WHERE NomStation = @AncienNom";
+
+                    MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                    cmd.Parameters.AddWithValue("@NouveauNom", nouveauNom);
+                    cmd.Parameters.AddWithValue("@AncienNom", ancienNom);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public static void MettreAJourCoordonneesStations(Dictionary<string, (decimal Latitude, decimal Longitude)> coordonnees)
+        {
+            foreach (var station in coordonnees)
+            {
+                string nomStation = station.Key;
+                decimal latitude = station.Value.Latitude;
+                decimal longitude = station.Value.Longitude;
+
+                MySqlCommand cmd = null;
+
+                if (latitude != 0 && longitude != 0)
+                {
+                    // Met à jour latitude et longitude
+                    string requete = @"UPDATE Station 
+                               SET Latitude = @Latitude, Longitude = @Longitude 
+                               WHERE NomStation = @NomStation";
+                    cmd = new MySqlCommand(requete, connexion);
+                    cmd.Parameters.AddWithValue("@Latitude", latitude);
+                    cmd.Parameters.AddWithValue("@Longitude", longitude);
+                }
+                else if (latitude != 0)
+                {
+                    // Met à jour uniquement la latitude
+                    string requete = @"UPDATE Station 
+                               SET Latitude = @Latitude 
+                               WHERE NomStation = @NomStation";
+                    cmd = new MySqlCommand(requete, connexion);
+                    cmd.Parameters.AddWithValue("@Latitude", latitude);
+                }
+                else if (longitude != 0)
+                {
+                    // Met à jour uniquement la longitude
+                    string requete = @"UPDATE Station 
+                               SET Longitude = @Longitude 
+                               WHERE NomStation = @NomStation";
+                    cmd = new MySqlCommand(requete, connexion);
+                    cmd.Parameters.AddWithValue("@Longitude", longitude);
+                }
+                else
+                {
+                    // Latitude et longitude = 0 => ne rien faire
+                    continue;
+                }
+
+                cmd.Parameters.AddWithValue("@NomStation", nomStation);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
         /// <summary>
         /// Récupère la durée des segments d'une ligne spécifique.
         /// </summary>
