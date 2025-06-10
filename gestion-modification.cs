@@ -252,7 +252,7 @@ namespace application_metro
                     //Dernière station donc pas de Segment
                     nud.Enabled = false;
 
-                    if(segments == null && mode == "Ajout")
+                    if (segments == null && mode == "Ajout")
                     {
                         nud.Enabled = true;
                     }
@@ -293,7 +293,7 @@ namespace application_metro
                 }
                 else
                 {
-                    txt3.Name = $"txtCoordonneeLa{i}";
+                    txt3.Name = $"txtCoordonneeLon{i}";
                     txt3.PlaceholderText = $"Longitude{i}";
                 }
 
@@ -335,6 +335,135 @@ namespace application_metro
             nudNbStations.Font = new Font(D, 9);
             lblPremier.Font = new Font(G, 9);
             lblDernier.Font = new Font(G, 9);
+        }
+
+
+        private void picRetour_Click(object sender, EventArgs e)
+        {
+            Gestion gestion = new Gestion(this.Location);
+            gestion.Show();
+            this.Close();
+        }
+
+        private void picHome_Click(object sender, EventArgs e)
+        {
+            Accueil accueil = new Accueil(this.Location);
+            accueil.Show();
+            this.Close();
+        }
+
+        private void grpModif_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpNomStations_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpCoordonnees_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpHorairesStations_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        bool nudChange = false;
+        bool couleurChange = false;
+        bool nudStations = false;
+        Dictionary<string, string> stationsChange = new Dictionary<string, string>();
+        Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
+
+        //Vérifie le texte des noms de stations
+        private void Txt_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (stationsChange.ContainsKey(nom))
+                {
+                    stationsChange.Remove(nom);
+                }
+                stationsChange.Add(nom, contenu);
+                Console.WriteLine($"[{nom}] -> Nom de station : {stationsChange[nom]}");
+            }
+            btnEnregistrement.Enabled = true;
+        }
+
+        //Vérifie le texte de la latitude
+        private void Txt2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (decimal.TryParse(contenu, out decimal latitude))
+                {
+                    // Initialise l'entrée si elle n'existe pas encore
+                    if (!coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (0, 0);
+                    }
+
+                    // Met à jour la latitude
+                    coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
+
+                    // Affiche la mise à jour dans la console
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
+                }
+
+                // Active le bouton d'enregistrement
+                btnEnregistrement.Enabled = true;
+            }
+        }
+
+        private void Txt3_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = sender as TextBox;
+            if (txt != null)
+            {
+                string nom = txt.Name;
+                string contenu = txt.Text;
+
+                if (decimal.TryParse(contenu, out decimal longitude))
+                {
+                    // Initialise l'entrée si elle n'existe pas encore
+                    if (!coordonneesChange.ContainsKey(nom))
+                    {
+                        coordonneesChange[nom] = (0, 0);
+                    }
+
+                    // Met à jour la longitude
+                    coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
+
+                    // Affiche la mise à jour dans la console
+                    Console.WriteLine($"[{nom}] -> Latitude : {coordonneesChange[nom].lat}, Longitude : {coordonneesChange[nom].lon}");
+                }
+
+                // Active le bouton d'enregistrement
+                btnEnregistrement.Enabled = true;
+            }
+        }
+
+        private void nudNbStations_ValueChanged(object sender, EventArgs e)
+        {
+            int nbStations = (int)nudNbStations.Value;
+            CreationTextBox(nbStations);
+            nudStations = true;
+        }
+
+        private void txtCouleur_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
@@ -440,147 +569,16 @@ namespace application_metro
             }
             else
             {
-                if (nudChange || couleurChange)
-                {
-                    string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
-                    Serveur.ModifInfosLigne(numeroLigne, nom, txtCouleur.Text);
-                }
-                ;
+                string nom = ligneConcatenation(cmbLigne.Text, (int)nudNumLigne.Value);
+                string couleur = txtCouleur.Text;
+                TimeSpan horaireDebut = dtp_HoraireDebut.Value.TimeOfDay;
+                TimeSpan horaireFin = dtp_HoraireFin.Value.TimeOfDay;
 
-                if (nudStations)
-                {
-                    //A faire
-                }
-                ;
-
-                if (stationsChange != null)
-                {
-                    Serveur.ModifNomStations(stationsChange);
-                }
-
-                if (coordonneesChange != null)
-                {
-                    Serveur.ModifCoordonneesStations(coordonneesChange);
-                }
-                ;
+                Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
+                Serveur.MettreAJourNomsStations(stationsChange);
+                Serveur.MettreAJourCoordonneesStations(coordonneesChange);
+                Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
             }
-        }
-
-        bool nudChange = false;
-        bool couleurChange = false;
-        bool nudStations = false;
-        Dictionary<string, string> stationsChange = new Dictionary<string, string>();
-        Dictionary<string, (decimal lat, decimal lon)> coordonneesChange = new();
-
-        private void nudNumLigne_ValueChanged(object sender, EventArgs e)
-        {
-            nudChange = true;
-            btnEnregistrement.Enabled = true;
-        }
-
-        private void txtCouleur_TextChanged(object sender, EventArgs e)
-        {
-            couleurChange = true;
-            btnEnregistrement.Enabled = true;
-        }
-
-        private void Txt_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-                stationsChange[nom] = contenu;
-            }
-            btnEnregistrement.Enabled = true;
-        }
-
-        private void Txt2_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-
-                if (decimal.TryParse(contenu, out decimal latitude))
-                {
-                    if (coordonneesChange.ContainsKey(nom))
-                    {
-                        coordonneesChange[nom] = (latitude, coordonneesChange[nom].lon);
-                    }
-                    else
-                    {
-                        coordonneesChange[nom] = (latitude, 0);
-                    }
-                }
-                btnEnregistrement.Enabled = true;
-            }
-        }
-
-        private void Txt3_TextChanged(object sender, EventArgs e)
-        {
-            TextBox txt = sender as TextBox;
-            if (txt != null)
-            {
-                string nom = txt.Name;
-                string contenu = txt.Text;
-
-                if (decimal.TryParse(contenu, out decimal longitude))
-                {
-                    if (coordonneesChange.ContainsKey(nom))
-                    {
-                        coordonneesChange[nom] = (coordonneesChange[nom].lat, longitude);
-                    }
-                    else
-                    {
-                        coordonneesChange[nom] = (0, longitude);
-                    }
-                }
-                btnEnregistrement.Enabled = true;
-            }
-        }
-
-        private void picRetour_Click(object sender, EventArgs e)
-        {
-            Gestion gestion = new Gestion(this.Location);
-            gestion.Show();
-            this.Close();
-        }
-
-        private void picHome_Click(object sender, EventArgs e)
-        {
-            Accueil accueil = new Accueil(this.Location);
-            accueil.Show();
-            this.Close();
-        }
-
-        private void grpModif_Paint(object sender, PaintEventArgs e)
-        {
-            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void grpNomStations_Paint(object sender, PaintEventArgs e)
-        {
-            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void grpCoordonnees_Paint(object sender, PaintEventArgs e)
-        {
-            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void grpHorairesStations_Paint(object sender, PaintEventArgs e)
-        {
-            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-        }
-
-        private void nudNbStations_ValueChanged(object sender, EventArgs e)
-        {
-            int nbStations = (int)nudNbStations.Value;
-            CreationTextBox(nbStations);
-            nudStations = true;
         }
     }
 }
