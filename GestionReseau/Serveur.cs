@@ -813,7 +813,6 @@ namespace GestionReseau
                 {
                     return true;
                 }
-                return false;
             }
 
             // Si aucun doublon, on met à jour
@@ -828,8 +827,8 @@ namespace GestionReseau
                 cmd.Parameters.AddWithValue("@NumLigne", numLigne);
                 cmd.ExecuteNonQuery();
             }
+            return false;
         }
-
 
         public static void MettreAJourNomsStations(Dictionary<string, string> stations)
         {

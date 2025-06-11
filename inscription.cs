@@ -63,7 +63,8 @@ namespace application_metro
             DateTime dateNaissance = dtpNaissance.Value;
 
 
-            // Appel du serveur pour inscription
+            // Appel du serveur pour inscription dans la bdd avec un compte non admin (0)
+            // et pour lancer la connexion immédiatement (1) même si vérification dans la méthode
             Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0, 1);
 
             Accueil accueilWindow = new Accueil(this.Location);
