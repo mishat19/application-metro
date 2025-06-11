@@ -52,7 +52,7 @@
             btnRecherche.FlatStyle = FlatStyle.Flat;
             btnRecherche.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnRecherche.ForeColor = Color.White;
-            btnRecherche.Location = new Point(12, 240);
+            btnRecherche.Location = new Point(16, 240);
             btnRecherche.Name = "btnRecherche";
             btnRecherche.Size = new Size(354, 53);
             btnRecherche.TabIndex = 27;

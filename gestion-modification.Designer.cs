@@ -134,7 +134,7 @@
             btnEnregistrement.FlatStyle = FlatStyle.Flat;
             btnEnregistrement.Font = new Font("Microsoft Sans Serif", 9F);
             btnEnregistrement.ForeColor = Color.White;
-            btnEnregistrement.Location = new Point(219, 1176);
+            btnEnregistrement.Location = new Point(218, 1232);
             btnEnregistrement.Name = "btnEnregistrement";
             btnEnregistrement.Size = new Size(128, 39);
             btnEnregistrement.TabIndex = 57;
@@ -177,7 +177,7 @@
             flpHoraires.Controls.Add(dtp_HoraireFin);
             flpHoraires.Location = new Point(18, 1075);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(323, 75);
+            flpHoraires.Size = new Size(323, 117);
             flpHoraires.TabIndex = 55;
             // 
             // lblPremier

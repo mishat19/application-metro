@@ -295,9 +295,9 @@
             grpResultat1.Controls.Add(lblTempsDepart);
             grpResultat1.Controls.Add(lblArrivee2);
             grpResultat1.Controls.Add(lblDepart2);
-            grpResultat1.Location = new Point(9, 27);
+            grpResultat1.Location = new Point(9, 15);
             grpResultat1.Name = "grpResultat1";
-            grpResultat1.Size = new Size(335, 149);
+            grpResultat1.Size = new Size(335, 161);
             grpResultat1.TabIndex = 18;
             grpResultat1.TabStop = false;
             grpResultat1.Paint += grpResultat1_Paint;
