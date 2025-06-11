@@ -479,60 +479,63 @@ namespace application_metro
                 string nom = ligneConcatenation(txtNomLigne.Text, (int)nudNumLigne.Value);
                 string couleur = txtCouleur.Text;
 
-                Serveur.AjoutLigne(nom, couleur);
-                int numLigne = Serveur.idLigneGraceNom(nom);
-
-                List<string> lstNomStation = new List<string>();
-
-                for (int i = 0; i < nudNbStations.Value; i++)
+                bool verif = Serveur.AjoutLigne(nom, couleur);
+                if (verif)
                 {
-                    string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
-                    string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
-                    string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
+                    int numLigne = Serveur.idLigneGraceNom(nom);
 
-                    double latitudeDecimal;
-                    double longitudeDecimal;
+                    List<string> lstNomStation = new List<string>();
 
-                    try
+                    for (int i = 0; i < nudNbStations.Value; i++)
                     {
-                        latitudeDecimal = Convert.ToDouble(latitude);
-                        longitudeDecimal = Convert.ToDouble(longitude);
+                        string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
+                        string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
+                        string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
+
+                        double latitudeDecimal;
+                        double longitudeDecimal;
+
+                        try
+                        {
+                            latitudeDecimal = Convert.ToDouble(latitude);
+                            longitudeDecimal = Convert.ToDouble(longitude);
+                        }
+                        catch (FormatException)
+                        {
+                            Serveur.SupprimerUneInfoLigne(numLigne);
+                            MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
+                            return;
+                        }
+
+                        if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
+                        {
+                            lstNomStation.Add(nomStation);
+                            Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
+                        }
                     }
-                    catch (FormatException)
-                    {
-                        Serveur.SupprimerUneInfoLigne(numLigne);
-                        MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
-                        return;
-                    }
 
-                    if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
-                    {
-                        lstNomStation.Add(nomStation);
-                        Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
-                    }
-                }
+                    int duree;
+                    int idSegment;
+                    int ordreIncrementation = 1;
 
-                int duree;
-                int idSegment;
-                int ordreIncrementation = 1;
-
-                // Ajout du segment dans le sens de l'aller
-                for (int i = 0; i < lstNomStation.Count - 1; i++)
-                {
-                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
-                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
-                    duree = (int)nud.Value;
-
-                    try
+                    // Ajout du segment dans le sens de l'aller
+                    for (int i = 0; i < lstNomStation.Count - 1; i++)
                     {
-                        Serveur.AjoutSegment(duree, station, stationSuivante);
-                        idSegment = Serveur.RecupereIdDernierObjet();
-                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
+                        int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                        int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
+                        NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                        duree = (int)nud.Value;
+
+                        try
+                        {
+                            Serveur.AjoutSegment(duree, station, stationSuivante);
+                            idSegment = Serveur.RecupereIdDernierObjet();
+                            Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
+                        }
                     }
                 }
 
@@ -563,7 +566,14 @@ namespace application_metro
 
                 try
                 {
-                    Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
+                    if(HoraireDepart != HoraireFin)
+                    {
+                        Serveur.AjoutHoraireDepartFin(numLigne, HoraireDepart, HoraireFin);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez saisir des horaires différents");
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -583,7 +593,7 @@ namespace application_metro
                 bool existant = Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
                 if (existant)
                 {
-                    MessageBox.Show("Cette ligne existe déjà dans la base, veuillez la modifier");
+                    MessageBox.Show("Cette ligne existe déjà dans la base, veuillez changer le nom");
                 }
 
                 Serveur.MettreAJourNomsStations(stationsChange);

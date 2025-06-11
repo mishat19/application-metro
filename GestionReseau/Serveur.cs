@@ -540,15 +540,34 @@ namespace GestionReseau
         /// </summary>
         /// <param name="nomLigne">Nom de la ligne</param>
         /// <param name="couleur">Couleur de la ligne</param>
-        public static void AjoutLigne(string nomLigne, string couleur)
+        /// <returns>Retourne un booléen de si le nom de la ligne existe déjà ou non</returns>
+        public static bool AjoutLigne(string nomLigne, string couleur)
         {
-            string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
-                                        VALUES (@nomLigne, @couleur)";
+            // Vérifie si le nom de ligne existe déjà
+            string verifRequete = @"SELECT COUNT(*) FROM InfoLigne WHERE Nom = @nomLigne";
 
-            MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion);
-            cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
-            cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
-            cmdAjoutLigne.ExecuteNonQuery();
+            using (MySqlCommand verifCmd = new MySqlCommand(verifRequete, connexion))
+            {
+                verifCmd.Parameters.AddWithValue("@nomLigne", nomLigne);
+                long count = (long)verifCmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    return true;
+                }
+            }
+
+            // Si le nom n'existe pas, on l'insère
+            string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
+                                 VALUES (@nomLigne, @couleur)";
+
+            using (MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion))
+            {
+                cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
+                cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
+                cmdAjoutLigne.ExecuteNonQuery();
+            }
+            return false;
         }
 
         /// <summary>
@@ -786,6 +805,13 @@ namespace GestionReseau
             return stations;
         }
 
+        /// <summary>
+        /// Met à jour la couleur, et le nom de la ligne.
+        /// </summary>
+        /// <param name="numLigne">Id de la ligne</param>
+        /// <param name="couleur">Couleur de la ligne</param>
+        /// <param name="nom">Nom de la ligne</param>
+        /// <returns>Retourne un booléen de si le nom de la ligne existe déjà ou non</returns>
         public static bool MettreAJourCouleurEtNumeroLigne(int numLigne, string couleur, string nom)
         {
             // Vérifier si un autre enregistrement utilise déjà ce nom
