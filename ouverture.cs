@@ -10,8 +10,8 @@ namespace application_metro
     public partial class Ouverture : Form
     {
         // Importation d'une fonction native de Windows pour afficher une console (CMD)
-        [DllImport("kernel32.dll")]
-        private static extern bool AllocConsole();
+        //[DllImport("kernel32.dll")]
+        //private static extern bool AllocConsole();
 
         // Gestionnaire de polices personnalisées
         PrivateFontCollection fontCollection = new PrivateFontCollection();
@@ -33,7 +33,7 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
             //Affiche la console pour debug
-            AllocConsole();
+            //AllocConsole();
             // Établit la connexion avec la base de données
             Serveur.OuvertureConnexion();
 
