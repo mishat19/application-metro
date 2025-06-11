@@ -341,6 +341,7 @@ namespace application_metro
                 ((this.ClientSize.Width - flpResultat.Width) / 2) - 10,
                 lblTrajet.Bottom + 10
             );
+
         }
 
 
@@ -356,7 +357,7 @@ namespace application_metro
             if (detailsVisible)
             {
                 // Afficher "moins" pour signifier qu'on peut réduire
-                picVoirPlus.Image = Image.FromFile(@"..\..\..\moins.png");
+                picVoirPlus.Image = Image.FromFile(@"..\..\..\images\moins.png");
 
                 // Agrandir le groupbox pour englober la listbox
                 int nouvelleHauteur = lstStations.Bottom + 10; // 10 = petite marge
@@ -365,7 +366,7 @@ namespace application_metro
             else
             {
                 // Afficher "points" pour signifier qu'on peut agrandir
-                picVoirPlus.Image = Image.FromFile(@"..\..\..\points.png");
+                picVoirPlus.Image = Image.FromFile(@"..\..\..\images\points.png");
 
                 // Rétablir la hauteur initiale
                 grpResultat.Height = hauteurInitialeGrpResultat;

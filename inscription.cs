@@ -87,8 +87,8 @@ namespace application_metro
         }
 
         // Chemins vers les images pour afficher ou masquer le mot de passe
-        string cheminOff = @"..\..\..\oeiloff.png";
-        string cheminOn = @"..\..\..\oeilon.png";
+        string cheminOff = @"..\..\..\images\oeiloff.png";
+        string cheminOn = @"..\..\..\images\oeilon.png";
 
         /// <summary>
         /// Affiche ou masque le mot de passe et change l’icône en conséquence.

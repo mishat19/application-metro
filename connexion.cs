@@ -82,8 +82,8 @@ namespace application_metro
         }
 
         // Logo pour masquer ou afficher le mot de passe
-        string cheminOff = @"..\..\..\oeiloff.png";
-        string cheminOn = @"..\..\..\oeilon.png";
+        string cheminOff = @"..\..\..\images\oeiloff.png";
+        string cheminOn = @"..\..\..\images\oeilon.png";
 
         // Bouton pour masquer ou afficher le mot de passe
         private void picOeilOff_Click(object sender, EventArgs e)

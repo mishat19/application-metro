@@ -198,7 +198,7 @@
             dtp_HoraireDebut.CalendarTitleForeColor = Color.FromArgb(205, 33, 42);
             dtp_HoraireDebut.CalendarTrailingForeColor = Color.FromArgb(205, 33, 42);
             dtp_HoraireDebut.Format = DateTimePickerFormat.Time;
-            dtp_HoraireDebut.Location = new Point(3, 23);
+            dtp_HoraireDebut.Location = new Point(208, 3);
             dtp_HoraireDebut.Name = "dtp_HoraireDebut";
             dtp_HoraireDebut.ShowUpDown = true;
             dtp_HoraireDebut.Size = new Size(101, 27);
@@ -208,7 +208,7 @@
             // 
             lblDernier.AutoSize = true;
             lblDernier.ForeColor = Color.FromArgb(15, 93, 70);
-            lblDernier.Location = new Point(3, 53);
+            lblDernier.Location = new Point(3, 33);
             lblDernier.Name = "lblDernier";
             lblDernier.Size = new Size(197, 20);
             lblDernier.TabIndex = 2;
@@ -217,7 +217,7 @@
             // dtp_HoraireFin
             // 
             dtp_HoraireFin.Format = DateTimePickerFormat.Time;
-            dtp_HoraireFin.Location = new Point(3, 76);
+            dtp_HoraireFin.Location = new Point(206, 36);
             dtp_HoraireFin.Name = "dtp_HoraireFin";
             dtp_HoraireFin.ShowUpDown = true;
             dtp_HoraireFin.Size = new Size(103, 27);
@@ -403,7 +403,7 @@
             // 
             // picHome
             // 
-            picHome.Image = Properties.Resources.home;
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
             picHome.Location = new Point(35, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
@@ -414,7 +414,7 @@
             // 
             // picRetour
             // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(29, 25);
@@ -425,7 +425,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.logo4;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(119, 12);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(113, 96);

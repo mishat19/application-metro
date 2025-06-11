@@ -109,7 +109,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(-287, 272);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
@@ -119,7 +119,7 @@
             // 
             // picAccueil
             // 
-            picAccueil.Image = Properties.Resources.logo1;
+            picAccueil.Image = (Image)resources.GetObject("picAccueil.Image");
             picAccueil.Location = new Point(142, 73);
             picAccueil.Name = "picAccueil";
             picAccueil.Size = new Size(99, 84);

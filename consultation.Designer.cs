@@ -89,7 +89,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(-25, 287);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
@@ -99,7 +99,7 @@
             // 
             // picRetour
             // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(2, 1);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(26, 25);
@@ -110,7 +110,7 @@
             // 
             // picHome
             // 
-            picHome.Image = Properties.Resources.home;
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
             picHome.Location = new Point(34, 1);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
@@ -145,7 +145,7 @@
             // 
             // picHoraires
             // 
-            picHoraires.Image = Properties.Resources.logo5;
+            picHoraires.Image = (Image)resources.GetObject("picHoraires.Image");
             picHoraires.Location = new Point(154, 12);
             picHoraires.Name = "picHoraires";
             picHoraires.Size = new Size(75, 68);

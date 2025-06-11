@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Recherche));
             grpTrajet = new GroupBox();
             btnDetails = new Button();
             lblDuree = new Label();
@@ -45,7 +46,7 @@
             flpResultat = new FlowLayoutPanel();
             grpResultat = new GroupBox();
             grpResultat1 = new GroupBox();
-            picDeuxPoints = new PictureBox();
+            pictureBox1 = new PictureBox();
             picFlecheItineraire = new PictureBox();
             lblTempsArrivee = new Label();
             lblTempsDepart = new Label();
@@ -80,7 +81,7 @@
             flpResultat.SuspendLayout();
             grpResultat.SuspendLayout();
             grpResultat1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picDeuxPoints).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picFlecheItineraire).BeginInit();
             grpResultat2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picVoirPlus).BeginInit();
@@ -246,7 +247,7 @@
             // 
             pnlRecherche.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlRecherche.AutoScroll = true;
-            pnlRecherche.AutoScrollMinSize = new Size(0, 1000);
+            pnlRecherche.AutoScrollMinSize = new Size(0, 1500);
             pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
             pnlRecherche.Controls.Add(flpResultat);
             pnlRecherche.Controls.Add(grpRecherche);
@@ -266,7 +267,7 @@
             flpResultat.Controls.Add(picVoirPlus);
             flpResultat.Location = new Point(0, 853);
             flpResultat.Name = "flpResultat";
-            flpResultat.Size = new Size(358, 463);
+            flpResultat.Size = new Size(358, 579);
             flpResultat.TabIndex = 59;
             flpResultat.Visible = false;
             // 
@@ -288,7 +289,7 @@
             // 
             // grpResultat1
             // 
-            grpResultat1.Controls.Add(picDeuxPoints);
+            grpResultat1.Controls.Add(pictureBox1);
             grpResultat1.Controls.Add(picFlecheItineraire);
             grpResultat1.Controls.Add(lblTempsArrivee);
             grpResultat1.Controls.Add(lblTempsDepart);
@@ -301,17 +302,19 @@
             grpResultat1.TabStop = false;
             grpResultat1.Paint += grpResultat1_Paint;
             // 
-            // picDeuxPoints
+            // pictureBox1
             // 
-            picDeuxPoints.Location = new Point(179, 145);
-            picDeuxPoints.Margin = new Padding(3, 4, 3, 4);
-            picDeuxPoints.Name = "picDeuxPoints";
-            picDeuxPoints.Size = new Size(101, 51);
-            picDeuxPoints.TabIndex = 0;
-            picDeuxPoints.TabStop = false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(157, 112);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(26, 28);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 61;
+            pictureBox1.TabStop = false;
             // 
             // picFlecheItineraire
             // 
+            picFlecheItineraire.Image = (Image)resources.GetObject("picFlecheItineraire.Image");
             picFlecheItineraire.Location = new Point(161, 57);
             picFlecheItineraire.Name = "picFlecheItineraire";
             picFlecheItineraire.Size = new Size(27, 23);
@@ -348,16 +351,18 @@
             lblArrivee2.Size = new Size(56, 20);
             lblArrivee2.TabIndex = 17;
             lblArrivee2.Text = "Arrivée";
+            lblArrivee2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblDepart2
             // 
             lblDepart2.AutoSize = true;
             lblDepart2.ForeColor = Color.FromArgb(205, 33, 42);
-            lblDepart2.Location = new Point(122, 23);
+            lblDepart2.Location = new Point(137, 23);
             lblDepart2.Name = "lblDepart2";
             lblDepart2.Size = new Size(55, 20);
             lblDepart2.TabIndex = 16;
             lblDepart2.Text = "Départ";
+            lblDepart2.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblNumLigneResultat
             // 
@@ -413,6 +418,7 @@
             // picVoirPlus
             // 
             picVoirPlus.Dock = DockStyle.Top;
+            picVoirPlus.Image = (Image)resources.GetObject("picVoirPlus.Image");
             picVoirPlus.Location = new Point(3, 281);
             picVoirPlus.Name = "picVoirPlus";
             picVoirPlus.Size = new Size(350, 61);
@@ -589,7 +595,7 @@
             // 
             // picHome
             // 
-            picHome.Image = Properties.Resources.home;
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
             picHome.Location = new Point(34, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
@@ -600,7 +606,7 @@
             // 
             // picRetour
             // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(27, 25);
@@ -616,6 +622,7 @@
             ClientSize = new Size(382, 753);
             Controls.Add(pnlRecherche);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Recherche";
@@ -632,7 +639,7 @@
             grpResultat.PerformLayout();
             grpResultat1.ResumeLayout(false);
             grpResultat1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picDeuxPoints).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)picFlecheItineraire).EndInit();
             grpResultat2.ResumeLayout(false);
             grpResultat2.PerformLayout();
@@ -690,12 +697,12 @@
         private Label lblDepart2;
         private GroupBox grpResultat2;
         private Label lblTemps;
-        private PictureBox picDeuxPoints;
         private PictureBox picFlecheItineraire;
         private CheckBox chkHoraireArrivee;
         private CheckBox chkHoraireDepart;
         private Label lblHoraireArrivee;
         private DateTimePicker dtpHeureDepart;
         private DateTimePicker dtpHeureArrivee;
+        private PictureBox pictureBox1;
     }
 }
