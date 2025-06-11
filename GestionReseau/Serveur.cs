@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using Mysqlx.Session;
 using MySqlX.XDevAPI.Common;
 using Org.BouncyCastle.Asn1.Ocsp;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace GestionReseau
 {
@@ -365,22 +366,25 @@ namespace GestionReseau
         public static List<string> StationsParLigne(string nomLigne)
         {
             List<string> stations = new List<string>();
-
             string requete = @"
             SELECT DISTINCT st.NomStation
-            FROM InfoLigne il, Ligne l, Segment seg, Station st
-            WHERE il.Nom = 'NomLigne'
+            FROM InfoLigne il, Ligne l, Segment seg, Station st 
+            WHERE il.Nom = @NomLigne
             AND il.NumLigne = l.NumLigne
             AND l.NumSegment = seg.NumSegment
             AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
+            //On récupère la station de début ou de fin du segment (car une ligne peut passer par les deux extrémités d’un segment)
 
             MySqlCommand cmd = new MySqlCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
 
-            using (var reader = cmd.ExecuteReader())
-                while (reader.Read())
-                    stations.Add(reader.GetString(0));  // 0 = première colonne : NomStation
-
+            using (var rdr = cmd.ExecuteReader())
+            {
+                while (rdr.Read())
+                {
+                    stations.Add(rdr.GetString("NomStation"));
+                }
+            }
             return stations;
         }
 
@@ -1023,6 +1027,17 @@ namespace GestionReseau
             DateTime resultatHoraireFin = baseDate.Add(horaireFin);
 
             return (resultatHoraireDebut, resultatHoraireFin);
+        }
+        public static int MemeNom(string nomStation, int numStation)
+        {
+            string concat = nomStation + numStation.ToString();
+
+            string requete = "SELECT COUNT(*) FROM Station WHERE NomStation = @nomStation";
+            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@nomStation", concat);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+           return count; // Retourne le nombre de stations avec le même nom
+            
         }
     }
 }

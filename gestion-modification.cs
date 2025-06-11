@@ -10,6 +10,7 @@ using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace application_metro
 {
@@ -590,6 +591,28 @@ namespace application_metro
                 Serveur.UpdateDureesSegments(dureesChange);
                 Serveur.MettreAJourCoordonneesStations(coordonneesChange);
                 Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
+            }
+        }
+
+        /// <summary>
+        /// Vérifie si le nom de la ligne existe déjà lors de la saisie dans le TextBox.
+        /// </summary>
+
+        private void txtNomLigne_TextChanged(object sender, EventArgs e)
+        {
+            string nomVerif = nomLigneDeconcatenation(txtNomLigne.Text);
+            int numStation = Convert.ToInt32(nudNumLigne.Value);
+            int count = Serveur.MemeNom(nomVerif, numStation);
+
+            if (count > 0)
+            {
+                MessageBox.Show("Le nom de la ligne existe déjà, veuillez en choisir un autre.");
+                txtNomLigne.Text = "";
+                btnEnregistrement.Enabled = false;
+            }
+            else
+            {
+                btnEnregistrement.Enabled = true;
             }
         }
     }
