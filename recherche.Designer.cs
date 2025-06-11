@@ -336,7 +336,7 @@
             // 
             lblTempsDepart.AutoSize = true;
             lblTempsDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblTempsDepart.Location = new Point(102, 112);
+            lblTempsDepart.Location = new Point(107, 112);
             lblTempsDepart.Name = "lblTempsDepart";
             lblTempsDepart.Size = new Size(49, 20);
             lblTempsDepart.TabIndex = 18;

@@ -177,7 +177,7 @@
             flpHoraires.Controls.Add(dtp_HoraireFin);
             flpHoraires.Location = new Point(18, 1075);
             flpHoraires.Name = "flpHoraires";
-            flpHoraires.Size = new Size(323, 117);
+            flpHoraires.Size = new Size(323, 69);
             flpHoraires.TabIndex = 55;
             // 
             // lblPremier
@@ -225,9 +225,9 @@
             // 
             // grpHorairesStations
             // 
-            grpHorairesStations.Location = new Point(11, 1045);
+            grpHorairesStations.Location = new Point(11, 1061);
             grpHorairesStations.Name = "grpHorairesStations";
-            grpHorairesStations.Size = new Size(335, 125);
+            grpHorairesStations.Size = new Size(335, 97);
             grpHorairesStations.TabIndex = 70;
             grpHorairesStations.TabStop = false;
             grpHorairesStations.Paint += grpHorairesStations_Paint;
