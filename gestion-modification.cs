@@ -479,63 +479,60 @@ namespace application_metro
                 string nom = ligneConcatenation(txtNomLigne.Text, (int)nudNumLigne.Value);
                 string couleur = txtCouleur.Text;
 
-                bool verif = Serveur.AjoutLigne(nom, couleur);
-                if (verif)
+                Serveur.AjoutLigne(nom, couleur);
+                int numLigne = Serveur.idLigneGraceNom(nom);
+
+                List<string> lstNomStation = new List<string>();
+
+                for (int i = 0; i < nudNbStations.Value; i++)
                 {
-                    int numLigne = Serveur.idLigneGraceNom(nom);
+                    string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
+                    string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
+                    string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
 
-                    List<string> lstNomStation = new List<string>();
+                    double latitudeDecimal;
+                    double longitudeDecimal;
 
-                    for (int i = 0; i < nudNbStations.Value; i++)
+                    try
                     {
-                        string nomStation = ((TextBox)flpStations.Controls[i].Controls[1]).Text;
-                        string latitude = ((TextBox)flpCoordonnees.Controls[i].Controls[1]).Text;
-                        string longitude = ((TextBox)flpCoordonnees.Controls[i].Controls[2]).Text;
-
-                        double latitudeDecimal;
-                        double longitudeDecimal;
-
-                        try
-                        {
-                            latitudeDecimal = Convert.ToDouble(latitude);
-                            longitudeDecimal = Convert.ToDouble(longitude);
-                        }
-                        catch (FormatException)
-                        {
-                            Serveur.SupprimerUneInfoLigne(numLigne);
-                            MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
-                            return;
-                        }
-
-                        if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
-                        {
-                            lstNomStation.Add(nomStation);
-                            Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
-                        }
+                        latitudeDecimal = Convert.ToDouble(latitude);
+                        longitudeDecimal = Convert.ToDouble(longitude);
+                    }
+                    catch (FormatException)
+                    {
+                        Serveur.SupprimerUneInfoLigne(numLigne);
+                        MessageBox.Show("Veuillez entrer des coordonnées valides pour la latitude et la longitude.");
+                        return;
                     }
 
-                    int duree;
-                    int idSegment;
-                    int ordreIncrementation = 1;
-
-                    // Ajout du segment dans le sens de l'aller
-                    for (int i = 0; i < lstNomStation.Count - 1; i++)
+                    if (!string.IsNullOrEmpty(nomStation) && !string.IsNullOrEmpty(latitude) && !string.IsNullOrEmpty(longitude))
                     {
-                        int station = Serveur.idStationGraceNom(lstNomStation[i]);
-                        int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
-                        NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
-                        duree = (int)nud.Value;
+                        lstNomStation.Add(nomStation);
+                        Serveur.AjoutStation(nomStation, latitudeDecimal, longitudeDecimal);
+                    }
+                }
 
-                        try
-                        {
-                            Serveur.AjoutSegment(duree, station, stationSuivante);
-                            idSegment = Serveur.RecupereIdDernierObjet();
-                            Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
-                        }
+                int duree;
+                int idSegment;
+                int ordreIncrementation = 1;
+
+                // Ajout du segment dans le sens de l'aller
+                for (int i = 0; i < lstNomStation.Count - 1; i++)
+                {
+                    int station = Serveur.idStationGraceNom(lstNomStation[i]);
+                    int stationSuivante = Serveur.idStationGraceNom(lstNomStation[i + 1]);
+                    NumericUpDown nud = (NumericUpDown)flpStations.Controls[i].Controls[2];
+                    duree = (int)nud.Value;
+
+                    try
+                    {
+                        Serveur.AjoutSegment(duree, station, stationSuivante);
+                        idSegment = Serveur.RecupereIdDernierObjet();
+                        Serveur.AjoutSegmentDansLigne(numLigne, idSegment, ordreIncrementation + i);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de l'ajout du segment aller : {ex.Message}");
                     }
                 }
 

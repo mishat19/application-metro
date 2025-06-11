@@ -541,33 +541,15 @@ namespace GestionReseau
         /// <param name="nomLigne">Nom de la ligne</param>
         /// <param name="couleur">Couleur de la ligne</param>
         /// <returns>Retourne un booléen de si le nom de la ligne existe déjà ou non</returns>
-        public static bool AjoutLigne(string nomLigne, string couleur)
+        public static void AjoutLigne(string nomLigne, string couleur)
         {
-            // Vérifie si le nom de ligne existe déjà
-            string verifRequete = @"SELECT COUNT(*) FROM InfoLigne WHERE Nom = @nomLigne";
-
-            using (MySqlCommand verifCmd = new MySqlCommand(verifRequete, connexion))
-            {
-                verifCmd.Parameters.AddWithValue("@nomLigne", nomLigne);
-                long count = (long)verifCmd.ExecuteScalar();
-
-                if (count > 0)
-                {
-                    return true;
-                }
-            }
-
-            // Si le nom n'existe pas, on l'insère
             string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
-                                 VALUES (@nomLigne, @couleur)";
+                                        VALUES (@nomLigne, @couleur)";
 
-            using (MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion))
-            {
-                cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
-                cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
-                cmdAjoutLigne.ExecuteNonQuery();
-            }
-            return false;
+            MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion);
+            cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
+            cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
+            cmdAjoutLigne.ExecuteNonQuery();
         }
 
         /// <summary>
