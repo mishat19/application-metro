@@ -151,7 +151,6 @@ namespace application_metro
                     Margin = new Padding(5),
                     AutoSize = false,
                     MaximumSize = new Size(flpStations.Width - 35, 35)
-
                 };
 
                 //Panel coordonneees
@@ -471,11 +470,6 @@ namespace application_metro
             int nbStations = (int)nudNbStations.Value;
             CreationTextBox(nbStations);
             nudStations = true;
-        }
-
-        private void txtCouleur_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnEnregistrement_Click(object sender, EventArgs e)
