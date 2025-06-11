@@ -25,6 +25,8 @@ namespace application_metro
             this.StartPosition = FormStartPosition.Manual;
             this.Location = position;
 
+            cmbStation.Focus();
+
             // Stocke la ligne sélectionnée dans la fenêtre précédente et la met dans le ComboBox
             _ligne = ligne;
             cmbLignes.Text = _ligne;

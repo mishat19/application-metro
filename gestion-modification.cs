@@ -579,6 +579,11 @@ namespace application_metro
 
                 ListeLignes lignes = Serveur.Lignes();
 
+                //On ferme la fenêtre
+                Gestion gestionnaire = new Gestion(this.Location);
+                gestionnaire.Show();
+                MessageBox.Show("Données enregistrées");
+                this.Close();
             }
             else
             {
