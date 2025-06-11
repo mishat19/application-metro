@@ -12,9 +12,15 @@ namespace application_metro
 {
     public partial class Carte : Form
     {
+        // Contrôle WebView2 utilisé pour afficher du contenu web dans le formulaire.
         private WebView2 webView;
+
+        // Serveur HTTP local permettant d'héberger temporairement du contenu web.
         private HttpListener serveur;
+
+        // Tâche asynchrone (en parallèle) qui exécute le serveur HTTP sans bloquer l'interface utilisateur.
         private Task serveurTask;
+
 
         PrivateFontCollection fontCollection = new PrivateFontCollection();
 
@@ -29,6 +35,7 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
+            //Instancie et rempli un webView
             webView = new WebView2();
             webView.Dock = DockStyle.Fill;
 
@@ -46,6 +53,7 @@ namespace application_metro
             webView.Location = new Point(x, y);
             webView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
             this.Controls.Add(webView);
+            //Pour qu'il soit visible
             webView.BringToFront();
 
             //Démarre serveur local + initialisation WebView
@@ -79,38 +87,53 @@ namespace application_metro
         {
             try
             {
+                // Boucle principale du serveur : tant que le serveur est actif
                 while (serveur.IsListening)
                 {
+                    // Attend une requête HTTP entrante (appel bloquant)
                     var context = serveur.GetContext();
 
+                    // Récupère le chemin demandé dans l'UR
                     string url = context.Request.Url.LocalPath.TrimStart('/');
+
+                    // Si aucune URL n’est spécifiée, on sert la page par défaut
                     if (string.IsNullOrEmpty(url))
                         url = "map-milan.html";
 
+                    // Construit le chemin complet vers le fichier demandé dans le dossier du serveur
                     string fichier = Path.Combine(dossier, url);
 
+                    // Si le fichier existe...
                     if (File.Exists(fichier))
                     {
+                        // Lit tout le fichier en mémoire sous forme de tableau de bytes
                         byte[] bytes = File.ReadAllBytes(fichier);
 
-                        // Content-Type minimal, pour HTML
+                        // Définit le type de contenu de la réponse HTTP
                         context.Response.ContentType = "text/html";
 
+                        // Envoie le contenu du fichier dans la réponse
                         context.Response.OutputStream.Write(bytes, 0, bytes.Length);
                     }
                     else
                     {
+                        // Si le fichier n’existe pas, retourne une erreur s'il n'est pas trouvé
                         context.Response.StatusCode = 404;
+
+                        // Écrit un message d'erreur dans la réponse
                         using (var writer = new StreamWriter(context.Response.OutputStream))
                         {
                             writer.Write("Fichier non trouvé");
                         }
                     }
+
+                    // Ferme le flux de sortie
                     context.Response.OutputStream.Close();
                 }
+
             }
-            catch (HttpListenerException) { /* Arrêt normal */ }
-            catch (ObjectDisposedException) { /* Arrêt normal */ }
+            catch (HttpListenerException) {  }
+            catch (ObjectDisposedException) {  }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur serveur local : {ex.Message}");

@@ -118,17 +118,6 @@ namespace application_metro
         //Expression lambda pour concaténer les informations d'une ligne (nom et numéro)
         public string ligneConcatenation(string nom, int numero) => nom + numero;
 
-
-        public int nbStations(List<string> stations)
-        {
-            int nbStations = 0;
-            foreach (string station in stations)
-            {
-                nbStations++;
-            }
-            return nbStations;
-        }
-
         List<NumericUpDown> listeSegments = new List<NumericUpDown>();
         public void CreationTextBox(int nbStations, List<string> noms = null, List<List<decimal>> coordonnees = null, List<(string stationA, string stationB, int duree)> segments = null)
         {

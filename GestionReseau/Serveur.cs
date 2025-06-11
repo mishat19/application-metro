@@ -212,11 +212,11 @@ namespace GestionReseau
         /// <param name="dateInscription">Date d'inscription de l'utilisateur</param>
         /// <param name="dateNaissance">Date de naissance de l'utilisateur</param>
         /// <param name="admin">Si l'utilisateur est administrateur ou non</param>
-        public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin)
+        public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin, int status)
         {
             string requete = @"INSERT INTO Utilisateur 
-                       (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin)
-                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin)"; //  Requête SQL d'insertion paramétrée : permet d'éviter l’injection SQL
+                       (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin, Status)
+                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin, @Status)"; //  Requête SQL d'insertion paramétrée : permet d'éviter l’injection SQL
 
             using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
             {
@@ -227,6 +227,7 @@ namespace GestionReseau
                 cmd.Parameters.AddWithValue("@DateInscription", dateInscription);
                 cmd.Parameters.AddWithValue("@DateNaissance", dateNaissance);
                 cmd.Parameters.AddWithValue("@Admin", admin);
+                cmd.Parameters.AddWithValue("@Status", status);
 
                 //Console.WriteLine(requete);
                 try

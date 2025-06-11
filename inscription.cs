@@ -64,7 +64,7 @@ namespace application_metro
 
 
             // Appel du serveur pour inscription
-            Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0);
+            Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0, 1);
 
             Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.btnRetour.Text = "Se déconnecter";
