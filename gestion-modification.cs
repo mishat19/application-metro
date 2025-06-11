@@ -580,33 +580,30 @@ namespace application_metro
                 TimeSpan horaireDebut = dtp_HoraireDebut.Value.TimeOfDay;
                 TimeSpan horaireFin = dtp_HoraireFin.Value.TimeOfDay;
 
-                Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
+                bool existant = Serveur.MettreAJourCouleurEtNumeroLigne(numeroLigne, couleur, nom);
+                if (existant)
+                {
+                    MessageBox.Show("Cette ligne existe déjà dans la base, veuillez la modifier");
+                }
+
                 Serveur.MettreAJourNomsStations(stationsChange);
                 Serveur.UpdateDureesSegments(dureesChange);
                 Serveur.MettreAJourCoordonneesStations(coordonneesChange);
-                Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
-            }
-        }
 
-        /// <summary>
-        /// Vérifie si le nom de la ligne existe déjà lors de la saisie dans le TextBox.
-        /// </summary>
+                if(horaireDebut != horaireFin)
+                {
+                    Serveur.ModifierHoraireParLigne(numeroLigne, horaireDebut, horaireFin);
 
-        private void txtNomLigne_TextChanged(object sender, EventArgs e)
-        {
-            string nomVerif = nomLigneDeconcatenation(txtNomLigne.Text);
-            int numStation = Convert.ToInt32(nudNumLigne.Value);
-            int count = Serveur.MemeNom(nomVerif, numStation);
-
-            if (count > 0)
-            {
-                MessageBox.Show("Le nom de la ligne existe déjà, veuillez en choisir un autre.");
-                txtNomLigne.Text = "";
-                btnEnregistrement.Enabled = false;
-            }
-            else
-            {
-                btnEnregistrement.Enabled = true;
+                    //On ferme la fenêtre
+                    Gestion gestionnaire = new Gestion(this.Location);
+                    gestionnaire.Show();
+                    MessageBox.Show("Données enregistrées");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez saisir des horaires différents");
+                }
             }
         }
     }

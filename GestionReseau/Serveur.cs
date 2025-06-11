@@ -786,8 +786,28 @@ namespace GestionReseau
             return stations;
         }
 
-        public static void MettreAJourCouleurEtNumeroLigne(int numLigne, string couleur, string nom)
+        public static bool MettreAJourCouleurEtNumeroLigne(int numLigne, string couleur, string nom)
         {
+            // Vérifier si un autre enregistrement utilise déjà ce nom
+            string verifRequete = @"SELECT COUNT(*) FROM InfoLigne 
+                            WHERE Nom = @Nom AND NumLigne != @NumLigne";
+
+            using (MySqlCommand verifCmd = new MySqlCommand(verifRequete, connexion))
+            {
+                verifCmd.Parameters.AddWithValue("@Nom", nom);
+                verifCmd.Parameters.AddWithValue("@NumLigne", numLigne);
+
+                //Retourne le nombre de valeurs trouvées
+                long count = (long)verifCmd.ExecuteScalar();
+
+                if (count > 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+
+            // Si aucun doublon, on met à jour
             string requete = @"UPDATE InfoLigne 
                        SET Couleur = @Couleur, Nom = @Nom
                        WHERE NumLigne = @NumLigne";
@@ -800,6 +820,7 @@ namespace GestionReseau
                 cmd.ExecuteNonQuery();
             }
         }
+
 
         public static void MettreAJourNomsStations(Dictionary<string, string> stations)
         {

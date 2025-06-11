@@ -238,9 +238,11 @@ namespace application_metro
                 return;
             }
 
-            // Mise à jour des labels de départ et arrivée
+            // Mise à jour des labels de départ et arrivée avec leur centrage
             lblDepart2.Text = chemin.First().Nom;
+            lblDepart2.Location = new Point((grpResultat1.Width - lblDepart2.Width) / 2, lblDepart2.Location.Y); // Centrer le titre horizontalement
             lblArrivee2.Text = chemin.Last().Nom;
+            lblArrivee2.Location = new Point((grpResultat1.Width - lblDepart2.Width) / 2, lblArrivee2.Location.Y);
 
             DateTime heureDepart;
             DateTime heureArrivee;
