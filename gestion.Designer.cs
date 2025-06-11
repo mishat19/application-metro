@@ -61,7 +61,6 @@
             // 
             pnlGestion.BackColor = Color.FromArgb(255, 230, 188);
             pnlGestion.Controls.Add(picTrain2);
-            pnlGestion.Controls.Add(lblErreur);
             pnlGestion.Controls.Add(picRetour);
             pnlGestion.Controls.Add(picHome);
             pnlGestion.Controls.Add(grpAjout);
@@ -85,6 +84,7 @@
             // picTrain2
             // 
             picTrain2.BackColor = Color.Transparent;
+            picTrain2.Controls.Add(lblErreur);
             picTrain2.Image = (Image)resources.GetObject("picTrain2.Image");
             picTrain2.Location = new Point(12, 462);
             picTrain2.Name = "picTrain2";

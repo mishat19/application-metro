@@ -295,9 +295,9 @@
             grpResultat1.Controls.Add(lblTempsDepart);
             grpResultat1.Controls.Add(lblArrivee2);
             grpResultat1.Controls.Add(lblDepart2);
-            grpResultat1.Location = new Point(9, 27);
+            grpResultat1.Location = new Point(9, 15);
             grpResultat1.Name = "grpResultat1";
-            grpResultat1.Size = new Size(335, 149);
+            grpResultat1.Size = new Size(335, 161);
             grpResultat1.TabIndex = 18;
             grpResultat1.TabStop = false;
             grpResultat1.Paint += grpResultat1_Paint;
@@ -336,7 +336,7 @@
             // 
             lblTempsDepart.AutoSize = true;
             lblTempsDepart.ForeColor = Color.FromArgb(205, 33, 42);
-            lblTempsDepart.Location = new Point(102, 112);
+            lblTempsDepart.Location = new Point(107, 112);
             lblTempsDepart.Name = "lblTempsDepart";
             lblTempsDepart.Size = new Size(49, 20);
             lblTempsDepart.TabIndex = 18;
