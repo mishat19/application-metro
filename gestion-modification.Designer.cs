@@ -308,7 +308,6 @@
             nudNumLigne.Name = "nudNumLigne";
             nudNumLigne.Size = new Size(134, 24);
             nudNumLigne.TabIndex = 69;
-            nudNumLigne.ValueChanged += txtNomLigne_TextChanged;
             // 
             // txtNumero
             // 
