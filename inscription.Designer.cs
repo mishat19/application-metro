@@ -168,7 +168,7 @@
             // 
             // picRetour
             // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(1, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(33, 25);
@@ -191,7 +191,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(-43, 281);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
@@ -224,7 +224,7 @@
             // 
             // picInscription
             // 
-            picInscription.Image = Properties.Resources.logo4;
+            picInscription.Image = (Image)resources.GetObject("picInscription.Image");
             picInscription.Location = new Point(150, 33);
             picInscription.Name = "picInscription";
             picInscription.Size = new Size(83, 76);

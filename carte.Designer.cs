@@ -59,7 +59,7 @@
             // picHome
             // 
             picHome.BackColor = Color.FromArgb(255, 230, 188);
-            picHome.Image = Properties.Resources.home;
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
             picHome.Location = new Point(34, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
@@ -71,7 +71,7 @@
             // picLogo5
             // 
             picLogo5.BackColor = Color.FromArgb(255, 230, 188);
-            picLogo5.Image = Properties.Resources.logo5;
+            picLogo5.Image = (Image)resources.GetObject("picLogo5.Image");
             picLogo5.Location = new Point(138, 24);
             picLogo5.Name = "picLogo5";
             picLogo5.Size = new Size(107, 96);
@@ -82,7 +82,7 @@
             // picRetour
             // 
             picRetour.BackColor = Color.FromArgb(255, 230, 188);
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(28, 25);

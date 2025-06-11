@@ -85,8 +85,7 @@
             // picTrain2
             // 
             picTrain2.BackColor = Color.Transparent;
-            picTrain2.Controls.Add(lblErreur);
-            picTrain2.Image = Properties.Resources.imgTrainRose2;
+            picTrain2.Image = (Image)resources.GetObject("picTrain2.Image");
             picTrain2.Location = new Point(12, 462);
             picTrain2.Name = "picTrain2";
             picTrain2.Size = new Size(286, 53);
@@ -110,7 +109,7 @@
             // 
             // picRetour
             // 
-            picRetour.Image = Properties.Resources.imgFlecheGauche;
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
             picRetour.Location = new Point(0, 0);
             picRetour.Name = "picRetour";
             picRetour.Size = new Size(28, 25);
@@ -121,7 +120,7 @@
             // 
             // picHome
             // 
-            picHome.Image = Properties.Resources.home;
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
             picHome.Location = new Point(34, 0);
             picHome.Name = "picHome";
             picHome.Size = new Size(27, 25);
@@ -144,7 +143,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.plus2;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(278, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(69, 61);
@@ -263,7 +262,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(-477, 266);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
@@ -273,7 +272,7 @@
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.logo4;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(71, 21);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(242, 96);

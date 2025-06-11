@@ -61,7 +61,7 @@
             // 
             // picLogo1
             // 
-            picLogo1.Image = Properties.Resources.logo1;
+            picLogo1.Image = (Image)resources.GetObject("picLogo1.Image");
             picLogo1.Location = new Point(111, 30);
             picLogo1.Name = "picLogo1";
             picLogo1.Size = new Size(161, 117);
@@ -110,7 +110,7 @@
             // 
             // picFond2
             // 
-            picFond2.Image = Properties.Resources.imgFondMilan1;
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
             picFond2.Location = new Point(-82, 270);
             picFond2.Name = "picFond2";
             picFond2.Size = new Size(872, 552);
@@ -122,7 +122,7 @@
             // 
             picTrain1.BackColor = Color.Transparent;
             picTrain1.Controls.Add(lblDeconnexion);
-            picTrain1.Image = Properties.Resources.imgTrainRose1;
+            picTrain1.Image = (Image)resources.GetObject("picTrain1.Image");
             picTrain1.Location = new Point(74, 224);
             picTrain1.Name = "picTrain1";
             picTrain1.Size = new Size(226, 57);
