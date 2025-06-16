@@ -28,75 +28,126 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
             lblTitre = new Label();
             btnRecherche = new Button();
             btnConsultation = new Button();
             btnRetour = new Button();
             btnAdmin = new Button();
+            picFond2 = new PictureBox();
+            picAccueil = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)picFond2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picAccueil).BeginInit();
             SuspendLayout();
             // 
             // lblTitre
             // 
             lblTitre.AutoSize = true;
-            lblTitre.Font = new Font("Segoe UI", 30F);
-            lblTitre.Location = new Point(99, 98);
+            lblTitre.Font = new Font("Microsoft Sans Serif", 30F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTitre.ForeColor = Color.FromArgb(15, 93, 70);
+            lblTitre.Location = new Point(69, 125);
             lblTitre.Name = "lblTitre";
-            lblTitre.Size = new Size(185, 67);
+            lblTitre.Size = new Size(241, 58);
             lblTitre.TabIndex = 5;
-            lblTitre.Text = "Accueil";
+            lblTitre.Text = "ACCUEIL";
             // 
             // btnRecherche
             // 
-            btnRecherche.Location = new Point(46, 339);
+            btnRecherche.BackColor = Color.FromArgb(205, 33, 42);
+            btnRecherche.FlatStyle = FlatStyle.Flat;
+            btnRecherche.Font = new Font("Microsoft Sans Serif", 13.7999992F);
+            btnRecherche.ForeColor = Color.White;
+            btnRecherche.Location = new Point(29, 358);
             btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(290, 74);
+            btnRecherche.Size = new Size(324, 74);
             btnRecherche.TabIndex = 4;
             btnRecherche.Text = "Rechercher un itinéraire";
-            btnRecherche.UseVisualStyleBackColor = true;
+            btnRecherche.UseVisualStyleBackColor = false;
             btnRecherche.Click += btnRecherche_Click;
             // 
             // btnConsultation
             // 
-            btnConsultation.Location = new Point(46, 220);
+            btnConsultation.BackColor = Color.FromArgb(205, 33, 42);
+            btnConsultation.FlatStyle = FlatStyle.Flat;
+            btnConsultation.Font = new Font("Microsoft Sans Serif", 13.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnConsultation.ForeColor = Color.White;
+            btnConsultation.Location = new Point(29, 259);
             btnConsultation.Name = "btnConsultation";
-            btnConsultation.Size = new Size(290, 74);
+            btnConsultation.Size = new Size(324, 74);
             btnConsultation.TabIndex = 3;
             btnConsultation.Text = "Consulter le réseau";
-            btnConsultation.UseVisualStyleBackColor = true;
+            btnConsultation.UseVisualStyleBackColor = false;
             btnConsultation.Click += btnConsultation_Click;
             // 
             // btnRetour
             // 
+            btnRetour.BackColor = Color.FromArgb(255, 230, 188);
+            btnRetour.FlatStyle = FlatStyle.Flat;
+            btnRetour.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnRetour.ForeColor = Color.FromArgb(205, 33, 42);
             btnRetour.Location = new Point(12, 12);
             btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 55);
+            btnRetour.Size = new Size(151, 55);
             btnRetour.TabIndex = 6;
             btnRetour.Text = "Se déconnecter/\r\nSe connecter";
-            btnRetour.UseVisualStyleBackColor = true;
+            btnRetour.UseVisualStyleBackColor = false;
             btnRetour.Click += btnRetour_Click;
             // 
             // btnAdmin
             // 
-            btnAdmin.Location = new Point(46, 458);
+            btnAdmin.BackColor = Color.FromArgb(205, 33, 42);
+            btnAdmin.FlatStyle = FlatStyle.Flat;
+            btnAdmin.Font = new Font("Microsoft Sans Serif", 13.7999992F);
+            btnAdmin.ForeColor = Color.White;
+            btnAdmin.Location = new Point(29, 457);
             btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(290, 74);
+            btnAdmin.Size = new Size(324, 74);
             btnAdmin.TabIndex = 7;
             btnAdmin.Text = "Gérer les données";
-            btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.UseVisualStyleBackColor = false;
             btnAdmin.Click += btnAdmin_Click;
+            // 
+            // picFond2
+            // 
+            picFond2.Image = (Image)resources.GetObject("picFond2.Image");
+            picFond2.Location = new Point(-287, 272);
+            picFond2.Name = "picFond2";
+            picFond2.Size = new Size(872, 552);
+            picFond2.SizeMode = PictureBoxSizeMode.Zoom;
+            picFond2.TabIndex = 54;
+            picFond2.TabStop = false;
+            // 
+            // picAccueil
+            // 
+            picAccueil.Image = (Image)resources.GetObject("picAccueil.Image");
+            picAccueil.Location = new Point(142, 73);
+            picAccueil.Name = "picAccueil";
+            picAccueil.Size = new Size(99, 84);
+            picAccueil.SizeMode = PictureBoxSizeMode.Zoom;
+            picAccueil.TabIndex = 55;
+            picAccueil.TabStop = false;
             // 
             // Accueil
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(255, 230, 188);
             ClientSize = new Size(382, 753);
+            Controls.Add(picAccueil);
             Controls.Add(btnAdmin);
             Controls.Add(btnRetour);
             Controls.Add(lblTitre);
             Controls.Add(btnRecherche);
             Controls.Add(btnConsultation);
+            Controls.Add(picFond2);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Accueil";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Menu";
+            Load += Accueil_Load;
+            ((System.ComponentModel.ISupportInitialize)picFond2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picAccueil).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -108,5 +159,7 @@
         private Button btnConsultation;
         public Button btnRetour;
         private Button btnAdmin;
+        private PictureBox picFond2;
+        private PictureBox picAccueil;
     }
 }

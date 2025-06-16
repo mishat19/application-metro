@@ -1,3 +1,5 @@
+using GestionReseau;
+
 namespace application_metro
 {
     internal static class Program
@@ -11,7 +13,18 @@ namespace application_metro
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Ouverture());
+
+            Application.ApplicationExit += new EventHandler(OnApplicationExit);
+
+            Point positionInit = new Point(100, 100);
+            Application.Run(new Ouverture(positionInit));
+
         }
+
+        private static void OnApplicationExit(object sender, EventArgs e)
+        {
+            Serveur.DeconnexionUtilisateurs();
+        }
+
     }
 }

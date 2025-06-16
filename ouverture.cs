@@ -1,34 +1,74 @@
+using application_metro;
+using GestionReseau;
+using System.Drawing.Text;
+using System.Runtime.InteropServices;
+
+using System.IO;
+
 namespace application_metro
 {
     public partial class Ouverture : Form
     {
-        public Ouverture()
+        // Importation d'une fonction native de Windows pour afficher une console (CMD)
+        //[DllImport("kernel32.dll")]
+        //private static extern bool AllocConsole();
+
+        // Gestionnaire de polices personnalisées
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
+
+
+        // Gestionnaire des erreurs d'animation du train
+        public TrainErrorManager trainError;
+
+        public Ouverture(Point position)
         {
             InitializeComponent();
+
+            // Positionne la fenêtre selon la position passée en paramètre
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = position; // Position en pixels à l’écran
+
+            // Chargement des polices personnalisées
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
+            //Affiche la console pour debug
+            //AllocConsole();
+            // Établit la connexion avec la base de données
+            Serveur.OuvertureConnexion();
+
+            // Initialisation de l’objet TrainErrorManager (gère une animation ou un effet sur le train)
+            trainError = new TrainErrorManager(picTrain1, lblDeconnexion, endX : 40, trainTop: 504);
         }
 
-        private void btnConnexion_Click(object sender, EventArgs e)
+        // Bouton "Se connecter"
+        private void btnConnexion_Click_1(object sender, EventArgs e)
         {
-            Connexion connexionWindow = new Connexion();
-            connexionWindow.Show(this);
+            Connexion connexion = new Connexion(this.Location);
+            connexion.Show(this);
             this.Hide();
         }
 
-        private void btnNoConnexion_Click(object sender, EventArgs e)
+        // Bouton "Continuer sans se connecter"
+        private void btnNoConnexion_Click_1(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+            // Ouvre la fenêtre de connexion, cache celle-ci
+            Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.Show(this);
-            accueilWindow.UpdateBtnRetourText("Se connecter");
             this.Hide();
         }
 
-        public void lblDeconnexion_Click(object sender, EventArgs e)
+        // Événement déclenché au chargement de la fenêtre
+        private void Ouverture_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
+            // Application des polices personnalisées aux composants
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            btnConnexion.Font = new Font(D, 14);
+            btnNoConnexion.Font = new Font(D, 14);
+            lblDeconnexion.Font = new Font(D, 9);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 150); // Centrer le titre horizontalement
 
         }
     }

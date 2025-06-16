@@ -29,97 +29,295 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Carte));
-            cmbLignes = new ComboBox();
-            picMap = new PictureBox();
-            btnRetour = new Button();
-            btnRecherche = new Button();
+            picHome = new PictureBox();
+            picLogo5 = new PictureBox();
+            picRetour = new PictureBox();
+            picCroix = new PictureBox();
             btnHoraires = new Button();
-            picSupprimer = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)picMap).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).BeginInit();
+            cmbLignes = new ComboBox();
+            pnlRecherche = new Panel();
+            grpTrajet = new GroupBox();
+            btnDetails = new Button();
+            lblDuree = new Label();
+            lblLigne = new Label();
+            lblSeparation2 = new Label();
+            lblHeureArrivee = new Label();
+            picPlus = new PictureBox();
+            lblHeureDepart = new Label();
+            lblSeparation = new Label();
+            lblStationArrivee = new Label();
+            lblStationDepart = new Label();
+            ((System.ComponentModel.ISupportInitialize)picHome).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCroix).BeginInit();
+            pnlRecherche.SuspendLayout();
+            grpTrajet.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picPlus).BeginInit();
             SuspendLayout();
             // 
-            // cmbLignes
+            // picHome
             // 
-            cmbLignes.FormattingEnabled = true;
-            cmbLignes.Location = new Point(12, 99);
-            cmbLignes.Name = "cmbLignes";
-            cmbLignes.Size = new Size(186, 28);
-            cmbLignes.TabIndex = 21;
-            cmbLignes.Text = "Ligne n°";
+            picHome.BackColor = Color.FromArgb(255, 230, 188);
+            picHome.Image = (Image)resources.GetObject("picHome.Image");
+            picHome.Location = new Point(34, 0);
+            picHome.Name = "picHome";
+            picHome.Size = new Size(27, 25);
+            picHome.SizeMode = PictureBoxSizeMode.Zoom;
+            picHome.TabIndex = 70;
+            picHome.TabStop = false;
+            picHome.Click += picHome_Click;
             // 
-            // picMap
+            // picLogo5
             // 
-            picMap.Location = new Point(12, 209);
-            picMap.Name = "picMap";
-            picMap.Size = new Size(358, 532);
-            picMap.TabIndex = 20;
-            picMap.TabStop = false;
+            picLogo5.BackColor = Color.FromArgb(255, 230, 188);
+            picLogo5.Image = (Image)resources.GetObject("picLogo5.Image");
+            picLogo5.Location = new Point(138, 24);
+            picLogo5.Name = "picLogo5";
+            picLogo5.Size = new Size(107, 96);
+            picLogo5.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo5.TabIndex = 72;
+            picLogo5.TabStop = false;
             // 
-            // btnRetour
+            // picRetour
             // 
-            btnRetour.Location = new Point(12, 12);
-            btnRetour.Name = "btnRetour";
-            btnRetour.Size = new Size(126, 39);
-            btnRetour.TabIndex = 19;
-            btnRetour.Text = "Retour";
-            btnRetour.UseVisualStyleBackColor = true;
-            btnRetour.Click += btnRetour_Click;
+            picRetour.BackColor = Color.FromArgb(255, 230, 188);
+            picRetour.Image = (Image)resources.GetObject("picRetour.Image");
+            picRetour.Location = new Point(0, 0);
+            picRetour.Name = "picRetour";
+            picRetour.Size = new Size(28, 25);
+            picRetour.SizeMode = PictureBoxSizeMode.Zoom;
+            picRetour.TabIndex = 69;
+            picRetour.TabStop = false;
+            picRetour.Click += picRetour_Click;
             // 
-            // btnRecherche
+            // picCroix
             // 
-            btnRecherche.Location = new Point(204, 98);
-            btnRecherche.Name = "btnRecherche";
-            btnRecherche.Size = new Size(166, 28);
-            btnRecherche.TabIndex = 22;
-            btnRecherche.Text = "Rechercher";
-            btnRecherche.UseVisualStyleBackColor = true;
+            picCroix.Image = Properties.Resources.croix;
+            picCroix.Location = new Point(329, 119);
+            picCroix.Name = "picCroix";
+            picCroix.Size = new Size(16, 27);
+            picCroix.SizeMode = PictureBoxSizeMode.Zoom;
+            picCroix.TabIndex = 71;
+            picCroix.TabStop = false;
             // 
             // btnHoraires
             // 
+            btnHoraires.BackColor = Color.FromArgb(205, 33, 42);
             btnHoraires.Enabled = false;
-            btnHoraires.Location = new Point(12, 162);
+            btnHoraires.FlatStyle = FlatStyle.Flat;
+            btnHoraires.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnHoraires.ForeColor = Color.White;
+            btnHoraires.Location = new Point(12, 170);
             btnHoraires.Name = "btnHoraires";
-            btnHoraires.Size = new Size(358, 41);
-            btnHoraires.TabIndex = 23;
+            btnHoraires.Size = new Size(358, 52);
+            btnHoraires.TabIndex = 68;
             btnHoraires.Text = "Voir les horaires";
-            btnHoraires.UseVisualStyleBackColor = true;
+            btnHoraires.UseVisualStyleBackColor = false;
+            btnHoraires.Click += btnHoraires_Click;
             // 
-            // picSupprimer
+            // cmbLignes
             // 
-            picSupprimer.Image = (Image)resources.GetObject("picSupprimer.Image");
-            picSupprimer.Location = new Point(151, 99);
-            picSupprimer.Name = "picSupprimer";
-            picSupprimer.Size = new Size(24, 28);
-            picSupprimer.SizeMode = PictureBoxSizeMode.CenterImage;
-            picSupprimer.TabIndex = 24;
-            picSupprimer.TabStop = false;
+            cmbLignes.BackColor = Color.White;
+            cmbLignes.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cmbLignes.ForeColor = Color.FromArgb(205, 33, 42);
+            cmbLignes.FormattingEnabled = true;
+            cmbLignes.Location = new Point(12, 120);
+            cmbLignes.Name = "cmbLignes";
+            cmbLignes.Size = new Size(358, 26);
+            cmbLignes.TabIndex = 66;
+            cmbLignes.Text = "Ligne n°";
+            cmbLignes.SelectedIndexChanged += cmbLignes_SelectedIndexChanged;
+            // 
+            // pnlRecherche
+            // 
+            pnlRecherche.AutoScroll = true;
+            pnlRecherche.AutoScrollMinSize = new Size(0, 400);
+            pnlRecherche.BackColor = Color.FromArgb(255, 230, 188);
+            pnlRecherche.Controls.Add(picHome);
+            pnlRecherche.Controls.Add(grpTrajet);
+            pnlRecherche.Controls.Add(picRetour);
+            pnlRecherche.Controls.Add(picLogo5);
+            pnlRecherche.Controls.Add(cmbLignes);
+            pnlRecherche.Controls.Add(picCroix);
+            pnlRecherche.Dock = DockStyle.Fill;
+            pnlRecherche.Location = new Point(0, 0);
+            pnlRecherche.Name = "pnlRecherche";
+            pnlRecherche.Size = new Size(382, 753);
+            pnlRecherche.TabIndex = 73;
+            // 
+            // grpTrajet
+            // 
+            grpTrajet.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            grpTrajet.Controls.Add(btnDetails);
+            grpTrajet.Controls.Add(lblDuree);
+            grpTrajet.Controls.Add(lblLigne);
+            grpTrajet.Controls.Add(lblSeparation2);
+            grpTrajet.Controls.Add(lblHeureArrivee);
+            grpTrajet.Controls.Add(picPlus);
+            grpTrajet.Controls.Add(lblHeureDepart);
+            grpTrajet.Controls.Add(lblSeparation);
+            grpTrajet.Controls.Add(lblStationArrivee);
+            grpTrajet.Controls.Add(lblStationDepart);
+            grpTrajet.Location = new Point(12, 5601);
+            grpTrajet.Name = "grpTrajet";
+            grpTrajet.Size = new Size(363, 282);
+            grpTrajet.TabIndex = 16;
+            grpTrajet.TabStop = false;
+            // 
+            // btnDetails
+            // 
+            btnDetails.BackColor = Color.FromArgb(205, 33, 42);
+            btnDetails.FlatStyle = FlatStyle.Flat;
+            btnDetails.Font = new Font("Microsoft Sans Serif", 10.2F);
+            btnDetails.ForeColor = Color.White;
+            btnDetails.Location = new Point(105, 179);
+            btnDetails.Name = "btnDetails";
+            btnDetails.Size = new Size(126, 28);
+            btnDetails.TabIndex = 17;
+            btnDetails.Text = "Détails";
+            btnDetails.UseVisualStyleBackColor = false;
+            // 
+            // lblDuree
+            // 
+            lblDuree.AutoSize = true;
+            lblDuree.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblDuree.ForeColor = Color.FromArgb(205, 33, 42);
+            lblDuree.Location = new Point(275, 127);
+            lblDuree.Name = "lblDuree";
+            lblDuree.Size = new Size(58, 22);
+            lblDuree.TabIndex = 24;
+            lblDuree.Text = "40min";
+            // 
+            // lblLigne
+            // 
+            lblLigne.AutoSize = true;
+            lblLigne.Font = new Font("Microsoft Sans Serif", 10.7999992F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblLigne.ForeColor = Color.FromArgb(205, 33, 42);
+            lblLigne.Location = new Point(0, 127);
+            lblLigne.Name = "lblLigne";
+            lblLigne.Size = new Size(74, 22);
+            lblLigne.TabIndex = 23;
+            lblLigne.Text = "N°Ligne";
+            // 
+            // lblSeparation2
+            // 
+            lblSeparation2.AutoSize = true;
+            lblSeparation2.Location = new Point(160, 62);
+            lblSeparation2.Name = "lblSeparation2";
+            lblSeparation2.Size = new Size(31, 20);
+            lblSeparation2.TabIndex = 22;
+            lblSeparation2.Text = "-->";
+            // 
+            // lblHeureArrivee
+            // 
+            lblHeureArrivee.AutoSize = true;
+            lblHeureArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
+            lblHeureArrivee.ForeColor = Color.FromArgb(205, 33, 42);
+            lblHeureArrivee.Location = new Point(197, 62);
+            lblHeureArrivee.Name = "lblHeureArrivee";
+            lblHeureArrivee.Size = new Size(89, 16);
+            lblHeureArrivee.TabIndex = 21;
+            lblHeureArrivee.Text = "Heure arrivée";
+            // 
+            // picPlus
+            // 
+            picPlus.Image = (Image)resources.GetObject("picPlus.Image");
+            picPlus.Location = new Point(143, 223);
+            picPlus.Name = "picPlus";
+            picPlus.Size = new Size(48, 53);
+            picPlus.SizeMode = PictureBoxSizeMode.CenterImage;
+            picPlus.TabIndex = 17;
+            picPlus.TabStop = false;
+            // 
+            // lblHeureDepart
+            // 
+            lblHeureDepart.AutoSize = true;
+            lblHeureDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F);
+            lblHeureDepart.ForeColor = Color.FromArgb(205, 33, 42);
+            lblHeureDepart.Location = new Point(57, 62);
+            lblHeureDepart.Name = "lblHeureDepart";
+            lblHeureDepart.Size = new Size(86, 16);
+            lblHeureDepart.TabIndex = 20;
+            lblHeureDepart.Text = "Heure départ";
+            // 
+            // lblSeparation
+            // 
+            lblSeparation.AutoSize = true;
+            lblSeparation.Location = new Point(160, 33);
+            lblSeparation.Name = "lblSeparation";
+            lblSeparation.Size = new Size(31, 20);
+            lblSeparation.TabIndex = 19;
+            lblSeparation.Text = "-->";
+            // 
+            // lblStationArrivee
+            // 
+            lblStationArrivee.AutoSize = true;
+            lblStationArrivee.Font = new Font("Microsoft Sans Serif", 7.79999971F);
+            lblStationArrivee.ForeColor = Color.FromArgb(205, 33, 42);
+            lblStationArrivee.Location = new Point(197, 33);
+            lblStationArrivee.Name = "lblStationArrivee";
+            lblStationArrivee.Size = new Size(94, 16);
+            lblStationArrivee.TabIndex = 18;
+            lblStationArrivee.Text = "Station Arrivée";
+            // 
+            // lblStationDepart
+            // 
+            lblStationDepart.AutoSize = true;
+            lblStationDepart.Font = new Font("Microsoft Sans Serif", 7.79999971F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStationDepart.ForeColor = Color.FromArgb(205, 33, 42);
+            lblStationDepart.Location = new Point(48, 33);
+            lblStationDepart.Name = "lblStationDepart";
+            lblStationDepart.Size = new Size(92, 16);
+            lblStationDepart.TabIndex = 17;
+            lblStationDepart.Text = "Station Départ";
             // 
             // Carte
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(382, 753);
-            Controls.Add(picSupprimer);
             Controls.Add(btnHoraires);
-            Controls.Add(btnRecherche);
-            Controls.Add(cmbLignes);
-            Controls.Add(picMap);
-            Controls.Add(btnRetour);
+            Controls.Add(pnlRecherche);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Carte";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Carte du réseau";
             Load += carte_Load;
-            ((System.ComponentModel.ISupportInitialize)picMap).EndInit();
-            ((System.ComponentModel.ISupportInitialize)picSupprimer).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picHome).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picRetour).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCroix).EndInit();
+            pnlRecherche.ResumeLayout(false);
+            grpTrajet.ResumeLayout(false);
+            grpTrajet.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picPlus).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private ComboBox cmbLignes;
-        private PictureBox picMap;
-        private Button btnRetour;
-        private Button btnRecherche;
+        private PictureBox picHome;
+        private PictureBox picLogo5;
+        private PictureBox picRetour;
+        private PictureBox picCroix;
         private Button btnHoraires;
-        private PictureBox picSupprimer;
+        private ComboBox cmbLignes;
+        private Panel pnlRecherche;
+        private GroupBox grpTrajet;
+        private Button btnDetails;
+        private Label lblDuree;
+        private Label lblLigne;
+        private Label lblSeparation2;
+        private Label lblHeureArrivee;
+        private PictureBox picPlus;
+        private Label lblHeureDepart;
+        private Label lblSeparation;
+        private Label lblStationArrivee;
+        private Label lblStationDepart;
     }
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GestionReseau;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,70 +14,143 @@ namespace application_metro
 {
     public partial class Inscription : Form
     {
-        public Inscription()
+        // Chargement de polices personnalisées à utiliser dans le formulaire
+        PrivateFontCollection fontCollection = new PrivateFontCollection();
+
+
+        /// <summary>
+        /// Initialise une nouvelle instance du formulaire d'inscription à la position spécifiée.
+        /// </summary>
+        /// <param name="position">Position d'affichage du formulaire.</param>
+        public Inscription(Point position)
         {
             InitializeComponent();
+
+
+            /// Initialise une nouvelle instance du formulaire d'inscription à la position spécifiée.
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = position;
+
+
+            // Chargement des fichiers de police personnalisée
+            fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
+            fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
+
         }
 
+        /// <summary>
+        /// Ouvre la fenêtre de connexion et ferme la fenêtre actuelle.
+        /// </summary>
         private void lnkConnexion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Connexion connexion = new Connexion();
+            Connexion connexion = new Connexion(this.Location);
             connexion.Show();
             this.Close();
         }
 
+        /// <summary>
+        /// Récupère les données saisies, inscrit l'utilisateur, et ouvre la fenêtre d'accueil.
+        /// </summary>
         private void btnInscription_Click(object sender, EventArgs e)
         {
-            Accueil accueilWindow = new Accueil();
+
+            // Récupération et nettoyage des valeurs du formulaire
+            string nom = txtNom.Text.Trim();
+            string prenom = txtPrenom.Text.Trim();
+            string email = txtEmail.Text.Trim();
+            string mdp = txtMdp.Text.Trim();
+            DateTime dateInscription = DateTime.Now;
+            DateTime dateNaissance = dtpNaissance.Value;
+
+
+            // Appel du serveur pour inscription dans la bdd avec un compte non admin (0)
+            // et pour lancer la connexion immédiatement (1) même si vérification dans la méthode
+            Serveur.UtilisateurInscription(nom, prenom, email, mdp, dateInscription, dateNaissance, 0, 1);
+
+            Accueil accueilWindow = new Accueil(this.Location);
             accueilWindow.btnRetour.Text = "Se déconnecter";
             accueilWindow.Show();
             this.Close();
         }
 
-        private void btnRetour_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Gère le clic sur le logo pour revenir à la fenêtre d'ouverture.
+        /// </summary>
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             Ouverture ouverture = Application.OpenForms[0] as Ouverture;
-            if (ouverture != null) {
+            if (ouverture != null)
+            {
                 ouverture.Show();
                 this.Close();
             }
         }
 
-        string cheminOff = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-off.png";
-        string cheminOn = @"C:\Users\mathi\Documents\BUT\C#\application-metro\visibility-on.png";
-        private void picOeil_Click(object sender, EventArgs e)
+        // Chemins vers les images pour afficher ou masquer le mot de passe
+        string cheminOff = @"..\..\..\images\oeiloff.png";
+        string cheminOn = @"..\..\..\images\oeilon.png";
+
+        /// <summary>
+        /// Affiche ou masque le mot de passe et change l’icône en conséquence.
+        /// </summary>
+        private void picOeilOff_Click(object sender, EventArgs e)
         {
-            if (txtMdp.PasswordChar == '*')
+            try
             {
-                try
+                if (txtMdp.PasswordChar == '*')
                 {
-                    Image image = Image.FromFile(cheminOn);
-                    picOeil.Image = image;
+                    // Affiche le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOn);
                     txtMdp.PasswordChar = '\0';
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                try
-                {
-                    Image image = Image.FromFile(cheminOff);
-                    picOeil.Image = image;
+                    // Masque le mot de passe
+                    picOeilOff.Image = Image.FromFile(cheminOff);
                     txtMdp.PasswordChar = '*';
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erreur :", ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                // Gestion d'erreur lors du chargement des images
+                MessageBox.Show("Erreur : " + ex.Message);
             }
         }
 
-        private void txtMdp_TextChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Applique les polices personnalisées aux contrôles du formulaire à son chargement.
+        /// </summary>
+        private void Inscription_Load(object sender, EventArgs e)
         {
-            string pswd = txtMdp.Text;
+            FontFamily D = fontCollection.Families[0];
+            FontFamily G = fontCollection.Families[1];
+            txtNom.Font = new Font(D, 9);
+            txtPrenom.Font = new Font(D, 9);
+            txtEmail.Font = new Font(D, 9);
+            txtMdp.Font = new Font(D, 9);
+            dtpNaissance.Font = new Font(D, 9);
+            lblNaissance.Font = new Font(G, 9, FontStyle.Underline);
+            lblConnexion.Font = new Font(G, 9, FontStyle.Underline);
+            lnkConnexion.Font = new Font(D, 9, FontStyle.Underline);
+            btnInscription.Font = new Font(D, 14);
+            lblTitre.Font = new Font(G, 24, FontStyle.Bold);
+            lblTitre.Location = new Point((this.ClientSize.Width - lblTitre.Width) / 2, 100); // Centrer le titre horizontalement
+        }
+        
+
+        /// <summary>
+        /// Dessine le contour personnalisé pour le groupbox du nom et prénom.
+        /// </summary>
+        private void grpNomPrenom_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
+        }
+
+        private void grpAdrMdp_Paint(object sender, PaintEventArgs e)
+        {
+            GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
         }
     }
 }
