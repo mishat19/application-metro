@@ -1,5 +1,4 @@
 ﻿using GestionReseau;
-using K4os.Compression.LZ4.Encoders;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.DataFormats;
 
 namespace application_metro
 {
@@ -30,7 +28,7 @@ namespace application_metro
             fontCollection.AddFontFile(@"..\..\..\Fonts\DynaPuff-Regular.ttf");
             fontCollection.AddFontFile(@"..\..\..\Fonts\Gliker-Regular.ttf");
 
-            trainError = new TrainErrorManager(picTrain1, lblErreur, trainTop : 273);
+            trainError = new TrainErrorManager(picTrain1, lblErreur, trainTop: 273);
 
         }
 
@@ -39,7 +37,7 @@ namespace application_metro
         /// </summary>
         private void btnConnexion_Click(object sender, EventArgs e)
         {
-            // Récupère l'email et mdp et ce connecte
+            // Récupère l'email et mdp et se connecte
             string email = txtEmail.Text.Trim();
             string mdp = txtMdp.Text.Trim();
             if (Serveur.UtilisateurConnexion(email, mdp))
@@ -67,7 +65,7 @@ namespace application_metro
             string nom = txtEmail.Text;
         }
 
-        // Bouton pour rétourner a la page précédente
+        // Bouton pour retourner à la page précédente
         private void picRetour_Click(object sender, EventArgs e)
         {
             Ouverture ouverture = Application.OpenForms[0] as Ouverture;
@@ -81,7 +79,7 @@ namespace application_metro
             }
         }
 
-        // Logo pour masquer ou afficher le mot de passe
+        // Chemins pour l'icône de l'œil
         string cheminOff = @"..\..\..\images\oeiloff.png";
         string cheminOn = @"..\..\..\images\oeilon.png";
 
@@ -128,7 +126,6 @@ namespace application_metro
         private void groupBox1_Paint(object sender, PaintEventArgs e)
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e);
-
         }
 
         private void grpInscriptionConnexion_Paint(object sender, PaintEventArgs e)

@@ -2,27 +2,18 @@
 using Microsoft.Web.WebView2.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.LinkLabel;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace application_metro
 {
     public partial class Recherche : Form
     {
-
         // Composants utilisés
         private WebView2 webView;
         private HttpListener serveur2;
@@ -101,7 +92,6 @@ namespace application_metro
             serveur2 = new HttpListener();
             serveur2.Prefixes.Add("http://localhost:8082/");
             serveur2.Start();
-            //MessageBox.Show("Serveur démarré");
             serveurTask = Task.Run(() => EcouterRequetes(dossier));
 
             //Initialisation WebView2
@@ -111,7 +101,7 @@ namespace application_metro
 
         /// <summary>
         /// Serveur HTTP local pour servir la carte HTML
-        /// <summary>
+        /// </summary>
         private void EcouterRequetes(string dossier)
         {
             try
@@ -125,7 +115,6 @@ namespace application_metro
                         url = "map-milan.html";
 
                     string fichier = Path.Combine(dossier, url);
-                    //MessageBox.Show(fichier);
 
                     if (File.Exists(fichier))
                     {
@@ -157,7 +146,7 @@ namespace application_metro
 
         /// <summary>
         /// Chargement des polices sur tous les labels et boutons à l’ouverture du formulaire
-        /// <summary>
+        /// </summary>
         private void consultation_Load(object sender, EventArgs e)
         {
             FontFamily D = fontCollection.Families[0];
@@ -214,7 +203,8 @@ namespace application_metro
         private void btnRecherche_Click(object sender, EventArgs e)
         {
             var donnees = Serveur.ObtenirDonneesGraphe();
-            Graphe graphe = ChargeurGrapheDepuisMySQL.Charger(donnees.stations, donnees.segments);
+            // Correction ici : appel de ChargeurGrapheLocal au lieu de ChargeurGrapheDepuisMySQL
+            Graphe graphe = ChargeurGrapheLocal.Charger(donnees.stations, donnees.segments);
 
             // Récupérer stations sélectionnées
             Station stationDepart = graphe.Stations.FirstOrDefault(s => s.Nom == cmbDepart.SelectedItem?.ToString());
@@ -247,7 +237,6 @@ namespace application_metro
             DateTime heureDepart;
             DateTime heureArrivee;
             int dureeTotale;
-
 
             if (dtpHeureDepart.Enabled == false && dtpHeureArrivee.Enabled == false)
             {
@@ -288,8 +277,6 @@ namespace application_metro
                 lblTempsDepart.Text = heureDepart.ToString("HH:mm");
                 lblTempsArrivee.Text = heureArrivee.ToString("HH:mm");
             }
-
-
 
             // Affichage de la durée en minutes
             lblTemps.Text = $"{(int)(dureeTotale / 60)} min";
@@ -346,9 +333,7 @@ namespace application_metro
 
         }
 
-
         private bool detailsVisible = false;
-
 
         // Bouton voir plus / voir moins
         private void picVoirPlus_Click(object sender, EventArgs e)
@@ -395,7 +380,6 @@ namespace application_metro
         {
             GroupBoxBordure.ApplyCustomStyle((GroupBox)sender, e, borderColor: Color.FromArgb(15, 93, 70));
         }
-
 
         // Gestion des checkbox horaires (mutuellement exclusives)
         private void chkHoraireDepart_CheckedChanged(object sender, EventArgs e)

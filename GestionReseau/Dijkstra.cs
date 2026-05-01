@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MySql.Data.MySqlClient;
 
 namespace GestionReseau
 {
@@ -163,9 +162,9 @@ namespace GestionReseau
     }
 
     /// <summary>
-    /// Charge le graphe à partir de données extraites d’une base MySQL.
+    /// Charge le graphe à partir de données extraites de la base SQLite.
     /// </summary>
-    internal class ChargeurGrapheDepuisMySQL
+    internal class ChargeurGrapheLocal
     {
         /// <summary>
         /// Construit le graphe à partir de dictionnaires de stations et segments.
@@ -212,6 +211,5 @@ namespace GestionReseau
 
             return graphe;
         }
-
     }
 }

@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using MySql.Data.MySqlClient;
-using Mysqlx.Session;
-using MySqlX.XDevAPI.Common;
-using Org.BouncyCastle.Asn1.Ocsp;
-using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using Microsoft.Data.Sqlite;
 
 namespace GestionReseau
 {
     public static class Serveur
     {
-        private static MySqlConnection? connexion;
+        private static SqliteConnection? connexion;
 
         /// <summary>
         /// Fonction permettant l'ouverture de la base de donnée
@@ -22,25 +17,109 @@ namespace GestionReseau
         /// <returns>Confirmation de l'ouverture</returns>
         public static bool OuvertureConnexion()
         {
-            string serveur = "10.1.139.236";
-            string login = "b3";
-            string mdp = "mdp";
-            string bd = "baseb3";
+            // Fichier de base de données local
+            string dbPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "metro.db");
+            string chaineConnexion = $"Data Source={dbPath}";
 
-            string chaineConnexion = $"server={serveur};uid={login};pwd={mdp};database={bd}";  // Chaîne de connexion à la base MySQL
-
-            connexion = new MySqlConnection(chaineConnexion);
+            connexion = new SqliteConnection(chaineConnexion);
 
             try
             {
                 connexion.Open();
+                InitialiserBaseDeDonnees(); // Génère les tables si la BDD est vierge
                 Console.WriteLine("Connexion réussie");
                 return true;
             }
-            catch (MySqlException ex)
+            catch (SqliteException ex)
             {
                 Console.WriteLine("Erreur lors de l'ouverture de la connexion : " + ex.Message);
                 return false;
+            }
+        }
+
+        private static void InitialiserBaseDeDonnees()
+        {
+            string requeteCreation = @"
+                CREATE TABLE IF NOT EXISTS Utilisateur (
+                    Email TEXT PRIMARY KEY,
+                    Mdp TEXT,
+                    NomUtilisateur TEXT,
+                    PrenomUtilisateur TEXT,
+                    DateInscription TEXT,
+                    DateNaissance TEXT,
+                    Admin INTEGER,
+                    Status INTEGER
+                );
+                CREATE TABLE IF NOT EXISTS InfoLigne (
+                    NumLigne INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Nom TEXT,
+                    Couleur TEXT
+                );
+                CREATE TABLE IF NOT EXISTS Station (
+                    NumStation INTEGER PRIMARY KEY AUTOINCREMENT,
+                    NomStation TEXT,
+                    Latitude REAL,
+                    Longitude REAL
+                );
+                CREATE TABLE IF NOT EXISTS Segment (
+                    NumSegment INTEGER PRIMARY KEY AUTOINCREMENT,
+                    NumStationA INTEGER,
+                    NumStationB INTEGER,
+                    DureeSegment INTEGER
+                );
+                CREATE TABLE IF NOT EXISTS Ligne (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    NumLigne INTEGER,
+                    NumSegment INTEGER,
+                    Ordre INTEGER
+                );
+                CREATE TABLE IF NOT EXISTS Horaire (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    NumLigne INTEGER,
+                    HoraireDepart TEXT,
+                    HoraireFin TEXT
+                );
+
+                -- Compte Administrateur
+                INSERT OR IGNORE INTO Utilisateur (Email, Mdp, Admin, Status) 
+                VALUES ('admin@metro.fr', 'admin', 1, 0);
+
+                -- Lignes de métro
+                INSERT OR IGNORE INTO InfoLigne (NumLigne, Nom, Couleur) VALUES 
+                (1, 'Ligne A', 'Rouge'), 
+                (2, 'Ligne B', 'Bleu');
+        
+                -- Stations
+                INSERT OR IGNORE INTO Station (NumStation, NomStation, Latitude, Longitude) VALUES 
+                (1, 'Mairie', 49.8940, 2.2950),
+                (2, 'Gare Centrale', 49.8900, 2.3010),
+                (3, 'Université', 49.8800, 2.2800),
+                (4, 'Hôpital', 49.8700, 2.2900),
+                (5, 'Stade', 49.8950, 2.3100);
+        
+                -- Segments (Connexions entre les stations avec durée en secondes)
+                INSERT OR IGNORE INTO Segment (NumSegment, NumStationA, NumStationB, DureeSegment) VALUES 
+                (1, 1, 2, 120),
+                (2, 2, 3, 180),
+                (3, 2, 4, 150),
+                (4, 4, 5, 200);
+        
+                -- Association des segments aux lignes avec ordre de passage
+                INSERT OR IGNORE INTO Ligne (Id, NumLigne, NumSegment, Ordre) VALUES 
+                (1, 1, 1, 1),
+                (2, 1, 2, 2),
+                (3, 2, 3, 1),
+                (4, 2, 4, 2);
+        
+                -- Horaires de fonctionnement des lignes
+                INSERT OR IGNORE INTO Horaire (Id, NumLigne, HoraireDepart, HoraireFin) VALUES 
+                (1, 1, '06:00:00', '23:30:00'),
+                (2, 2, '05:45:00', '22:00:00');
+            ";
+
+            using (SqliteCommand cmd = new SqliteCommand(requeteCreation, connexion))
+            {
+                cmd.ExecuteNonQuery();
             }
         }
 
@@ -52,7 +131,7 @@ namespace GestionReseau
         {
             try
             {
-                if (connexion.State == System.Data.ConnectionState.Open)
+                if (connexion != null && connexion.State == System.Data.ConnectionState.Open)
                 {
                     connexion.Close();
                     Console.WriteLine("Déconnexion réussie");
@@ -61,7 +140,7 @@ namespace GestionReseau
                 }
                 return false;
             }
-            catch (MySqlException ex)
+            catch (SqliteException ex)
             {
                 Console.WriteLine("Erreur lors de la fermeture de la connexion : " + ex.Message);
                 return false;
@@ -78,26 +157,23 @@ namespace GestionReseau
         {
             string requete = $"SELECT Count(*) FROM Utilisateur WHERE Email = @Email AND Mdp = @Mdp";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Mdp", mdp);
 
-                //Console.WriteLine(requete);
-
                 try
                 {
                     object result = cmd.ExecuteScalar(); // Exécute la requête et retourne la première cellule (nombre d'utilisateurs)
-                    //Console.WriteLine(result);
                     int count = Convert.ToInt32(result);
-                    if(count > 0)
+                    if (count > 0)
                     {
                         StatusUtilisateur(email, mdp, 1); // Met à jour le statut en connecté
                         return true;
                     }
                     return false;
                 }
-                catch (MySqlException ex)
+                catch (SqliteException ex)
                 {
                     Console.WriteLine(ex.Message);
                     return false;
@@ -113,31 +189,15 @@ namespace GestionReseau
         /// <param name="action">0 = Deconnexion / 1 = Connexion</param>
         public static void StatusUtilisateur(string email, string mdp, int action)
         {
-            if (action == 0)
-            { //Déconnexion de l'utilisateur ou fermeture de l'application
-                string requete = $"UPDATE Utilisateur SET Status = @Action WHERE Email = @Email AND Mdp = @Mdp";
+            string requete = $"UPDATE Utilisateur SET Status = @Action WHERE Email = @Email AND Mdp = @Mdp";
 
-                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
-                {
-                    cmd.Parameters.AddWithValue("@Action", action);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Mdp", mdp);
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
+            {
+                cmd.Parameters.AddWithValue("@Action", action);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@Mdp", mdp);
 
-                    cmd.ExecuteNonQuery(); // Met à jour le statut dans la base
-                }
-
-            }
-            else if (action == 1) { //Connexion de l'utilisateur
-                string requete = $"UPDATE Utilisateur SET Status = @action WHERE Email = @Email AND Mdp = @Mdp";
-
-                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
-                {
-                    cmd.Parameters.AddWithValue("@Action", action);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Mdp", mdp);
-
-                    cmd.ExecuteNonQuery();
-                }
+                cmd.ExecuteNonQuery(); // Met à jour le statut dans la base
             }
         }
 
@@ -153,14 +213,15 @@ namespace GestionReseau
 
             string requete = "SELECT Status, Admin FROM Utilisateur";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
-            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
+            using (SqliteDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    int status = rdr.GetInt32("Status");
-                    int admin = rdr.GetInt32("Admin");
-                    if (status == 1){
+                    int status = rdr.GetInt32(rdr.GetOrdinal("Status"));
+                    int admin = rdr.GetInt32(rdr.GetOrdinal("Admin"));
+                    if (status == 1)
+                    {
                         estConnecte = (admin == 1) ? 1 : 0; // Si admin connecté, renvoie 1, sinon 0
                         return (deconnexionText, estConnecte);
                     }
@@ -177,12 +238,12 @@ namespace GestionReseau
             List<(string email, string mdp)> utilisateurs = new List<(string, string)>();
 
             // Lecture de tous les utilisateurs pour récupérer leur email/mdp
-            using (MySqlCommand cmd = new MySqlCommand("SELECT Email, Mdp FROM Utilisateur", connexion))
-            using (MySqlDataReader rdr = cmd.ExecuteReader())
+            using (SqliteCommand cmd = new SqliteCommand("SELECT Email, Mdp FROM Utilisateur", connexion))
+            using (SqliteDataReader rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    utilisateurs.Add((rdr.GetString("Email"), rdr.GetString("Mdp")));
+                    utilisateurs.Add((rdr.GetString(rdr.GetOrdinal("Email")), rdr.GetString(rdr.GetOrdinal("Mdp"))));
                 }
             }
 
@@ -191,7 +252,7 @@ namespace GestionReseau
             {
                 string requete = "UPDATE Utilisateur SET Status = @Status WHERE Email = @Email AND Mdp = @Mdp";
 
-                using (MySqlCommand cmd2 = new MySqlCommand(requete, connexion))
+                using (SqliteCommand cmd2 = new SqliteCommand(requete, connexion))
                 {
                     cmd2.Parameters.AddWithValue("@Status", 0);
                     cmd2.Parameters.AddWithValue("@Email", email);
@@ -205,37 +266,29 @@ namespace GestionReseau
         /// <summary>
         /// Fonction pour inscrire un utilisateur
         /// </summary>
-        /// <param name="nom">Nom de l'utilisateur</param>
-        /// <param name="prenom">Prénom de l'utilisateur</param>
-        /// <param name="email">Email de l'utilisateur</param>
-        /// <param name="mdp">Mot de passe de l'utilisateur</param>
-        /// <param name="dateInscription">Date d'inscription de l'utilisateur</param>
-        /// <param name="dateNaissance">Date de naissance de l'utilisateur</param>
-        /// <param name="admin">Si l'utilisateur est administrateur ou non</param>
         public static void UtilisateurInscription(string nom, string prenom, string email, string mdp, DateTime dateInscription, DateTime dateNaissance, int admin, int status)
         {
             string requete = @"INSERT INTO Utilisateur 
-                       (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin, Status)
-                       VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin, @Status)"; //  Requête SQL d'insertion paramétrée : permet d'éviter l’injection SQL
+                               (NomUtilisateur, PrenomUtilisateur, Email, Mdp, DateInscription, DateNaissance, Admin, Status)
+                               VALUES (@Nom, @Prenom, @Email, @Mdp, @DateInscription, @DateNaissance, @Admin, @Status)";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             {
                 cmd.Parameters.AddWithValue("@Nom", nom);
                 cmd.Parameters.AddWithValue("@Prenom", prenom);
                 cmd.Parameters.AddWithValue("@Email", email);
                 cmd.Parameters.AddWithValue("@Mdp", mdp);
-                cmd.Parameters.AddWithValue("@DateInscription", dateInscription);
-                cmd.Parameters.AddWithValue("@DateNaissance", dateNaissance);
+                cmd.Parameters.AddWithValue("@DateInscription", dateInscription.ToString("yyyy-MM-dd HH:mm:ss"));
+                cmd.Parameters.AddWithValue("@DateNaissance", dateNaissance.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@Admin", admin);
                 cmd.Parameters.AddWithValue("@Status", status);
 
-                //Console.WriteLine(requete);
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    StatusUtilisateur(email, mdp, 1); //Appel de la méthode enregistrant l'événement de connexion après inscription
+                    StatusUtilisateur(email, mdp, 1);
                 }
-                catch (MySqlException ex)
+                catch (SqliteException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
@@ -250,23 +303,22 @@ namespace GestionReseau
         {
             ListeLignes listeLignes = new ListeLignes();
             string requete = $"SELECT * FROM InfoLigne INNER JOIN Ligne ON InfoLigne.NumLigne = Ligne.NumLigne";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            MySqlDataReader rdr = cmd.ExecuteReader();
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
+            SqliteDataReader rdr = cmd.ExecuteReader();
 
-            Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>(); //Utilisé pour éviter de recréer plusieurs fois la même ligne(optimisation)
+            Dictionary<int, Ligne> lignesTemp = new Dictionary<int, Ligne>();
             int nbLignes = 0;
 
             while (rdr.Read())
             {
-                int numLigne = rdr.GetInt32("NumLigne");
-                string nom = rdr.GetString("Nom");
-                string couleur = rdr.GetString("Couleur");
-                int numSegment = rdr.GetInt32("NumSegment");
+                int numLigne = rdr.GetInt32(rdr.GetOrdinal("NumLigne"));
+                string nom = rdr.GetString(rdr.GetOrdinal("Nom"));
+                string couleur = rdr.GetString(rdr.GetOrdinal("Couleur"));
+                int numSegment = rdr.GetInt32(rdr.GetOrdinal("NumSegment"));
                 List<int> segments = new List<int>();
                 List<string> stations = new List<string>();
-                //Console.WriteLine($"{numLigne} + {nom} {couleur} {numSegment}");
 
-                if (!lignesTemp.ContainsKey(numLigne))// Initialise une nouvelle ligne seulement si elle n'a pas encore été ajoutée
+                if (!lignesTemp.ContainsKey(numLigne))
                 {
                     lignesTemp[numLigne] = new Ligne(numLigne, nom, couleur, segments, stations);
                     nbLignes++;
@@ -281,21 +333,21 @@ namespace GestionReseau
             {
                 foreach (int segment in lignesTemp[numLigne].segments)
                 {
-                    string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});"; //Sous-requête imbriquée : on récupère la station de départ (NumStationA) associée à un segment précis
-                    MySqlCommand cmd2 = new MySqlCommand(requete2, connexion);
-                    MySqlDataReader rdr2 = cmd2.ExecuteReader();
+                    string requete2 = $"SELECT NomStation FROM Station WHERE Station.NumStation = (SELECT NumStationA FROM Segment WHERE NumSegment = {segment});";
+                    SqliteCommand cmd2 = new SqliteCommand(requete2, connexion);
+                    SqliteDataReader rdr2 = cmd2.ExecuteReader();
 
                     if (rdr2.Read())
                     {
                         try
                         {
-                            string nomStation = rdr2.GetString("NomStation");
-                            if (!lignesTemp[numLigne].stations.Contains(nomStation)) // Évite les doublons dans la liste des stations d’une ligne
+                            string nomStation = rdr2.GetString(rdr2.GetOrdinal("NomStation"));
+                            if (!lignesTemp[numLigne].stations.Contains(nomStation))
                             {
                                 lignesTemp[numLigne].stations.Add(nomStation);
                             }
                         }
-                        catch (MySqlException ex)
+                        catch (SqliteException ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
@@ -315,26 +367,23 @@ namespace GestionReseau
         /// <summary>
         /// Récupère les coordonnées GPS des stations d'une ligne donnée.
         /// </summary>
-        /// <param name="stations">Liste des stations</param>
-        /// <returns>Retourne les coordonnées de toutes les stations</returns>
         public static List<List<decimal>> CoordonneesStationsLigne(List<string> stations)
         {
             List<List<decimal>> toutes = new List<List<decimal>>();
 
             foreach (string nomStation in stations)
             {
-                string nomEchappe = nomStation.Replace("'", "''"); // Échappe les apostrophes dans le nom de la station pour éviter des erreurs SQL
+                string nomEchappe = nomStation.Replace("'", "''");
                 string requete = $"SELECT Latitude, Longitude FROM Station WHERE NomStation = '{nomEchappe}'";
-                //Console.WriteLine(requete);
-                MySqlCommand cmd = new MySqlCommand(requete, connexion);
-                MySqlDataReader rdr = cmd.ExecuteReader();
+                SqliteCommand cmd = new SqliteCommand(requete, connexion);
+                SqliteDataReader rdr = cmd.ExecuteReader();
 
-                List<decimal> gps = new List<decimal>(); // Structure contenant toutes les coordonnées GPS : chaque élément est une liste [latitude, longitude]
+                List<decimal> gps = new List<decimal>();
 
                 if (rdr.Read())
                 {
-                    gps.Add(rdr.GetDecimal("Latitude"));
-                    gps.Add(rdr.GetDecimal("Longitude"));
+                    gps.Add((decimal)rdr.GetDouble(rdr.GetOrdinal("Latitude")));
+                    gps.Add((decimal)rdr.GetDouble(rdr.GetOrdinal("Longitude")));
                 }
                 rdr.Close();
                 toutes.Add(gps);
@@ -347,12 +396,12 @@ namespace GestionReseau
             List<string> lignes = new List<string>();
             string requete = "SELECT Nom FROM InfoLigne";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    lignes.Add(rdr.GetString("Nom"));
+                    lignes.Add(rdr.GetString(rdr.GetOrdinal("Nom")));
                 }
             }
 
@@ -362,8 +411,6 @@ namespace GestionReseau
         /// <summary>
         /// Récupère la liste des stations d'une ligne donnée.
         /// </summary>
-        /// <param name="nomLigne">Nom de la ligne</param>
-        /// <returns>Retourne le nom de la ligne</returns>
         public static List<string> StationsParLigne(string nomLigne)
         {
             List<string> stations = new List<string>();
@@ -374,16 +421,15 @@ namespace GestionReseau
             AND il.NumLigne = l.NumLigne
             AND l.NumSegment = seg.NumSegment
             AND (st.NumStation = seg.NumStationA OR st.NumStation = seg.NumStationB)";
-            //On récupère la station de début ou de fin du segment (car une ligne peut passer par les deux extrémités d’un segment)
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomLigne", nomLigne);
 
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    stations.Add(rdr.GetString("NomStation"));
+                    stations.Add(rdr.GetString(rdr.GetOrdinal("NomStation")));
                 }
             }
             return stations;
@@ -392,11 +438,10 @@ namespace GestionReseau
         /// <summary>
         /// Calcul les horaires de passage d'une station
         /// </summary>
-        /// <param name="nomStation">Nom de la station</param>
         public static List<string> CalculeHorairePassageStation(string nomStation, DateTime date)
         {
             List<string> horaireStation = new List<string>();
-            TimeSpan heure = date.TimeOfDay;//On extrait uniquement l’heure actuelle (exclut la date) pour la comparaison
+            TimeSpan heure = date.TimeOfDay;
 
             string requete = @"
             SELECT DISTINCT h.HoraireDepart, seg.DureeSegment, h.HoraireFin
@@ -406,35 +451,23 @@ namespace GestionReseau
             AND seg.NumSegment = l.NumSegment
             AND l.NumLigne = h.NumLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomStation", nomStation);
 
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
-                    int dureeSegment = rdr.GetInt32("DureeSegment");
-
-                    TimeSpan horaireFin = rdr.GetTimeSpan("HoraireFin");
+                    TimeSpan horaireDepart = TimeSpan.Parse(rdr.GetString(rdr.GetOrdinal("HoraireDepart")));
+                    int dureeSegment = rdr.GetInt32(rdr.GetOrdinal("DureeSegment"));
+                    TimeSpan horaireFin = TimeSpan.Parse(rdr.GetString(rdr.GetOrdinal("HoraireFin")));
                     TimeSpan horaireActuel = horaireDepart;
 
-                    double multiplicateur;//Multiplie le temps de trajet si c’est un dimanche (plus de temps pour les trajets)
-
-                    if (date.DayOfWeek == DayOfWeek.Sunday)
-                    {
-                        multiplicateur = 1.75;
-                    }
-                    else
-                    {
-                        multiplicateur = 1;
-                    }
+                    double multiplicateur = (date.DayOfWeek == DayOfWeek.Sunday) ? 1.75 : 1;
 
                     while (horaireActuel < horaireFin)
                     {
-                        Console.WriteLine(horaireActuel.ToString());
-                        Console.WriteLine(heure.ToString());
-                        if(horaireActuel > heure)//N’ajoute que les horaires futurs (après l’heure actuelle)
+                        if (horaireActuel > heure)
                         {
                             horaireStation.Add(horaireActuel.ToString(@"hh\:mm\:ss"));
                         }
@@ -459,17 +492,16 @@ namespace GestionReseau
             AND seg.NumSegment = l.NumSegment
             AND l.NumLigne = h.NumLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NomStation", nomStation);
 
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    TimeSpan horaireDepart = rdr.GetTimeSpan("HoraireDepart");
-                    int dureeSegment = rdr.GetInt32("DureeSegment");
-
-                    TimeSpan horaireFin = rdr.GetTimeSpan("HoraireFin");
+                    TimeSpan horaireDepart = TimeSpan.Parse(rdr.GetString(rdr.GetOrdinal("HoraireDepart")));
+                    int dureeSegment = rdr.GetInt32(rdr.GetOrdinal("DureeSegment"));
+                    TimeSpan horaireFin = TimeSpan.Parse(rdr.GetString(rdr.GetOrdinal("HoraireFin")));
                     TimeSpan horaireActuel = horaireDepart;
 
                     double multiplicateur = (date.DayOfWeek == DayOfWeek.Sunday) ? 1.75 : 1;
@@ -478,27 +510,24 @@ namespace GestionReseau
                     {
                         if (horaireActuel > heure)
                         {
-                            // On retourne le premier horaire trouvé
                             return horaireActuel.ToString(@"hh\:mm\:ss");
                         }
-                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));//Calcule l’heure suivante de passage à la station, selon la durée du segment
+                        horaireActuel = horaireActuel.Add(TimeSpan.FromSeconds(dureeSegment * multiplicateur));
                     }
                 }
             }
 
-            return prochainHoraire; // Peut être null si aucun horaire trouvé
+            return prochainHoraire;
         }
-
 
         /// <summary>
         /// Supprime une information de ligne dans la base de données.
         /// </summary>
-        /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUneInfoLigne(int numLigne)
         {
             string requete = @"DELETE FROM InfoLigne WHERE NumLigne = @numLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
         }
@@ -506,23 +535,21 @@ namespace GestionReseau
         /// <summary>
         /// Supprime une station et ses segments associés d'une ligne spécifique dans la base de données.
         /// </summary>
-        /// <param name="nomLigne">Nom de la ligne</param>
-        /// <param name="nomStation">Nom de la station</param>
         public static void SupprimerUnSegment(string nomStation)
         {
             int idStation = idStationGraceNom(nomStation);
 
-            string requeteDesactiverFK = @"SET FOREIGN_KEY_CHECKS = 0";
-            MySqlCommand cmdDesactiverFK = new MySqlCommand(requeteDesactiverFK, connexion);
+            string requeteDesactiverFK = @"PRAGMA foreign_keys = OFF;";
+            SqliteCommand cmdDesactiverFK = new SqliteCommand(requeteDesactiverFK, connexion);
             cmdDesactiverFK.ExecuteNonQuery();
 
             string requeteSupprimerSegment = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
-            MySqlCommand cmd = new MySqlCommand(requeteSupprimerSegment, connexion);
+            SqliteCommand cmd = new SqliteCommand(requeteSupprimerSegment, connexion);
             cmd.Parameters.AddWithValue("@idStation", idStation);
             cmd.ExecuteNonQuery();
 
-            string requeteActiverFK = @"SET FOREIGN_KEY_CHECKS = 1";
-            MySqlCommand cmdActiverFK = new MySqlCommand(requeteActiverFK, connexion);
+            string requeteActiverFK = @"PRAGMA foreign_keys = ON;";
+            SqliteCommand cmdActiverFK = new SqliteCommand(requeteActiverFK, connexion);
             cmdActiverFK.ExecuteNonQuery();
         }
 
@@ -531,7 +558,7 @@ namespace GestionReseau
             int idStation = idStationGraceNom(nomStation);
 
             string requeteSupprimerStation = @"DELETE FROM Station WHERE NumStation = @idStation";
-            MySqlCommand cmd = new MySqlCommand(requeteSupprimerStation, connexion);
+            SqliteCommand cmd = new SqliteCommand(requeteSupprimerStation, connexion);
             cmd.Parameters.AddWithValue("@idStation", idStation);
             cmd.ExecuteNonQuery();
         }
@@ -539,15 +566,12 @@ namespace GestionReseau
         /// <summary>
         /// Ajoute une ligne dans la base de données
         /// </summary>
-        /// <param name="nomLigne">Nom de la ligne</param>
-        /// <param name="couleur">Couleur de la ligne</param>
-        /// <returns>Retourne un booléen de si le nom de la ligne existe déjà ou non</returns>
         public static void AjoutLigne(string nomLigne, string couleur)
         {
             string requeteAjoutLigne = @"INSERT INTO InfoLigne (Nom, Couleur)
                                         VALUES (@nomLigne, @couleur)";
 
-            MySqlCommand cmdAjoutLigne = new MySqlCommand(requeteAjoutLigne, connexion);
+            SqliteCommand cmdAjoutLigne = new SqliteCommand(requeteAjoutLigne, connexion);
             cmdAjoutLigne.Parameters.AddWithValue("@nomLigne", nomLigne);
             cmdAjoutLigne.Parameters.AddWithValue("@couleur", couleur);
             cmdAjoutLigne.ExecuteNonQuery();
@@ -556,15 +580,12 @@ namespace GestionReseau
         /// <summary>
         /// Ajoute une station dans la base de données
         /// </summary>
-        /// <param name="nomStation"></param>
-        /// <param name="latitude"></param>
-        /// <param name="longitude"></param>
         public static void AjoutStation(string nomStation, double latitude, double longitude)
         {
             string requeteAjoutStation = @"INSERT INTO Station (NomStation, Latitude, Longitude)
                                            VALUES (@nomStation, @latitude, @longitude)";
 
-            MySqlCommand cmdAjoutStation = new MySqlCommand(requeteAjoutStation, connexion);
+            SqliteCommand cmdAjoutStation = new SqliteCommand(requeteAjoutStation, connexion);
             cmdAjoutStation.Parameters.AddWithValue("@nomStation", nomStation);
             cmdAjoutStation.Parameters.AddWithValue("@latitude", latitude);
             cmdAjoutStation.Parameters.AddWithValue("@longitude", longitude);
@@ -574,13 +595,10 @@ namespace GestionReseau
         /// <summary>
         /// Permet de modifier InfoLigne
         /// </summary>
-        /// <param name="numLigne"></param>
-        /// <param name="nom"></param>
-        /// <param name="couleur"></param>
         public static void ModifInfosLigne(int numLigne, string nom, string couleur)
         {
             string requete = @"UPDATE InfoLigne SET Nom = @nom, Couleur = @couleur WHERE NumLigne = @numLigne";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@nom", nom);
             cmd.Parameters.AddWithValue("@couleur", couleur);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
@@ -590,16 +608,15 @@ namespace GestionReseau
         /// <summary>
         /// Permet de modifier le nom des stations
         /// </summary>
-        /// <param name="stationsChange"></param>
         public static void ModifNomStations(Dictionary<string, string> stationsChange)
         {
             foreach (KeyValuePair<string, string> station in stationsChange)
             {
-                string ancienNom = station.Key;    //Clé = nom d'origine
-                string nouveauNom = station.Value; //Valeur = nouveau nom
+                string ancienNom = station.Key;
+                string nouveauNom = station.Value;
 
                 string requete = "UPDATE Station SET NomStation = @nouveauNom WHERE NomStation = @ancienNom";
-                MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                SqliteCommand cmd = new SqliteCommand(requete, connexion);
                 cmd.Parameters.AddWithValue("@nouveauNom", nouveauNom);
                 cmd.Parameters.AddWithValue("@ancienNom", ancienNom);
 
@@ -611,7 +628,6 @@ namespace GestionReseau
         /// <summary>
         /// Permet de modifier les coordonnées d'une station
         /// </summary>
-        /// <param name="coordonneesChange"></param>
         public static void ModifCoordonneesStations(Dictionary<string, (decimal lat, decimal lon)> coordonneesChange)
         {
             foreach (KeyValuePair<string, (decimal lat, decimal lon)> station in coordonneesChange)
@@ -622,9 +638,8 @@ namespace GestionReseau
 
                 if (latitude != 0 && longitude != 0)
                 {
-                    //Latitude & Longitude
                     string requete = @"UPDATE Station SET Latitude = @lat, Longitude = @lon WHERE NomStation = @nom";
-                    MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                    SqliteCommand cmd = new SqliteCommand(requete, connexion);
                     cmd.Parameters.AddWithValue("@lat", latitude);
                     cmd.Parameters.AddWithValue("@lon", longitude);
                     cmd.Parameters.AddWithValue("@nom", nomStation);
@@ -632,18 +647,16 @@ namespace GestionReseau
                 }
                 else if (latitude != 0)
                 {
-                    //Latitude seulement
                     string requete = @"UPDATE Station SET Latitude = @lat WHERE NomStation = @nom";
-                    MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                    SqliteCommand cmd = new SqliteCommand(requete, connexion);
                     cmd.Parameters.AddWithValue("@lat", latitude);
                     cmd.Parameters.AddWithValue("@nom", nomStation);
                     cmd.ExecuteNonQuery();
                 }
                 else if (longitude != 0)
                 {
-                    //Longitude seulement
                     string requete = @"UPDATE Station SET Longitude = @lon WHERE NomStation = @nom";
-                    MySqlCommand cmd = new MySqlCommand(requete, connexion);
+                    SqliteCommand cmd = new SqliteCommand(requete, connexion);
                     cmd.Parameters.AddWithValue("@lon", longitude);
                     cmd.Parameters.AddWithValue("@nom", nomStation);
                     cmd.ExecuteNonQuery();
@@ -654,15 +667,11 @@ namespace GestionReseau
         /// <summary>
         /// Ajoute un segment entre deux stations dans la base de données.
         /// </summary>
-        /// <param name="dureeSegment">Temps en seconde pour aller de la station A à la station B</param>
-        /// <param name="numStationA">Station de départ du segment</param>
-        /// <param name="numStationB">Station d'arriver du segment</param>
         public static void AjoutSegment(int dureeSegment, int numStationA, int numStationB)
         {
-            // Ajoute un segment entre deux stations
             string requete = @"INSERT INTO Segment (DureeSegment, NumStationA, NumStationB) 
                                 VALUES (@dureeSegment, @numStationA, @numStationB)";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@dureeSegment", dureeSegment);
             cmd.Parameters.AddWithValue("@numStationA", numStationA);
             cmd.Parameters.AddWithValue("@numStationB", numStationB);
@@ -671,10 +680,9 @@ namespace GestionReseau
 
         public static void AjoutSegmentDansLigne(int numLigne, int numSegment, int ordre)
         {
-            // Ajoute un segment à une ligne
             string requete = @"INSERT INTO Ligne (NumLigne, NumSegment, Ordre) 
                                 VALUES (@numLigne, @numSegment, @ordre)";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.Parameters.AddWithValue("@numSegment", numSegment);
             cmd.Parameters.AddWithValue("@ordre", ordre);
@@ -684,60 +692,46 @@ namespace GestionReseau
         /// <summary>
         /// Récupère l'ID d'une ligne à partir de son nom.
         /// </summary>
-        /// <param name="nom">Nom de la ligne</param>
-        /// <returns>Retourne l'ID </returns>
         public static int idLigneGraceNom(string nom)
         {
             string requete = @"SELECT NumLigne FROM InfoLigne WHERE Nom = @nom";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@nom", nom);
-            cmd.ExecuteNonQuery();
-
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
         /// <summary>
         /// Récupère l'ID d'une station à partir de son nom.
         /// </summary>
-        /// <param name="nom">Nom de la station</param>
-        /// <returns>Retourne l'ID de la station</returns>
         public static int idStationGraceNom(string nom)
         {
             string requete = @"SELECT NumStation FROM Station WHERE NomStation = @nom";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@nom", nom);
-            cmd.ExecuteNonQuery();
-
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
         /// <summary>
         /// Récupère l'ID du dernier objet inséré dans la base de données.
         /// </summary>
-        /// <returns>Retourne l'ID récupérer</returns>
         public static int RecupereIdDernierObjet()
         {
-            string requete = @"SELECT LAST_INSERT_ID()";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.ExecuteNonQuery();
-
+            string requete = @"SELECT last_insert_rowid()";
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
         /// <summary>
         /// Ajoute un horaire de départ et de fin pour une ligne dans la base de données.
         /// </summary>
-        /// <param name="NomLigne">Numéro de la ligne</param>
-        /// <param name="HoraireDepart">Horaire du premier passage de la ligne</param>
-        /// <param name="HoraireFin">Horaire du dernier passage de la ligne</param>
         public static void AjoutHoraireDepartFin(int NumLigne, DateTime HoraireDepart, DateTime HoraireFin)
         {
             string requete = @"INSERT INTO Horaire (NumLigne, HoraireDepart, HoraireFin) 
                                 VALUES (@NumLigne, @HoraireDepart, @HoraireFin)";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@NumLigne", NumLigne);
-            cmd.Parameters.AddWithValue("@HoraireDepart", HoraireDepart);
-            cmd.Parameters.AddWithValue("@HoraireFin", HoraireFin);
+            cmd.Parameters.AddWithValue("@HoraireDepart", HoraireDepart.ToString("HH:mm:ss"));
+            cmd.Parameters.AddWithValue("@HoraireFin", HoraireFin.ToString("HH:mm:ss"));
             cmd.ExecuteNonQuery();
         }
 
@@ -745,12 +739,11 @@ namespace GestionReseau
         /// <summary>
         /// Supprime les informations en rapport avec une ligne dans la table Ligne.
         /// </summary>
-        /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUneLigne(int numLigne)
         {
             string requete = @"DELETE FROM Ligne WHERE NumLigne = @numLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
         }
@@ -758,12 +751,11 @@ namespace GestionReseau
         /// <summary>
         /// Supprier les informations d'horaire d'une ligne dans la table Horaire
         /// </summary>
-        /// <param name="numLigne">Numéro de la ligne</param>
         public static void SupprimerUnHoraire(int numLigne)
         {
             string requete = @"DELETE FROM Horaire WHERE NumLigne = @numLigne";
 
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@numLigne", numLigne);
             cmd.ExecuteNonQuery();
         }
@@ -771,18 +763,17 @@ namespace GestionReseau
         /// <summary>
         /// Liste des stations
         /// </summary>
-        /// <returns>Liste des stations en fonction du nom</returns>
         public static List<string> ListeDesStations()
         {
             List<string> stations = new List<string>();
             string requete = "SELECT NomStation FROM Station";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             using (var rdr = cmd.ExecuteReader())
             {
                 while (rdr.Read())
                 {
-                    stations.Add(rdr.GetString("NomStation"));
+                    stations.Add(rdr.GetString(rdr.GetOrdinal("NomStation")));
                 }
             }
             return stations;
@@ -791,22 +782,16 @@ namespace GestionReseau
         /// <summary>
         /// Met à jour la couleur, et le nom de la ligne.
         /// </summary>
-        /// <param name="numLigne">Id de la ligne</param>
-        /// <param name="couleur">Couleur de la ligne</param>
-        /// <param name="nom">Nom de la ligne</param>
-        /// <returns>Retourne un booléen de si le nom de la ligne existe déjà ou non</returns>
         public static bool MettreAJourCouleurEtNumeroLigne(int numLigne, string couleur, string nom)
         {
-            // Vérifier si un autre enregistrement utilise déjà ce nom
             string verifRequete = @"SELECT COUNT(*) FROM InfoLigne 
                             WHERE Nom = @Nom AND NumLigne != @NumLigne";
 
-            using (MySqlCommand verifCmd = new MySqlCommand(verifRequete, connexion))
+            using (SqliteCommand verifCmd = new SqliteCommand(verifRequete, connexion))
             {
                 verifCmd.Parameters.AddWithValue("@Nom", nom);
                 verifCmd.Parameters.AddWithValue("@NumLigne", numLigne);
 
-                //Retourne le nombre de valeurs trouvées
                 long count = (long)verifCmd.ExecuteScalar();
 
                 if (count > 0)
@@ -815,12 +800,11 @@ namespace GestionReseau
                 }
             }
 
-            // Si aucun doublon, on met à jour
             string requete = @"UPDATE InfoLigne 
                        SET Couleur = @Couleur, Nom = @Nom
                        WHERE NumLigne = @NumLigne";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             {
                 cmd.Parameters.AddWithValue("@Couleur", couleur);
                 cmd.Parameters.AddWithValue("@Nom", nom);
@@ -843,7 +827,7 @@ namespace GestionReseau
                                SET NomStation = @NouveauNom 
                                WHERE NomStation = @AncienNom";
 
-                    using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                    using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
                     {
                         cmd.Parameters.AddWithValue("@NouveauNom", nouveauNom);
                         cmd.Parameters.AddWithValue("@AncienNom", ancienNom);
@@ -855,7 +839,7 @@ namespace GestionReseau
 
         public static void UpdateDureesSegments(Dictionary<string, int> dureesChange)
         {
-            using (MySqlCommand cmd = new MySqlCommand("", connexion))
+            using (SqliteCommand cmd = new SqliteCommand("", connexion))
             {
                 foreach (var entree in dureesChange)
                 {
@@ -914,10 +898,10 @@ namespace GestionReseau
                 }
                 else
                 {
-                    continue; // pas de mise à jour
+                    continue;
                 }
 
-                using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+                using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
                 {
                     if (latitude != 0)
                         cmd.Parameters.AddWithValue("@Latitude", latitude);
@@ -935,10 +919,10 @@ namespace GestionReseau
         {
             string requete = "UPDATE Horaire SET HoraireDepart = @debut, HoraireFin = @fin WHERE NumLigne = @numLigne";
 
-            using (MySqlCommand cmd = new MySqlCommand(requete, connexion))
+            using (SqliteCommand cmd = new SqliteCommand(requete, connexion))
             {
-                cmd.Parameters.AddWithValue("@debut", horaireDebut);
-                cmd.Parameters.AddWithValue("@fin", horaireFin);
+                cmd.Parameters.AddWithValue("@debut", horaireDebut.ToString(@"hh\:mm\:ss"));
+                cmd.Parameters.AddWithValue("@fin", horaireFin.ToString(@"hh\:mm\:ss"));
                 cmd.Parameters.AddWithValue("@numLigne", numLigne);
 
                 int result = cmd.ExecuteNonQuery();
@@ -951,8 +935,6 @@ namespace GestionReseau
         /// <summary>
         /// Récupère la durée des segments d'une ligne spécifique.
         /// </summary>
-        /// <param name="numLigne">Numéro de la ligne</param>
-        /// <returns>Retourne la liste de durée des segments d'une ligne</returns>
         public static List<(string stationDepart, string stationArrivee, int duree)> DureeSegmentsLigne(int numLigne)
         {
             List<(string, string, int)> segmentsLigne = new List<(string, string, int)>();
@@ -969,7 +951,7 @@ namespace GestionReseau
                 ORDER BY l.Ordre
             ";
 
-            using (var cmd = new MySqlCommand(requete, connexion))
+            using (var cmd = new SqliteCommand(requete, connexion))
             {
                 cmd.Parameters.AddWithValue("@numLigne", numLigne);
 
@@ -977,9 +959,9 @@ namespace GestionReseau
                 {
                     while (lecteur.Read())
                     {
-                        string stationDepart = lecteur.GetString("NomStationA");
-                        string stationArrivee = lecteur.GetString("NomStationB");
-                        int duree = lecteur.GetInt32("DureeSegment");
+                        string stationDepart = lecteur.GetString(lecteur.GetOrdinal("NomStationA"));
+                        string stationArrivee = lecteur.GetString(lecteur.GetOrdinal("NomStationB"));
+                        int duree = lecteur.GetInt32(lecteur.GetOrdinal("DureeSegment"));
 
                         segmentsLigne.Add((stationDepart, stationArrivee, duree));
                     }
@@ -992,21 +974,20 @@ namespace GestionReseau
         /// <summary>
         /// Récupère les données du graphe, incluant les stations et les segments.
         /// </summary>
-        /// <returns>Retourne les données du graphe</returns>
         public static (Dictionary<int, Station> stations, List<(int idA, int idB, int duree, int numLigne)> segments) ObtenirDonneesGraphe()
         {
             Dictionary<int, Station> stations = new Dictionary<int, Station>();
             List<(int, int, int, int)> segments = new List<(int, int, int, int)>();
 
             string requeteStations = "SELECT NumStation, NomStation FROM Station";
-            using (var cmdStations = new MySqlCommand(requeteStations, connexion))
+            using (var cmdStations = new SqliteCommand(requeteStations, connexion))
             using (var lecteur = cmdStations.ExecuteReader())
             {
                 while (lecteur.Read())
                 {
-                    int id = lecteur.GetInt32("NumStation");
-                    string nom = lecteur.GetString("NomStation");
-                    stations[id] = new Station(nom);
+                    int id = lecteur.GetInt32(lecteur.GetOrdinal("NumStation"));
+                    string nom = lecteur.GetString(lecteur.GetOrdinal("NomStation"));
+                    stations[id] = new Station(nom); // Assure-toi que la classe Station est bien dans ton namespace
                 }
             }
 
@@ -1015,15 +996,15 @@ namespace GestionReseau
             FROM Segment s
             JOIN Ligne l ON s.NumSegment = l.NumSegment";
 
-            using (var cmdSegments = new MySqlCommand(requeteSegments, connexion))
+            using (var cmdSegments = new SqliteCommand(requeteSegments, connexion))
             using (var lecteur = cmdSegments.ExecuteReader())
             {
                 while (lecteur.Read())
                 {
-                    int idA = lecteur.GetInt32("NumStationA");
-                    int idB = lecteur.GetInt32("NumStationB");
-                    int duree = lecteur.GetInt32("DureeSegment");
-                    int numLigne = lecteur.GetInt32("NumLigne");
+                    int idA = lecteur.GetInt32(lecteur.GetOrdinal("NumStationA"));
+                    int idB = lecteur.GetInt32(lecteur.GetOrdinal("NumStationB"));
+                    int duree = lecteur.GetInt32(lecteur.GetOrdinal("DureeSegment"));
+                    int numLigne = lecteur.GetInt32(lecteur.GetOrdinal("NumLigne"));
 
                     segments.Add((idA, idB, duree, numLigne));
                 }
@@ -1035,21 +1016,22 @@ namespace GestionReseau
         public static void SupprimerUnSegment(int idStation)
         {
             string requete = @"DELETE FROM Segment WHERE NumStationA = @idStation OR NumStationB = @idStation";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
-            cmd.Parameters.AddWithValue("@nomStation", idStation);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
+            cmd.Parameters.AddWithValue("@idStation", idStation);
             cmd.ExecuteNonQuery();
         }
+
         public static (DateTime, DateTime) RecupererHorairesLigne(int idLigne)
         {
             string requeteHoraireDebut = @"SELECT HoraireDepart FROM Horaire WHERE NumLigne = @numLigne";
-            MySqlCommand cmdHoraireDebut = new MySqlCommand(requeteHoraireDebut, connexion);
+            SqliteCommand cmdHoraireDebut = new SqliteCommand(requeteHoraireDebut, connexion);
             cmdHoraireDebut.Parameters.AddWithValue("@numLigne", idLigne);
-            TimeSpan horaireDebut = (TimeSpan)cmdHoraireDebut.ExecuteScalar();
+            TimeSpan horaireDebut = TimeSpan.Parse(cmdHoraireDebut.ExecuteScalar().ToString());
 
             string requeteHoraireFin = @"SELECT HoraireFin FROM Horaire WHERE NumLigne = @numLigne";
-            MySqlCommand cmdHoraireFin = new MySqlCommand(requeteHoraireFin, connexion);
+            SqliteCommand cmdHoraireFin = new SqliteCommand(requeteHoraireFin, connexion);
             cmdHoraireFin.Parameters.AddWithValue("@numLigne", idLigne);
-            TimeSpan horaireFin = (TimeSpan)cmdHoraireFin.ExecuteScalar();
+            TimeSpan horaireFin = TimeSpan.Parse(cmdHoraireFin.ExecuteScalar().ToString());
 
             DateTime baseDate = DateTime.Today;
             DateTime resultatHoraireDebut = baseDate.Add(horaireDebut);
@@ -1057,16 +1039,16 @@ namespace GestionReseau
 
             return (resultatHoraireDebut, resultatHoraireFin);
         }
+
         public static int MemeNom(string nomStation, int numStation)
         {
             string concat = nomStation + numStation.ToString();
 
             string requete = "SELECT COUNT(*) FROM Station WHERE NomStation = @nomStation";
-            MySqlCommand cmd = new MySqlCommand(requete, connexion);
+            SqliteCommand cmd = new SqliteCommand(requete, connexion);
             cmd.Parameters.AddWithValue("@nomStation", concat);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
-           return count; // Retourne le nombre de stations avec le même nom
-            
+            return count;
         }
     }
 }
